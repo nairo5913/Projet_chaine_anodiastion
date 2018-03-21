@@ -44,4 +44,6 @@ fi
 ### Demande login pour générer la BdD sur le serveur ###
 
 read -p "Entrez votre identifiant pour l'accès à la base de données : " identifiant
-read -s -p "Entrez votre mot de passe pour l'accès à la base de données : " mot_passe
+
+echo "login : $identifiant"
+
