@@ -45,10 +45,11 @@ fi
 
 read -p "Entrez votre identifiant pour l'accès à la base de données : " identifiant
 echo "login : $identifiant"
+echo "Nom de la Base de données : Anodisation_test"
 
 ### Création ###
 
-dropdb -h serveursn -U $identifiant anodisation_test
-createdb -h serveursn -U $identifiant anodisation_test
-psql -h serveursn -U $identifiant -d anodisation_test < ./cree_tables_et_remplit_bdd_anodisation.sql
+dropdb -h serveursn -U $identifiant Anodisation_test
+createdb -h serveursn -U $identifiant Anodisation_test
+psql -h serveursn -U $identifiant -d Anodisation_test < ./cree_tables_et_remplit_bdd_anodisation.sql
 
