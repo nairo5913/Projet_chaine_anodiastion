@@ -41,19 +41,14 @@ then
    exit 1
 fi
 
-### Déclaration variables ###
-
-nom_bdd = "anodisation_test"
-
 ### Demande login pour générer la BdD sur le serveur ###
 
 read -p "Entrez votre identifiant pour l'accès à la base de données : " identifiant
-
 echo "login : $identifiant"
 
 ### Création ###
 
-dropdb -h serveursn -U $identifiant $nom_bdd
-createdb -h serveursn -U $identifiant $nom_bdd
-psql -h serveursn -U $identifiant -d $nom_bdd < ./cree_table_et_remplit_BdD_anodisation.sql
+dropdb -h serveursn -U $identifiant anodisation_test
+createdb -h serveursn -U $identifiant anodisation_test
+psql -h serveursn -U $identifiant -d anodisation_test < ./cree_tables_et_remplit_bdd_anodisation.sql
 
