@@ -4,7 +4,7 @@ CREATE TABLE "Processus" (
     nom char(255) NOT NULL,
     processus_valide boolean DEFAULT FALSE,
     duree_mouvement time without time zone NOT NULL,
-    numero_bain integer,
+    numero_bain integer NOT NULL,
     duree_bain time without time zone NOT NULL
 );
 
