@@ -8,7 +8,7 @@ CREATE TABLE "Processus" (
     duree_bain time without time zone NOT NULL
 );
 
-/*COMMENT ON TABLE "Processus" IS 'Contient les details d\'un processus';*/
+COMMENT ON TABLE "Processus" IS 'Contient les details d\'un processus';
 
 CREATE TABLE "Mouvements" (
     id integer,
