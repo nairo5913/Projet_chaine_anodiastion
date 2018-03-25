@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Florian provost SN2IR
 # Creation_bdd.sh
 
@@ -41,15 +41,39 @@ then
    exit 1
 fi
 
+### Déclaration variable ###
+#
+nom_bdd='Anodisation_test'
+
 ### Demande login pour générer la BdD sur le serveur ###
 
 read -p "Entrez votre identifiant pour l'accès à la base de données : " identifiant
-echo "login : $identifiant"
-echo "Nom de la Base de données : Anodisation_test"
+#echo "login : $identifiant"
+
+### Choix du serveur ###
+#
+echo -e "Choix du serveur :\n 1 : serveursn\n 2 : localhost"
+read -p 'Entrez votre choix (1 seul caractere) : ' -n 1 choix_serveur
+echo -e "\n"
+#echo "Choix du serveur : $choix_serveur"
+
+if [ $choix_serveur = "1" ]
+then
+    serveur='serveursn'
+elif [ $choix_serveur = "2" ]
+then
+    serveur='localhost'
+else
+    echo -e "$GRAS$ROUGE Le choix du serveur est éronné !$NORMAL\n"
+    exit 1
+fi
+
+### Récapitulatif ###
+#
+echo -e "$SOULIGNE$GRAS""Nom de la Base de données :$NORMAL $nom_bdd$SOULIGNE$GRAS\nNom du serveur :$NORMAL $serveur$SOULIGNE$GRAS\nLogin de l'utilisateur :$NORMAL $identifiant\n"
 
 ### Création ###
-
-dropdb -h serveursn -U $identifiant Anodisation_test
-createdb -h serveursn -U $identifiant Anodisation_test
-psql -h serveursn -U $identifiant -d Anodisation_test < ./cree_tables_et_remplit_bdd_anodisation.sql
-
+#
+dropdb -h $serveur -U $identifiant $nom_bdd
+createdb -h $serveur -U $identifiant $nom_bdd
+psql -h $serveur -U $identifiant -d $nom_bdd < ./cree_tables_et_remplit_bdd_anodisation.sql
