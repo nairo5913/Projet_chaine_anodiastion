@@ -6,6 +6,6 @@
 - 
 
 ## Descriptions (listes) éventuelles des fichiers modifié, impacté :
-- 
-- 
-- 
+1. 
+2. 
+3. 
