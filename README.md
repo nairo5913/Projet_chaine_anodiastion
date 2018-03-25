@@ -1,6 +1,7 @@
 # Projet chaîne d'annodisation
 
 :exclamation: :collision: :bomb: :gun: 
+
 [Liste des emoji](https://www.webpagefx.com/tools/emoji-cheat-sheet/)
 
 ## Description
