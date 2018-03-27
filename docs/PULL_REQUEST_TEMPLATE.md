@@ -5,7 +5,7 @@
 - 
 - 
 
-## Description des modifications :
+## Descriptions des modifications :
 - 
 - 
 - 
