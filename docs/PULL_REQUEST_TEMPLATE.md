@@ -1,11 +1,11 @@
 # Liste des modifications
 
-## Description des modifications :
-- 
+## Sujet
+
 - 
 - 
 
-## Descriptions (listes) éventuelles des fichiers modifié, impacté :
+## Description des modifications :
 - 
 - 
 - 
