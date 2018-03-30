@@ -1,31 +1,31 @@
 CREATE TABLE "Processus" (
-    id_processus integer,
+    id_processus SERIAL,
     PRIMARY KEY (id_processus),
     nom_processus char(255) NOT NULL,
     processus_valide boolean DEFAULT FALSE,
     duree_mouvement time without time zone NOT NULL,
     numero_bain integer NOT NULL,
     duree_bain time without time zone NOT NULL
-);
+) WITHOUT OIDS;
 
-/*COMMENT ON TABLE "Processus" IS 'Contient les details d\'un processus';
-COPY "Processus" FROM './donnees_processus.csv' WITH DELIMITER ',';*/
+/*COMMENT ON TABLE "Processus" IS "Contient les details d'un processus";*/
+\COPY "Processus" FROM './donnees_processus.csv' WITH DELIMITER ',';
 
 CREATE TABLE "Trajectoires" (
-    id_trajectoire integer,
+    id_trajectoire SERIAL,
     PRIMARY KEY (id_trajectoire),
     nom_trajectoire char(255) NOT NULL,
     id_processus integer,
     id_mouvements integer,
     contenu_trajectoire text,
     axe char
-);
+) WITHOUT OIDS;
 
-/*COMMENT ON TABLE "Processus" IS 'Contient les details d\'une trajectoire';
-COPY "Trajectoires" FROM './donnees_trajectoires.csv' WITH DELIMITER ',';*/
+/*COMMENT ON TABLE "Processus" IS 'Contient les details d\'une trajectoire';*/
+\COPY "Trajectoires" (nom_trajectoire, id_processus, id_mouvements, contenu_trajectoire, axe) FROM './donnees_trajectoires.csv' WITH DELIMITER ',';
 
 CREATE TABLE "Mouvements" (
-    id_mouvements integer,
+    id_mouvements SERIAL,
     PRIMARY KEY (id_mouvements),
     nom_mouvement char(255) NOT NULL,
     id_processus integer,
@@ -36,7 +36,7 @@ CREATE TABLE "Mouvements" (
     vitesse char,
     temps_attente time without time zone
     
-);
+) WITHOUT OIDS;
 
 /*COMMENT ON TABLE "Processus" IS 'Contient les details d\'un mouvement';
 COPY "Mouvements" FROM './donnees_mouvements.csv' WITH DELIMITER ',';*/
