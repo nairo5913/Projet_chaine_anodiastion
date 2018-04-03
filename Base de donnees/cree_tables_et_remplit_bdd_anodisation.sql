@@ -9,7 +9,7 @@ CREATE TABLE "Processus" (
 ) WITHOUT OIDS;
 
 /*COMMENT ON TABLE "Processus" IS "Contient les details d'un processus";*/
-\COPY "Processus" FROM './donnees_processus.csv' WITH DELIMITER ',';
+/*\COPY "Processus" FROM './donnees_processus.csv' WITH DELIMITER ',';*/
 
 CREATE TABLE "Trajectoires" (
     id_trajectoire SERIAL,
@@ -22,7 +22,7 @@ CREATE TABLE "Trajectoires" (
 ) WITHOUT OIDS;
 
 /*COMMENT ON TABLE "Processus" IS 'Contient les details d\'une trajectoire';*/
-\COPY "Trajectoires" (nom_trajectoire, id_processus, id_mouvements, contenu_trajectoire, axe) FROM './donnees_trajectoires.csv' WITH DELIMITER ',';
+\COPY "Trajectoires" FROM './donnees_trajectoires.csv' WITH DELIMITER ',';
 
 CREATE TABLE "Mouvements" (
     id_mouvements SERIAL,
@@ -35,7 +35,7 @@ CREATE TABLE "Mouvements" (
 /*    partie_bras integer ou text ou char,*/
     vitesse char,
     temps_attente time without time zone
-    
+
 ) WITHOUT OIDS;
 
 /*COMMENT ON TABLE "Processus" IS 'Contient les details d\'un mouvement';
@@ -57,7 +57,7 @@ CREATE TABLE "Intermediaire_mouvements_trajectoires" (
     id_t integer,
     id_m integer,
     PRIMARY KEY (id_m, id_t),
-    
+
     ordre_mouvements text,
     point_depart char,
     point_arrive char

@@ -1,6 +1,5 @@
-id_trajectoire,nom_trajectoire,id_processus,id_mouvements,contenu_trajectoire,axe
-1,Trajectoire 1,1,5,1;2;3;6,x
-2,Trajectoire 2,2,2,2;3;1,y
-3,Trajectoire 3,3,1,3;2;1,z
-4,Trajectoire 4,1,3,4;3;1,y
-5,Trajectoire 5,2,6,2;1;5,x
+1,Trajectoire 1,1,1,1;2;1;3,y
+2,Trajectoire 2,2,1,2;3;1;2,x
+3,Trajectoire 3,2,1,1;4;3;6,z
+4,Trajectoire 4,1,2,1;4;3;7,x
+5,Trajectoire 5,4,3,1;2;1;3,z

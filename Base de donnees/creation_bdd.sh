@@ -70,7 +70,9 @@ fi
 
 ### Récapitulatif ###
 #
-echo -e "$SOULIGNE$GRAS""Nom de la Base de données :$NORMAL $nom_bdd$SOULIGNE$GRAS\nNom du serveur :$NORMAL $serveur$SOULIGNE$GRAS\nLogin de l'utilisateur :$NORMAL $identifiant\n"
+echo -e " $SOULIGNE$GRAS$JAUNE""Nom de la Base de données :$NORMAL $nom_bdd"
+echo -e " $SOULIGNE$GRAS$JAUNE""Nom du serveur :$NORMAL $serveur"
+echo -e " $SOULIGNE$GRAS$JAUNE""Login de l'utilisateur :$NORMAL $identifiant\n"
 
 ### Création ###
 #
