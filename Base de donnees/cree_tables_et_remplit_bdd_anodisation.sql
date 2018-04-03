@@ -1,67 +1,62 @@
 CREATE TABLE "Processus" (
     id_processus SERIAL,
-    PRIMARY KEY (id_processus),
     nom_processus char(255) NOT NULL,
     processus_valide boolean DEFAULT FALSE,
-    duree_mouvement time without time zone NOT NULL,
+    duree_processus time without time zone NOT NULL,
     numero_bain integer NOT NULL,
-    duree_bain time without time zone NOT NULL
+    duree_bain time without time zone NOT NULL,
+    PRIMARY KEY (id_processus)
 ) WITHOUT OIDS;
 
-/*COMMENT ON TABLE "Processus" IS "Contient les details d'un processus";*/
-/*\COPY "Processus" FROM './donnees_processus.csv' WITH DELIMITER ',';*/
+COMMENT ON TABLE "Processus" IS 'Contient les details des processus';
+\COPY "Processus" FROM './donnees_processus.csv' WITH DELIMITER ',';
 
 CREATE TABLE "Trajectoires" (
     id_trajectoire SERIAL,
-    PRIMARY KEY (id_trajectoire),
     nom_trajectoire char(255) NOT NULL,
-    id_processus integer,
-    id_mouvements integer,
     contenu_trajectoire text,
-    axe char
+    duree_trajectoire time without time zone,
+    PRIMARY KEY (id_trajectoire)
 ) WITHOUT OIDS;
 
-/*COMMENT ON TABLE "Processus" IS 'Contient les details d\'une trajectoire';*/
+COMMENT ON TABLE "Trajectoires" IS 'Contient les details des trajectoire';
 \COPY "Trajectoires" FROM './donnees_trajectoires.csv' WITH DELIMITER ',';
 
 CREATE TABLE "Mouvements" (
     id_mouvements SERIAL,
-    PRIMARY KEY (id_mouvements),
     nom_mouvement char(255) NOT NULL,
-    id_processus integer,
     contenu_mouvement text,
-    nb_processus_utilise integer,
     axe char,
 /*    partie_bras integer ou text ou char,*/
     vitesse char,
-    temps_attente time without time zone
-
+    temps_attente time without time zone,
+    duree_mouvement time without time zone,
+    PRIMARY KEY (id_mouvements)
 ) WITHOUT OIDS;
 
-/*COMMENT ON TABLE "Processus" IS 'Contient les details d\'un mouvement';
-COPY "Mouvements" FROM './donnees_mouvements.csv' WITH DELIMITER ',';*/
+COMMENT ON TABLE "Mouvements" IS 'Contient les details des mouvement';
+\COPY "Mouvements" FROM './donnees_mouvements.csv' WITH DELIMITER ',';
 
 CREATE TABLE "Intermediaire_processus_trajectoires" (
     /*nom_champ char,*/
     id_p integer,
     id_t integer,
-    PRIMARY KEY (id_p, id_t),
-    ordre_trajectoires text
+    ordre_trajectoires integer[],
+    PRIMARY KEY (id_p, id_t)
 );
 
-/*COMMENT ON TABLE "Processus" IS 'Table intermediaire pour faire la liaison entre la table "Processus" et "Trajectoires"';
-COPY "Intermediaire_processus_trajectoires" FROM './donnees_intermediaire_processus_trajectoires.csv' WITH DELIMITER ',';*/
+COMMENT ON TABLE "Intermediaire_processus_trajectoires" IS 'Table intermediaire pour faire la liaison entre la table "Processus" et "Trajectoires"';
+\COPY "Intermediaire_processus_trajectoires" FROM './donnees_intermediaire_processus_trajectoires.csv' WITH DELIMITER ',';
 
 CREATE TABLE "Intermediaire_mouvements_trajectoires" (
     /*nom_champ char,*/
     id_t integer,
     id_m integer,
-    PRIMARY KEY (id_m, id_t),
-
-    ordre_mouvements text,
+    ordre_mouvements integer[],
     point_depart char,
-    point_arrive char
+    point_arrive char,
+    PRIMARY KEY (id_m, id_t)
 );
 
-/*COMMENT ON TABLE "Processus" IS 'Table intermediaire pour faire la liaison entre la table "Mouvements" et "Trajectoires"';
-COPY "Intermediaire_mouvements_trajectoires" FROM './donnees_intermediaire_mouvements_trajectoires.csv' WITH DELIMITER ',';*/
+COMMENT ON TABLE "Intermediaire_mouvements_trajectoires" IS 'Table intermediaire pour faire la liaison entre la table "Mouvements" et "Trajectoires"';
+/*\COPY "Intermediaire_mouvements_trajectoires" FROM './donnees_intermediaire_mouvements_trajectoires.csv' WITH DELIMITER ',';*/
