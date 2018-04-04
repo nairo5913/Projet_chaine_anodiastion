@@ -41,7 +41,7 @@ CREATE TABLE "Intermediaire_processus_trajectoires" (
     /*nom_champ char,*/
     id_p integer,
     id_t integer,
-    ordre_trajectoires integer[],
+    ordre_trajectoires text,
     PRIMARY KEY (id_p, id_t)
 );
 
@@ -52,11 +52,11 @@ CREATE TABLE "Intermediaire_mouvements_trajectoires" (
     /*nom_champ char,*/
     id_t integer,
     id_m integer,
-    ordre_mouvements integer[],
+    ordre_mouvements text,
     point_depart char,
     point_arrive char,
     PRIMARY KEY (id_m, id_t)
 );
 
 COMMENT ON TABLE "Intermediaire_mouvements_trajectoires" IS 'Table intermediaire pour faire la liaison entre la table "Mouvements" et "Trajectoires"';
-/*\COPY "Intermediaire_mouvements_trajectoires" FROM './donnees_intermediaire_mouvements_trajectoires.csv' WITH DELIMITER ',';*/
+\COPY "Intermediaire_mouvements_trajectoires" FROM './donnees_intermediaire_mouvements_trajectoires.csv' WITH DELIMITER ',';
