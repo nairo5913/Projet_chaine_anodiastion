@@ -31,7 +31,7 @@ class EvtFramePrincipal : public FramePrincipal
 		EvtFramePrincipal( wxWindow* parent );
 	//// end generated class members
     private:
-        DataAnnodiastion *m_data_anodisation; 
+        DataAnnodiastion *m_bdd_anodisation; 
         void AfficheStatus(wxString texte, int position);
         void AfficheResultat(wxString texte);
 };

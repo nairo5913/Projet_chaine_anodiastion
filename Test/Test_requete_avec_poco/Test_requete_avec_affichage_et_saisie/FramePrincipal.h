@@ -50,7 +50,7 @@ class FramePrincipal : public wxFrame
 	
 	public:
 		
-		FramePrincipal( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Test de requête avec POCO en C++"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 857,659 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		FramePrincipal( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Test de requête avec POCO en C++"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 700,600 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 		
 		~FramePrincipal();
 	

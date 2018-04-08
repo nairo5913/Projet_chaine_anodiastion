@@ -40,11 +40,11 @@
             <property name="font"></property>
             <property name="hidden">0</property>
             <property name="id">wxID_ANY</property>
-            <property name="maximum_size">1024,770</property>
-            <property name="minimum_size">500,200</property>
+            <property name="maximum_size">-1,-1</property>
+            <property name="minimum_size">600,400</property>
             <property name="name">FramePrincipal</property>
             <property name="pos"></property>
-            <property name="size">857,659</property>
+            <property name="size">700,600</property>
             <property name="style">wxDEFAULT_FRAME_STYLE</property>
             <property name="subclass"></property>
             <property name="title">Test de requête avec POCO en C++</property>
@@ -94,8 +94,8 @@
                 <property name="orient">wxVERTICAL</property>
                 <property name="permission">none</property>
                 <object class="sizeritem" expanded="1">
-                    <property name="border">5</property>
-                    <property name="flag">wxEXPAND</property>
+                    <property name="border">10</property>
+                    <property name="flag">wxALL|wxEXPAND</property>
                     <property name="proportion">1</property>
                     <object class="wxStaticBoxSizer" expanded="1">
                         <property name="id">wxID_ANY</property>
@@ -370,8 +370,8 @@
                     </object>
                 </object>
                 <object class="sizeritem" expanded="1">
-                    <property name="border">5</property>
-                    <property name="flag">wxEXPAND</property>
+                    <property name="border">10</property>
+                    <property name="flag">wxALL|wxEXPAND</property>
                     <property name="proportion">1</property>
                     <object class="wxStaticBoxSizer" expanded="1">
                         <property name="id">wxID_ANY</property>
@@ -383,7 +383,7 @@
                         <property name="permission">none</property>
                         <event name="OnUpdateUI"></event>
                         <object class="sizeritem" expanded="0">
-                            <property name="border">5</property>
+                            <property name="border">10</property>
                             <property name="flag">wxALIGN_CENTER|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL|wxEXPAND</property>
                             <property name="proportion">0</property>
                             <object class="wxTextCtrl" expanded="0">
@@ -440,7 +440,7 @@
                                 <property name="validator_style">wxFILTER_NONE</property>
                                 <property name="validator_type">wxDefaultValidator</property>
                                 <property name="validator_variable"></property>
-                                <property name="value">SELECT * FROM </property>
+                                <property name="value">SELECT * FROM processus</property>
                                 <property name="window_extra_style"></property>
                                 <property name="window_name"></property>
                                 <property name="window_style"></property>
@@ -483,9 +483,9 @@
                                 <property name="orient">wxHORIZONTAL</property>
                                 <property name="permission">none</property>
                                 <object class="sizeritem" expanded="0">
-                                    <property name="border">5</property>
+                                    <property name="border">15</property>
                                     <property name="flag">wxALIGN_BOTTOM|wxALL</property>
-                                    <property name="proportion">0</property>
+                                    <property name="proportion">1</property>
                                     <object class="wxButton" expanded="0">
                                         <property name="BottomDockable">1</property>
                                         <property name="LeftDockable">1</property>
@@ -575,8 +575,8 @@
                     </object>
                 </object>
                 <object class="sizeritem" expanded="1">
-                    <property name="border">5</property>
-                    <property name="flag">wxEXPAND</property>
+                    <property name="border">10</property>
+                    <property name="flag">wxALL|wxEXPAND</property>
                     <property name="proportion">2</property>
                     <object class="wxStaticBoxSizer" expanded="1">
                         <property name="id">wxID_ANY</property>
@@ -588,7 +588,7 @@
                         <property name="permission">none</property>
                         <event name="OnUpdateUI"></event>
                         <object class="sizeritem" expanded="1">
-                            <property name="border">5</property>
+                            <property name="border">8</property>
                             <property name="flag">wxALIGN_CENTER|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL|wxEXPAND</property>
                             <property name="proportion">1</property>
                             <object class="wxTextCtrl" expanded="1">
@@ -688,7 +688,7 @@
                 <property name="enabled">1</property>
                 <property name="fg"></property>
                 <property name="fields">2</property>
-                <property name="font"></property>
+                <property name="font">,90,92,-1,72,0</property>
                 <property name="hidden">0</property>
                 <property name="id">wxID_ANY</property>
                 <property name="maximum_size"></property>
