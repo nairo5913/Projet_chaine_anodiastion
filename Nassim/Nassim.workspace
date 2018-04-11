@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeLite_Workspace Name="Nassim" Database="" Version="10.0.0">
+  <Project Name="Anodisation" Path="Code_Nassim/Code_Nassim.project" Active="No"/>
+  <Project Name="Client" Path="Code_Nassim_Client/Code_Nassim_Client.project" Active="Yes"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Debug" Selected="yes">
+      <Environment/>
+      <Project Name="Anodisation" ConfigName="Debug"/>
+      <Project Name="Client" ConfigName="Debug"/>
+    </WorkspaceConfiguration>
+    <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Environment/>
+      <Project Name="Anodisation" ConfigName="Release"/>
+      <Project Name="Client" ConfigName="Release"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
+</CodeLite_Workspace>
