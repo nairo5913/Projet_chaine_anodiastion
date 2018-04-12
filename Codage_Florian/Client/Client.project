@@ -100,11 +100,14 @@
     <File Name="EvtFramePrincipal.cpp"/>
     <File Name="FramePrincipal.cpp"/>
     <File Name="MyApp.cpp"/>
+    <File Name="Client.cpp"/>
   </VirtualDirectory>
   <VirtualDirectory Name="include">
-    <File Name="EvtFramePrincipal.h"/>
     <File Name="FramePrincipal.h"/>
     <File Name="MyApp.h"/>
+    <File Name="EvtFramePrincipal.h"/>
+    <File Name="Client.h"/>
+    <File Name="Protocoles.h"/>
   </VirtualDirectory>
   <VirtualDirectory Name="resources">
     <File Name="FramePrincipal.fbp"/>

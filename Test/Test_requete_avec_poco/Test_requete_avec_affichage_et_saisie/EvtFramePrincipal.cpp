@@ -3,7 +3,7 @@
   *  Projet:   Chaîne d'anodisation - Test des requetes SQL en C++ afin de voir 
                la structure de la BdD
   *  Crée le:  07/04/2018
-  *  Utilité:  
+  *  Utilité:  Gestion des événements du frame principal
   *  Auteur:   Florian Provost
 *******************************************************************************/
 #include "EvtFramePrincipal.h"

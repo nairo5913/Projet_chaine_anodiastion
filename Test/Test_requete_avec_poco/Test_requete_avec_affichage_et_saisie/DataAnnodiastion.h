@@ -17,7 +17,7 @@ using std::vector;
 #include <Poco/Data/ODBC/Connector.h>
 using namespace Poco::Data::ODBC;
 using namespace Poco::Data;
-//#include <Poco/Exception.h>
+#include <Poco/Exception.h>
 #include "Poco/Data/ODBC/ODBCException.h"
 #include <Poco/Data/RecordSet.h>
 

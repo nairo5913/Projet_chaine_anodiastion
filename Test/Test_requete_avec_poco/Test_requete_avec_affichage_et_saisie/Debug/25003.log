@@ -1,0 +1,5 @@
+conn=0x11c4b60, PGAPI_DriverConnect( in)='DSN=Anodisation', fDriverCompletion=0
+DSN info: DSN='Anodisation',server='localhost',port='5432',dbase='Anodisation_test',user='fprovost',passwd='xxxxx'
+          onlyread='',protocol='',showoid='',fakeoidindex='',showsystable=''
+          conn_settings='(null)', conn_encoding='(null)'
+          translation_dll='',translation_option=''

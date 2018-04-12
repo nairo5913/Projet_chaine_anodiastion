@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Workspace Name="Codage_Florian" Database="" Version="10.0.0">
   <Project Name="Client" Path="Client/Client.project" Active="Yes"/>
-  <Project Name="Acces_BdD" Path="Acces_BdD/Acces_BdD.project"/>
+  <Project Name="Acces_BdD" Path="Acces_BdD/Acces_BdD.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">
       <Environment/>
