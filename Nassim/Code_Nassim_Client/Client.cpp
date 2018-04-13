@@ -8,42 +8,56 @@
 
 Client::Client(wxString ip, long port,EvtFramePrincipal *frame)
 {
-    m_hote_ip;
+    m_hote = ip;
     m_port=port;
     m_frame=frame;
     wxIPV4address socket;
     socket.Hostname(m_hote);
     socket.Service(m_port);
-    m_cliant=new wxSocketClient();
+    m_client=new wxSocketClient();
+    /*on se connecte sur le socket*/
     m_client->Connect(socket,false);
-    m_client->WaitOnConnect(???);
+    /*on attend au macimum 10 secondes que la connexion s'établisse*/
+    m_client->WaitOnConnect(10);
+    /*on verifie le succée de la connection*/
     if(m_client->IsConnected())
         {
             m_client_connecte=true;
             string reponse=LitReponse();
-            if (reponse=="???")
+            if (reponse=="101")
+                /*a priori on est connecté*/
             {
                 wxString message(wxT(""));
                 message << wxT("Connecté sur") <<m_hote
                         << wxT(",Port") << m_port;
-                        
+            /*on demande a l'ihm d'afficher le message*/
             wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED,ID_CLIENT);
             MyEvent.SetString(message);
             wxPostEvent(m_frame, MyEvent);
-            
+            /*on connecte le gestionnaire d'événement a l'évenement socket*/
             Connect( SOCKET_ID, wxEVT_SOCKET , wxSocketEventHandler(Client::OnSocketEvent ));
-            
+            /*on indique quel gestionnaire d'évenement utiliser*/
             m_client->SetEventHandler((*this, SOCKET_ID));
-            
+            /*sur un evenement socket perdu*/
             m_client->SetNotify(wxSOCKET_LOST_FLAG);
-            
+            /*on active les evenements sur ce socket*/
             m_client->Notify(true);
             }
-            else if (reponse=="???")
+            else if (reponse=="103-")
                 {
                     wxString message(wxT("PROBLEME d'entrée/sortie réseau: déconnexion"));
+                    message << m_hote <<wxT("\n");
                     Deconnexion(message);
                 }
+            else if (reponse=="102-")
+                {
+                    wxString message(wxT("PROBLÉME d'entrée/sortie réseau: Décinnexion"));
+                }
+            else
+            {
+                wxString message(wxT("PROBLÈME d'entrée/sortie réseau: Déconnexion"));
+                Deconnexion(message);
+            }
                 //remplir avec les "else" qui serons necessaire
         }
 }
@@ -104,7 +118,7 @@ string Client::LitReponse()
             
     }
     else
-        reponse = "???";
+        reponse = "102-";
         return reponse;
 }
 

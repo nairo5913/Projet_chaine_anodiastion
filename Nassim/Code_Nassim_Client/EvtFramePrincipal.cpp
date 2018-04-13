@@ -51,11 +51,16 @@ void EvtFramePrincipal::OnFrameClose( wxCloseEvent& event )
     Destroy();
 }
 
-void EvtFramePrincipal::/*evenement a voir */
-void EvtFramePrincipal::/*evenement a voir */
-void EvtFramePrincipal::/*evenement a voir */
-void EvtFramePrincipal::/*evenement a voir */
+void EvtFramePrincipal::ConnexionServeur(wxCommandEvent& event)
+{
+    wxString requete(wxT("100"));
+    
+}
 
+void EvtFramePrincipal::Erreur(wxCommandEvent& event)
+{
+    wxString requete(wxT("400"));
+}
 
 void EvtFramePrincipal::GereReponse(wxString reponse, wxString reponse_attendue)
 {
@@ -67,13 +72,13 @@ void EvtFramePrincipal::GereReponse(wxString reponse, wxString reponse_attendue)
         message<<reste<<wxT("\n");
         m_textCtrlLog->AppendText(message);
     }
-    else if (reponse.IsSameAs(wxT("???")))
+    else if (reponse.IsSameAs(wxT("404")))
     // commande inconnue
     {
         // on ne devrait normalement pas arriver ici...
         wxLogWarning(wxT("Le serveur a retourné: Commande inconnue..."));
     }
-    else if (reponse.IsSameAs(wxT("???")))
+    else if (reponse.IsSameAs(wxT("102-")))
     // erreur réseau
     {
         Deconnexion(wxT("PROBLÈME d'entrée/sortie réseau: Déconnexion"));
@@ -84,21 +89,19 @@ void EvtFramePrincipal::GereReponse(wxString reponse, wxString reponse_attendue)
         wxLogWarning(wxT("Le serveur a retourné une valeur non prévue dans le protocole!!!"));
     }
 }
-
-
-
-void EvtFramePrincipal::Deconnexion(wxString message)
+void EvtFramePrincipal::EnvoiReception(wxCommandEvent& event)
 {
-    // affiche dans le log sur événement du client
-    message<<wxT("\n");
-    m_textCtrlLog->AppendText(message);
-    m_client->Close();
-    delete m_client;
-    m_connecte=false;
-    m_toggleBtnConnexion->SetValue(false);
-    m_panelMessage->Hide();
-    m_toggleBtnConnexion->SetLabel(wxT("Connexion"));
-    m_panelParametresConnexion->Show();
-    m_StatusBar->SetStatusText(wxT("Déconnecté..."),0);
-    Layout();
+    wxString requete(wxT("200-"));
+    requete<<
+}
+void EvtFramePrincipal::Information(wxCommandEvent& event)
+{
+    wxString requete(wxT("500-"));
+    
+}
+
+void EvtFramePrincipal::Deconnexion(wxCommandEvent& event)
+{
+    wxString requete(wxT("600-"));
+    
 }

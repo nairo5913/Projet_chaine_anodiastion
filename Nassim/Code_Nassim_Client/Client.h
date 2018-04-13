@@ -11,7 +11,7 @@ class Client
 public:
     Client(wxString ip, long port, EvtFramePrincipal *frame );
     ~Client();
-    bool IsOK(){rerturn m_client_connecte;};
+    bool IsOK(){return m_client_connecte;};
     wxString EcritMessage(wxString message);
     void Close();
 
@@ -26,7 +26,7 @@ public:
     int m_etat_actuel;
     
     string LitReponse();
-    void Deconnexion(wxString message)
+    void Deconnexion(wxString message);
 };
 
 #endif // CLIENT_H
