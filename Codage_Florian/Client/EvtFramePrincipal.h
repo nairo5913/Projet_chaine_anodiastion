@@ -20,8 +20,6 @@ de production
 #define ID_CLIENT 100
 class Client;
 #include "Protocoles.h"
-#include <wx/log.h>
-#include <iostream>
 
 /** Implementing FramePrincipal */
 class EvtFramePrincipal : public FramePrincipal
@@ -37,10 +35,10 @@ class EvtFramePrincipal : public FramePrincipal
 		EvtFramePrincipal( wxWindow* parent );
 	//// end generated class members
     protected:
-        void AfficheMessageClient(wxCommandEvent& event);
         void AfficheInfoClient(wxCommandEvent& event);
+        void AfficheMessageClient(wxCommandEvent& event);
         void AgitServeurPerdu(wxCommandEvent& event);
-        void GereReponse(wxString reponse, wxString reponse_attendue);
+        //void GereReponse(wxString reponse, wxString reponse_attendue);
     private:
         Client *m_client;
         bool m_connecte;

@@ -1,4 +1,7 @@
 #include "EvtFramePrincipal.h"
+#include "Client.h"
+#include <wx/log.h>
+#include <iostream>
 
 EvtFramePrincipal::EvtFramePrincipal( wxWindow* parent )
 :
@@ -17,64 +20,7 @@ FramePrincipal( parent )
             wxCommandEventHandler( EvtFramePrincipal::AgitServeurPerdu ), NULL, this );
 }
 
-void EvtFramePrincipal::OnFrameClose( wxCloseEvent& event )
-{
-    // Gestion de la fermeture de la fenetre
-    // penser à bloquer la fermeture pour la suite du projet surtout si fabrication
-    if (m_connecte)
-    {
-        m_client->Close();
-        delete m_client;
-    }
-    
-    Destroy();
-}
-
 void EvtFramePrincipal::OnButtonConnexionToggle( wxCommandEvent& event )
-{
-    // TODO: Implement OnButtonConnexionToggle
-}
-
-void EvtFramePrincipal::OnClickButtonEnvoyer( wxCommandEvent& event )
-{
-    // TODO: Implement OnClickButtonEnvoyer
-    m_textCtrlAffichage->AppendText(wxT("Bouton envoyer \n"));
-}
-
-void EvtFramePrincipal::OnTextEnterSaisie( wxCommandEvent& event )
-{
-    // TODO: Implement OnTextEnterSaisie
-}
-
-
-void EvtFramePrincipal::AfficheMessageClient(wxCommandEvent& event)
-{
-    // Affiche dans le log l'événement
-    m_textCtrlAffichage->AppendText(event.GetString());
-}
-
-void EvtFramePrincipal::Deconnexion(wxString message)
-{
-    
-}
-
-void EvtFramePrincipal::AgitServeurPerdu(wxCommandEvent& event)
-{
-    
-}
-
-void EvtFramePrincipal::GereReponse(wxString reponse, wxString reponse_attendue)
-{
-    
-}
-
-void EvtFramePrincipal::AfficheInfoClient(wxCommandEvent& event)
-{
-    // Affiche dans la barre de statusbar l'événement
-    m_statusBar->SetStatusText(event.GetString(),0);
-}
-
-void EvtFramePrincipal::OnToggleButton( wxCommandEvent& event )
 {
     m_textCtrlAffichage->AppendText(wxT("Toggle Button"));
     
@@ -108,4 +54,65 @@ void EvtFramePrincipal::OnToggleButton( wxCommandEvent& event )
     {
         Deconnexion(wxT("Déconnexion depuis le client"));
     }
+}
+
+void EvtFramePrincipal::OnFrameClose( wxCloseEvent& event )
+{
+    // Gestion de la fermeture de la fenetre
+    // penser à bloquer la fermeture pour la suite du projet surtout si fabrication
+    if (m_connecte)
+    {
+        m_client->Close();
+        delete m_client;
+    }
+    
+    Destroy();
+}
+
+void EvtFramePrincipal::OnClickButtonEnvoyer( wxCommandEvent& event )
+{
+    // TODO: Implement OnClickButtonEnvoyer
+    m_textCtrlAffichage->AppendText(wxT("Bouton envoyer \n"));
+}
+
+void EvtFramePrincipal::OnTextEnterSaisie( wxCommandEvent& event )
+{
+    // TODO: Implement OnTextEnterSaisie
+}
+
+void EvtFramePrincipal::AfficheInfoClient(wxCommandEvent& event)
+{
+    // Affiche dans la barre de statusbar l'événement
+    m_statusBar->SetStatusText(event.GetString(),0);
+}
+
+void EvtFramePrincipal::AfficheMessageClient(wxCommandEvent& event)
+{
+    // Affiche dans le log l'événement
+    m_textCtrlAffichage->AppendText(event.GetString());
+}
+
+void EvtFramePrincipal::AgitServeurPerdu(wxCommandEvent& event)
+{
+    Deconnexion(event.GetString());
+}
+
+/*void EvtFramePrincipal::GereReponse(wxString reponse, wxString reponse_attendue)
+{
+    
+}*/
+
+void EvtFramePrincipal::Deconnexion(wxString message)
+{
+    message << wxT("\n");
+    m_textCtrlAffichage->AppendText(message);
+    m_client->Close();
+    delete m_client;
+    m_connecte = false;
+    
+    m_toggleBtnConnexion->SetValue(false);
+    m_panelSaisie->Hide();
+    m_toggleBtnConnexion->SetLabel(wxT("Connexion"));
+    m_statusBar->SetStatusText(wxT("Déconnecté."), 0);
+    Layout();
 }

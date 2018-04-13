@@ -17,24 +17,26 @@ using std::string;
 class Client : public wxEvtHandler
 {
     public:
-        Client(wxString ip, long port,EvtFramePrincipal *frame);
+        Client(wxString ip, long port, EvtFramePrincipal *frame);
         ~Client();
         bool IsOK(){return m_client_connecte;};
-        wxString EcritMessage(wxString message);
+        string EcritMessage(wxString message);
         void Close();
     
     protected:
     private:
-        wxString m_hote;
-        int m_port;
         EvtFramePrincipal *m_frame;
-        bool m_client_connecte;
         wxSocketClient *m_client;
-        void OnSocketEvent(wxSocketEvent& event);
+        bool m_client_connecte;
         int m_etat_actuel;
-
+        int m_port;
+        wxString m_hote;
+        
+        //bool AnalyseReponseConnexionServeur();
+        bool Identification(wxString utilisateur);
         string LitReponse();
         void Deconnexion(wxString message);
+        void OnSocketEvent(wxSocketEvent& event);
 };
 
 #endif // CLIENT_H
