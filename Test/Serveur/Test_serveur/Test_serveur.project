@@ -108,8 +108,8 @@
     <File Name="FramePrincipal.h"/>
     <File Name="MyApp.h"/>
     <File Name="Serveur.h"/>
-    <File Name="DonneesClient.h"/>
     <File Name="Protocoles.h"/>
+    <File Name="DonneesClient.h"/>
   </VirtualDirectory>
   <VirtualDirectory Name="resources">
     <File Name="FramePrincipal.fbp"/>

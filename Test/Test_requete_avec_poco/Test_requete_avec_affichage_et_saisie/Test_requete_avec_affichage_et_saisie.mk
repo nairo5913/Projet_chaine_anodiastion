@@ -5,7 +5,7 @@
 ## Debug
 ProjectName            :=Test_requete_avec_affichage_et_saisie
 ConfigurationName      :=Debug
-WorkspacePath          :=/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/Test_requete_avec_poco
+WorkspacePath          :=/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test
 ProjectPath            :=/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/Test_requete_avec_poco/Test_requete_avec_affichage_et_saisie
 IntermediateDirectory  :=./Debug
 OutDir                 := $(IntermediateDirectory)
@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=nairo5913
-Date                   :=15/04/2018
+Date                   :=16/04/2018
 CodeLitePath           :=/home/nairo5913/.codelite
 LinkerName             :=/usr/bin/g++
 SharedObjectLinkerName :=/usr/bin/g++ -shared -fPIC

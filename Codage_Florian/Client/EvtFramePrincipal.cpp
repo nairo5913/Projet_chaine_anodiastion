@@ -24,8 +24,6 @@ FramePrincipal( parent )
 
 void EvtFramePrincipal::OnButtonConnexionToggle( wxCommandEvent& event )
 {
-    m_textCtrlAffichage->AppendText(wxT("Toggle Button"));
-    
     if(!m_connecte)
     {
         long port = 30000;

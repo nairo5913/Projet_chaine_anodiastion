@@ -61,7 +61,7 @@ Client::Client(wxString ip, long port, EvtFramePrincipal *frame)
             
             wxCommandEvent MyEventMsg(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
             
-            /*wxString utilisateur = wxT("Responsable");
+            wxString utilisateur = wxT("Responsable");
             
             if(Identification(utilisateur))
             {
@@ -74,10 +74,10 @@ Client::Client(wxString ip, long port, EvtFramePrincipal *frame)
             {
                 message.clear();
                 message << wxT("Échec de l'identification \n");
-                /*MyEventMsg.SetString(message);
-                wxPostEvent(m_frame, MyEventMsg);*//*
+                MyEventMsg.SetString(message);
+                wxPostEvent(m_frame, MyEventMsg);
                 Deconnexion(message);
-            }*/
+            }
             
             
         }
@@ -157,7 +157,7 @@ bool Client::Identification(wxString utilisateur)
 {
     bool retour = false;
     
-    wxString requete(wxT(DEMANDE_CONNEXION));
+    wxString requete(wxT(DEMANDE_IDENTIFICATION));
     requete << utilisateur;
     
     wxString reponse = EcritMessage(requete);

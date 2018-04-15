@@ -17,6 +17,7 @@
 #define NOMBRE_MAX_UTILISATEURS "103-"
 
 // Identification
+#define DEMANDE_IDENTIFICATION "110-"
 #define IDENTIFICATION_OK "111-"
 #define IDENTIFICATION_PAS_OK "112-"
 
@@ -24,6 +25,7 @@
 // Partie 200, Envoi/Réception
 ////////////////////////////////////////////////////////////////////////////////
 //
+#define ENVOI "200-"
 #define RECEPTION_OK "201-"
 #define RECEPTION_PAS_OK "202-"
 

@@ -7,6 +7,22 @@
   </Plugins>
   <Description/>
   <Dependencies/>
+  <VirtualDirectory Name="src">
+    <File Name="EvtFramePrincipal.cpp"/>
+    <File Name="FramePrincipal.cpp"/>
+    <File Name="MyApp.cpp"/>
+    <File Name="Client.cpp"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="include">
+    <File Name="FramePrincipal.h"/>
+    <File Name="MyApp.h"/>
+    <File Name="EvtFramePrincipal.h"/>
+    <File Name="Client.h"/>
+    <File Name="Protocoles.h"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="resources">
+    <File Name="FramePrincipal.fbp"/>
+  </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>
       <Compiler Options="" C_Options="" Assembler="">
@@ -17,7 +33,7 @@
       </Linker>
       <ResourceCompiler Options=""/>
     </GlobalSettings>
-    <Configuration Name="Debug" CompilerType="GCC" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+    <Configuration Name="Debug" CompilerType="Cross GCC ( x86_64-linux-gnu )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
       <Compiler Options="-g;-O0;-Wall;$(shell wx-config --cxxflags --unicode=yes  )" C_Options="-g;-O0;-Wall;$(shell wx-config --cxxflags --unicode=yes  )" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="IHM"/>
       </Compiler>
@@ -96,20 +112,4 @@
       </Completion>
     </Configuration>
   </Settings>
-  <VirtualDirectory Name="src">
-    <File Name="EvtFramePrincipal.cpp"/>
-    <File Name="FramePrincipal.cpp"/>
-    <File Name="MyApp.cpp"/>
-    <File Name="Client.cpp"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="include">
-    <File Name="FramePrincipal.h"/>
-    <File Name="MyApp.h"/>
-    <File Name="EvtFramePrincipal.h"/>
-    <File Name="Client.h"/>
-    <File Name="Protocoles.h"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="resources">
-    <File Name="FramePrincipal.fbp"/>
-  </VirtualDirectory>
 </CodeLite_Project>

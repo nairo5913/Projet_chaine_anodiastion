@@ -1,4 +1,4 @@
-+#ifndef __EvtFramePrincipal__
+#ifndef __EvtFramePrincipal__
 #define __EvtFramePrincipal__
 
 /**
@@ -46,7 +46,7 @@ class EvtFramePrincipal : public FramePrincipal
     private:
         Client *m_client;
         bool m_connecte;
-
+        
         void Deconnexion(wxString message);
 
 

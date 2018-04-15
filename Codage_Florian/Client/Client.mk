@@ -13,10 +13,10 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=nairo5913
-Date                   :=15/04/2018
+Date                   :=16/04/2018
 CodeLitePath           :=/home/nairo5913/.codelite
-LinkerName             :=/usr/bin/g++
-SharedObjectLinkerName :=/usr/bin/g++ -shared -fPIC
+LinkerName             :=/usr/bin/x86_64-linux-gnu-g++
+SharedObjectLinkerName :=/usr/bin/x86_64-linux-gnu-g++ -shared -fPIC
 ObjectSuffix           :=.o
 DependSuffix           :=.o.d
 PreprocessSuffix       :=.i
@@ -47,13 +47,13 @@ LibPath                := $(LibraryPathSwitch).
 ## Common variables
 ## AR, CXX, CC, AS, CXXFLAGS and CFLAGS can be overriden using an environment variables
 ##
-AR       := /usr/bin/ar rcu
-CXX      := /usr/bin/g++
-CC       := /usr/bin/gcc
+AR       := /usr/bin/x86_64-linux-gnu-ar rcu
+CXX      := /usr/bin/x86_64-linux-gnu-g++
+CC       := /usr/bin/x86_64-linux-gnu-gcc
 CXXFLAGS :=  -g -O0 -Wall $(shell wx-config --cxxflags --unicode=yes  ) $(Preprocessors)
 CFLAGS   :=  -g -O0 -Wall $(shell wx-config --cxxflags --unicode=yes  ) $(Preprocessors)
 ASFLAGS  := 
-AS       := /usr/bin/as
+AS       := /usr/bin/x86_64-linux-gnu-as
 
 
 ##

@@ -2,7 +2,7 @@
 #define MYAPP_H
 /*******************************************************************************
   *  Fichier:  MyApp.h
-  *  Projet:   Chaîne d'anodisation - Test des requetes SQL en C++ afin de voir 
+  *  Projet:   Chaîne d'anodisation - Test des requêtes SQL en C++ afin de voir 
                la structure de la BdD
   *  Crée le:  07/04/2018
   *  Utilité:  Lancement de l'application

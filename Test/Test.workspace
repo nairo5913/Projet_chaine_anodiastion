@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeLite_Workspace Name="Test" Database="Test.tags" Version="10.0.0">
+  <Project Name="Test_requete_avec_affichage_et_saisie" Path="Test_requete_avec_poco/Test_requete_avec_affichage_et_saisie/Test_requete_avec_affichage_et_saisie.project" Active="No"/>
+  <Project Name="Test_serveur" Path="Serveur/Test_serveur/Test_serveur.project" Active="Yes"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Debug" Selected="yes">
+      <Environment/>
+      <Project Name="Test_requete_avec_affichage_et_saisie" ConfigName="Debug"/>
+      <Project Name="Test_serveur" ConfigName="Debug"/>
+    </WorkspaceConfiguration>
+    <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Environment/>
+      <Project Name="Test_requete_avec_affichage_et_saisie" ConfigName="Release"/>
+      <Project Name="Test_serveur" ConfigName="Release"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
+</CodeLite_Workspace>

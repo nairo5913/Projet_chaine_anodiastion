@@ -4,14 +4,28 @@
   <wxString Value="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Codage_Florian/Codage_Florian.workspace" Name="m_workspaceName"/>
   <TabInfoArray Name="TabInfoArray">
     <TabInfo>
-      <wxString Value="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Codage_Florian/Client/Client.h" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="8" Name="CurrentLine"/>
+      <wxString Value="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Codage_Florian/Client/EvtFramePrincipal.h" Name="FileName"/>
+      <int Value="21" Name="FirstVisibleLine"/>
+      <int Value="48" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
     <TabInfo>
-      <wxString Value="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Codage_Florian/Client/EvtFramePrincipal.h" Name="FileName"/>
+      <wxString Value="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Codage_Florian/Client/Client.cpp" Name="FileName"/>
+      <int Value="153" Name="FirstVisibleLine"/>
+      <int Value="171" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Codage_Florian/Client/EvtFramePrincipal.cpp" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="36" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Codage_Florian/Client/Client.h" Name="FileName"/>
       <int Value="0" Name="FirstVisibleLine"/>
       <int Value="0" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
@@ -19,22 +33,8 @@
     </TabInfo>
     <TabInfo>
       <wxString Value="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Codage_Florian/Client/Protocoles.h" Name="FileName"/>
-      <int Value="13" Name="FirstVisibleLine"/>
-      <int Value="13" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Codage_Florian/Client/Client.cpp" Name="FileName"/>
-      <int Value="8" Name="FirstVisibleLine"/>
-      <int Value="8" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Codage_Florian/Client/EvtFramePrincipal.cpp" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="21" Name="CurrentLine"/>
+      <int Value="9" Name="FirstVisibleLine"/>
+      <int Value="27" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>

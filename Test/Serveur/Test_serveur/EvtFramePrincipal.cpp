@@ -44,7 +44,7 @@ void EvtFramePrincipal::OnButtonDemarrerServeurToggle(wxCommandEvent& event)
             Connect(ID_SERVEUR + 1, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(EvtFramePrincipal::AfficheMessageServeur), NULL, this);
             
             m_statusBar->SetStatusText(wxT("Serveur connecté"), 0);
-            m_toggleBtnConnexion->SetLabel(wxT("Arret du serveur"));
+            m_toggleBtnConnexion->SetLabel(wxT("Arrêt du serveur"));
         }
         else
         {
@@ -57,7 +57,7 @@ void EvtFramePrincipal::OnButtonDemarrerServeurToggle(wxCommandEvent& event)
     }
     else
     {
-        ArretServeur(wxT("Arret du serveur"));
+        ArretServeur(wxT("Arrêt du serveur"));
     }
 }
 

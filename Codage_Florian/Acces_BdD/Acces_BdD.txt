@@ -1,0 +1,1 @@
+./Debug/EvtFramePrincipal.cpp.o ./Debug/FramePrincipal.cpp.o ./Debug/MyApp.cpp.o
