@@ -1,7 +1,12 @@
+/*******************************************************************************
+*  Fichier:  EvtFramePrincipal.cpp
+*  Projet:   Chaîne d'anodisation - Gestion du client pour le PC responsable
+             de production
+*  Crée le:  11/04/2018
+*  Utilité:  Gestion des événements du frame principal
+*  Auteur:   Florian Provost
+*******************************************************************************/
 #include "EvtFramePrincipal.h"
-#include "Client.h"
-#include <wx/log.h>
-#include <iostream>
 
 EvtFramePrincipal::EvtFramePrincipal( wxWindow* parent )
 :
@@ -12,12 +17,9 @@ FramePrincipal( parent )
     m_panelParametresConnexion->Hide();
 
     // Connexion des événements pouvant venir du client
-    Connect( ID_CLIENT, wxEVT_COMMAND_BUTTON_CLICKED ,
-            wxCommandEventHandler( EvtFramePrincipal::AfficheInfoClient ), NULL, this );
-    Connect( ID_CLIENT+1, wxEVT_COMMAND_BUTTON_CLICKED ,
-            wxCommandEventHandler( EvtFramePrincipal::AfficheMessageClient ), NULL, this );
-    Connect( ID_CLIENT+2, wxEVT_COMMAND_BUTTON_CLICKED ,
-            wxCommandEventHandler( EvtFramePrincipal::AgitServeurPerdu ), NULL, this );
+    Connect(ID_CLIENT, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(EvtFramePrincipal::AfficheInfoClient), NULL, this);
+    Connect(ID_CLIENT+1, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(EvtFramePrincipal::AfficheMessageClient), NULL, this);
+    Connect(ID_CLIENT+2, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(EvtFramePrincipal::AgitServeurPerdu), NULL, this);
 }
 
 void EvtFramePrincipal::OnButtonConnexionToggle( wxCommandEvent& event )
@@ -58,7 +60,7 @@ void EvtFramePrincipal::OnButtonConnexionToggle( wxCommandEvent& event )
 
 void EvtFramePrincipal::OnFrameClose( wxCloseEvent& event )
 {
-    // Gestion de la fermeture de la fenetre
+    // Gestion de la fermeture de la fenêtre
     // penser à bloquer la fermeture pour la suite du projet surtout si fabrication
     if (m_connecte)
     {
@@ -104,12 +106,16 @@ void EvtFramePrincipal::AgitServeurPerdu(wxCommandEvent& event)
 
 void EvtFramePrincipal::Deconnexion(wxString message)
 {
-    message << wxT("\n");
-    m_textCtrlAffichage->AppendText(message);
     m_client->Close();
-    delete m_client;
     m_connecte = false;
+    delete m_client;
     
+    // Affichage du message
+    message << wxT("\n");
+    m_textCtrlAffichage->Clear();
+    m_textCtrlAffichage->AppendText(message);
+    
+    // Mise à jour de l'IHM
     m_toggleBtnConnexion->SetValue(false);
     m_panelSaisie->Hide();
     m_toggleBtnConnexion->SetLabel(wxT("Connexion"));

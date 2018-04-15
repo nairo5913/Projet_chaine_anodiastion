@@ -1,12 +1,11 @@
-/***************************************************************
- * Name:      MyApp.cpp
- * Purpose:   Code for Application Class
- * Author:    Florian Provost
- * Created:   24/11/2017
- * Copyright: 
- * License:
- **************************************************************/
-
+/*******************************************************************************
+  *  Fichier:  MyApp.cpp
+  *  Projet:   Chaîne d'anodisation - Test du client pour le PC responsable 
+               de production avec un serveur
+  *  Crée le:  11/04/2018
+  *  Utilité:  Lancement de l'application
+  *  Auteur:   Florian Provost
+*******************************************************************************/
 #ifdef WX_PRECOMP
 #include "wx_pch.h"
 #endif

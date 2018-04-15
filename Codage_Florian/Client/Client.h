@@ -10,6 +10,7 @@
 #define CLIENT_H
 #include <wx/socket.h>
 #include "EvtFramePrincipal.h"
+class EvtFramePrincipal;
 #define SOCKET_ID 110
 #include <string>
 using std::string;

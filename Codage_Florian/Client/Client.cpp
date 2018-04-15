@@ -26,18 +26,18 @@ Client::Client(wxString ip, long port, EvtFramePrincipal *frame)
     // on attend au maximum 10s que la connexion s'établisse
     m_client->WaitOnConnect(10);
     
-    // Vérification du succès de la connection
+    // Vérification du succès de la connexion
     if(m_client->IsConnected())
     {
         m_client_connecte = true;
         string reponse = LitReponse();
         
-        if(reponse == CONNEXION_OK) // 101-
+        if(reponse == CONNEXION_OK) // 101
         {
             wxString message(wxT(""));
             
             // Affichage des détail de la connexion
-            /*message <<  wxT("Connecté sur ") <<  m_hote
+            /*message <<  wxT("Connecté sur ") << m_hote
                     <<  wxT(", Port ") <<  m_port;*/
             
             // on demande à l'IHM d'afficher le message
@@ -61,23 +61,45 @@ Client::Client(wxString ip, long port, EvtFramePrincipal *frame)
             
             wxCommandEvent MyEventMsg(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
             
+            /*wxString utilisateur = wxT("Responsable");
+            
+            if(Identification(utilisateur))
+            {
+                message.clear();
+                message << wxT("Identification OK \n");
+                MyEventMsg.SetString(message);
+                wxPostEvent(m_frame, MyEventMsg);
+            }
+            else
+            {
+                message.clear();
+                message << wxT("Échec de l'identification \n");
+                /*MyEventMsg.SetString(message);
+                wxPostEvent(m_frame, MyEventMsg);*//*
+                Deconnexion(message);
+            }*/
+            
             
         }
         else if(reponse == NOMBRE_MAX_UTILISATEURS)
         {
-            
+            wxString message(wxT("Désolé, nombre maximum d'utilisateurs atteints \n"));
+            Deconnexion(message);
         }
         else if(reponse == CONNEXION_PAS_OK)
         {
-            
+            wxString message(wxT("Erreur lors de la connexion \n"));
+            Deconnexion(message);
         }
         else if(reponse == ERREUR_RESEAUX)
         {
-            
+            wxString message(wxT("Erreur réseau \n"));
+            Deconnexion(message);
         }
         else
         {
-            
+            wxString message(wxT("Raison: le serveur n'est pas le serveur d'anodisation \n"));
+            Deconnexion(message);
         }
     }
     else
@@ -118,8 +140,13 @@ string Client::EcritMessage(wxString message)
 
 void Client::Close()
 {
-    
+    if (m_client_connecte)
+    {
+        m_client->Close();
+        m_client_connecte=false;
+    }
 }
+
 
 /*bool Client::AnalyseReponseConnexionServeur()
 {
@@ -128,12 +155,53 @@ void Client::Close()
 
 bool Client::Identification(wxString utilisateur)
 {
+    bool retour = false;
     
+    wxString requete(wxT(DEMANDE_CONNEXION));
+    requete << utilisateur;
+    
+    wxString reponse = EcritMessage(requete);
+    
+    if(reponse == IDENTIFICATION_OK)
+    {
+        retour = true;
+    }
+    else if(reponse == IDENTIFICATION_PAS_OK)
+    {
+        retour = false;
+    }
+    else
+    {
+        retour = false;
+    }
+    
+    return retour;
 }
 
 string Client::LitReponse()
 {
+    string reponse="";
     
+    //on teste s'il y a eu une erreur d'E/S réseau
+    if (!m_client->Error())
+    {
+        unsigned char c = 0;
+        
+        do
+        {
+            m_client->Read(&c, 1);
+            reponse.push_back(c);
+            
+        }while (c != 0x0A); // jusqu'à "LF"
+        
+        // on retire le 'LF' et le 'CR'
+        reponse.resize(reponse.length()-2);
+    }
+    else
+    {
+        reponse="999";
+    }
+    return reponse;
 }
 
 void Client::Deconnexion(wxString raison)

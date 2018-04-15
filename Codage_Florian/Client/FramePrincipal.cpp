@@ -30,7 +30,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextHote->Wrap( -1 );
 	m_staticTextHote->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, true, wxEmptyString ) );
 	
-	bSizerHote->Add( m_staticTextHote, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	bSizerHote->Add( m_staticTextHote, 0, wxALIGN_CENTER_VERTICAL|wxTOP|wxBOTTOM|wxLEFT, 5 );
 	
 	m_textCtrlSaisieHote = new wxTextCtrl( m_panelParametresConnexion, wxID_ANY, wxT("localhost"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_PROCESS_ENTER|wxTE_PROCESS_TAB );
 	bSizerHote->Add( m_textCtrlSaisieHote, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
@@ -45,7 +45,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextPort->Wrap( -1 );
 	m_staticTextPort->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, true, wxEmptyString ) );
 	
-	bSizerPort->Add( m_staticTextPort, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
+	bSizerPort->Add( m_staticTextPort, 0, wxALIGN_CENTER_VERTICAL|wxTOP|wxBOTTOM|wxLEFT, 5 );
 	
 	m_textCtrlSaisiePort = new wxTextCtrl( m_panelParametresConnexion, wxID_ANY, wxT("30000"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_PROCESS_ENTER );
 	bSizerPort->Add( m_textCtrlSaisiePort, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
