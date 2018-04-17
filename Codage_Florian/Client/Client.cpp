@@ -147,11 +147,10 @@ void Client::Close()
     }
 }
 
-
-/*bool Client::AnalyseReponseConnexionServeur()
+void Client::EnvoiProcessus(int num_id/*, wxString utilisateur*/)
 {
     
-}*/
+}
 
 bool Client::Identification(wxString utilisateur)
 {

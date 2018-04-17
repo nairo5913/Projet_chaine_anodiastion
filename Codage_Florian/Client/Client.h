@@ -23,6 +23,11 @@ class Client : public wxEvtHandler
         bool IsOK(){return m_client_connecte;};
         string EcritMessage(wxString message);
         void Close();
+        void EnvoiProcessus(int num_id);
+        void ExecutionProcessus(int num_id);
+        bool DemandeDisponibiliteBras();
+        string DemandeDetailTacheEnCours();
+        
     
     protected:
     private:
@@ -33,7 +38,6 @@ class Client : public wxEvtHandler
         int m_port;
         wxString m_hote;
         
-        //bool AnalyseReponseConnexionServeur();
         bool Identification(wxString utilisateur);
         string LitReponse();
         void Deconnexion(wxString message);
