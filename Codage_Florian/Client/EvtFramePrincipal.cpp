@@ -1,16 +1,8 @@
-/*******************************************************************************
-*  Fichier:  EvtFramePrincipal.cpp
-*  Projet:   Chaîne d'anodisation - Gestion du client pour le PC responsable
-             de production
-*  Crée le:  11/04/2018
-*  Utilité:  Gestion des événements du frame principal
-*  Auteur:   Florian Provost
-*******************************************************************************/
 #include "EvtFramePrincipal.h"
 
-EvtFramePrincipal::EvtFramePrincipal( wxWindow* parent )
-:
-FramePrincipal( parent )
+EvtFramePrincipal::EvtFramePrincipal(wxWindow* parent)
+    :
+    FramePrincipal(parent)
 {
     m_connecte=false;
     m_statusBar->SetStatusText(wxT("Déconnecté"),0);
@@ -22,7 +14,20 @@ FramePrincipal( parent )
     Connect(ID_CLIENT+2, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(EvtFramePrincipal::AgitServeurPerdu), NULL, this);
 }
 
-void EvtFramePrincipal::OnButtonConnexionToggle( wxCommandEvent& event )
+void EvtFramePrincipal::OnFrameClose(wxCloseEvent& event)
+{
+// Gestion de la fermeture de la fenêtre
+// penser à bloquer la fermeture pour la suite du projet surtout si fabrication
+    if(m_connecte)
+    {
+        m_client->Close();
+        delete m_client;
+    }
+
+    Destroy();
+}
+
+void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
 {
     if(!m_connecte)
     {
@@ -31,11 +36,11 @@ void EvtFramePrincipal::OnButtonConnexionToggle( wxCommandEvent& event )
         wxString ip = wxT("localhost");
         // Adresse de la Raspberry
         //wxString ip = wxT("192.168.1.249");
-        
+
         //m_client = new Client(m_textCtrlSaisieHote->GetValue(), port, this);
         m_client = new Client(ip, port, this);
         m_connecte = m_client->IsOK();
-        
+
         if(m_connecte)
         {
             m_panelSaisie->Show();
@@ -47,7 +52,7 @@ void EvtFramePrincipal::OnButtonConnexionToggle( wxCommandEvent& event )
         {
             m_textCtrlAffichage->AppendText(wxT("Connexion impossible, vérifiez que le serveur est bien lancé...\n"));
             m_toggleBtnConnexion->SetValue(false);
-            
+
         }
     }
     else
@@ -56,35 +61,48 @@ void EvtFramePrincipal::OnButtonConnexionToggle( wxCommandEvent& event )
     }
 }
 
-void EvtFramePrincipal::OnFrameClose( wxCloseEvent& event )
+void EvtFramePrincipal::OnClickButtonEnvoyer(wxCommandEvent& event)
 {
-    // Gestion de la fermeture de la fenêtre
-    // penser à bloquer la fermeture pour la suite du projet surtout si fabrication
-    if (m_connecte)
-    {
-        m_client->Close();
-        delete m_client;
-    }
+    //m_textCtrlAffichage->AppendText(wxT("Bouton envoyer \n"));
     
-    Destroy();
+    // Récupération de la saisie et affichage
+    wxString saisie = m_textCtrlSaisie->GetValue();
+    m_textCtrlAffichage->AppendText(saisie + wxT("\n"));
+    
+    wxString texte = "";
+    
+    if(saisie.StartsWith(DEMANDE_EXECUTION_PROCESSUS, &texte))
+    {
+        // Affichage pour tester
+        wxString message = wxT("Commence par 200- et le contenu est : ") + texte + wxT("\n");
+        m_textCtrlAffichage->AppendText(message);
+        
+        if(texte != wxT(""))
+        {
+            // Pour la suite du projet récuperer l'id du processus directement
+            m_client->EnvoiProcessus(texte);
+        }
+        else
+        {
+            wxLogError(wxT("Il faut rentrer un id du processus à envoyer."));
+        }
+        
+    }
+    /*else if()
+    {
+        
+    }*/
+    else
+    {
+        
+    }
 }
 
-void EvtFramePrincipal::OnClickButtonEnvoyer( wxCommandEvent& event )
+void EvtFramePrincipal::OnTextEnterSaisie(wxCommandEvent& event)
 {
-    // TODO: Implement OnClickButtonEnvoyer
-    m_textCtrlAffichage->AppendText(wxT("Bouton envoyer \n"));
+// TODO: Implement OnTextEnterSaisie
 }
 
-void EvtFramePrincipal::OnTextEnterSaisie( wxCommandEvent& event )
-{
-    // TODO: Implement OnTextEnterSaisie
-}
-
-void EvtFramePrincipal::AfficheInfoClient(wxCommandEvent& event)
-{
-    // Affiche dans la barre de statusbar l'événement
-    m_statusBar->SetStatusText(event.GetString(),0);
-}
 
 void EvtFramePrincipal::AfficheMessageClient(wxCommandEvent& event)
 {
@@ -92,31 +110,32 @@ void EvtFramePrincipal::AfficheMessageClient(wxCommandEvent& event)
     m_textCtrlAffichage->AppendText(event.GetString());
 }
 
-void EvtFramePrincipal::AgitServeurPerdu(wxCommandEvent& event)
-{
-    Deconnexion(event.GetString());
-}
-
-/*void EvtFramePrincipal::GereReponse(wxString reponse, wxString reponse_attendue)
-{
-    
-}*/
-
 void EvtFramePrincipal::Deconnexion(wxString message)
 {
     m_client->Close();
     m_connecte = false;
     delete m_client;
-    
+
     // Affichage du message
     message << wxT("\n");
     m_textCtrlAffichage->Clear();
     m_textCtrlAffichage->AppendText(message);
-    
+
     // Mise à jour de l'IHM
     m_toggleBtnConnexion->SetValue(false);
     m_panelSaisie->Hide();
     m_toggleBtnConnexion->SetLabel(wxT("Connexion"));
-    m_statusBar->SetStatusText(wxT("Déconnecté."), 0);
+    m_statusBar->SetStatusText(wxT("Déconnecté"), 0);
     Layout();
+}
+
+void EvtFramePrincipal::AgitServeurPerdu(wxCommandEvent& event)
+{
+    Deconnexion(event.GetString());
+}
+
+void EvtFramePrincipal::AfficheInfoClient(wxCommandEvent& event)
+{
+    // Affiche dans la barre de statusbar l'événement
+    m_statusBar->SetStatusText(event.GetString(),0);
 }

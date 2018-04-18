@@ -23,7 +23,7 @@ class Client : public wxEvtHandler
         bool IsOK(){return m_client_connecte;};
         string EcritMessage(wxString message);
         void Close();
-        void EnvoiProcessus(int num_id);
+        void EnvoiProcessus(wxString id_processus /*int num_id, wxString utilisateur*/);
         void ExecutionProcessus(int num_id);
         bool DemandeDisponibiliteBras();
         string DemandeDetailTacheEnCours();

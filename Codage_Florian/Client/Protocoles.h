@@ -22,18 +22,28 @@
 #define IDENTIFICATION_PAS_OK "112-"
 
 ////////////////////////////////////////////////////////////////////////////////
-// Partie 200, Envoi/Réception
+// Partie 200, Exécution
 ////////////////////////////////////////////////////////////////////////////////
 //
-#define ENVOI "200-"
-#define RECEPTION_OK "201-"
-#define RECEPTION_PAS_OK "202-"
+#define DEMANDE_EXECUTION_PROCESSUS "200-"
+#define DEMANDE_TEST_TRAJECTOIRE "201-"
+#define DEMANDE_TEST_MOUVEMENT "202-"
+#define EXECUTION_IMPOSSIBLE "203-"
 
 ////////////////////////////////////////////////////////////////////////////////
-// Partie 300, Exécution
+// Partie 300, Informations
 ////////////////////////////////////////////////////////////////////////////////
 //
-#define EXECUTION_IMPOSSIBLE "302-"
+#define DISPONIBILITE_BRAS "300-"
+#define BRAS_DISPONIBLE "301-"
+#define BRAS_INDISPONIBLE "302-"
+#define DEMANDE_TACHE_EN_COURS "303-"
+/*
+ * #define  "304-" // Reception de la taches en cours 
+ * Type (Trajectoire, mouvement ou processus) + id
+ * A faire dans le code
+*/
+#define PAS_TACHE_EN_COURS "305-"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Partie 400, Erreurs
@@ -44,24 +54,9 @@
 #define COMMANDE_INCONNUE "404-"
 
 ////////////////////////////////////////////////////////////////////////////////
-// Partie 500, Informations
+// Partie 500, Déconnexion
 ////////////////////////////////////////////////////////////////////////////////
 //
-#define DISPONIBILITE_BRAS "500-"
-#define BRAS_DISPONIBLE "501-"
-#define BRAS_INDISPONIBLE "502-"
-#define DEMANDE_TACHE_EN_COURS "503-"
-/*
- * #define  "504-" // Reception de la taches en cours 
- * Type (Trajectoire, mouvement ou processus) + id
- * A faire dans le code
-*/
-#define PAS_TACHE_EN_COURS "505-"
-
-////////////////////////////////////////////////////////////////////////////////
-// Partie 600, Déconnexion
-////////////////////////////////////////////////////////////////////////////////
-//
-#define DEMANDE_DECONNEXION "600-"
-#define DECONNEXION_OK "601-"
-#define DECONNEXION_PAS_OK "602-"
+#define DEMANDE_DECONNEXION "500-"
+#define DECONNEXION_OK "501-"
+#define DECONNEXION_PAS_OK "502-"

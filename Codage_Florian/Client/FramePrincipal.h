@@ -38,9 +38,9 @@ class FramePrincipal : public wxFrame
 	protected:
 		wxPanel* m_panelParametresConnexion;
 		wxStaticText* m_staticTextHote;
-		wxTextCtrl* m_textCtrlSaisieHote;
+		wxTextCtrl* m_textCtrlHote;
 		wxStaticText* m_staticTextPort;
-		wxTextCtrl* m_textCtrlSaisiePort;
+		wxTextCtrl* m_textCtrlPort;
 		wxToggleButton* m_toggleBtnConnexion;
 		wxPanel* m_panelSaisie;
 		wxTextCtrl* m_textCtrlSaisie;

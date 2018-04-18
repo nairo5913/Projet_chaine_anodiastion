@@ -32,8 +32,8 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	
 	bSizerHote->Add( m_staticTextHote, 0, wxALIGN_CENTER_VERTICAL|wxTOP|wxBOTTOM|wxLEFT, 5 );
 	
-	m_textCtrlSaisieHote = new wxTextCtrl( m_panelParametresConnexion, wxID_ANY, wxT("localhost"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_PROCESS_ENTER|wxTE_PROCESS_TAB );
-	bSizerHote->Add( m_textCtrlSaisieHote, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
+	m_textCtrlHote = new wxTextCtrl( m_panelParametresConnexion, wxID_ANY, wxT("localhost"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_PROCESS_ENTER|wxTE_PROCESS_TAB );
+	bSizerHote->Add( m_textCtrlHote, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
 	
 	bSizerParametresConnexion->Add( bSizerHote, 1, wxEXPAND, 5 );
@@ -47,8 +47,8 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	
 	bSizerPort->Add( m_staticTextPort, 0, wxALIGN_CENTER_VERTICAL|wxTOP|wxBOTTOM|wxLEFT, 5 );
 	
-	m_textCtrlSaisiePort = new wxTextCtrl( m_panelParametresConnexion, wxID_ANY, wxT("30000"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_PROCESS_ENTER );
-	bSizerPort->Add( m_textCtrlSaisiePort, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
+	m_textCtrlPort = new wxTextCtrl( m_panelParametresConnexion, wxID_ANY, wxT("30000"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_PROCESS_ENTER );
+	bSizerPort->Add( m_textCtrlPort, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
 	
 	bSizerParametresConnexion->Add( bSizerPort, 1, wxEXPAND, 5 );
@@ -80,7 +80,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	wxBoxSizer* bSizer6;
 	bSizer6 = new wxBoxSizer( wxHORIZONTAL );
 	
-	m_textCtrlSaisie = new wxTextCtrl( sbSizerSaisie->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER );
+	m_textCtrlSaisie = new wxTextCtrl( sbSizerSaisie->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_PROCESS_ENTER );
 	bSizer6->Add( m_textCtrlSaisie, 1, wxALIGN_CENTER|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL|wxEXPAND, 5 );
 	
 	
@@ -119,8 +119,8 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	
 	// Connect Events
 	this->Connect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( FramePrincipal::OnFrameClose ) );
-	m_textCtrlSaisieHote->Connect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( FramePrincipal::OnButtonConnexionToggle ), NULL, this );
-	m_textCtrlSaisiePort->Connect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( FramePrincipal::OnButtonConnexionToggle ), NULL, this );
+	m_textCtrlHote->Connect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( FramePrincipal::OnButtonConnexionToggle ), NULL, this );
+	m_textCtrlPort->Connect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( FramePrincipal::OnButtonConnexionToggle ), NULL, this );
 	m_toggleBtnConnexion->Connect( wxEVT_COMMAND_TOGGLEBUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnButtonConnexionToggle ), NULL, this );
 	m_textCtrlSaisie->Connect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( FramePrincipal::OnClickButtonEnvoyer ), NULL, this );
 	m_buttonEnvoyer->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnClickButtonEnvoyer ), NULL, this );
@@ -131,8 +131,8 @@ FramePrincipal::~FramePrincipal()
 {
 	// Disconnect Events
 	this->Disconnect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( FramePrincipal::OnFrameClose ) );
-	m_textCtrlSaisieHote->Disconnect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( FramePrincipal::OnButtonConnexionToggle ), NULL, this );
-	m_textCtrlSaisiePort->Disconnect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( FramePrincipal::OnButtonConnexionToggle ), NULL, this );
+	m_textCtrlHote->Disconnect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( FramePrincipal::OnButtonConnexionToggle ), NULL, this );
+	m_textCtrlPort->Disconnect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( FramePrincipal::OnButtonConnexionToggle ), NULL, this );
 	m_toggleBtnConnexion->Disconnect( wxEVT_COMMAND_TOGGLEBUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnButtonConnexionToggle ), NULL, this );
 	m_textCtrlSaisie->Disconnect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( FramePrincipal::OnClickButtonEnvoyer ), NULL, this );
 	m_buttonEnvoyer->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnClickButtonEnvoyer ), NULL, this );

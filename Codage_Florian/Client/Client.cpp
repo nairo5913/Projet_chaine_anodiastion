@@ -147,7 +147,7 @@ void Client::Close()
     }
 }
 
-void Client::EnvoiProcessus(int num_id/*, wxString utilisateur*/)
+void Client::EnvoiProcessus(wxString id_processus/*int num_id, wxString utilisateur*/)
 {
     
 }
@@ -198,7 +198,7 @@ string Client::LitReponse()
     }
     else
     {
-        reponse="999";
+        reponse = ERREUR_RESEAUX;
     }
     return reponse;
 }
