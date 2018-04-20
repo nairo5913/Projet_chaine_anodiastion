@@ -80,7 +80,8 @@ void EvtFramePrincipal::OnClickButtonEnvoyer(wxCommandEvent& event)
         if(texte != wxT(""))
         {
             // Pour la suite du projet récuperer l'id du processus directement
-            m_client->EnvoiProcessus(texte);
+            int id_processus = 1; 
+            m_client->ExecutionProcessus(id_processus);
         }
         else
         {

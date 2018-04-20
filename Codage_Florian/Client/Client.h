@@ -14,6 +14,8 @@ class EvtFramePrincipal;
 #define SOCKET_ID 110
 #include <string>
 using std::string;
+#include <vector>
+using std::vector;
 
 class Client : public wxEvtHandler
 {
@@ -21,13 +23,13 @@ class Client : public wxEvtHandler
         Client(wxString ip, long port, EvtFramePrincipal *frame);
         ~Client();
         bool IsOK(){return m_client_connecte;};
-        string EcritMessage(wxString message);
-        void Close();
-        void EnvoiProcessus(wxString id_processus /*int num_id, wxString utilisateur*/);
-        void ExecutionProcessus(int num_id);
-        bool DemandeDisponibiliteBras();
-        string DemandeDetailTacheEnCours();
         
+        bool DemandeDisponibiliteBras();
+        vector<string> DemandeTacheEnCours();
+        string EcritMessage(wxString message);
+        void AnalyseReponseServeur(string reponse);
+        void Close();
+        void ExecutionProcessus(int num_id);
     
     protected:
     private:
@@ -41,6 +43,7 @@ class Client : public wxEvtHandler
         bool Identification(wxString utilisateur);
         string LitReponse();
         void Deconnexion(wxString message);
+        void EnvoiProcessus(wxString id_processus /*int num_id, wxString utilisateur*/);
         void OnSocketEvent(wxSocketEvent& event);
 };
 

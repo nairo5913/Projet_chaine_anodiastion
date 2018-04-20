@@ -109,12 +109,88 @@ Client::Client(wxString ip, long port, EvtFramePrincipal *frame)
     }
 }
 
-Client::~Client()
-{
+Client::~Client(){
     if(m_client_connecte)
     {
         m_client->Close();
     }
+}
+
+bool Client::DemandeDisponibiliteBras()
+{
+    wxString requete(wxT(DISPONIBILITE_BRAS));
+    
+    wxString reponse = EcritMessage(requete);
+    bool retour = false;
+    
+    if(reponse == BRAS_DISPONIBLE)
+    {
+        wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
+        MyEvent.SetString(wxT("Le bras n'est pas disponible"));
+        wxPostEvent(m_frame, MyEvent);
+        
+        retour = true;
+    }
+    else if(reponse == BRAS_INDISPONIBLE)
+    {
+        wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
+        MyEvent.SetString(wxT("Le bras n'est pas disponible"));
+        wxPostEvent(m_frame, MyEvent);
+    }
+    else
+    {
+        wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
+        MyEvent.SetString(wxT("Une erreur est survenue"));
+        wxPostEvent(m_frame, MyEvent);
+    }
+    
+    return retour;
+}
+
+vector<string> Client::DemandeTacheEnCours() // À coder
+{
+    vector<string> tache;
+    
+    if(!DemandeDisponibiliteBras())
+    {
+        wxString requete(wxT(DEMANDE_TACHE_EN_COURS));
+        
+        wxString reponse = EcritMessage(requete);
+        wxString texte="";
+        
+        if(reponse.StartsWith(TACHE_EN_COURS, &texte))
+        {
+            // Requete à la bdd ou envoi directe à voir
+            // données statique en attendant venant du serveur
+            // On décordique les données du serveur contenu dans le texte
+            
+            int separateur = texte.find("-");
+            wxString t(reponse.substr(separateur-1));
+            wxString id_p(reponse.substr(separateur+1));
+            
+            // ajouter to convert
+            //string type = t , id_tache = id_t;
+            
+            // Première cellule type, deuxième cellule id
+            tache.push_back(type);
+            tache.push_back(id_tache);
+            
+        }
+        else if(reponse.IsSameAs(PAS_TACHE_EN_COURS))
+        {
+            tache[0] = {NULL};
+        }
+        else
+        {
+            tache[0] = {NULL};
+        }
+    }
+    else
+    {
+        tache[0] = {NULL};
+    }
+    
+    return  tache;
 }
 
 string Client::EcritMessage(wxString message)
@@ -138,6 +214,11 @@ string Client::EcritMessage(wxString message)
     return reponse;
 }
 
+void Client::AnalyseReponseServeur(string reponse) // À coder
+{
+    
+}
+
 void Client::Close()
 {
     if (m_client_connecte)
@@ -147,7 +228,7 @@ void Client::Close()
     }
 }
 
-void Client::EnvoiProcessus(wxString id_processus/*int num_id, wxString utilisateur*/)
+void Client::ExecutionProcessus(int num_id) // À coder
 {
     
 }
@@ -212,13 +293,18 @@ void Client::Deconnexion(wxString raison)
     m_client->Destroy();
     
     // on demande à l'IHM d'afficher le message
-    wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED,ID_CLIENT+2);
+    wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+2);
     MyEvent.SetString(raison);
     wxPostEvent(m_frame, MyEvent);
     
-    wxCommandEvent MyEvent1(wxEVT_COMMAND_BUTTON_CLICKED,ID_CLIENT+1);
+    wxCommandEvent MyEvent1(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
     MyEvent.SetString(reponse);
     wxPostEvent(m_frame, MyEvent1);
+}
+
+void Client::EnvoiProcessus(wxString id_processus/*int num_id, wxString utilisateur*/) // À coder
+{
+    
 }
 
 void Client::OnSocketEvent(wxSocketEvent& event)
