@@ -64,26 +64,28 @@ Debug/Client.cpp.o: Client.cpp Client.h /usr/include/wx-3.0/wx/socket.h \
  /usr/include/wx-3.0/wx/generic/paletteg.h /usr/include/wx-3.0/wx/accel.h \
  /usr/include/wx-3.0/wx/gtk/accel.h \
  /usr/include/wx-3.0/wx/generic/accel.h \
- /usr/include/wx-3.0/wx/gtk/window.h /usr/include/wx-3.0/wx/panel.h \
- /usr/include/wx-3.0/wx/containr.h \
- /usr/include/wx-3.0/wx/generic/panelg.h \
- /usr/include/wx-3.0/wx/settings.h /usr/include/wx-3.0/wx/tglbtn.h \
+ /usr/include/wx-3.0/wx/gtk/window.h /usr/include/wx-3.0/wx/tglbtn.h \
  /usr/include/wx-3.0/wx/anybutton.h /usr/include/wx-3.0/wx/control.h \
  /usr/include/wx-3.0/wx/gtk/control.h \
  /usr/include/wx-3.0/wx/gtk/anybutton.h \
- /usr/include/wx-3.0/wx/gtk/tglbtn.h /usr/include/wx-3.0/wx/sizer.h \
- /usr/include/wx-3.0/wx/statbox.h /usr/include/wx-3.0/wx/gtk/statbox.h \
+ /usr/include/wx-3.0/wx/gtk/tglbtn.h /usr/include/wx-3.0/wx/settings.h \
+ /usr/include/wx-3.0/wx/sizer.h /usr/include/wx-3.0/wx/statbox.h \
+ /usr/include/wx-3.0/wx/containr.h /usr/include/wx-3.0/wx/gtk/statbox.h \
+ /usr/include/wx-3.0/wx/stattext.h /usr/include/wx-3.0/wx/gtk/stattext.h \
  /usr/include/wx-3.0/wx/textctrl.h /usr/include/wx-3.0/wx/textentry.h \
  /usr/include/wx-3.0/wx/gtk/textentry.h /usr/include/wx-3.0/wx/ioswrap.h \
  /usr/include/wx-3.0/wx/gtk/textctrl.h /usr/include/wx-3.0/wx/button.h \
- /usr/include/wx-3.0/wx/gtk/button.h /usr/include/wx-3.0/wx/statusbr.h \
+ /usr/include/wx-3.0/wx/gtk/button.h /usr/include/wx-3.0/wx/panel.h \
+ /usr/include/wx-3.0/wx/generic/panelg.h \
+ /usr/include/wx-3.0/wx/statusbr.h \
  /usr/include/wx-3.0/wx/generic/statusbr.h /usr/include/wx-3.0/wx/pen.h \
  /usr/include/wx-3.0/wx/gtk/pen.h /usr/include/wx-3.0/wx/frame.h \
  /usr/include/wx-3.0/wx/toplevel.h /usr/include/wx-3.0/wx/nonownedwnd.h \
  /usr/include/wx-3.0/wx/gtk/nonownedwnd.h \
  /usr/include/wx-3.0/wx/weakref.h /usr/include/wx-3.0/wx/meta/int2type.h \
  /usr/include/wx-3.0/wx/gtk/toplevel.h /usr/include/wx-3.0/wx/gtk/frame.h \
- Client.h
+ Client.h /usr/include/wx-3.0/wx/log.h \
+ /usr/include/wx-3.0/wx/generic/logg.h Protocole.h
 
 Client.h:
 
@@ -327,14 +329,6 @@ FramePrincipal.h:
 
 /usr/include/wx-3.0/wx/gtk/window.h:
 
-/usr/include/wx-3.0/wx/panel.h:
-
-/usr/include/wx-3.0/wx/containr.h:
-
-/usr/include/wx-3.0/wx/generic/panelg.h:
-
-/usr/include/wx-3.0/wx/settings.h:
-
 /usr/include/wx-3.0/wx/tglbtn.h:
 
 /usr/include/wx-3.0/wx/anybutton.h:
@@ -347,11 +341,19 @@ FramePrincipal.h:
 
 /usr/include/wx-3.0/wx/gtk/tglbtn.h:
 
+/usr/include/wx-3.0/wx/settings.h:
+
 /usr/include/wx-3.0/wx/sizer.h:
 
 /usr/include/wx-3.0/wx/statbox.h:
 
+/usr/include/wx-3.0/wx/containr.h:
+
 /usr/include/wx-3.0/wx/gtk/statbox.h:
+
+/usr/include/wx-3.0/wx/stattext.h:
+
+/usr/include/wx-3.0/wx/gtk/stattext.h:
 
 /usr/include/wx-3.0/wx/textctrl.h:
 
@@ -366,6 +368,10 @@ FramePrincipal.h:
 /usr/include/wx-3.0/wx/button.h:
 
 /usr/include/wx-3.0/wx/gtk/button.h:
+
+/usr/include/wx-3.0/wx/panel.h:
+
+/usr/include/wx-3.0/wx/generic/panelg.h:
 
 /usr/include/wx-3.0/wx/statusbr.h:
 
@@ -392,3 +398,9 @@ FramePrincipal.h:
 /usr/include/wx-3.0/wx/gtk/frame.h:
 
 Client.h:
+
+/usr/include/wx-3.0/wx/log.h:
+
+/usr/include/wx-3.0/wx/generic/logg.h:
+
+Protocole.h:

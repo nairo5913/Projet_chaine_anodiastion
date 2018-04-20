@@ -84,7 +84,8 @@ Debug/EvtFramePrincipal.cpp.o: EvtFramePrincipal.cpp EvtFramePrincipal.h \
  /usr/include/wx-3.0/wx/weakref.h /usr/include/wx-3.0/wx/meta/int2type.h \
  /usr/include/wx-3.0/wx/gtk/toplevel.h /usr/include/wx-3.0/wx/gtk/frame.h \
  Client.h /usr/include/wx-3.0/wx/socket.h \
- /usr/include/wx-3.0/wx/sckaddr.h EvtFramePrincipal.h
+ /usr/include/wx-3.0/wx/sckaddr.h EvtFramePrincipal.h Protocole.h \
+ /usr/include/wx-3.0/wx/log.h /usr/include/wx-3.0/wx/generic/logg.h
 
 EvtFramePrincipal.h:
 
@@ -397,3 +398,9 @@ Client.h:
 /usr/include/wx-3.0/wx/sckaddr.h:
 
 EvtFramePrincipal.h:
+
+Protocole.h:
+
+/usr/include/wx-3.0/wx/log.h:
+
+/usr/include/wx-3.0/wx/generic/logg.h:

@@ -1,35 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Session Name="/home/ir2/nboubziz/Documents/git/Nassim/Nassim.workspace">
-  <int Value="6" Name="m_selectedTab"/>
+  <int Value="1" Name="m_selectedTab"/>
   <wxString Value="/home/ir2/nboubziz/Documents/git/Nassim/Nassim.workspace" Name="m_workspaceName"/>
   <TabInfoArray Name="TabInfoArray">
     <TabInfo>
       <wxString Value="/home/ir2/nboubziz/Documents/git/Nassim/Client/EvtFramePrincipal.h" Name="FileName"/>
-      <int Value="5" Name="FirstVisibleLine"/>
-      <int Value="34" Name="CurrentLine"/>
+      <int Value="13" Name="FirstVisibleLine"/>
+      <int Value="0" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
     <TabInfo>
       <wxString Value="/home/ir2/nboubziz/Documents/git/Nassim/Client/EvtFramePrincipal.cpp" Name="FileName"/>
-      <int Value="60" Name="FirstVisibleLine"/>
-      <int Value="76" Name="CurrentLine"/>
+      <int Value="97" Name="FirstVisibleLine"/>
+      <int Value="36" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="/home/ir2/nboubziz/Documents/git/Nassim/Client/FramePrincipal.h" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="0" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="/home/ir2/nboubziz/Documents/git/Nassim/Client/FramePrincipal.cpp" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="0" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
+      <IntVector Name="CollapsedFolds">
+        <IntVectorItem Value="33"/>
+      </IntVector>
     </TabInfo>
     <TabInfo>
       <wxString Value="/home/ir2/nboubziz/Documents/git/Nassim/Client/MyApp.h" Name="FileName"/>
@@ -40,15 +28,15 @@
     </TabInfo>
     <TabInfo>
       <wxString Value="/home/ir2/nboubziz/Documents/git/Nassim/Client/Client.h" Name="FileName"/>
-      <int Value="3" Name="FirstVisibleLine"/>
-      <int Value="5" Name="CurrentLine"/>
+      <int Value="22" Name="FirstVisibleLine"/>
+      <int Value="0" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
     <TabInfo>
       <wxString Value="/home/ir2/nboubziz/Documents/git/Nassim/Client/Client.cpp" Name="FileName"/>
-      <int Value="26" Name="FirstVisibleLine"/>
-      <int Value="41" Name="CurrentLine"/>
+      <int Value="1" Name="FirstVisibleLine"/>
+      <int Value="5" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>

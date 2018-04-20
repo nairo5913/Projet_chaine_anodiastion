@@ -26,7 +26,7 @@ Client::Client(wxString ip, long port,EvtFramePrincipal *frame)
         m_client_connecte=true;
         string reponse=LitReponse();
         
-        if (reponse=="101")
+        if (reponse==CONNEXION_OK)
         {
             wxString message(wxT(""));
             message << wxT("Connecté sur") <<m_hote
@@ -45,13 +45,13 @@ Client::Client(wxString ip, long port,EvtFramePrincipal *frame)
         /*on active les evenements sur ce socket*/
         m_client->Notify(true);
         }
-        else if (reponse=="103-")
+        else if (reponse==NOMBRE_MAX_UTILISATEURS)
             {
                 wxString message(wxT("PROBLEME d'entrée/sortie réseau: déconnexion"));
                 message << m_hote <<wxT("\n");
                 Deconnexion(message);
             }
-        else if (reponse=="102-")
+        else if (reponse==CONNEXION_PAS_OK)
             {
                 wxString message(wxT("PROBLÉME d'entrée/sortie réseau: Décinnexion"));
             }
@@ -78,7 +78,7 @@ wxString Client::EcritMessage(wxString message)
     m_client->Write(cstring, strlen(cstring));
     delete cstring;
     
-    wxString reponse(Litreponse().c_str(), wxConvUTF8);
+    wxString reponse(LitReponse().c_str(), wxConvUTF8);
     return reponse;
 }
 
@@ -108,20 +108,23 @@ void Client::OnSocketEvent(wxSocketEvent& event)
 string Client::LitReponse()
 {
     string reponse="";
+    
     if (!m_client->Error())
     {
-        unsigned char c;
+        unsigned char c=0;
         do
         {
-            m_client->Read(/*&c, 1*/);
+            m_client->Read(&c, 1);
             reponse.push_back(c);
-        } while ()
-            reponse.resize(reponse./*a voir */());
-            
+        } while (c != 0x0A); // jusqu'à le 'LF'
+        // on retire le 'LF' et le 'CR'
+        reponse.resize(reponse.length()-2);
     }
     else
-        reponse = "102-";
-        return reponse;
+    {
+        reponse = CONNEXION_PAS_OK;
+    }
+    return reponse;
 }
 
 void Client::Deconnexion(wxString message)
@@ -138,9 +141,46 @@ void Client::Close()
 {
     if(m_client_connecte)
     {
-        m_client->Close()
+        m_client->Close();
         m_client_connecte=false;
     }
 }
 
+void EvtFramePrincipal::EnvoiTrajectoire(wxCommandEvent& event)
+{
+    wxString requete(wxT(DEMANDE_TEST_TRAJECTOIRE));
+    
+}
 
+void EvtFramePrincipal::EnvoiMouvements(wxCommandEvent& event)
+{
+    wxString requete(wxT(DEMANDE_TEST_MOUVEMENT));
+    
+    
+}
+
+
+bool Client::Identification(wxString utilisateur)
+{
+    bool retour = false;
+    
+    wxString requete(wxT(DEMANDE_IDENTIFICATION));
+    requete << utilisateur;
+    
+    wxString reponse = EcritMessage(requete);
+    
+    if(reponse == IDENTIFICATION_OK)
+    {
+        retour = true;
+    }
+    else if(reponse == IDENTIFICATION_PAS_OK)
+    {
+        retour = false;
+    }
+    else
+    {
+        retour = false;
+    }
+    
+    return retour;
+}

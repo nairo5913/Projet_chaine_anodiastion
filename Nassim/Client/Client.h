@@ -5,9 +5,11 @@
 class EvtFramePrincipal;
 #define SOCKET_ID 110
 #include <string>
+#include "Protocole.h"
+
 using std::string;
 
-class Client
+class Client : public wxEvtHandler
 {
 public:
     Client(wxString ip, long port, EvtFramePrincipal *frame );
@@ -18,6 +20,9 @@ public:
 
     protected:
     private:
+    bool Identification(wxString utilisateur);
+    void EnvoiTrajectoire(wxCommandEvent& event);
+    void EnvoiMouvements(wxCommandEvent& event);
     wxString m_hote;
     int m_port;
     EvtFramePrincipal *m_frame;
