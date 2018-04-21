@@ -8,6 +8,7 @@
 *******************************************************************************/
 #ifndef CLIENT_H
 #define CLIENT_H
+
 #include <wx/socket.h>
 #include "EvtFramePrincipal.h"
 class EvtFramePrincipal;

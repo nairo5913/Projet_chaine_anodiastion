@@ -126,7 +126,7 @@ bool Client::DemandeDisponibiliteBras()
     if(reponse == BRAS_DISPONIBLE)
     {
         wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
-        MyEvent.SetString(wxT("Le bras n'est pas disponible"));
+        MyEvent.SetString(wxT("Le bras est disponible"));
         wxPostEvent(m_frame, MyEvent);
         
         retour = true;
@@ -147,47 +147,64 @@ bool Client::DemandeDisponibiliteBras()
     return retour;
 }
 
-vector<string> Client::DemandeTacheEnCours() // À coder
+vector<string> Client::DemandeTacheEnCours()
 {
     vector<string> tache;
     
-    if(!DemandeDisponibiliteBras())
+    if(DemandeDisponibiliteBras() == false)
     {
         wxString requete(wxT(DEMANDE_TACHE_EN_COURS));
         
-        wxString reponse = EcritMessage(requete);
+        //wxString reponse = EcritMessage(requete);
+        wxString reponse = "304-processus-20";
         wxString texte="";
         
         if(reponse.StartsWith(TACHE_EN_COURS, &texte))
         {
             // Requete à la bdd ou envoi directe à voir
             // données statique en attendant venant du serveur
+            // 
             // On décordique les données du serveur contenu dans le texte
-            
             int separateur = texte.find("-");
-            wxString t(reponse.substr(separateur-1));
-            wxString id_p(reponse.substr(separateur+1));
+            //wxString t (texte.substr(separateur-1));
+            wxString id_p(texte.substr(separateur+1));
+            wxString fin = wxT("-") + id_p;
+            wxString t = "";
+            texte.EndsWith(fin, &t);
             
-            // ajouter to convert
-            //string type = t , id_tache = id_t;
+            // Conversion en string
+            string type = t.ToStdString();
+            string id_tache = id_p.ToStdString();
             
-            // Première cellule type, deuxième cellule id
+            // Affichage de débugage
+            wxString message;
+            message << wxT("\n Texte : ") << texte
+                    << wxT("\n Séparateur : ") << separateur
+                    << wxT("\n Type : ") << type
+                    << wxT("\n id tache : ") << id_tache
+                    << wxT("\n");
+            
+            wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
+            MyEvent.SetString(message);
+            wxPostEvent(m_frame, MyEvent);
+            
+            // Première cellule "type", deuxième cellule "id"
             tache.push_back(type);
             tache.push_back(id_tache);
             
         }
         else if(reponse.IsSameAs(PAS_TACHE_EN_COURS))
         {
-            tache[0] = {NULL};
+            tache.push_back(0);
         }
         else
         {
-            tache[0] = {NULL};
+            tache.push_back(0);
         }
     }
     else
     {
-        tache[0] = {NULL};
+        tache.push_back(0);
     }
     
     return  tache;
@@ -214,10 +231,10 @@ string Client::EcritMessage(wxString message)
     return reponse;
 }
 
-void Client::AnalyseReponseServeur(string reponse) // À coder
+/*void Client::AnalyseReponseServeur(string reponse) // À coder
 {
     
-}
+}*/
 
 void Client::Close()
 {
@@ -281,6 +298,7 @@ string Client::LitReponse()
     {
         reponse = ERREUR_RESEAUX;
     }
+    
     return reponse;
 }
 

@@ -24,6 +24,10 @@ de production
 class Client;
 #include <wx/log.h>
 #include <iostream>
+#include <string>
+using std::string;
+#include <vector>
+using std::vector;
 
 /** Implementing FramePrincipal */
 class EvtFramePrincipal : public FramePrincipal
