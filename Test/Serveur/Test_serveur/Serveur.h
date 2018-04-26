@@ -12,6 +12,7 @@
 #include "EvtFramePrincipal.h"
 class EvtFramePrincipal;
 #include "DonneesClient.h"
+#include "Protocoles.h"
 
 #include <wx/socket.h>
 #include <wx/log.h>

@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Dec 21 2016)
+// C++ code generated with wxFormBuilder (version Feb 16 2016)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO "NOT" EDIT THIS FILE!
@@ -28,7 +28,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	
 	m_staticTextHote = new wxStaticText( m_panelParametresConnexion, wxID_ANY, wxT("Hôte : "), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextHote->Wrap( -1 );
-	m_staticTextHote->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, true, wxEmptyString ) );
+	m_staticTextHote->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), 70, 90, 90, true, wxEmptyString ) );
 	
 	bSizerHote->Add( m_staticTextHote, 0, wxALIGN_CENTER_VERTICAL|wxTOP|wxBOTTOM|wxLEFT, 5 );
 	
@@ -43,7 +43,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	
 	m_staticTextPort = new wxStaticText( m_panelParametresConnexion, wxID_ANY, wxT("Port : "), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextPort->Wrap( -1 );
-	m_staticTextPort->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, true, wxEmptyString ) );
+	m_staticTextPort->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), 70, 90, 90, true, wxEmptyString ) );
 	
 	bSizerPort->Add( m_staticTextPort, 0, wxALIGN_CENTER_VERTICAL|wxTOP|wxBOTTOM|wxLEFT, 5 );
 	
@@ -88,7 +88,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	
 	m_staticTextExplications = new wxStaticText( sbSizerSaisie->GetStaticBox(), wxID_ANY, wxT("num protocole (commande ) + parametre"), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTRE );
 	m_staticTextExplications->Wrap( -1 );
-	m_staticTextExplications->SetFont( wxFont( 10, wxFONTFAMILY_SWISS, wxFONTSTYLE_ITALIC, wxFONTWEIGHT_NORMAL, false, wxT("Sans") ) );
+	m_staticTextExplications->SetFont( wxFont( 10, 74, 93, 90, false, wxT("Sans") ) );
 	
 	sbSizerSaisie->Add( m_staticTextExplications, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
 	
@@ -124,7 +124,6 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_toggleBtnConnexion->Connect( wxEVT_COMMAND_TOGGLEBUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnButtonConnexionToggle ), NULL, this );
 	m_textCtrlSaisie->Connect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( FramePrincipal::OnClickButtonEnvoyer ), NULL, this );
 	m_buttonEnvoyer->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnClickButtonEnvoyer ), NULL, this );
-	m_textCtrlAffichage->Connect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( FramePrincipal::OnTextEnterSaisie ), NULL, this );
 }
 
 FramePrincipal::~FramePrincipal()
@@ -136,6 +135,5 @@ FramePrincipal::~FramePrincipal()
 	m_toggleBtnConnexion->Disconnect( wxEVT_COMMAND_TOGGLEBUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnButtonConnexionToggle ), NULL, this );
 	m_textCtrlSaisie->Disconnect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( FramePrincipal::OnClickButtonEnvoyer ), NULL, this );
 	m_buttonEnvoyer->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnClickButtonEnvoyer ), NULL, this );
-	m_textCtrlAffichage->Disconnect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( FramePrincipal::OnTextEnterSaisie ), NULL, this );
 	
 }

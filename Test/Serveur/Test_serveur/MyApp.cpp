@@ -16,6 +16,7 @@
 
 #include "MyApp.h"
 #include "EvtFramePrincipal.h"
+#include <wx/icon.h>
 
 IMPLEMENT_APP(MyApp);
 
@@ -25,6 +26,55 @@ bool MyApp::OnInit()
     m_locale.Init(wxLANGUAGE_FRENCH );
 
     EvtFramePrincipal* frame_principal = new EvtFramePrincipal(0);
+    
+    static const char * sample_xpm[] = 
+    {
+        /* columns rows colors chars-per-pixel */
+        "32 32 4 1",
+        "  c black",
+        "X c green",
+        "+ c gray100",
+        "O c None",
+        /* pixels */
+        "++++++++++++++++++++++++++++++++",
+        "++++++++++++++++++++++++++++++++",
+        "++++++++++++++++++++++++++++++++",
+        "++++                        ++++",
+        "++++ XXXXXXXXXXXXXXXXXXXXXX ++++",
+        "++++ XXXXXXXXXXXXXXXXXXXXXX ++++",
+        "++++ XXXXXXXXXXXXXXXXXXXXXX ++++",
+        "++++ XXX                    ++++",
+        "++++ XXX +++++++++++++++++++++++",
+        "++++ XXX +++++++++++++++++++++++",
+        "++++ XXX +++++++++++++++++++++++",
+        "++++ XXX +++++++++++++++++++++++",
+        "++++ XXX +++++++++++++++++++++++",
+        "++++ XXX                    ++++",
+        "++++ XXXXXXXXXXXXXXXXXXXXXX ++++",
+        "++++ XXXXXXXXXXXXXXXXXXXXXX ++++",
+        "++++ XXXXXXXXXXXXXXXXXXXXXX ++++",
+        "++++                    XXX ++++",
+        "+++++++++++++++++++++++ XXX ++++",
+        "+++++++++++++++++++++++ XXX ++++",
+        "+++++++++++++++++++++++ XXX ++++",
+        "+++++++++++++++++++++++ XXX ++++",
+        "+++++++++++++++++++++++ XXX ++++",
+        "+++++++++++++++++++++++ XXX ++++",
+        "++++                    XXX ++++",
+        "++++ XXXXXXXXXXXXXXXXXXXXXX ++++",
+        "++++ XXXXXXXXXXXXXXXXXXXXXX ++++",
+        "++++ XXXXXXXXXXXXXXXXXXXXXX ++++",
+        "++++                        ++++",
+        "++++++++++++++++++++++++++++++++",
+        "++++++++++++++++++++++++++++++++",
+        "++++++++++++++++++++++++++++++++"
+    };
+    
+    // Création de l'icone
+    wxIcon *icon = new wxIcon(sample_xpm);
+    // Mise en place
+    frame_principal->SetIcon(*icon);
+    
     frame_principal->Show();
 
     return true;

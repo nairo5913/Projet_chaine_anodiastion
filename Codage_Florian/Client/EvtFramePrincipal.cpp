@@ -7,9 +7,12 @@ EvtFramePrincipal::EvtFramePrincipal(wxWindow* parent) : FramePrincipal(parent)
     m_panelParametresConnexion->Hide();
 
     // Connexion des événements pouvant venir du client
-    Connect(ID_CLIENT, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(EvtFramePrincipal::AfficheInfoClient), NULL, this);
-    Connect(ID_CLIENT + 1, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(EvtFramePrincipal::AfficheMessageClient), NULL, this);
-    Connect(ID_CLIENT + 2, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(EvtFramePrincipal::AgitServeurPerdu), NULL, this);
+    Connect(ID_CLIENT, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(EvtFramePrincipal::AfficheInfoClient), NULL,
+            this);
+    Connect(ID_CLIENT + 1, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(EvtFramePrincipal::AfficheMessageClient),
+            NULL, this);
+    Connect(ID_CLIENT + 2, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(EvtFramePrincipal::AgitServeurPerdu),
+            NULL, this);
 }
 
 void EvtFramePrincipal::OnFrameClose(wxCloseEvent& event)
@@ -20,6 +23,12 @@ void EvtFramePrincipal::OnFrameClose(wxCloseEvent& event)
     {
         m_client->Close();
         delete m_client;
+    }
+    
+    wxBitmap bitmap;
+    if (bitmap.LoadFile("../Images/Good-Bye-Image-5.jpg", wxBITMAP_TYPE_PNG))
+    {
+        wxSplashScreen* splash = new wxSplashScreen(bitmap, wxSPLASH_CENTRE_ON_SCREEN|wxSPLASH_TIMEOUT, 2000, NULL, -1, wxDefaultPosition, wxDefaultSize, wxBORDER_SIMPLE|wxSTAY_ON_TOP);
     }
 
     Destroy();
@@ -64,6 +73,7 @@ void EvtFramePrincipal::OnClickButtonEnvoyer(wxCommandEvent& event)
 
     // Récupération de la saisie et affichage
     wxString saisie = m_textCtrlSaisie->GetValue();
+    m_textCtrlSaisie->Clear();
     m_textCtrlAffichage->AppendText(saisie + wxT("\n"));
 
     wxString texte = "";
@@ -89,24 +99,66 @@ void EvtFramePrincipal::OnClickButtonEnvoyer(wxCommandEvent& event)
     {
         wxString message = wxT("Demande état bras (300-)\n");
         m_textCtrlAffichage->AppendText(message);
-        
+
         m_client->DemandeDisponibiliteBras();
     }
     else if(saisie.IsSameAs(DEMANDE_TACHE_EN_COURS))
     {
         wxString message = wxT("Demande état bras (303-)\n");
         m_textCtrlAffichage->AppendText(message);
-        
+
         vector<string> tache = m_client->DemandeTacheEnCours();
+        
+        if(tache[0] == "0")
+        {
+            message.clear();
+            message << "Il n'y a pas de taches en cours.\n";
+            
+            // Affichage
+            m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(*wxGREEN));
+            m_textCtrlAffichage->AppendText(message);
+            m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(wxNullColour));
+        }
+        else
+        {
+            // Récupération des valeurs
+            wxString type = tache[0];
+            wxString id_tache = tache[1];
+            wxString message;
+            
+            if(type == "Processus")
+            {
+                // Requete pour avoir les détails grace à l'id
+                message  << wxT("La tache est un processus d'id : ") <<  id_tache << wxT("\n");
+                
+                m_textCtrlAffichage->AppendText(message);
+            }
+            else if(type == "Trajectoire")
+            {
+                // Requete pour avoir les détails grace à l'id
+                message  << wxT("La tache est une trajectoire d'id : ") <<  id_tache << wxT("\n");
+                
+                m_textCtrlAffichage->AppendText(message);
+            }
+            else
+            {
+                // Requete pour avoir les détails grace à l'id
+                message  << wxT("La tache est un mouvement d'id : ") <<  id_tache << wxT("\n");
+                
+                m_textCtrlAffichage->AppendText(message);
+            }
+            
+        }
+        
     }
     else
     {
+        wxString message = wxT("Saisie non reconnue\n");
+        
+        m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(*wxRED));
+        m_textCtrlAffichage->AppendText(message);
+        m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(wxNullColour));
     }
-}
-
-void EvtFramePrincipal::OnTextEnterSaisie(wxCommandEvent& event)
-{
-    // TODO: Implement OnTextEnterSaisie
 }
 
 void EvtFramePrincipal::AfficheMessageClient(wxCommandEvent& event)
@@ -123,14 +175,18 @@ void EvtFramePrincipal::Deconnexion(wxString message)
 
     // Affichage du message
     message << wxT("\n");
+    
     m_textCtrlAffichage->Clear();
+    m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(*wxRED));
     m_textCtrlAffichage->AppendText(message);
+    m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(wxNullColour));
 
     // Mise à jour de l'IHM
     m_toggleBtnConnexion->SetValue(false);
     m_panelSaisie->Hide();
     m_toggleBtnConnexion->SetLabel(wxT("Connexion"));
     m_statusBar->SetStatusText(wxT("Déconnecté"), 0);
+    
     Layout();
 }
 

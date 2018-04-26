@@ -23,7 +23,11 @@ de production
 #include "Client.h"
 class Client;
 #include <wx/log.h>
+#include <wx/colour.h>
+#include <wx/splash.h>
 #include <iostream>
+using std::cout;
+using std::endl;
 #include <string>
 using std::string;
 #include <vector>
@@ -32,16 +36,15 @@ using std::vector;
 /** Implementing FramePrincipal */
 class EvtFramePrincipal : public FramePrincipal
 {
-    protected:
-        // Handlers for FramePrincipal events.
-        void OnFrameClose(wxCloseEvent& event);
-        void OnButtonConnexionToggle(wxCommandEvent& event);
-        void OnClickButtonEnvoyer(wxCommandEvent& event);
-        void OnTextEnterSaisie(wxCommandEvent& event);
-    public:
-        /** Constructor */
-        EvtFramePrincipal(wxWindow* parent);
-        //// end generated class members
+	protected:
+		// Handlers for FramePrincipal events.
+		void OnFrameClose( wxCloseEvent& event );
+		void OnButtonConnexionToggle( wxCommandEvent& event );
+		void OnClickButtonEnvoyer( wxCommandEvent& event );
+	public:
+		/** Constructor */
+		EvtFramePrincipal( wxWindow* parent );
+	//// end generated class members
     protected:
         void AfficheInfoClient(wxCommandEvent& event);
         void AfficheMessageClient(wxCommandEvent& event);
@@ -52,6 +55,7 @@ class EvtFramePrincipal : public FramePrincipal
         bool m_connecte;
 
         void Deconnexion(wxString message);
+
 
 
 

@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Dec 21 2016)
+// C++ code generated with wxFormBuilder (version Feb 16 2016)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO "NOT" EDIT THIS FILE!
@@ -53,7 +53,6 @@ class FramePrincipal : public wxFrame
 		virtual void OnFrameClose( wxCloseEvent& event ) { event.Skip(); }
 		virtual void OnButtonConnexionToggle( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnClickButtonEnvoyer( wxCommandEvent& event ) { event.Skip(); }
-		virtual void OnTextEnterSaisie( wxCommandEvent& event ) { event.Skip(); }
 		
 	
 	public:

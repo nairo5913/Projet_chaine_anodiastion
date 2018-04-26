@@ -109,7 +109,8 @@ Client::Client(wxString ip, long port, EvtFramePrincipal *frame)
     }
 }
 
-Client::~Client(){
+Client::~Client()
+{
     if(m_client_connecte)
     {
         m_client->Close();
@@ -126,7 +127,7 @@ bool Client::DemandeDisponibiliteBras()
     if(reponse == BRAS_DISPONIBLE)
     {
         wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
-        MyEvent.SetString(wxT("Le bras est disponible"));
+        MyEvent.SetString(wxT("Le bras est disponible.\n"));
         wxPostEvent(m_frame, MyEvent);
         
         retour = true;
@@ -134,13 +135,13 @@ bool Client::DemandeDisponibiliteBras()
     else if(reponse == BRAS_INDISPONIBLE)
     {
         wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
-        MyEvent.SetString(wxT("Le bras n'est pas disponible"));
+        MyEvent.SetString(wxT("Le bras n'est pas disponible.\n"));
         wxPostEvent(m_frame, MyEvent);
     }
     else
     {
         wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
-        MyEvent.SetString(wxT("Une erreur est survenue"));
+        MyEvent.SetString(wxT("Une erreur est survenue.\n"));
         wxPostEvent(m_frame, MyEvent);
     }
     
@@ -155,8 +156,10 @@ vector<string> Client::DemandeTacheEnCours()
     {
         wxString requete(wxT(DEMANDE_TACHE_EN_COURS));
         
-        //wxString reponse = EcritMessage(requete);
-        wxString reponse = "304-processus-20";
+        wxString reponse = EcritMessage(requete);
+        
+        cout << reponse.ToStdString() << endl;
+        //wxString reponse = "304-processus-20";
         wxString texte="";
         
         if(reponse.StartsWith(TACHE_EN_COURS, &texte))
@@ -176,8 +179,8 @@ vector<string> Client::DemandeTacheEnCours()
             string type = t.ToStdString();
             string id_tache = id_p.ToStdString();
             
-            // Affichage de débugage
-            wxString message;
+            // Affichage de débogage
+            /*wxString message;
             message << wxT("\n Texte : ") << texte
                     << wxT("\n Séparateur : ") << separateur
                     << wxT("\n Type : ") << type
@@ -186,7 +189,7 @@ vector<string> Client::DemandeTacheEnCours()
             
             wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
             MyEvent.SetString(message);
-            wxPostEvent(m_frame, MyEvent);
+            wxPostEvent(m_frame, MyEvent);*/
             
             // Première cellule "type", deuxième cellule "id"
             tache.push_back(type);
@@ -195,16 +198,16 @@ vector<string> Client::DemandeTacheEnCours()
         }
         else if(reponse.IsSameAs(PAS_TACHE_EN_COURS))
         {
-            tache.push_back(0);
+            tache.push_back("0");
         }
         else
         {
-            tache.push_back(0);
+            tache.push_back("0");
         }
     }
     else
     {
-        tache.push_back(0);
+        tache.push_back("0");
     }
     
     return  tache;
