@@ -18,6 +18,7 @@
 #include <iostream>
 using std::cout;
 using std::endl;
+#include <wx/icon.h>
 
 IMPLEMENT_APP(MyApp);
 

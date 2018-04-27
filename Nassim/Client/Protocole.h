@@ -29,11 +29,7 @@
 #define BRAS_DISPONIBLE "301-"
 #define BRAS_INDISPONIBLE "302-"
 #define DEMANDE_TACHE_EN_COURS "303-"
-/*
- * #define  "304-" // Reception de la taches en cours 
- * Type (Trajectoire, mouvement ou processus) + id
- * A faire dans le code
-*/
+#define TACHE_EN_COURS "304-" // Reception de la taches en cours 
 #define PAS_TACHE_EN_COURS "305-"
 
 ////////////////////////////////////////////////////////////////////////////////

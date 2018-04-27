@@ -18,7 +18,7 @@ public:
     Client(wxString ip, long port, EvtFramePrincipal *frame );
     ~Client();
     bool IsOK(){return m_client_connecte;};
-    wxString EcritMessage(wxString message);
+    string EcritMessage(wxString message);
     void Close();
     bool DemandeDisponibiliteBras();
     vector<string> DemandeTacheEnCours();

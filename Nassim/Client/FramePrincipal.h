@@ -38,7 +38,7 @@ class FramePrincipal : public wxFrame
 	protected:
 		wxToggleButton* m_toggleBtnConnexion;
 		wxPanel* m_panelSaisie;
-		wxStaticText* m_staticText1;
+		wxStaticText* m_staticTextSaisie;
 		wxTextCtrl* m_textCtrlSaisie;
 		wxButton* m_buttonSaisie;
 		wxTextCtrl* m_textCtrlAffichage;
@@ -51,7 +51,7 @@ class FramePrincipal : public wxFrame
 	
 	public:
 		
-		FramePrincipal( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("wxHello"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 500,400 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		FramePrincipal( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Client"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 500,400 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 		
 		~FramePrincipal();
 	

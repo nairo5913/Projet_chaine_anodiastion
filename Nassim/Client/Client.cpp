@@ -59,7 +59,7 @@ Client::Client(wxString ip, long port, EvtFramePrincipal *frame)
             
             wxCommandEvent MyEventMsg(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
             
-            wxString utilisateur = wxT("Responsable");
+            wxString utilisateur = wxT("Regleur");
             
             if(Identification(utilisateur))
             {
@@ -116,7 +116,7 @@ bool Client::DemandeDisponibiliteBras()
 {
     wxString requete(wxT(DISPONIBILITE_BRAS));
 
-    wxString reponse = EcritMessage(requete);
+    string reponse = EcritMessage(requete);
     bool retour = false;
 
     if(reponse == BRAS_DISPONIBLE)
@@ -202,29 +202,56 @@ vector<string> Client::DemandeTacheEnCours()
     return tache;
 }
 
-wxString Client::EcritMessage(wxString message)
+string Client::EcritMessage(wxString message)
 {
     char *cstring;
+    
     cstring = new char(message.Len() + 3);
     strcpy(cstring, (const char *)message.mb_str(wxConvUTF8));
-    // a remplir avec ce qui sera necessaire et en se concertant tout d'abord avec les autres
+    
+    cstring[strlen(cstring)+2]=0x00;
+    cstring[strlen(cstring)+1]=0x0A;
+    cstring[strlen(cstring)]=0x0D;
+    
     m_client->Write(cstring, strlen(cstring));
     delete cstring;
 
-    wxString reponse(LitReponse().c_str(), wxConvUTF8);
+    string reponse(LitReponse().c_str());
     return reponse;
 }
 
 void Client::TestMouvement(int num_id) // À coder
 {
-    wxString message;
-    message<<wxT(DEMANDE_TEST_MOUVEMENT)<<num_id;
+    if(DemandeDisponibiliteBras())
+    {
+        wxString requete;
+        requete<<DEMANDE_TEST_MOUVEMENT<<num_id;
+        string reponse = EcritMessage(requete);
+    }
+    else
+    {
+        wxString message = wxT("Impossible d'éxecuter le test.");
+        wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT + 1);
+        MyEvent.SetString(message);
+        wxPostEvent(m_frame, MyEvent);
+    }
 }
 
 void Client::TestTrajectoire(int num_id) // À coder
 {
-    wxString message;
-    message<<wxT(DEMANDE_TEST_TRAJECTOIRE)<<num_id;
+   if(DemandeDisponibiliteBras())
+    {
+        wxString requete;
+        requete<<DEMANDE_TEST_TRAJECTOIRE<<num_id;
+        string reponse = EcritMessage(requete);
+    }
+    else
+    {
+        wxString message = wxT("Impossible d'éxécuter le test.");
+        wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT + 1);
+        MyEvent.SetString(message);
+        wxPostEvent(m_frame, MyEvent);
+    }
 }
 // gestionnaire d'évenement pour le socket
 void Client::OnSocketEvent(wxSocketEvent &event)
@@ -271,9 +298,9 @@ string Client::LitReponse()
     return reponse;
 }
 
-void Client::Deconnexion(wxString message)
+void Client::Deconnexion(wxString raison)
 {
-    wxString message(wxT(DEMANDE_DECONNEXION));
+    wxString message= wxT(DEMANDE_DECONNEXION);
     string reponse = EcritMessage(message);
 
     m_client_connecte = false;

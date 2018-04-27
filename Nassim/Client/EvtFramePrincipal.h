@@ -23,17 +23,14 @@ using std::vector;
 /** Implementing FramePrincipal */
 class EvtFramePrincipal : public FramePrincipal
 {
-    protected:
-        // Handlers for FramePrincipal events.
-        void OnFrameClose(wxCloseEvent& event);
-        void OnButtonConnexionToggle(wxCommandEvent& event);
-        void OnClickButtonEnvoyer(wxCommandEvent& event);
-        void OnTextEnterSaisie(wxCommandEvent& event);
-        
-    public:
-        /** Constructor */
-        EvtFramePrincipal(wxWindow* parent);
-        //// end generated class members
+	protected:
+		// Handlers for FramePrincipal events.
+		void OnButtonConnexionToggle( wxCommandEvent& event );
+		void OnClickButtonSaisie( wxCommandEvent& event );
+	public:
+		/** Constructor */
+		EvtFramePrincipal( wxWindow* parent );
+	//// end generated class members
     protected:
         void AfficheInfoClient(wxCommandEvent& event);
         void AfficheMessageClient(wxCommandEvent& event);
@@ -44,6 +41,7 @@ class EvtFramePrincipal : public FramePrincipal
         bool m_connecte;
 
         void Deconnexion(wxString message);
+
 
 
 
