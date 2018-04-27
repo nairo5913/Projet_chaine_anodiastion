@@ -21,12 +21,11 @@ void EvtFramePrincipal::OnFrameClose(wxCloseEvent& event)
     // penser à bloquer la fermeture pour la suite du projet surtout si fabrication
     if(m_connecte)
     {
-        m_client->Close();
-        delete m_client;
+        Deconnexion(wxT("Déconnexion depuis le client"));
     }
     
     wxBitmap bitmap;
-    if (bitmap.LoadFile("../Images/Good-Bye-Image-5.jpg", wxBITMAP_TYPE_PNG))
+    if (bitmap.LoadFile("../Images/Good-Bye-Image-5.jpg", wxBITMAP_TYPE_JPEG))
     {
         wxSplashScreen* splash = new wxSplashScreen(bitmap, wxSPLASH_CENTRE_ON_SCREEN|wxSPLASH_TIMEOUT, 2000, NULL, -1, wxDefaultPosition, wxDefaultSize, wxBORDER_SIMPLE|wxSTAY_ON_TOP);
     }
@@ -87,8 +86,9 @@ void EvtFramePrincipal::OnClickButtonEnvoyer(wxCommandEvent& event)
         if(texte != wxT(""))
         {
             // Pour la suite du projet récuperer l'id du processus directement
-            int id_processus = 1;
-            m_client->ExecutionProcessus(id_processus);
+            //wxString id_processus = 1;
+            //m_client->ExecutionProcessus(id_processus);
+            m_client->ExecutionProcessus(texte);
         }
         else
         {

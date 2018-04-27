@@ -248,9 +248,34 @@ void Client::Close()
     }
 }
 
-void Client::ExecutionProcessus(int num_id) // À coder
+void Client::ExecutionProcessus(wxString num_id)
 {
-    
+    if(DemandeDisponibiliteBras())
+    {
+        wxString requete;
+        requete << wxT(DEMANDE_EXECUTION_PROCESSUS) << num_id;
+        
+        wxString reponse = EcritMessage(requete);
+        
+        if(reponse == EXECUTION_IMPOSSIBLE)
+        {
+            wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
+            MyEvent.SetString(wxT("Erreur d'éxecution"));
+            wxPostEvent(m_frame, MyEvent);
+        }
+        else
+        {
+            wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
+            MyEvent.SetString(wxT("Éxecution réussie."));
+            wxPostEvent(m_frame, MyEvent);
+        }
+    }
+    else
+    {
+        wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
+        MyEvent.SetString(wxT("Imposible de lancer l'éxecution du processus car le bras n'est pas disponible.\n"));
+        wxPostEvent(m_frame, MyEvent);
+    }
 }
 
 bool Client::Identification(wxString utilisateur)
@@ -321,11 +346,6 @@ void Client::Deconnexion(wxString raison)
     wxCommandEvent MyEvent1(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
     MyEvent.SetString(reponse);
     wxPostEvent(m_frame, MyEvent1);
-}
-
-void Client::EnvoiProcessus(wxString id_processus/*int num_id, wxString utilisateur*/) // À coder
-{
-    
 }
 
 void Client::OnSocketEvent(wxSocketEvent& event)
