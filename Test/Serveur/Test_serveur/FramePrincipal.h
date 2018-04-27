@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Dec 21 2016)
+// C++ code generated with wxFormBuilder (version Feb 16 2016)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO "NOT" EDIT THIS FILE!
@@ -20,6 +20,7 @@
 #include <wx/sizer.h>
 #include <wx/panel.h>
 #include <wx/tglbtn.h>
+#include <wx/button.h>
 #include <wx/statbox.h>
 #include <wx/statusbr.h>
 #include <wx/frame.h>
@@ -39,12 +40,14 @@ class FramePrincipal : public wxFrame
 		wxStaticText* m_staticTextPort;
 		wxTextCtrl* m_textCtrlPort;
 		wxToggleButton* m_toggleBtnConnexion;
+		wxButton* m_buttonViderAffichage;
 		wxTextCtrl* m_textCtrlAffichage;
 		wxStatusBar* m_statusBar;
 		
 		// Virtual event handlers, overide them in your derived class
 		virtual void OnFrameClose( wxCloseEvent& event ) { event.Skip(); }
 		virtual void OnButtonDemarrerServeurToggle( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnButtonClickViderAffichage( wxCommandEvent& event ) { event.Skip(); }
 		
 	
 	public:

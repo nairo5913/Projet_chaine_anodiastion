@@ -284,7 +284,7 @@ void Serveur::DecodeMessage(wxString message, wxSocketBase *sock, DonneesClient 
             }
             else if(message.IsSameAs(DISPONIBILITE_BRAS))
             {
-                bool bras_dispo = false;
+                bool bras_dispo = true;
                 
                 if(bras_dispo)
                 {

@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Dec 21 2016)
+// C++ code generated with wxFormBuilder (version Feb 16 2016)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO "NOT" EDIT THIS FILE!
@@ -28,7 +28,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	
 	m_staticTextPort = new wxStaticText( m_panelParametreConnexion, wxID_ANY, wxT("Port : "), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextPort->Wrap( -1 );
-	m_staticTextPort->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, true, wxEmptyString ) );
+	m_staticTextPort->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), 70, 90, 90, true, wxEmptyString ) );
 	
 	bSizerPort->Add( m_staticTextPort, 0, wxALIGN_CENTER|wxBOTTOM|wxLEFT|wxTOP, 5 );
 	
@@ -47,6 +47,11 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_toggleBtnConnexion = new wxToggleButton( sbSizerConnexion->GetStaticBox(), wxID_ANY, wxT("\nDémarrer le serveur\n"), wxDefaultPosition, wxDefaultSize, 0 );
 	sbSizerConnexion->Add( m_toggleBtnConnexion, 1, wxALIGN_CENTER|wxALL|wxEXPAND, 5 );
 	
+	m_buttonViderAffichage = new wxButton( sbSizerConnexion->GetStaticBox(), wxID_ANY, wxT("Vider l'affichage"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_buttonViderAffichage->Hide();
+	
+	sbSizerConnexion->Add( m_buttonViderAffichage, 1, wxALIGN_CENTER|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL|wxEXPAND, 5 );
+	
 	
 	bSizerPrincipal->Add( sbSizerConnexion, 1, wxALL|wxEXPAND, 5 );
 	
@@ -63,7 +68,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	this->SetSizer( bSizerPrincipal );
 	this->Layout();
 	m_statusBar = this->CreateStatusBar( 2, wxST_SIZEGRIP, wxID_ANY );
-	m_statusBar->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), wxFONTFAMILY_ROMAN, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, wxEmptyString ) );
+	m_statusBar->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), 72, 90, 92, false, wxEmptyString ) );
 	
 	
 	this->Centre( wxBOTH );
@@ -72,6 +77,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	this->Connect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( FramePrincipal::OnFrameClose ) );
 	m_textCtrlPort->Connect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( FramePrincipal::OnButtonDemarrerServeurToggle ), NULL, this );
 	m_toggleBtnConnexion->Connect( wxEVT_COMMAND_TOGGLEBUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnButtonDemarrerServeurToggle ), NULL, this );
+	m_buttonViderAffichage->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnButtonClickViderAffichage ), NULL, this );
 }
 
 FramePrincipal::~FramePrincipal()
@@ -80,5 +86,6 @@ FramePrincipal::~FramePrincipal()
 	this->Disconnect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( FramePrincipal::OnFrameClose ) );
 	m_textCtrlPort->Disconnect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( FramePrincipal::OnButtonDemarrerServeurToggle ), NULL, this );
 	m_toggleBtnConnexion->Disconnect( wxEVT_COMMAND_TOGGLEBUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnButtonDemarrerServeurToggle ), NULL, this );
+	m_buttonViderAffichage->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnButtonClickViderAffichage ), NULL, this );
 	
 }
