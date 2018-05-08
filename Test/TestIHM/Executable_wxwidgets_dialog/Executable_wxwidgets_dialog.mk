@@ -5,16 +5,16 @@
 ## Debug
 ProjectName            :=Executable_wxwidgets_dialog
 ConfigurationName      :=Debug
-WorkspacePath          :=/home/ir2/fprovost/Documents/Projet_chaine_anodisation/TestIHM
-ProjectPath            :=/home/ir2/fprovost/Documents/Projet_chaine_anodisation/TestIHM/Executable_wxwidgets_dialog
+WorkspacePath          :=/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test
+ProjectPath            :=/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/TestIHM/Executable_wxwidgets_dialog
 IntermediateDirectory  :=./Debug
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
-User                   :=Florian PROVOST
-Date                   :=16/04/2018
-CodeLitePath           :=/home/ir2/fprovost/.codelite
+User                   :=nairo5913
+Date                   :=08/05/2018
+CodeLitePath           :=/home/nairo5913/.codelite
 LinkerName             :=/usr/bin/x86_64-linux-gnu-g++
 SharedObjectLinkerName :=/usr/bin/x86_64-linux-gnu-g++ -shared -fPIC
 ObjectSuffix           :=.o
@@ -92,7 +92,7 @@ PreBuild:
 ## Objects
 ##
 $(IntermediateDirectory)/gui.cpp$(ObjectSuffix): gui.cpp $(IntermediateDirectory)/gui.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ir2/fprovost/Documents/Projet_chaine_anodisation/TestIHM/Executable_wxwidgets_dialog/gui.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/gui.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/TestIHM/Executable_wxwidgets_dialog/gui.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/gui.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/gui.cpp$(DependSuffix): gui.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/gui.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/gui.cpp$(DependSuffix) -MM gui.cpp
 
@@ -100,7 +100,7 @@ $(IntermediateDirectory)/gui.cpp$(PreprocessSuffix): gui.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/gui.cpp$(PreprocessSuffix) gui.cpp
 
 $(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ir2/fprovost/Documents/Projet_chaine_anodisation/TestIHM/Executable_wxwidgets_dialog/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/TestIHM/Executable_wxwidgets_dialog/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/main.cpp$(DependSuffix) -MM main.cpp
 

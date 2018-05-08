@@ -5,16 +5,16 @@
 ## Debug
 ProjectName            :=Executable_wxwidgets_enable
 ConfigurationName      :=Debug
-WorkspacePath          :=/home/ir2/fprovost/Documents/Projet_chaine_anodisation/TestIHM
-ProjectPath            :=/home/ir2/fprovost/Documents/Projet_chaine_anodisation/TestIHM/Executable_wxwidgets_enable
+WorkspacePath          :=/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test
+ProjectPath            :=/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/TestIHM/Executable_wxwidgets_enable
 IntermediateDirectory  :=./Debug
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
-User                   :=Florian PROVOST
-Date                   :=16/04/2018
-CodeLitePath           :=/home/ir2/fprovost/.codelite
+User                   :=nairo5913
+Date                   :=08/05/2018
+CodeLitePath           :=/home/nairo5913/.codelite
 LinkerName             :=/usr/bin/x86_64-linux-gnu-g++
 SharedObjectLinkerName :=/usr/bin/x86_64-linux-gnu-g++ -shared -fPIC
 ObjectSuffix           :=.o
@@ -92,7 +92,7 @@ PreBuild:
 ## Objects
 ##
 $(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ir2/fprovost/Documents/Projet_chaine_anodisation/TestIHM/Executable_wxwidgets_enable/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/TestIHM/Executable_wxwidgets_enable/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/main.cpp$(DependSuffix) -MM main.cpp
 

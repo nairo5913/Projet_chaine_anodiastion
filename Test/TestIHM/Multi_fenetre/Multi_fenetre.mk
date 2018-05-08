@@ -5,16 +5,16 @@
 ## Debug
 ProjectName            :=Multi_fenetre
 ConfigurationName      :=Debug
-WorkspacePath          :=/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Test
-ProjectPath            :=/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Test/TestIHM/Multi_fenetre
+WorkspacePath          :=/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test
+ProjectPath            :=/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/TestIHM/Multi_fenetre
 IntermediateDirectory  :=./Debug
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
-User                   :=Florian PROVOST
-Date                   :=20/04/2018
-CodeLitePath           :=/home/ir2/fprovost/.codelite
+User                   :=nairo5913
+Date                   :=08/05/2018
+CodeLitePath           :=/home/nairo5913/.codelite
 LinkerName             :=/usr/bin/g++
 SharedObjectLinkerName :=/usr/bin/g++ -shared -fPIC
 ObjectSuffix           :=.o
@@ -92,7 +92,7 @@ PreBuild:
 ## Objects
 ##
 $(IntermediateDirectory)/EvtFramePrincipal.cpp$(ObjectSuffix): EvtFramePrincipal.cpp $(IntermediateDirectory)/EvtFramePrincipal.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Test/TestIHM/Multi_fenetre/EvtFramePrincipal.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/EvtFramePrincipal.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/TestIHM/Multi_fenetre/EvtFramePrincipal.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/EvtFramePrincipal.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/EvtFramePrincipal.cpp$(DependSuffix): EvtFramePrincipal.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/EvtFramePrincipal.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/EvtFramePrincipal.cpp$(DependSuffix) -MM EvtFramePrincipal.cpp
 
@@ -100,7 +100,7 @@ $(IntermediateDirectory)/EvtFramePrincipal.cpp$(PreprocessSuffix): EvtFramePrinc
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/EvtFramePrincipal.cpp$(PreprocessSuffix) EvtFramePrincipal.cpp
 
 $(IntermediateDirectory)/FramePrincipal.cpp$(ObjectSuffix): FramePrincipal.cpp $(IntermediateDirectory)/FramePrincipal.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Test/TestIHM/Multi_fenetre/FramePrincipal.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/FramePrincipal.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/TestIHM/Multi_fenetre/FramePrincipal.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/FramePrincipal.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/FramePrincipal.cpp$(DependSuffix): FramePrincipal.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/FramePrincipal.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/FramePrincipal.cpp$(DependSuffix) -MM FramePrincipal.cpp
 
@@ -108,7 +108,7 @@ $(IntermediateDirectory)/FramePrincipal.cpp$(PreprocessSuffix): FramePrincipal.c
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/FramePrincipal.cpp$(PreprocessSuffix) FramePrincipal.cpp
 
 $(IntermediateDirectory)/MyApp.cpp$(ObjectSuffix): MyApp.cpp $(IntermediateDirectory)/MyApp.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Test/TestIHM/Multi_fenetre/MyApp.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/MyApp.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/TestIHM/Multi_fenetre/MyApp.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/MyApp.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/MyApp.cpp$(DependSuffix): MyApp.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/MyApp.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/MyApp.cpp$(DependSuffix) -MM MyApp.cpp
 
@@ -116,7 +116,7 @@ $(IntermediateDirectory)/MyApp.cpp$(PreprocessSuffix): MyApp.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/MyApp.cpp$(PreprocessSuffix) MyApp.cpp
 
 $(IntermediateDirectory)/EvtDialogTest.cpp$(ObjectSuffix): EvtDialogTest.cpp $(IntermediateDirectory)/EvtDialogTest.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Test/TestIHM/Multi_fenetre/EvtDialogTest.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/EvtDialogTest.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/TestIHM/Multi_fenetre/EvtDialogTest.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/EvtDialogTest.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/EvtDialogTest.cpp$(DependSuffix): EvtDialogTest.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/EvtDialogTest.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/EvtDialogTest.cpp$(DependSuffix) -MM EvtDialogTest.cpp
 
@@ -124,7 +124,7 @@ $(IntermediateDirectory)/EvtDialogTest.cpp$(PreprocessSuffix): EvtDialogTest.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/EvtDialogTest.cpp$(PreprocessSuffix) EvtDialogTest.cpp
 
 $(IntermediateDirectory)/EvtFenetre2.cpp$(ObjectSuffix): EvtFenetre2.cpp $(IntermediateDirectory)/EvtFenetre2.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Test/TestIHM/Multi_fenetre/EvtFenetre2.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/EvtFenetre2.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/TestIHM/Multi_fenetre/EvtFenetre2.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/EvtFenetre2.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/EvtFenetre2.cpp$(DependSuffix): EvtFenetre2.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/EvtFenetre2.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/EvtFenetre2.cpp$(DependSuffix) -MM EvtFenetre2.cpp
 
@@ -132,7 +132,7 @@ $(IntermediateDirectory)/EvtFenetre2.cpp$(PreprocessSuffix): EvtFenetre2.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/EvtFenetre2.cpp$(PreprocessSuffix) EvtFenetre2.cpp
 
 $(IntermediateDirectory)/EvtMyDialogApropos.cpp$(ObjectSuffix): EvtMyDialogApropos.cpp $(IntermediateDirectory)/EvtMyDialogApropos.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Test/TestIHM/Multi_fenetre/EvtMyDialogApropos.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/EvtMyDialogApropos.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/TestIHM/Multi_fenetre/EvtMyDialogApropos.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/EvtMyDialogApropos.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/EvtMyDialogApropos.cpp$(DependSuffix): EvtMyDialogApropos.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/EvtMyDialogApropos.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/EvtMyDialogApropos.cpp$(DependSuffix) -MM EvtMyDialogApropos.cpp
 

@@ -5,16 +5,16 @@
 ## Debug
 ProjectName            :=Executable_wxwidgets_frame
 ConfigurationName      :=Debug
-WorkspacePath          :=/home/ir2/fprovost/Documents/Projet_chaine_anodisation/TestIHM
-ProjectPath            :=/home/ir2/fprovost/Documents/Projet_chaine_anodisation/TestIHM/Executable_wxwidgets_frame
+WorkspacePath          :=/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test
+ProjectPath            :=/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/TestIHM/Executable_wxwidgets_frame
 IntermediateDirectory  :=./Debug
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
-User                   :=Florian PROVOST
-Date                   :=16/04/2018
-CodeLitePath           :=/home/ir2/fprovost/.codelite
+User                   :=nairo5913
+Date                   :=08/05/2018
+CodeLitePath           :=/home/nairo5913/.codelite
 LinkerName             :=/usr/bin/x86_64-linux-gnu-g++
 SharedObjectLinkerName :=/usr/bin/x86_64-linux-gnu-g++ -shared -fPIC
 ObjectSuffix           :=.o
@@ -92,7 +92,7 @@ PreBuild:
 ## Objects
 ##
 $(IntermediateDirectory)/gui.cpp$(ObjectSuffix): gui.cpp $(IntermediateDirectory)/gui.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ir2/fprovost/Documents/Projet_chaine_anodisation/TestIHM/Executable_wxwidgets_frame/gui.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/gui.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/TestIHM/Executable_wxwidgets_frame/gui.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/gui.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/gui.cpp$(DependSuffix): gui.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/gui.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/gui.cpp$(DependSuffix) -MM gui.cpp
 
@@ -100,7 +100,7 @@ $(IntermediateDirectory)/gui.cpp$(PreprocessSuffix): gui.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/gui.cpp$(PreprocessSuffix) gui.cpp
 
 $(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ir2/fprovost/Documents/Projet_chaine_anodisation/TestIHM/Executable_wxwidgets_frame/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/TestIHM/Executable_wxwidgets_frame/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/main.cpp$(DependSuffix) -MM main.cpp
 
@@ -108,7 +108,7 @@ $(IntermediateDirectory)/main.cpp$(PreprocessSuffix): main.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/main.cpp$(PreprocessSuffix) main.cpp
 
 $(IntermediateDirectory)/guiMainFrameBase.cpp$(ObjectSuffix): guiMainFrameBase.cpp $(IntermediateDirectory)/guiMainFrameBase.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ir2/fprovost/Documents/Projet_chaine_anodisation/TestIHM/Executable_wxwidgets_frame/guiMainFrameBase.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/guiMainFrameBase.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/TestIHM/Executable_wxwidgets_frame/guiMainFrameBase.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/guiMainFrameBase.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/guiMainFrameBase.cpp$(DependSuffix): guiMainFrameBase.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/guiMainFrameBase.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/guiMainFrameBase.cpp$(DependSuffix) -MM guiMainFrameBase.cpp
 

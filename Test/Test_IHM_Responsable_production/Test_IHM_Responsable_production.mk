@@ -3,10 +3,10 @@
 ## any manual changes will be erased      
 ##
 ## Debug
-ProjectName            :=Test_requete_avec_affichage_et_saisie
+ProjectName            :=Test_IHM_Responsable_production
 ConfigurationName      :=Debug
 WorkspacePath          :=/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test
-ProjectPath            :=/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/Test_requete_avec_poco/Test_requete_avec_affichage_et_saisie
+ProjectPath            :=/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/Test_IHM_Responsable_production
 IntermediateDirectory  :=./Debug
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
@@ -32,15 +32,15 @@ Preprocessors          :=
 ObjectSwitch           :=-o 
 ArchiveOutputSwitch    := 
 PreprocessOnlySwitch   :=-E
-ObjectsFileList        :="Test_requete_avec_affichage_et_saisie.txt"
+ObjectsFileList        :="Test_IHM_Responsable_production.txt"
 PCHCompileFlags        :=
 MakeDirCommand         :=mkdir -p
 LinkOptions            :=  $(shell wx-config   --libs --unicode=yes)
 IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch)IHM 
 IncludePCH             := 
 RcIncludePath          := 
-Libs                   := $(LibrarySwitch)PocoDataODBC $(LibrarySwitch)PocoData $(LibrarySwitch)PocoFoundation 
-ArLibs                 :=  "PocoDataODBC" "PocoData" "PocoFoundation" 
+Libs                   := 
+ArLibs                 :=  
 LibPath                := $(LibraryPathSwitch). 
 
 ##
@@ -60,7 +60,7 @@ AS       := /usr/bin/as
 ## User defined environment variables
 ##
 CodeLiteDir:=/usr/share/codelite
-Objects0=$(IntermediateDirectory)/EvtFramePrincipal.cpp$(ObjectSuffix) $(IntermediateDirectory)/FramePrincipal.cpp$(ObjectSuffix) $(IntermediateDirectory)/MyApp.cpp$(ObjectSuffix) $(IntermediateDirectory)/DataAnnodiastion.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/EvtFramePrincipal.cpp$(ObjectSuffix) $(IntermediateDirectory)/FramePrincipal.cpp$(ObjectSuffix) $(IntermediateDirectory)/MyApp.cpp$(ObjectSuffix) 
 
 
 
@@ -92,7 +92,7 @@ PreBuild:
 ## Objects
 ##
 $(IntermediateDirectory)/EvtFramePrincipal.cpp$(ObjectSuffix): EvtFramePrincipal.cpp $(IntermediateDirectory)/EvtFramePrincipal.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/Test_requete_avec_poco/Test_requete_avec_affichage_et_saisie/EvtFramePrincipal.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/EvtFramePrincipal.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/Test_IHM_Responsable_production/EvtFramePrincipal.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/EvtFramePrincipal.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/EvtFramePrincipal.cpp$(DependSuffix): EvtFramePrincipal.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/EvtFramePrincipal.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/EvtFramePrincipal.cpp$(DependSuffix) -MM EvtFramePrincipal.cpp
 
@@ -100,7 +100,7 @@ $(IntermediateDirectory)/EvtFramePrincipal.cpp$(PreprocessSuffix): EvtFramePrinc
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/EvtFramePrincipal.cpp$(PreprocessSuffix) EvtFramePrincipal.cpp
 
 $(IntermediateDirectory)/FramePrincipal.cpp$(ObjectSuffix): FramePrincipal.cpp $(IntermediateDirectory)/FramePrincipal.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/Test_requete_avec_poco/Test_requete_avec_affichage_et_saisie/FramePrincipal.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/FramePrincipal.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/Test_IHM_Responsable_production/FramePrincipal.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/FramePrincipal.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/FramePrincipal.cpp$(DependSuffix): FramePrincipal.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/FramePrincipal.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/FramePrincipal.cpp$(DependSuffix) -MM FramePrincipal.cpp
 
@@ -108,20 +108,12 @@ $(IntermediateDirectory)/FramePrincipal.cpp$(PreprocessSuffix): FramePrincipal.c
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/FramePrincipal.cpp$(PreprocessSuffix) FramePrincipal.cpp
 
 $(IntermediateDirectory)/MyApp.cpp$(ObjectSuffix): MyApp.cpp $(IntermediateDirectory)/MyApp.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/Test_requete_avec_poco/Test_requete_avec_affichage_et_saisie/MyApp.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/MyApp.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/Test_IHM_Responsable_production/MyApp.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/MyApp.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/MyApp.cpp$(DependSuffix): MyApp.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/MyApp.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/MyApp.cpp$(DependSuffix) -MM MyApp.cpp
 
 $(IntermediateDirectory)/MyApp.cpp$(PreprocessSuffix): MyApp.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/MyApp.cpp$(PreprocessSuffix) MyApp.cpp
-
-$(IntermediateDirectory)/DataAnnodiastion.cpp$(ObjectSuffix): DataAnnodiastion.cpp $(IntermediateDirectory)/DataAnnodiastion.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/Test_requete_avec_poco/Test_requete_avec_affichage_et_saisie/DataAnnodiastion.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/DataAnnodiastion.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/DataAnnodiastion.cpp$(DependSuffix): DataAnnodiastion.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/DataAnnodiastion.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/DataAnnodiastion.cpp$(DependSuffix) -MM DataAnnodiastion.cpp
-
-$(IntermediateDirectory)/DataAnnodiastion.cpp$(PreprocessSuffix): DataAnnodiastion.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/DataAnnodiastion.cpp$(PreprocessSuffix) DataAnnodiastion.cpp
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)
