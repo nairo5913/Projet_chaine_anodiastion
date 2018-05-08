@@ -1,13 +1,17 @@
 #include "EvtMyDialogAide.h"
 
-EvtMyDialogAide::EvtMyDialogAide( wxWindow* parent )
-:
-MyDialogAide( parent )
+EvtMyDialogAide::EvtMyDialogAide(wxWindow* parent) : MyDialogAide(parent)
 {
-
 }
 
-void EvtMyDialogAide::OnOKButtonClick( wxCommandEvent& event )
+void EvtMyDialogAide::OnDialogClose(wxCloseEvent& event)
 {
-// TODO: Implement OnOKButtonClick
+    // TODO: Implement OnDialogClose
+    Destroy();
+}
+
+void EvtMyDialogAide::OnOKButtonClick(wxCommandEvent& event)
+{
+    // TODO: Implement OnOKButtonClick
+    Destroy();
 }

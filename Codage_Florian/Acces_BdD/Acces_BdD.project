@@ -11,11 +11,15 @@
     <File Name="EvtFramePrincipal.cpp"/>
     <File Name="FramePrincipal.cpp"/>
     <File Name="MyApp.cpp"/>
+    <File Name="EvtMyDialogAide.cpp"/>
+    <File Name="DataAnodisation.cpp"/>
   </VirtualDirectory>
   <VirtualDirectory Name="include">
     <File Name="EvtFramePrincipal.h"/>
     <File Name="FramePrincipal.h"/>
     <File Name="MyApp.h"/>
+    <File Name="EvtMyDialogAide.h"/>
+    <File Name="DataAnodisation.h"/>
   </VirtualDirectory>
   <VirtualDirectory Name="resources">
     <File Name="FramePrincipal.fbp"/>
@@ -34,7 +38,11 @@
       <Compiler Options="-g;-O0;-Wall;$(shell wx-config --cxxflags --unicode=yes  )" C_Options="-g;-O0;-Wall;$(shell wx-config --cxxflags --unicode=yes  )" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="IHM"/>
       </Compiler>
-      <Linker Options="$(shell wx-config   --libs --unicode=yes)" Required="yes"/>
+      <Linker Options="$(shell wx-config   --libs --unicode=yes)" Required="yes">
+        <Library Value="PocoDataODBC"/>
+        <Library Value="PocoData"/>
+        <Library Value="PocoFoundation"/>
+      </Linker>
       <ResourceCompiler Options="$(shell wx-config --rcflags)" Required="no"/>
       <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="./Debug" Command="./$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
       <BuildSystem Name="Default"/>
@@ -109,4 +117,6 @@
       </Completion>
     </Configuration>
   </Settings>
+  <Dependencies Name="Debug"/>
+  <Dependencies Name="Release"/>
 </CodeLite_Project>

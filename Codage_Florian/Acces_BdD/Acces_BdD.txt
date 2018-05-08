@@ -1,1 +1,1 @@
-./Debug/EvtFramePrincipal.cpp.o ./Debug/FramePrincipal.cpp.o ./Debug/MyApp.cpp.o
+./Debug/EvtFramePrincipal.cpp.o ./Debug/FramePrincipal.cpp.o ./Debug/MyApp.cpp.o ./Debug/EvtMyDialogAide.cpp.o ./Debug/DataAnodisation.cpp.o

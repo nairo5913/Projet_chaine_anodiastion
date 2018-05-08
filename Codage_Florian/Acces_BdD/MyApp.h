@@ -1,16 +1,16 @@
+/*******************************************************************************
+  *  Fichier:  MyApp.h
+  *  Projet:   Chaîne d'anodisation - Gestion du client BdD pour le PC du 
+               responsable de production
+  *  Crée le:  29/04/2018
+  *  Utilité:  Lancement de l'application
+  *  Auteur:   Florian Provost
+*******************************************************************************/
 #ifndef MYAPP_H
 #define MYAPP_H
-/***************************************************************
- * Name:      MyApp.h
- * Purpose:   Defines Application Class
- * Author:    Florian Provost
- * Created:   24/11/2017
- * Copyright: 
- * License:
- **************************************************************/
-
 
 #include <wx/app.h>
+#include <wx/icon.h>
 
 class MyApp : public wxApp
 {
