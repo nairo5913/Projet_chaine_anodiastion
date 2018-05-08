@@ -28,7 +28,7 @@ class Client : public wxEvtHandler
         bool DemandeDisponibiliteBras();
         vector<string> DemandeTacheEnCours();
         string EcritMessage(wxString message);
-        void AnalyseReponseServeur(string reponse);
+        //void AnalyseReponseServeur(string reponse);
         void Close();
         void ExecutionProcessus(wxString num_id);
     
