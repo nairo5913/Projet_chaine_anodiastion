@@ -1,8 +1,6 @@
 #include "EvtFramePrincipal.h"
 
-EvtFramePrincipal::EvtFramePrincipal( wxWindow* parent )
-:
-FramePrincipal( parent )
+EvtFramePrincipal::EvtFramePrincipal(wxWindow* parent) : FramePrincipal(parent)
 {
     m_connecte = false;
     m_statusBar->SetStatusText(wxT("Déconnecté"), 0);
@@ -17,152 +15,151 @@ FramePrincipal( parent )
             NULL, this);
 }
 
-void EvtFramePrincipal::OnFrameClose( wxCloseEvent& event )
+void EvtFramePrincipal::OnFrameClose(wxCloseEvent& event)
 {
-// Gestion de la fermeture de la fenêtre
-// penser à bloquer la fermeture pour la suite du projet surtout si fabrication
-if(m_connecte)
-{
-Deconnexion(wxT("Déconnexion depuis le client"));
+    // Gestion de la fermeture de la fenêtre
+    // penser à bloquer la fermeture pour la suite du projet surtout si fabrication
+    if(m_connecte)
+    {
+        Deconnexion(wxT("Déconnexion depuis le client"));
+    }
+
+    wxBitmap bitmap;
+    if(bitmap.LoadFile("../Images/Good-Bye-Image-5.jpg", wxBITMAP_TYPE_JPEG))
+    {
+        wxSplashScreen* splash =
+            new wxSplashScreen(bitmap, wxSPLASH_CENTRE_ON_SCREEN | wxSPLASH_TIMEOUT, 2000, NULL, -1, wxDefaultPosition,
+                               wxDefaultSize, wxBORDER_SIMPLE | wxSTAY_ON_TOP);
+    }
+
+    Destroy();
 }
 
-wxBitmap bitmap;
-if (bitmap.LoadFile("../Images/Good-Bye-Image-5.jpg", wxBITMAP_TYPE_JPEG))
+void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
 {
-wxSplashScreen* splash = new wxSplashScreen(bitmap, wxSPLASH_CENTRE_ON_SCREEN|wxSPLASH_TIMEOUT, 2000, NULL, -1, wxDefaultPosition, wxDefaultSize, wxBORDER_SIMPLE|wxSTAY_ON_TOP);
+    if(!m_connecte)
+    {
+        long port = 30000;
+        // Test en local
+        wxString ip = wxT("localhost");
+        // Adresse de la Raspberry
+        // wxString ip = wxT("192.168.1.249");
+
+        // m_client = new Client(m_textCtrlSaisieHote->GetValue(), port, this);
+        m_client = new Client(ip, port, this);
+        m_connecte = m_client->IsOK();
+
+        if(m_connecte)
+        {
+            m_panelSaisie->Show();
+            m_toggleBtnConnexion->SetLabel(wxT("Déconnexion"));
+            // m_panelParametresConnexion->Hide();
+            Layout();
+        }
+        else
+        {
+            m_textCtrlAffichage->AppendText(wxT("Connexion impossible, vérifiez que le serveur est bien lancé...\n"));
+            m_toggleBtnConnexion->SetValue(false);
+        }
+    }
+    else
+    {
+        Deconnexion(wxT("Déconnexion depuis le client"));
+    }
 }
 
-Destroy();
-}
-
-void EvtFramePrincipal::OnButtonConnexionToggle( wxCommandEvent& event )
+void EvtFramePrincipal::OnClickButtonEnvoyer(wxCommandEvent& event)
 {
-if(!m_connecte)
-{
-long port = 30000;
-// Test en local
-wxString ip = wxT("localhost");
-// Adresse de la Raspberry
-// wxString ip = wxT("192.168.1.249");
+    // m_textCtrlAffichage->AppendText(wxT("Bouton envoyer \n"));
 
-// m_client = new Client(m_textCtrlSaisieHote->GetValue(), port, this);
-m_client = new Client(ip, port, this);
-m_connecte = m_client->IsOK();
+    // Récupération de la saisie et affichage
+    wxString saisie = m_textCtrlSaisie->GetValue();
+    m_textCtrlSaisie->Clear();
+    m_textCtrlAffichage->AppendText(saisie + wxT("\n"));
 
-if(m_connecte)
-{
-m_panelSaisie->Show();
-m_toggleBtnConnexion->SetLabel(wxT("Déconnexion"));
-// m_panelParametresConnexion->Hide();
-Layout();
+    wxString texte = "";
+
+    if(saisie.StartsWith(DEMANDE_EXECUTION_PROCESSUS, &texte))
+    {
+        // Affichage pour tester
+        wxString message = wxT("Commence par 200- et le contenu est : ") + texte + wxT("\n");
+        m_textCtrlAffichage->AppendText(message);
+
+        if(texte != wxT(""))
+        {
+            // Pour la suite du projet récuperer l'id du processus directement
+            // wxString id_processus = 1;
+            // m_client->ExecutionProcessus(id_processus);
+            m_client->ExecutionProcessus(texte);
+        }
+        else
+        {
+            wxLogError(wxT("Il faut rentrer un id du processus à envoyer."));
+        }
+    }
+    else if(saisie.IsSameAs(DISPONIBILITE_BRAS))
+    {
+        wxString message = wxT("Demande état bras (300-)\n");
+        m_textCtrlAffichage->AppendText(message);
+
+        m_client->DemandeDisponibiliteBras();
+    }
+    else if(saisie.IsSameAs(DEMANDE_TACHE_EN_COURS))
+    {
+        wxString message = wxT("Demande état bras (303-)\n");
+        m_textCtrlAffichage->AppendText(message);
+
+        vector<string> tache = m_client->DemandeTacheEnCours();
+
+        if(tache[0] == "0")
+        {
+            message.clear();
+            message << "Il n'y a pas de taches en cours.\n";
+
+            // Affichage
+            m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(*wxGREEN));
+            m_textCtrlAffichage->AppendText(message);
+            m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(wxNullColour));
+        }
+        else
+        {
+            // Récupération des valeurs
+            wxString type = tache[0];
+            wxString id_tache = tache[1];
+            wxString message;
+
+            if(type == "Processus")
+            {
+                // Requete pour avoir les détails grace à l'id
+                message << wxT("La tache est un processus d'id : ") << id_tache << wxT("\n");
+
+                m_textCtrlAffichage->AppendText(message);
+            }
+            else if(type == "Trajectoire")
+            {
+                // Requete pour avoir les détails grace à l'id
+                message << wxT("La tache est une trajectoire d'id : ") << id_tache << wxT("\n");
+
+                m_textCtrlAffichage->AppendText(message);
+            }
+            else
+            {
+                // Requete pour avoir les détails grace à l'id
+                message << wxT("La tache est un mouvement d'id : ") << id_tache << wxT("\n");
+
+                m_textCtrlAffichage->AppendText(message);
+            }
+        }
+    }
+    else
+    {
+        wxString message = wxT("Saisie non reconnue\n");
+
+        m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(*wxRED));
+        m_textCtrlAffichage->AppendText(message);
+        m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(wxNullColour));
+    }
 }
-else
-{
-m_textCtrlAffichage->AppendText(wxT("Connexion impossible, vérifiez que le serveur est bien lancé...\n"));
-m_toggleBtnConnexion->SetValue(false);
-}
-}
-else
-{
-Deconnexion(wxT("Déconnexion depuis le client"));
-}
-}
-
-void EvtFramePrincipal::OnClickButtonEnvoyer( wxCommandEvent& event )
-{
-// m_textCtrlAffichage->AppendText(wxT("Bouton envoyer \n"));
-
-// Récupération de la saisie et affichage
-wxString saisie = m_textCtrlSaisie->GetValue();
-m_textCtrlSaisie->Clear();
-m_textCtrlAffichage->AppendText(saisie + wxT("\n"));
-
-wxString texte = "";
-
-if(saisie.StartsWith(DEMANDE_EXECUTION_PROCESSUS, &texte))
-{
-// Affichage pour tester
-wxString message = wxT("Commence par 200- et le contenu est : ") + texte + wxT("\n");
-m_textCtrlAffichage->AppendText(message);
-
-if(texte != wxT(""))
-{
-// Pour la suite du projet récuperer l'id du processus directement
-//wxString id_processus = 1;
-//m_client->ExecutionProcessus(id_processus);
-m_client->ExecutionProcessus(texte);
-}
-else
-{
-wxLogError(wxT("Il faut rentrer un id du processus à envoyer."));
-}
-}
-else if(saisie.IsSameAs(DISPONIBILITE_BRAS))
-{
-wxString message = wxT("Demande état bras (300-)\n");
-m_textCtrlAffichage->AppendText(message);
-
-m_client->DemandeDisponibiliteBras();
-}
-else if(saisie.IsSameAs(DEMANDE_TACHE_EN_COURS))
-{
-wxString message = wxT("Demande état bras (303-)\n");
-m_textCtrlAffichage->AppendText(message);
-
-vector<string> tache = m_client->DemandeTacheEnCours();
-
-if(tache[0] == "0")
-{
-message.clear();
-message << "Il n'y a pas de taches en cours.\n";
-
-// Affichage
-m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(*wxGREEN));
-m_textCtrlAffichage->AppendText(message);
-m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(wxNullColour));
-}
-else
-{
-// Récupération des valeurs
-wxString type = tache[0];
-wxString id_tache = tache[1];
-wxString message;
-
-if(type == "Processus")
-{
-// Requete pour avoir les détails grace à l'id
-message  << wxT("La tache est un processus d'id : ") <<  id_tache << wxT("\n");
-
-m_textCtrlAffichage->AppendText(message);
-}
-else if(type == "Trajectoire")
-{
-// Requete pour avoir les détails grace à l'id
-message  << wxT("La tache est une trajectoire d'id : ") <<  id_tache << wxT("\n");
-
-m_textCtrlAffichage->AppendText(message);
-}
-else
-{
-// Requete pour avoir les détails grace à l'id
-message  << wxT("La tache est un mouvement d'id : ") <<  id_tache << wxT("\n");
-
-m_textCtrlAffichage->AppendText(message);
-}
-
-}
-
-}
-else
-{
-wxString message = wxT("Saisie non reconnue\n");
-
-m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(*wxRED));
-m_textCtrlAffichage->AppendText(message);
-m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(wxNullColour));
-}
-}
-
 
 void EvtFramePrincipal::AfficheMessageClient(wxCommandEvent& event)
 {
@@ -178,7 +175,7 @@ void EvtFramePrincipal::Deconnexion(wxString message)
 
     // Affichage du message
     message << wxT("\n");
-    
+
     m_textCtrlAffichage->Clear();
     m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(*wxRED));
     m_textCtrlAffichage->AppendText(message);
@@ -189,7 +186,7 @@ void EvtFramePrincipal::Deconnexion(wxString message)
     m_panelSaisie->Hide();
     m_toggleBtnConnexion->SetLabel(wxT("Connexion"));
     m_statusBar->SetStatusText(wxT("Déconnecté"), 0);
-    
+
     Layout();
 }
 

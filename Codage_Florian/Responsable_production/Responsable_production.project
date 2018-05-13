@@ -102,6 +102,8 @@
     <File Name="MyApp.cpp"/>
     <File Name="Client.cpp"/>
     <File Name="DataAnodisation.cpp"/>
+    <File Name="EvtDialogApropos.cpp"/>
+    <File Name="EvtDialogAide.cpp"/>
   </VirtualDirectory>
   <VirtualDirectory Name="include">
     <File Name="EvtFramePrincipal.h"/>
@@ -110,6 +112,8 @@
     <File Name="Client.h"/>
     <File Name="Protocoles.h"/>
     <File Name="DataAnodisation.h"/>
+    <File Name="EvtDialogApropos.h"/>
+    <File Name="EvtDialogAide.h"/>
   </VirtualDirectory>
   <VirtualDirectory Name="resources">
     <File Name="FramePrincipal.fbp"/>

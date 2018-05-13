@@ -1,3 +1,10 @@
+/*******************************************************************************
+*  Fichier:  EvtFramePrincipal.cpp
+*  Projet:   Chaîne d'anodisation - Gestion du PC responsable de production
+*  Crée le:  29/04/2018
+*  Utilité:  Gestion des événements du frame principal
+*  Auteur:   Florian Provost
+*******************************************************************************/
 #include "EvtFramePrincipal.h"
 
 EvtFramePrincipal::EvtFramePrincipal(wxWindow* parent) : FramePrincipal(parent)
@@ -110,11 +117,6 @@ void EvtFramePrincipal::OnListBoxModifierSelection(wxCommandEvent& event)
     // TODO: Implement OnListBoxModifierSelection
 }
 
-void EvtFramePrincipal::OnButtonModifierClick(wxCommandEvent& event)
-{
-    // TODO: Implement OnButtonModifierClick
-}
-
 void EvtFramePrincipal::OnApplyButtonModifierClick(wxCommandEvent& event)
 {
     // TODO: Implement OnApplyButtonModifierClick
@@ -144,8 +146,8 @@ void EvtFramePrincipal::OnListBoxDetruireSelection(wxCommandEvent& event)
     m_textCtrlAffichage->AppendText(selection);
 
     wxString message;
-    message << wxT("Vous allez détruire le ") << m_listBoxDetruireProcessus->GetStringSelection() << wxT(" !\n");
-    m_staticTextDetruire->SetLabel(message);
+    message << m_listBoxDetruireProcessus->GetStringSelection() << wxT("\n");
+    m_staticTextDetuireTitre->SetLabel(message);
 
     Layout();
 }
@@ -158,11 +160,36 @@ void EvtFramePrincipal::OnApplyButtonDetruireClick(wxCommandEvent& event)
 void EvtFramePrincipal::OnListBoxLancerSelection(wxCommandEvent& event)
 {
     // TODO: Implement OnListBoxLancerSelection
+    m_textCtrlAffichage->AppendText(wxT("Selection liste détruire processus\n"));
+    wxString selection = wxT("Votre séléction : ");
+    selection << m_listBoxLancerProcessus->GetStringSelection() << wxT("\n");
+    m_textCtrlAffichage->AppendText(selection);
+
+    wxString message;
+    message << m_listBoxLancerProcessus->GetStringSelection() << wxT("\n");
+    m_staticTextLancerTitre->SetLabel(message);
+
+    Layout();
 }
 
 void EvtFramePrincipal::OnOkButtonLancerClick(wxCommandEvent& event)
 {
     // TODO: Implement OnOkButtonLancerClick
+}
+
+void EvtFramePrincipal::OnListBoxTesterSelection(wxCommandEvent& event)
+{
+    // TODO: Implement OnListBoxTesterSelection
+}
+
+void EvtFramePrincipal::OnStopButtonTesterClick(wxCommandEvent& event)
+{
+    // TODO: Implement OnStopButtonTesterClick
+}
+
+void EvtFramePrincipal::OnOkButtonTesterClick(wxCommandEvent& event)
+{
+    // TODO: Implement OnOkButtonTesterClick
 }
 
 void EvtFramePrincipal::OnButtonViderAffichageClick(wxCommandEvent& event)
@@ -180,11 +207,21 @@ void EvtFramePrincipal::OnMenuQuitterSelection(wxCommandEvent& event)
 void EvtFramePrincipal::OnMenuAideSelection(wxCommandEvent& event)
 {
     // TODO: Implement OnMenuAideSelection
+    EvtDialogAide* dialog_aide = new EvtDialogAide(0);
+    dialog_aide->Show();
 }
 
 void EvtFramePrincipal::OnMenuAproposSelection(wxCommandEvent& event)
 {
     // TODO: Implement OnMenuAproposSelection
+    EvtDialogApropos* dialog_apropos = new EvtDialogApropos(0);
+    dialog_apropos->Show();
+}
+
+void EvtFramePrincipal::OnMenuViderAffichageSelection(wxCommandEvent& event)
+{
+    // TODO: Implement OnMenuViderAffichageSelection
+    m_textCtrlAffichage->Clear();
 }
 
 bool EvtFramePrincipal::VerificationLogin(wxString login, wxString pass)

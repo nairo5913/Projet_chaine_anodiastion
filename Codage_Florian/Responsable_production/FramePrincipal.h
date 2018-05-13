@@ -29,10 +29,14 @@
 #include <wx/image.h>
 #include <wx/icon.h>
 #include <wx/button.h>
+#include <wx/spinctrl.h>
+#include <wx/bmpbuttn.h>
 #include <wx/notebook.h>
 #include <wx/menu.h>
 #include <wx/statusbr.h>
 #include <wx/frame.h>
+#include <wx/statbmp.h>
+#include <wx/dialog.h>
 
 ///////////////////////////////////////////////////////////////////////////
 
@@ -58,9 +62,9 @@ class FramePrincipal : public wxFrame
 		wxTextCtrl* m_textCtrlIdAfficher;
 		wxStaticText* m_staticDureeTotalAfficher;
 		wxTextCtrl* m_textCtrlDureeTotalHeureAfficher;
-		wxStaticText* m_staticTextDureeTotalAfficher1;
+		wxStaticText* m_staticTextDureeTotalMinuteAfficher;
 		wxTextCtrl* textCtrlDureeTotalMinuteAfficher;
-		wxStaticText* m_staticTextDureeTotalAfficher;
+		wxStaticText* m_staticTextDureeTotalSecondeAfficher;
 		wxTextCtrl* textCtrlDureeTotalSecondeAfficher;
 		wxListBox* m_listBoxListeTrajectoiresAfficher;
 		wxStaticLine* m_staticlineAfficher;
@@ -76,9 +80,9 @@ class FramePrincipal : public wxFrame
 		wxTextCtrl* m_textCtrlIdModifier;
 		wxStaticText* m_staticDureeTotalModifier;
 		wxTextCtrl* m_textCtrlDureeTotalHeureModifier;
-		wxStaticText* m_staticTextDureeTotalModifier1;
+		wxStaticText* m_staticTextDureeTotalMinuteModifier;
 		wxTextCtrl* textCtrlDureeTotalMinuteModifier;
-		wxStaticText* m_staticTextDureeTotalModifier;
+		wxStaticText* m_staticTextDureeTotalSecondeModifier;
 		wxTextCtrl* textCtrlDureeTotalSecondeModifier;
 		wxListBox* m_listBoxListeTrajectoiresModifier;
 		wxStaticLine* m_staticlineModification;
@@ -86,33 +90,53 @@ class FramePrincipal : public wxFrame
 		wxTextCtrl* m_textCtrlNomModifier;
 		wxStaticText* m_staticTextNombreBainModifier;
 		wxTextCtrl* m_textCtrlNombreBainModifier;
-		wxStaticText* m_staticText17;
-		wxTextCtrl* m_textCtrl14;
-		wxButton* m_buttonModification;
+		wxStaticText* m_staticTextOrdreTrajectoiresModifier;
+		wxTextCtrl* m_textCtrlOrdreTrajectoiresModifier;
 		wxStdDialogButtonSizer* m_sdbSizerModifier;
 		wxButton* m_sdbSizerModifierApply;
 		wxButton* m_sdbSizerModifierCancel;
 		wxScrolledWindow* m_scrolledWindowCreerProcessus;
-		wxStaticText* m_staticText18;
+		wxStaticText* m_staticDureeTotalCreer;
+		wxTextCtrl* m_textCtrlDureeTotalHeureCreer;
+		wxStaticText* m_staticTextDureeTotalMinuteCreer;
+		wxTextCtrl* textCtrlDureeTotalMinuteCreer;
+		wxStaticText* m_staticTextDureeTotalSecondeCreer;
+		wxTextCtrl* textCtrlDureeTotalSecondeCreer;
+		wxListBox* m_listBoxListeTrajectoiresCreer;
 		wxStaticLine* m_staticlineCreer;
-		wxStaticText* m_staticText19;
+		wxStaticText* m_staticTextNomCreer;
+		wxTextCtrl* m_textCtrlNomCreer;
+		wxStaticText* m_staticTextNombreBainCreer;
+		wxSpinCtrl* m_spinCtrlNombreBainCreer;
+		wxStaticText* m_staticTextOrdreTrajectoiresCreer;
+		wxTextCtrl* m_textCtrlOrdreTrajectoiresCreer;
 		wxStdDialogButtonSizer* m_sdbSizerCreer;
 		wxButton* m_sdbSizerCreerSave;
 		wxButton* m_sdbSizerCreerCancel;
 		wxScrolledWindow* m_scrolledWindowDetruireProcessus;
 		wxListBox* m_listBoxDetruireProcessus;
 		wxStaticText* m_staticTextDetruire;
+		wxStaticText* m_staticTextDetuireTitre;
 		wxStdDialogButtonSizer* m_sdbSizerDetruire;
 		wxButton* m_sdbSizerDetruireApply;
 		wxScrolledWindow* m_scrolledWindowLancerProcessus;
 		wxListBox* m_listBoxLancerProcessus;
+		wxStaticText* m_staticTextLancer;
+		wxStaticText* m_staticTextLancerTitre;
 		wxStdDialogButtonSizer* m_sdbSizerLancerProcessus;
 		wxButton* m_sdbSizerLancerProcessusOK;
+		wxScrolledWindow* m_scrolledWindowTesterProcessus;
+		wxListBox* m_listBoxTesterProcessus;
+		wxStaticText* m_staticTextTester;
+		wxStaticText* m_staticTextTesterTitre;
+		wxBitmapButton* m_bpButtonStopTester;
+		wxBitmapButton* m_bpButtonOKTester;
 		wxPanel* m_panelAffichage;
 		wxTextCtrl* m_textCtrlAffichage;
 		wxButton* m_buttonViderAffichage;
 		wxMenuBar* m_menubarFramePrincipal;
 		wxMenu* m_menuFichier;
+		wxMenu* m_menuVues;
 		wxMenu* m_menuAide;
 		wxStatusBar* m_statusBar;
 		
@@ -121,7 +145,6 @@ class FramePrincipal : public wxFrame
 		virtual void OnButtonConnexionToggle( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnListBoxAffichageSelection( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnListBoxModifierSelection( wxCommandEvent& event ) { event.Skip(); }
-		virtual void OnButtonModifierClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnApplyButtonModifierClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnCancelButtonModiffierClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnCancelButtonCreerClick( wxCommandEvent& event ) { event.Skip(); }
@@ -130,17 +153,72 @@ class FramePrincipal : public wxFrame
 		virtual void OnApplyButtonDetruireClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnListBoxLancerSelection( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnOkButtonLancerClick( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnListBoxTesterSelection( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnStopButtonTesterClick( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnOkButtonTesterClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnButtonViderAffichageClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnMenuQuitterSelection( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnMenuViderAffichageSelection( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnMenuAideSelection( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnMenuAproposSelection( wxCommandEvent& event ) { event.Skip(); }
 		
 	
 	public:
 		
-		FramePrincipal( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Anodisation - Responsable de production"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 1180,750 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		FramePrincipal( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Anodisation - Responsable de production"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 1200,750 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 		
 		~FramePrincipal();
+	
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// Class DialogApropos
+///////////////////////////////////////////////////////////////////////////////
+class DialogApropos : public wxDialog 
+{
+	private:
+	
+	protected:
+		wxPanel* m_panelApropos;
+		wxStaticText* m_staticTextTitre;
+		wxStaticBitmap* m_bitmapLogoOzanam;
+		wxStdDialogButtonSizer* m_sdbSizerApropos;
+		wxButton* m_sdbSizerAproposOK;
+		
+		// Virtual event handlers, overide them in your derived class
+		virtual void OnDialogClose( wxCloseEvent& event ) { event.Skip(); }
+		virtual void OnOkButtonClick( wxCommandEvent& event ) { event.Skip(); }
+		
+	
+	public:
+		
+		DialogApropos( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("À propos"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 700,500 ), long style = wxDEFAULT_DIALOG_STYLE ); 
+		~DialogApropos();
+	
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// Class DialogAide
+///////////////////////////////////////////////////////////////////////////////
+class DialogAide : public wxDialog 
+{
+	private:
+	
+	protected:
+		wxPanel* m_panelAide;
+		wxStaticText* m_staticTextTitre;
+		wxStdDialogButtonSizer* m_sdbSizerApropos;
+		wxButton* m_sdbSizerAproposOK;
+		
+		// Virtual event handlers, overide them in your derived class
+		virtual void OnDialogClose( wxCloseEvent& event ) { event.Skip(); }
+		virtual void OnOkButtonClick( wxCommandEvent& event ) { event.Skip(); }
+		
+	
+	public:
+		
+		DialogAide( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Aide"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 700,500 ), long style = wxDEFAULT_DIALOG_STYLE ); 
+		~DialogAide();
 	
 };
 

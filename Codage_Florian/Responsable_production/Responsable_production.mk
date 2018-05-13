@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=nairo5913
-Date                   :=08/05/2018
+Date                   :=13/05/2018
 CodeLitePath           :=/home/nairo5913/.codelite
 LinkerName             :=/usr/bin/g++
 SharedObjectLinkerName :=/usr/bin/g++ -shared -fPIC
@@ -60,7 +60,7 @@ AS       := /usr/bin/as
 ## User defined environment variables
 ##
 CodeLiteDir:=/usr/share/codelite
-Objects0=$(IntermediateDirectory)/EvtFramePrincipal.cpp$(ObjectSuffix) $(IntermediateDirectory)/FramePrincipal.cpp$(ObjectSuffix) $(IntermediateDirectory)/MyApp.cpp$(ObjectSuffix) $(IntermediateDirectory)/Client.cpp$(ObjectSuffix) $(IntermediateDirectory)/DataAnodisation.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/EvtFramePrincipal.cpp$(ObjectSuffix) $(IntermediateDirectory)/FramePrincipal.cpp$(ObjectSuffix) $(IntermediateDirectory)/MyApp.cpp$(ObjectSuffix) $(IntermediateDirectory)/Client.cpp$(ObjectSuffix) $(IntermediateDirectory)/DataAnodisation.cpp$(ObjectSuffix) $(IntermediateDirectory)/EvtDialogApropos.cpp$(ObjectSuffix) $(IntermediateDirectory)/EvtDialogAide.cpp$(ObjectSuffix) 
 
 
 
@@ -130,6 +130,22 @@ $(IntermediateDirectory)/DataAnodisation.cpp$(DependSuffix): DataAnodisation.cpp
 
 $(IntermediateDirectory)/DataAnodisation.cpp$(PreprocessSuffix): DataAnodisation.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/DataAnodisation.cpp$(PreprocessSuffix) DataAnodisation.cpp
+
+$(IntermediateDirectory)/EvtDialogApropos.cpp$(ObjectSuffix): EvtDialogApropos.cpp $(IntermediateDirectory)/EvtDialogApropos.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Codage_Florian/Responsable_production/EvtDialogApropos.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/EvtDialogApropos.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/EvtDialogApropos.cpp$(DependSuffix): EvtDialogApropos.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/EvtDialogApropos.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/EvtDialogApropos.cpp$(DependSuffix) -MM EvtDialogApropos.cpp
+
+$(IntermediateDirectory)/EvtDialogApropos.cpp$(PreprocessSuffix): EvtDialogApropos.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/EvtDialogApropos.cpp$(PreprocessSuffix) EvtDialogApropos.cpp
+
+$(IntermediateDirectory)/EvtDialogAide.cpp$(ObjectSuffix): EvtDialogAide.cpp $(IntermediateDirectory)/EvtDialogAide.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Codage_Florian/Responsable_production/EvtDialogAide.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/EvtDialogAide.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/EvtDialogAide.cpp$(DependSuffix): EvtDialogAide.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/EvtDialogAide.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/EvtDialogAide.cpp$(DependSuffix) -MM EvtDialogAide.cpp
+
+$(IntermediateDirectory)/EvtDialogAide.cpp$(PreprocessSuffix): EvtDialogAide.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/EvtDialogAide.cpp$(PreprocessSuffix) EvtDialogAide.cpp
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)
