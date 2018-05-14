@@ -10,13 +10,15 @@
 
 #include <wx/app.h>
 #include <wx/icon.h>
+#include <wx/splash.h>
 
 class MyApp : public wxApp
 {
-    public:
+   public:
         virtual bool OnInit();
-    private:
+
+   private:
         wxLocale m_locale;
 };
 
-#endif // MYAPP_H
+#endif  // MYAPP_H

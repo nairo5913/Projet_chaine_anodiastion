@@ -7,6 +7,28 @@
   </Plugins>
   <Description/>
   <Dependencies/>
+  <VirtualDirectory Name="src">
+    <File Name="EvtFramePrincipal.cpp"/>
+    <File Name="FramePrincipal.cpp"/>
+    <File Name="MyApp.cpp"/>
+    <File Name="Client.cpp"/>
+    <File Name="DataAnodisation.cpp"/>
+    <File Name="EvtFrameApropos.cpp"/>
+    <File Name="EvtFrameAide.cpp"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="include">
+    <File Name="EvtFramePrincipal.h"/>
+    <File Name="FramePrincipal.h"/>
+    <File Name="MyApp.h"/>
+    <File Name="Client.h"/>
+    <File Name="Protocoles.h"/>
+    <File Name="DataAnodisation.h"/>
+    <File Name="EvtFrameApropos.h"/>
+    <File Name="EvtFrameAide.h"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="resources">
+    <File Name="FramePrincipal.fbp"/>
+  </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>
       <Compiler Options="" C_Options="" Assembler="">
@@ -21,7 +43,11 @@
       <Compiler Options="-g;-O0;-Wall;$(shell wx-config --cxxflags --unicode=yes  )" C_Options="-g;-O0;-Wall;$(shell wx-config --cxxflags --unicode=yes  )" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="IHM"/>
       </Compiler>
-      <Linker Options="$(shell wx-config   --libs --unicode=yes)" Required="yes"/>
+      <Linker Options="$(shell wx-config   --libs --unicode=yes)" Required="yes">
+        <Library Value="PocoDataODBC"/>
+        <Library Value="PocoData"/>
+        <Library Value="PocoFoundation"/>
+      </Linker>
       <ResourceCompiler Options="$(shell wx-config --rcflags)" Required="no"/>
       <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="./Debug" Command="./$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
       <BuildSystem Name="Default"/>
@@ -96,26 +122,6 @@
       </Completion>
     </Configuration>
   </Settings>
-  <VirtualDirectory Name="src">
-    <File Name="EvtFramePrincipal.cpp"/>
-    <File Name="FramePrincipal.cpp"/>
-    <File Name="MyApp.cpp"/>
-    <File Name="Client.cpp"/>
-    <File Name="DataAnodisation.cpp"/>
-    <File Name="EvtDialogApropos.cpp"/>
-    <File Name="EvtDialogAide.cpp"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="include">
-    <File Name="EvtFramePrincipal.h"/>
-    <File Name="FramePrincipal.h"/>
-    <File Name="MyApp.h"/>
-    <File Name="Client.h"/>
-    <File Name="Protocoles.h"/>
-    <File Name="DataAnodisation.h"/>
-    <File Name="EvtDialogApropos.h"/>
-    <File Name="EvtDialogAide.h"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="resources">
-    <File Name="FramePrincipal.fbp"/>
-  </VirtualDirectory>
+  <Dependencies Name="Debug"/>
+  <Dependencies Name="Release"/>
 </CodeLite_Project>

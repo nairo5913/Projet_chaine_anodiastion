@@ -11,7 +11,7 @@
 
 FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )
 {
-	this->SetSizeHints( wxSize( 1000,700 ), wxSize( -1,-1 ) );
+	this->SetSizeHints( wxSize( 1000,750 ), wxSize( -1,-1 ) );
 	
 	wxBoxSizer* bSizerPrincipal;
 	bSizerPrincipal = new wxBoxSizer( wxVERTICAL );
@@ -68,6 +68,8 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	bSizerPrincipal->Add( m_panelConnexion, 0, wxEXPAND|wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
 	
 	m_notebookProcessus = new wxNotebook( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
+	m_notebookProcessus->Hide();
+	
 	m_scrolledWindowAffichageProcessus = new wxScrolledWindow( m_notebookProcessus, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxHSCROLL|wxVSCROLL, wxT("i") );
 	m_scrolledWindowAffichageProcessus->SetScrollRate( 5, 5 );
 	wxBoxSizer* bSizerAfficherProcessus;
@@ -838,7 +840,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	bSizerButonTester->Add( m_bpButtonOKTester, 0, wxALIGN_BOTTOM|wxALL, 5 );
 	
 	
-	sbSizerTester->Add( bSizerButonTester, 0, wxALIGN_CENTER_HORIZONTAL|wxBOTTOM|wxRIGHT|wxLEFT, 5 );
+	sbSizerTester->Add( bSizerButonTester, 0, wxALIGN_BOTTOM|wxALIGN_CENTER_HORIZONTAL|wxBOTTOM, 5 );
 	
 	
 	bSizerTesterProcessus->Add( sbSizerTester, 1, wxALIGN_CENTER|wxALL|wxEXPAND, 5 );
@@ -848,6 +850,247 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_scrolledWindowTesterProcessus->Layout();
 	bSizerTesterProcessus->Fit( m_scrolledWindowTesterProcessus );
 	m_notebookProcessus->AddPage( m_scrolledWindowTesterProcessus, wxT("Tester un processus"), false );
+	m_scrolledWindowInfoBras = new wxScrolledWindow( m_notebookProcessus, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxHSCROLL|wxVSCROLL );
+	m_scrolledWindowInfoBras->SetScrollRate( 5, 5 );
+	wxBoxSizer* bSizerInfoBrasPrincipal;
+	bSizerInfoBrasPrincipal = new wxBoxSizer( wxVERTICAL );
+	
+	wxBoxSizer* bSizer57;
+	bSizer57 = new wxBoxSizer( wxHORIZONTAL );
+	
+	wxStaticBoxSizer* sbSizerDisponibiliteBras;
+	sbSizerDisponibiliteBras = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowInfoBras, wxID_ANY, wxT("Disponibilité du bras") ), wxVERTICAL );
+	
+	m_panelBrasDisponible = new wxPanel( sbSizerDisponibiliteBras->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	m_panelBrasDisponible->Hide();
+	
+	wxBoxSizer* bSizerBrasDisponible;
+	bSizerBrasDisponible = new wxBoxSizer( wxHORIZONTAL );
+	
+	
+	bSizerBrasDisponible->Add( 0, 0, 1, wxEXPAND, 5 );
+	
+	m_bitmapBrasDisponible = new wxStaticBitmap( m_panelBrasDisponible, wxID_ANY, wxBitmap( wxT("../Images/VertAllume.bmp"), wxBITMAP_TYPE_ANY ), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizerBrasDisponible->Add( m_bitmapBrasDisponible, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	
+	m_staticTextBrasDisponible = new wxStaticText( m_panelBrasDisponible, wxID_ANY, wxT("Le bras est disponible"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextBrasDisponible->Wrap( -1 );
+	bSizerBrasDisponible->Add( m_staticTextBrasDisponible, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	
+	
+	bSizerBrasDisponible->Add( 0, 0, 1, wxEXPAND, 5 );
+	
+	
+	m_panelBrasDisponible->SetSizer( bSizerBrasDisponible );
+	m_panelBrasDisponible->Layout();
+	bSizerBrasDisponible->Fit( m_panelBrasDisponible );
+	sbSizerDisponibiliteBras->Add( m_panelBrasDisponible, 1, wxEXPAND | wxALL, 5 );
+	
+	m_panelBrasIndisponible = new wxPanel( sbSizerDisponibiliteBras->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	wxBoxSizer* bSizerBrasIndisponible;
+	bSizerBrasIndisponible = new wxBoxSizer( wxHORIZONTAL );
+	
+	
+	bSizerBrasIndisponible->Add( 0, 0, 1, wxEXPAND, 5 );
+	
+	m_bitmapBrasIndisponible = new wxStaticBitmap( m_panelBrasIndisponible, wxID_ANY, wxBitmap( wxT("../Images/RougeAllume.bmp"), wxBITMAP_TYPE_ANY ), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizerBrasIndisponible->Add( m_bitmapBrasIndisponible, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	
+	m_staticTextBrasIndisponible = new wxStaticText( m_panelBrasIndisponible, wxID_ANY, wxT("Le bras n'est pas disponible"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextBrasIndisponible->Wrap( -1 );
+	bSizerBrasIndisponible->Add( m_staticTextBrasIndisponible, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	
+	
+	bSizerBrasIndisponible->Add( 0, 0, 1, wxEXPAND, 5 );
+	
+	
+	m_panelBrasIndisponible->SetSizer( bSizerBrasIndisponible );
+	m_panelBrasIndisponible->Layout();
+	bSizerBrasIndisponible->Fit( m_panelBrasIndisponible );
+	sbSizerDisponibiliteBras->Add( m_panelBrasIndisponible, 1, wxEXPAND | wxALL, 5 );
+	
+	
+	bSizer57->Add( sbSizerDisponibiliteBras, 1, wxALL|wxEXPAND, 5 );
+	
+	wxStaticBoxSizer* sbSizerTacheEnCours;
+	sbSizerTacheEnCours = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowInfoBras, wxID_ANY, wxT("Tâche en cours") ), wxVERTICAL );
+	
+	m_panelTacheEnCours = new wxPanel( sbSizerTacheEnCours->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	wxBoxSizer* bSizerTacheEnCoursPrincipal;
+	bSizerTacheEnCoursPrincipal = new wxBoxSizer( wxVERTICAL );
+	
+	wxBoxSizer* bSizerTypeTache;
+	bSizerTypeTache = new wxBoxSizer( wxHORIZONTAL );
+	
+	
+	bSizerTypeTache->Add( 0, 0, 1, wxEXPAND, 5 );
+	
+	m_staticTextTypeTache = new wxStaticText( m_panelTacheEnCours, wxID_ANY, wxT("Type de tâche : "), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextTypeTache->Wrap( -1 );
+	bSizerTypeTache->Add( m_staticTextTypeTache, 0, wxALIGN_CENTER_VERTICAL, 5 );
+	
+	m_textCtrlTypeTache = new wxTextCtrl( m_panelTacheEnCours, wxID_ANY, wxT("Processus"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
+	#ifdef __WXGTK__
+	if ( !m_textCtrlTypeTache->HasFlag( wxTE_MULTILINE ) )
+	{
+	m_textCtrlTypeTache->SetMaxLength( 9 );
+	}
+	#else
+	m_textCtrlTypeTache->SetMaxLength( 9 );
+	#endif
+	bSizerTypeTache->Add( m_textCtrlTypeTache, 0, wxALIGN_CENTER_VERTICAL, 5 );
+	
+	
+	bSizerTypeTache->Add( 0, 0, 1, wxEXPAND, 5 );
+	
+	
+	bSizerTacheEnCoursPrincipal->Add( bSizerTypeTache, 1, wxEXPAND, 5 );
+	
+	wxBoxSizer* bSizerNomTache;
+	bSizerNomTache = new wxBoxSizer( wxHORIZONTAL );
+	
+	
+	bSizerNomTache->Add( 0, 0, 1, wxEXPAND, 5 );
+	
+	m_staticTextNomTache = new wxStaticText( m_panelTacheEnCours, wxID_ANY, wxT("Nom de la tâche : "), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextNomTache->Wrap( -1 );
+	bSizerNomTache->Add( m_staticTextNomTache, 0, wxALIGN_CENTER_VERTICAL, 5 );
+	
+	m_textCtrlNomTache = new wxTextCtrl( m_panelTacheEnCours, wxID_ANY, wxT("Processus 1"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
+	bSizerNomTache->Add( m_textCtrlNomTache, 1, wxALIGN_CENTER_VERTICAL, 5 );
+	
+	
+	bSizerNomTache->Add( 0, 0, 1, wxEXPAND, 5 );
+	
+	
+	bSizerTacheEnCoursPrincipal->Add( bSizerNomTache, 1, wxEXPAND, 5 );
+	
+	wxBoxSizer* bSizerDureeRestant;
+	bSizerDureeRestant = new wxBoxSizer( wxHORIZONTAL );
+	
+	
+	bSizerDureeRestant->Add( 0, 0, 1, wxEXPAND, 5 );
+	
+	m_staticDureeRestant = new wxStaticText( m_panelTacheEnCours, wxID_ANY, wxT("Durée total :"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticDureeRestant->Wrap( -1 );
+	bSizerDureeRestant->Add( m_staticDureeRestant, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	
+	m_textCtrlDureeRestantHeure = new wxTextCtrl( m_panelTacheEnCours, wxID_ANY, wxT("02"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
+	#ifdef __WXGTK__
+	if ( !m_textCtrlDureeRestantHeure->HasFlag( wxTE_MULTILINE ) )
+	{
+	m_textCtrlDureeRestantHeure->SetMaxLength( 2 );
+	}
+	#else
+	m_textCtrlDureeRestantHeure->SetMaxLength( 2 );
+	#endif
+	m_textCtrlDureeRestantHeure->SetMaxSize( wxSize( 35,-1 ) );
+	
+	bSizerDureeRestant->Add( m_textCtrlDureeRestantHeure, 1, wxALIGN_CENTER_VERTICAL, 5 );
+	
+	m_staticTextDureeRestantMinute = new wxStaticText( m_panelTacheEnCours, wxID_ANY, wxT(":"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextDureeRestantMinute->Wrap( -1 );
+	bSizerDureeRestant->Add( m_staticTextDureeRestantMinute, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
+	
+	textCtrlDureeRestantMinute = new wxTextCtrl( m_panelTacheEnCours, wxID_ANY, wxT("52"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
+	#ifdef __WXGTK__
+	if ( !textCtrlDureeRestantMinute->HasFlag( wxTE_MULTILINE ) )
+	{
+	textCtrlDureeRestantMinute->SetMaxLength( 2 );
+	}
+	#else
+	textCtrlDureeRestantMinute->SetMaxLength( 2 );
+	#endif
+	textCtrlDureeRestantMinute->SetMaxSize( wxSize( 35,-1 ) );
+	
+	bSizerDureeRestant->Add( textCtrlDureeRestantMinute, 1, wxALIGN_CENTER_VERTICAL, 5 );
+	
+	m_staticTextDureeRestantSeconde = new wxStaticText( m_panelTacheEnCours, wxID_ANY, wxT(":"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextDureeRestantSeconde->Wrap( -1 );
+	bSizerDureeRestant->Add( m_staticTextDureeRestantSeconde, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
+	
+	textCtrlDureeRestantSeconde = new wxTextCtrl( m_panelTacheEnCours, wxID_ANY, wxT("00"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
+	#ifdef __WXGTK__
+	if ( !textCtrlDureeRestantSeconde->HasFlag( wxTE_MULTILINE ) )
+	{
+	textCtrlDureeRestantSeconde->SetMaxLength( 2 );
+	}
+	#else
+	textCtrlDureeRestantSeconde->SetMaxLength( 2 );
+	#endif
+	textCtrlDureeRestantSeconde->SetMaxSize( wxSize( 35,-1 ) );
+	
+	bSizerDureeRestant->Add( textCtrlDureeRestantSeconde, 1, wxALIGN_CENTER_VERTICAL, 5 );
+	
+	
+	bSizerDureeRestant->Add( 0, 0, 1, wxEXPAND, 5 );
+	
+	
+	bSizerTacheEnCoursPrincipal->Add( bSizerDureeRestant, 1, wxEXPAND, 5 );
+	
+	
+	m_panelTacheEnCours->SetSizer( bSizerTacheEnCoursPrincipal );
+	m_panelTacheEnCours->Layout();
+	bSizerTacheEnCoursPrincipal->Fit( m_panelTacheEnCours );
+	sbSizerTacheEnCours->Add( m_panelTacheEnCours, 1, wxEXPAND | wxALL, 5 );
+	
+	m_panelPasTache = new wxPanel( sbSizerTacheEnCours->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	m_panelPasTache->Hide();
+	
+	wxBoxSizer* bSizerPasTache;
+	bSizerPasTache = new wxBoxSizer( wxVERTICAL );
+	
+	
+	bSizerPasTache->Add( 0, 0, 1, wxEXPAND, 5 );
+	
+	m_staticTextPasTache = new wxStaticText( m_panelPasTache, wxID_ANY, wxT("Il n'y a pas de tâche en cours"), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTRE );
+	m_staticTextPasTache->Wrap( -1 );
+	bSizerPasTache->Add( m_staticTextPasTache, 0, wxALIGN_CENTER|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	
+	
+	bSizerPasTache->Add( 0, 0, 1, wxEXPAND, 5 );
+	
+	
+	m_panelPasTache->SetSizer( bSizerPasTache );
+	m_panelPasTache->Layout();
+	bSizerPasTache->Fit( m_panelPasTache );
+	sbSizerTacheEnCours->Add( m_panelPasTache, 1, wxEXPAND | wxALL, 5 );
+	
+	
+	bSizer57->Add( sbSizerTacheEnCours, 1, wxALL|wxEXPAND, 5 );
+	
+	
+	bSizerInfoBrasPrincipal->Add( bSizer57, 1, wxALIGN_CENTER_HORIZONTAL|wxEXPAND, 5 );
+	
+	wxBoxSizer* bSizerBouttons;
+	bSizerBouttons = new wxBoxSizer( wxHORIZONTAL );
+	
+	wxBoxSizer* bSizerBoutonBras;
+	bSizerBoutonBras = new wxBoxSizer( wxVERTICAL );
+	
+	m_buttonDisponibiliteBras = new wxButton( m_scrolledWindowInfoBras, wxID_ANY, wxT("Demander la disponibilité du bras"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizerBoutonBras->Add( m_buttonDisponibiliteBras, 0, wxALIGN_BOTTOM|wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
+	
+	
+	bSizerBouttons->Add( bSizerBoutonBras, 1, wxEXPAND, 5 );
+	
+	wxBoxSizer* bSizerBoutonTache;
+	bSizerBoutonTache = new wxBoxSizer( wxVERTICAL );
+	
+	m_buttonTacheEnCours = new wxButton( m_scrolledWindowInfoBras, wxID_ANY, wxT("Demander la tâche en cours"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizerBoutonTache->Add( m_buttonTacheEnCours, 0, wxALIGN_BOTTOM|wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
+	
+	
+	bSizerBouttons->Add( bSizerBoutonTache, 1, wxEXPAND, 5 );
+	
+	
+	bSizerInfoBrasPrincipal->Add( bSizerBouttons, 0, wxALIGN_CENTER_HORIZONTAL|wxEXPAND, 5 );
+	
+	
+	m_scrolledWindowInfoBras->SetSizer( bSizerInfoBrasPrincipal );
+	m_scrolledWindowInfoBras->Layout();
+	bSizerInfoBrasPrincipal->Fit( m_scrolledWindowInfoBras );
+	m_notebookProcessus->AddPage( m_scrolledWindowInfoBras, wxT("Information sur le bras"), false );
 	
 	bSizerPrincipal->Add( m_notebookProcessus, 1, wxEXPAND|wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
 	
@@ -943,6 +1186,8 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_listBoxTesterProcessus->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( FramePrincipal::OnListBoxTesterSelection ), NULL, this );
 	m_bpButtonStopTester->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnStopButtonTesterClick ), NULL, this );
 	m_bpButtonOKTester->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnOkButtonTesterClick ), NULL, this );
+	m_buttonDisponibiliteBras->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnButtonDisponibiliteBrasClick ), NULL, this );
+	m_buttonTacheEnCours->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnButtonTacheEnCoursClick ), NULL, this );
 	m_buttonViderAffichage->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnButtonViderAffichageClick ), NULL, this );
 	this->Connect( m_menuItemQuitter->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( FramePrincipal::OnMenuQuitterSelection ) );
 	this->Connect( m_menuItemViderAffichage->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( FramePrincipal::OnMenuViderAffichageSelection ) );
@@ -975,6 +1220,8 @@ FramePrincipal::~FramePrincipal()
 	m_listBoxTesterProcessus->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( FramePrincipal::OnListBoxTesterSelection ), NULL, this );
 	m_bpButtonStopTester->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnStopButtonTesterClick ), NULL, this );
 	m_bpButtonOKTester->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnOkButtonTesterClick ), NULL, this );
+	m_buttonDisponibiliteBras->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnButtonDisponibiliteBrasClick ), NULL, this );
+	m_buttonTacheEnCours->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnButtonTacheEnCoursClick ), NULL, this );
 	m_buttonViderAffichage->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnButtonViderAffichageClick ), NULL, this );
 	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( FramePrincipal::OnMenuQuitterSelection ) );
 	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( FramePrincipal::OnMenuViderAffichageSelection ) );
@@ -983,9 +1230,9 @@ FramePrincipal::~FramePrincipal()
 	
 }
 
-DialogApropos::DialogApropos( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
+FrameApropos::FrameApropos( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )
 {
-	this->SetSizeHints( wxSize( 500,300 ), wxDefaultSize );
+	this->SetSizeHints( wxSize( 800,600 ), wxDefaultSize );
 	
 	wxBoxSizer* bSizerPrincipal;
 	bSizerPrincipal = new wxBoxSizer( wxVERTICAL );
@@ -1018,8 +1265,12 @@ DialogApropos::DialogApropos( wxWindow* parent, wxWindowID id, const wxString& t
 	m_bitmapLogoOzanam = new wxStaticBitmap( sbSizerAuteur->GetStaticBox(), wxID_ANY, wxBitmap( wxT("../Images/logo_ozanam.png"), wxBITMAP_TYPE_ANY ), wxDefaultPosition, wxDefaultSize, 0 );
 	sbSizerAuteur->Add( m_bitmapLogoOzanam, 1, wxALL|wxEXPAND, 5 );
 	
+	m_staticText40 = new wxStaticText( sbSizerAuteur->GetStaticBox(), wxID_ANY, wxT("Le Programme à été conçu et coder dans le cadre du projet bras d'annodisation du BTS SNIR (Système Numérique option Informatique et Réseaux).\nLa partie responsable de production, ainsi que la base de données ont été faites par Florian Provost.\nLa partie régleur par Nassim Boubziz.\nLe banc d'anodisation, la Raspberry Pi et tout ce qui est lié au bras a été fait par Paul Despalier\n\n"), wxDefaultPosition, wxDefaultSize, wxALIGN_LEFT );
+	m_staticText40->Wrap( -1 );
+	sbSizerAuteur->Add( m_staticText40, 0, wxALL, 5 );
 	
-	bSizerApropos->Add( sbSizerAuteur, 1, wxEXPAND, 5 );
+	
+	bSizerApropos->Add( sbSizerAuteur, 1, wxALL|wxEXPAND, 5 );
 	
 	
 	m_panelApropos->SetSizer( bSizerApropos );
@@ -1041,21 +1292,21 @@ DialogApropos::DialogApropos( wxWindow* parent, wxWindowID id, const wxString& t
 	this->Centre( wxBOTH );
 	
 	// Connect Events
-	this->Connect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( DialogApropos::OnDialogClose ) );
-	m_sdbSizerAproposOK->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( DialogApropos::OnOkButtonClick ), NULL, this );
+	this->Connect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( FrameApropos::OnCloseFrame ) );
+	m_sdbSizerAproposOK->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FrameApropos::OnOkButtonClick ), NULL, this );
 }
 
-DialogApropos::~DialogApropos()
+FrameApropos::~FrameApropos()
 {
 	// Disconnect Events
-	this->Disconnect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( DialogApropos::OnDialogClose ) );
-	m_sdbSizerAproposOK->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( DialogApropos::OnOkButtonClick ), NULL, this );
+	this->Disconnect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( FrameApropos::OnCloseFrame ) );
+	m_sdbSizerAproposOK->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FrameApropos::OnOkButtonClick ), NULL, this );
 	
 }
 
-DialogAide::DialogAide( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
+FrameAide::FrameAide( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )
 {
-	this->SetSizeHints( wxSize( 500,300 ), wxDefaultSize );
+	this->SetSizeHints( wxSize( 700,500 ), wxDefaultSize );
 	
 	wxBoxSizer* bSizerPrincipal;
 	bSizerPrincipal = new wxBoxSizer( wxVERTICAL );
@@ -1108,14 +1359,14 @@ DialogAide::DialogAide( wxWindow* parent, wxWindowID id, const wxString& title, 
 	this->Centre( wxBOTH );
 	
 	// Connect Events
-	this->Connect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( DialogAide::OnDialogClose ) );
-	m_sdbSizerAproposOK->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( DialogAide::OnOkButtonClick ), NULL, this );
+	this->Connect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( FrameAide::OnCloseFrame ) );
+	m_sdbSizerAproposOK->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FrameAide::OnOkButtonClick ), NULL, this );
 }
 
-DialogAide::~DialogAide()
+FrameAide::~FrameAide()
 {
 	// Disconnect Events
-	this->Disconnect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( DialogAide::OnDialogClose ) );
-	m_sdbSizerAproposOK->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( DialogAide::OnOkButtonClick ), NULL, this );
+	this->Disconnect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( FrameAide::OnCloseFrame ) );
+	m_sdbSizerAproposOK->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FrameAide::OnOkButtonClick ), NULL, this );
 	
 }

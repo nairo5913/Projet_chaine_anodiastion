@@ -31,12 +31,11 @@
 #include <wx/button.h>
 #include <wx/spinctrl.h>
 #include <wx/bmpbuttn.h>
+#include <wx/statbmp.h>
 #include <wx/notebook.h>
 #include <wx/menu.h>
 #include <wx/statusbr.h>
 #include <wx/frame.h>
-#include <wx/statbmp.h>
-#include <wx/dialog.h>
 
 ///////////////////////////////////////////////////////////////////////////
 
@@ -131,6 +130,28 @@ class FramePrincipal : public wxFrame
 		wxStaticText* m_staticTextTesterTitre;
 		wxBitmapButton* m_bpButtonStopTester;
 		wxBitmapButton* m_bpButtonOKTester;
+		wxScrolledWindow* m_scrolledWindowInfoBras;
+		wxPanel* m_panelBrasDisponible;
+		wxStaticBitmap* m_bitmapBrasDisponible;
+		wxStaticText* m_staticTextBrasDisponible;
+		wxPanel* m_panelBrasIndisponible;
+		wxStaticBitmap* m_bitmapBrasIndisponible;
+		wxStaticText* m_staticTextBrasIndisponible;
+		wxPanel* m_panelTacheEnCours;
+		wxStaticText* m_staticTextTypeTache;
+		wxTextCtrl* m_textCtrlTypeTache;
+		wxStaticText* m_staticTextNomTache;
+		wxTextCtrl* m_textCtrlNomTache;
+		wxStaticText* m_staticDureeRestant;
+		wxTextCtrl* m_textCtrlDureeRestantHeure;
+		wxStaticText* m_staticTextDureeRestantMinute;
+		wxTextCtrl* textCtrlDureeRestantMinute;
+		wxStaticText* m_staticTextDureeRestantSeconde;
+		wxTextCtrl* textCtrlDureeRestantSeconde;
+		wxPanel* m_panelPasTache;
+		wxStaticText* m_staticTextPasTache;
+		wxButton* m_buttonDisponibiliteBras;
+		wxButton* m_buttonTacheEnCours;
 		wxPanel* m_panelAffichage;
 		wxTextCtrl* m_textCtrlAffichage;
 		wxButton* m_buttonViderAffichage;
@@ -156,6 +177,8 @@ class FramePrincipal : public wxFrame
 		virtual void OnListBoxTesterSelection( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnStopButtonTesterClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnOkButtonTesterClick( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnButtonDisponibiliteBrasClick( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnButtonTacheEnCoursClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnButtonViderAffichageClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnMenuQuitterSelection( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnMenuViderAffichageSelection( wxCommandEvent& event ) { event.Skip(); }
@@ -172,9 +195,9 @@ class FramePrincipal : public wxFrame
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-/// Class DialogApropos
+/// Class FrameApropos
 ///////////////////////////////////////////////////////////////////////////////
-class DialogApropos : public wxDialog 
+class FrameApropos : public wxFrame 
 {
 	private:
 	
@@ -182,25 +205,27 @@ class DialogApropos : public wxDialog
 		wxPanel* m_panelApropos;
 		wxStaticText* m_staticTextTitre;
 		wxStaticBitmap* m_bitmapLogoOzanam;
+		wxStaticText* m_staticText40;
 		wxStdDialogButtonSizer* m_sdbSizerApropos;
 		wxButton* m_sdbSizerAproposOK;
 		
 		// Virtual event handlers, overide them in your derived class
-		virtual void OnDialogClose( wxCloseEvent& event ) { event.Skip(); }
+		virtual void OnCloseFrame( wxCloseEvent& event ) { event.Skip(); }
 		virtual void OnOkButtonClick( wxCommandEvent& event ) { event.Skip(); }
 		
 	
 	public:
 		
-		DialogApropos( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("À propos"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 700,500 ), long style = wxDEFAULT_DIALOG_STYLE ); 
-		~DialogApropos();
+		FrameApropos( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Anodisation - À propos"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 800,600 ), long style = wxCAPTION|wxCLOSE_BOX|wxFRAME_FLOAT_ON_PARENT|wxMAXIMIZE_BOX|wxMINIMIZE_BOX|wxSYSTEM_MENU|wxTAB_TRAVERSAL );
+		
+		~FrameApropos();
 	
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-/// Class DialogAide
+/// Class FrameAide
 ///////////////////////////////////////////////////////////////////////////////
-class DialogAide : public wxDialog 
+class FrameAide : public wxFrame 
 {
 	private:
 	
@@ -211,14 +236,15 @@ class DialogAide : public wxDialog
 		wxButton* m_sdbSizerAproposOK;
 		
 		// Virtual event handlers, overide them in your derived class
-		virtual void OnDialogClose( wxCloseEvent& event ) { event.Skip(); }
+		virtual void OnCloseFrame( wxCloseEvent& event ) { event.Skip(); }
 		virtual void OnOkButtonClick( wxCommandEvent& event ) { event.Skip(); }
 		
 	
 	public:
 		
-		DialogAide( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Aide"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 700,500 ), long style = wxDEFAULT_DIALOG_STYLE ); 
-		~DialogAide();
+		FrameAide( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Anodisation - Aide"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 700,500 ), long style = wxCAPTION|wxCLOSE_BOX|wxFRAME_FLOAT_ON_PARENT|wxMINIMIZE_BOX|wxSYSTEM_MENU|wxTAB_TRAVERSAL );
+		
+		~FrameAide();
 	
 };
 

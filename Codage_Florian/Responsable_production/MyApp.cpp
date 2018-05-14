@@ -22,7 +22,7 @@ bool MyApp::OnInit()
 {
     // on choisit le français comme langue
     m_locale.Init(wxLANGUAGE_FRENCH );
-
+    
     EvtFramePrincipal* frame_principal = new EvtFramePrincipal(0);
     
     // Paramétrage de l'icone
@@ -30,54 +30,62 @@ bool MyApp::OnInit()
     static const char * sample_xpm[] = 
     {
         // Columns rows colors chars-per-pixel
-        "32 32 6 1",
+        "32 32 4 1",
         "  c black",
-        ". c navy",
         "X c red",
-        "o c yellow",
-        "O c gray100",
-        "+ c None",
+        "+ c gray100",
+        "O c None",
         // Pixels
-        "++++++++++++++++++++++++++++++++",
-        "++++++++++++++++++++++++++++++++",
-        "++++++++++++++++++++++++++++++++",
-        "++++++++++++++++++++++++++++++++",
-        "++++++++++++++++++++++++++++++++",
-        "++++++++              ++++++++++",
-        "++++++++ ............ ++++++++++",
-        "++++++++ ............ ++++++++++",
-        "++++++++ .OO......... ++++++++++",
-        "++++++++ .OO......... ++++++++++",
-        "++++++++ .OO......... ++++++++++",
-        "++++++++ .OO......              ",
-        "++++++++ .OO...... oooooooooooo ",
-        "         .OO...... oooooooooooo ",
-        " XXXXXXX .OO...... oOOooooooooo ",
-        " XXXXXXX .OO...... oOOooooooooo ",
-        " XOOXXXX ......... oOOooooooooo ",
-        " XOOXXXX ......... oOOooooooooo ",
-        " XOOXXXX           oOOooooooooo ",
-        " XOOXXXXXXXXX ++++ oOOooooooooo ",
-        " XOOXXXXXXXXX ++++ oOOooooooooo ",
-        " XOOXXXXXXXXX ++++ oOOooooooooo ",
-        " XOOXXXXXXXXX ++++ oooooooooooo ",
-        " XOOXXXXXXXXX ++++ oooooooooooo ",
-        " XXXXXXXXXXXX ++++              ",
-        " XXXXXXXXXXXX ++++++++++++++++++",
-        "              ++++++++++++++++++",
-        "++++++++++++++++++++++++++++++++",
-        "++++++++++++++++++++++++++++++++",
-        "++++++++++++++++++++++++++++++++",
-        "++++++++++++++++++++++++++++++++",
-        "++++++++++++++++++++++++++++++++"
+        "+++++++++++++++++++++++++++++++O",
+        "++++++       +++++       ++++++O",
+        "++++++ XXXXX +++++ XXXXX ++++++O",
+        "++++++ XXXXX +++++ XXXXX ++++++O",
+        "++++++ XXXXX +++++ XXXXX ++++++O",
+        "++++++ XXXXX +++++ XXXXX ++++++O",
+        "+      XXXXX       XXXXX      +O",
+        "+ XXXXXXXXXXXXXXXXXXXXXXXXXXX +O",
+        "+ XXXXXXXXXXXXXXXXXXXXXXXXXXX +O",
+        "+ XXXXXXXXXXXXXXXXXXXXXXXXXXX +O",
+        "+ XXXXXXXXXXXXXXXXXXXXXXXXXXX +O",
+        "+ XXXXXXXXXXXXXXXXXXXXXXXXXXX +O",
+        "+      XXXXX       XXXXX      +O",
+        "++++++ XXXXX +++++ XXXXX ++++++O",
+        "++++++ XXXXX +++++ XXXXX ++++++O",
+        "++++++ XXXXX +++++ XXXXX ++++++O",
+        "++++++ XXXXX +++++ XXXXX ++++++O",
+        "++++++ XXXXX +++++ XXXXX ++++++O",
+        "+      XXXXX       XXXXX      +O",
+        "+ XXXXXXXXXXXXXXXXXXXXXXXXXXX +O",
+        "+ XXXXXXXXXXXXXXXXXXXXXXXXXXX +O",
+        "+ XXXXXXXXXXXXXXXXXXXXXXXXXXX +O",
+        "+ XXXXXXXXXXXXXXXXXXXXXXXXXXX +O",
+        "+ XXXXXXXXXXXXXXXXXXXXXXXXXXX +O",
+        "+      XXXXX       XXXXX      +O",
+        "++++++ XXXXX +++++ XXXXX ++++++O",
+        "++++++ XXXXX +++++ XXXXX ++++++O",
+        "++++++ XXXXX +++++ XXXXX ++++++O",
+        "++++++ XXXXX +++++ XXXXX ++++++O",
+        "++++++       +++++       ++++++O",
+        "+++++++++++++++++++++++++++++++O",
+        "+++++++++++++++++++++++++++++++O"
     };
     
     // Création de l'icone
     wxIcon *icon = new wxIcon(sample_xpm);
-    // Mise en place
+    
+    // Splash screen (logo Ozanam)
+    wxBitmap bitmap;
+    if(bitmap.LoadFile("../Images/logo_ozanam.png", wxBITMAP_TYPE_PNG))
+    {
+        wxSplashScreen* splash =
+            new wxSplashScreen(bitmap, wxSPLASH_CENTRE_ON_SCREEN | wxSPLASH_TIMEOUT, 1500, NULL, -1, wxDefaultPosition, wxDefaultSize, wxBORDER_SIMPLE | wxSTAY_ON_TOP);
+    }
+    
+    // Mise en place de l'icone
     frame_principal->SetIcon(*icon);
     
     frame_principal->Show();
-
+    //usleep(20000);
+    
     return true;
 }
