@@ -275,7 +275,24 @@ void EvtFramePrincipal::OnMenuAproposSelection(wxCommandEvent& event)
     EvtFrameApropos* frame_apropos = new EvtFrameApropos(this);
     frame_apropos->Show();
 }
+//
+////////////////////////////////////////////////////////////////////////////////
+//  Méthode du programme
+////////////////////////////////////////////////////////////////////////////////
+//
+bool EvtFramePrincipal::VerificationLogin(wxString login, wxString pass)
+{
+    wxString identifiant = wxT("Responsable");
+    wxString motpasse = wxT("responsable");
+    bool retour = false;
 
+    if(identifiant == login && motpasse == pass)
+    {
+        retour = true;
+    }
+
+    return retour;
+}
 //
 // Partie client de communication
 //
@@ -311,22 +328,4 @@ void EvtFramePrincipal::DeconnexionClient(wxString message)
 void EvtFramePrincipal::AgitServeurPerdu(wxCommandEvent& event)
 {
     DeconnexionClient(event.GetString());
-}
-//
-////////////////////////////////////////////////////////////////////////////////
-//  Méthode du programme
-////////////////////////////////////////////////////////////////////////////////
-//
-bool EvtFramePrincipal::VerificationLogin(wxString login, wxString pass)
-{
-    wxString identifiant = wxT("Responsable");
-    wxString motpasse = wxT("responsable");
-    bool retour = false;
-
-    if(identifiant == login && motpasse == pass)
-    {
-        retour = true;
-    }
-
-    return retour;
 }
