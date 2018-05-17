@@ -49,8 +49,8 @@ class DataAnodisation
         // Recupération de données pour l'IHM
         bool RecupereDureeTotal(string id_processus);
         bool RecupereListeProcessus();
-        bool RecupereListeTrajectoiresProcessus(string id_processus);
         bool RecupereListeTouteTrajectoires();
+        bool RecupereListeTrajectoiresProcessus(string id_processus);
         bool RecupereNombreBain(string id_processus);
         bool RecupereNomProcessus(string id_processus);
         bool RecupereOrdreTrajectoires(string id_processus);
@@ -62,6 +62,7 @@ class DataAnodisation
         bool m_connexionOK;
         string m_dureeTotal;
         string m_last_error;
+        
         string m_nomProcessus;
         string m_nombreBain;
         string m_ordreTrajectoires;

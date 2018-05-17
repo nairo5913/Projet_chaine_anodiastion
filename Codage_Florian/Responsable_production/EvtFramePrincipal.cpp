@@ -9,9 +9,11 @@
 
 EvtFramePrincipal::EvtFramePrincipal(wxWindow* parent) : FramePrincipal(parent)
 {
-    m_connecte = false;
+    m_client_connecte = false;
+    m_bdd_connecte = false;
     m_identifie = false;
     m_fabrication = false;
+    m_bdd_anodisation = new DataAnodisation(DSN);
 
     // Modification du séparateur central de la wxStatusBar
     int widths[2];
@@ -41,7 +43,7 @@ void EvtFramePrincipal::OnFrameClose(wxCloseEvent& event)
     }
     else
     {
-        if(m_connecte)
+        if(m_client_connecte)
         {
             DeconnexionClient(wxT("Déconnexion depuis le client"));
         }
@@ -54,23 +56,22 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
 {
     // TODO: Implement OnButtonConnexionTogglewxString message;
     /*wxString message;
+    
     message << wxT("Identifiant : ") << m_textCtrlLogin->GetValue() << wxT("\nMot de passe : ")
     << m_textCtrlPass->GetValue() << wxT("\n");
-
-    m_textCtrlAffichage->AppendText(message);*/
+    
+    wxLogDebug(message);*/
 
     if(!m_identifie)
     {
         if(VerificationLogin(m_textCtrlLogin->GetValue(), m_textCtrlPass->GetValue()))
         {
             m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(*wxGREEN));
-            m_textCtrlAffichage->AppendText(wxT("\n\tConnexion OK\n\n"));
+            m_textCtrlAffichage->AppendText(wxT("\n\tIdentification OK\n\n"));
             m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(wxNullColour));
 
             m_identifie = true;
-
-            // S'occuper du client + test BdD
-
+            
             // Désactivation des textCtrl de connexion
             m_textCtrlLogin->Disable();
             m_textCtrlPass->Disable();
@@ -82,6 +83,58 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
             m_statusBar->SetStatusText(wxT("Connecté"), 1);
 
             Layout();
+            
+            wxString message;
+            // S'occuper du client + test BdD
+            
+            // Tester connexion à la BdD
+            if(m_bdd_anodisation->IsConnexionOK())
+            {
+                m_bdd_connecte = true;
+                m_textCtrlAffichage->AppendText(wxT("Connecté à la BdD.\n"));
+            }
+            else
+            {
+                message << wxT("Erreur lors de la connection à la base de données.\n\n") 
+                        << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
+                
+                m_textCtrlAffichage->AppendText(wxT("Erreur de connexion à la BdD.\n"));
+                wxLogError(message);
+                
+            }
+            
+            m_client = new Client(IP, PORT, this);
+            m_client_connecte = m_client->IsOK();
+            
+            // Tester la connection du client de communication
+            if(m_client_connecte)
+            {
+                m_client_connecte = true;
+                m_textCtrlAffichage->AppendText(wxT("Connecté au client de communication.\n"));
+            }
+            else
+            {
+                message << wxT("Erreur lors de la connection au client de communication.\n");
+                
+                m_textCtrlAffichage->AppendText(message);
+                wxLogError(message);
+            }
+            
+            if(m_bdd_anodisation->RecupereListeProcessus())
+            {
+                vector<string> liste_processus = m_bdd_anodisation->GetListeProcessus();
+                
+                for(unsigned int taille = 0; taille < liste_processus.size(); taille++)
+                {
+                    m_textCtrlAffichage->AppendText(liste_processus[taille] + wxT("saut\n"));
+                    cout << liste_processus[taille] << endl;
+                }
+
+            }
+            else
+            {
+                m_textCtrlAffichage->AppendText(m_bdd_anodisation->GetLastError());
+            }
         }
         else
         {
@@ -247,7 +300,7 @@ void EvtFramePrincipal::OnMenuQuitterSelection(wxCommandEvent& event)
     }
     else
     {
-        if(m_connecte)
+        if(m_client_connecte)
         {
             DeconnexionClient(wxT("Déconnexion depuis le client"));
         }
@@ -311,8 +364,11 @@ void EvtFramePrincipal::AfficheInfoClient(wxCommandEvent& event)
 void EvtFramePrincipal::DeconnexionClient(wxString message)
 {
     m_client->Close();
-    m_connecte = false;
+    m_client_connecte = false;
+    m_bdd_connecte = false;
+    
     delete m_client;
+    delete m_bdd_anodisation;
 
     // Affichage du message
     message << wxT("\n");
@@ -328,4 +384,11 @@ void EvtFramePrincipal::DeconnexionClient(wxString message)
 void EvtFramePrincipal::AgitServeurPerdu(wxCommandEvent& event)
 {
     DeconnexionClient(event.GetString());
+}
+
+wxString EvtFramePrincipal::ConversionEnWxString(string texte)
+{
+    wxString temp_wxstring(texte.c_str(), wxConvUTF8);
+    
+    return temp_wxstring;
 }
