@@ -281,10 +281,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	sbSizerSelectionProcessusModifier = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowModifierProcessus, wxID_ANY, wxT("Séléction du processus à modifier") ), wxHORIZONTAL );
 	
 	sbSizerSelectionProcessusModifier->SetMinSize( wxSize( 280,-1 ) ); 
-	m_listBoxModifierProcessus = new wxListBox( sbSizerSelectionProcessusModifier->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_SORT );
-	m_listBoxModifierProcessus->Append( wxT("01 - Processus 1") );
-	m_listBoxModifierProcessus->Append( wxT("02 - Processus 2") );
-	m_listBoxModifierProcessus->Append( wxT("03 - Processus 3") );
+	m_listBoxModifierProcessus = new wxListBox( sbSizerSelectionProcessusModifier->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_SORT ); 
 	sbSizerSelectionProcessusModifier->Add( m_listBoxModifierProcessus, 1, wxALL|wxEXPAND, 5 );
 	
 	
@@ -684,10 +681,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	sbSizerSelectionProcessusDetruire = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowDetruireProcessus, wxID_ANY, wxT("Séléction du processus à détruire") ), wxHORIZONTAL );
 	
 	sbSizerSelectionProcessusDetruire->SetMinSize( wxSize( 280,-1 ) ); 
-	m_listBoxDetruireProcessus = new wxListBox( sbSizerSelectionProcessusDetruire->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE );
-	m_listBoxDetruireProcessus->Append( wxT("01 - Processus 1") );
-	m_listBoxDetruireProcessus->Append( wxT("02 - Processus 2") );
-	m_listBoxDetruireProcessus->Append( wxT("03 - Processus 3") );
+	m_listBoxDetruireProcessus = new wxListBox( sbSizerSelectionProcessusDetruire->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE ); 
 	sbSizerSelectionProcessusDetruire->Add( m_listBoxDetruireProcessus, 1, wxALL|wxEXPAND, 5 );
 	
 	
@@ -741,10 +735,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	sbSizerSelectionProcessusLancer = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowLancerProcessus, wxID_ANY, wxT("Sélection du processus à lancer") ), wxVERTICAL );
 	
 	sbSizerSelectionProcessusLancer->SetMinSize( wxSize( 280,-1 ) ); 
-	m_listBoxLancerProcessus = new wxListBox( sbSizerSelectionProcessusLancer->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_SORT );
-	m_listBoxLancerProcessus->Append( wxT("01 - Processus 1") );
-	m_listBoxLancerProcessus->Append( wxT("02 - Processus 2") );
-	m_listBoxLancerProcessus->Append( wxT("03 - Processus 3") );
+	m_listBoxLancerProcessus = new wxListBox( sbSizerSelectionProcessusLancer->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_SORT ); 
 	sbSizerSelectionProcessusLancer->Add( m_listBoxLancerProcessus, 1, wxALL|wxEXPAND, 5 );
 	
 	
@@ -794,10 +785,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	sbSizerSelectionProcessusTester = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowTesterProcessus, wxID_ANY, wxT("Sélection du processus à Tester") ), wxVERTICAL );
 	
 	sbSizerSelectionProcessusTester->SetMinSize( wxSize( 280,-1 ) ); 
-	m_listBoxTesterProcessus = new wxListBox( sbSizerSelectionProcessusTester->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_SORT );
-	m_listBoxTesterProcessus->Append( wxT("01 - Processus 1") );
-	m_listBoxTesterProcessus->Append( wxT("02 - Processus 2") );
-	m_listBoxTesterProcessus->Append( wxT("03 - Processus 3") );
+	m_listBoxTesterProcessus = new wxListBox( sbSizerSelectionProcessusTester->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_SORT ); 
 	sbSizerSelectionProcessusTester->Add( m_listBoxTesterProcessus, 1, wxALL|wxEXPAND, 5 );
 	
 	

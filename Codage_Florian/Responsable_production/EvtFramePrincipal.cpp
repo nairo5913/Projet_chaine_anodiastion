@@ -145,34 +145,8 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
             }
             
             // Remplir la liste des processus
-            if(m_bdd_anodisation->RecupereListeProcessus())
-            {
-                vector<string> liste_processus = m_bdd_anodisation->GetListeProcessus();
-                
-                cout << "taille : " << liste_processus.size() << endl;
-                
-                for(unsigned int taille = 0; taille < liste_processus.size(); taille++)
-                {
-                    if(taille%2 == 0)
-                    {
-                        m_textCtrlAffichage->AppendText(liste_processus[taille]);
-                        cout << "id : " << liste_processus[taille];
-                        m_listBoxAffichageProcessus->Append(liste_processus[taille] + wxT(" - "));
-                    }
-                    else
-                    {
-                        m_textCtrlAffichage->AppendText(liste_processus[taille] + wxT("\n"));
-                        cout << "Nom : " << liste_processus[taille] << endl;
-                        //m_listBoxAffichageProcessus->Append(taille/2, liste_processus[taille]);
-                    }
-                    
-                }
-
-            }
-            else
-            {
-                m_textCtrlAffichage->AppendText(m_bdd_anodisation->GetLastError());
-            }
+            RempliListBox();
+            
         }
         else
         {
@@ -194,13 +168,20 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
         // Activation des textCtrl de connexion
         m_textCtrlLogin->Enable();
         m_textCtrlPass->Enable();
+        
+        // Vider les listBox pour éviter les problème si on se reconnecte sans fermer l'application
+        VideListBox();
+        
         // Masquage des onglets de gestion des processus
         m_notebookProcessus->Hide();
+        
         // Changement du label du toggle button
         m_toggleBtnConnexion->SetValue(false);
         m_toggleBtnConnexion->SetLabel(wxT("Connexion"));
+        
         // Mise à jour de la statue bar
         m_statusBar->SetStatusText(wxT("Déconnecté"), 1);
+        
         // Vidange de l'affichage
         m_textCtrlAffichage->Clear();
 
@@ -371,7 +352,7 @@ void EvtFramePrincipal::OnMenuAproposSelection(wxCommandEvent& event)
 //  Méthode du programme
 ////////////////////////////////////////////////////////////////////////////////
 //
-bool EvtFramePrincipal::VerificationLogin(wxString login, wxString pass)
+bool EvtFramePrincipal::VerificationLogin(wxString login, wxString  pass)
 {
     wxString identifiant = wxT("Responsable");
     wxString motpasse = wxT("responsable");
@@ -384,6 +365,60 @@ bool EvtFramePrincipal::VerificationLogin(wxString login, wxString pass)
 
     return retour;
 }
+
+void EvtFramePrincipal::RempliListBox()
+{
+    if(m_bdd_anodisation->RecupereListeProcessus())
+    {
+        vector<string> liste_processus = m_bdd_anodisation->GetListeProcessus();
+        
+        cout << "taille : " << liste_processus.size() << endl;
+        wxString rempli;
+        wxString nom;
+        
+        for(unsigned int taille = 0; taille < liste_processus.size(); taille++)
+        {
+            if(taille%2 == 0)
+            {
+                //m_textCtrlAffichage->AppendText(liste_processus[taille]);
+                rempli.clear();
+                rempli << liste_processus[taille] << wxT(" - ");
+            }
+            else
+            {
+                //m_textCtrlAffichage->AppendText(liste_processus[taille] + wxT("\n"));
+                nom.clear();
+                nom << liste_processus[taille];
+                
+                int separateur = nom.find("   ");
+                rempli << DecouperTexteDebut(nom, separateur);
+                
+                // Remplissage des listBox depuis la BdD
+                m_listBoxAffichageProcessus->Append(rempli);
+                m_listBoxDetruireProcessus->Append(rempli);
+                m_listBoxLancerProcessus->Append(rempli);
+                m_listBoxModifierProcessus->Append(rempli);
+                m_listBoxTesterProcessus->Append(rempli);
+            }
+            
+        }
+
+    }
+    else
+    {
+        m_textCtrlAffichage->AppendText(m_bdd_anodisation->GetLastError());
+    }
+}
+
+void EvtFramePrincipal::VideListBox()
+{
+    m_listBoxAffichageProcessus->Clear();
+    m_listBoxDetruireProcessus->Clear();
+    m_listBoxLancerProcessus->Clear();
+    m_listBoxModifierProcessus->Clear();
+    m_listBoxTesterProcessus->Clear();
+}
+
 //
 // Partie client de communication
 //
@@ -403,10 +438,10 @@ void EvtFramePrincipal::DeconnexionClient(wxString message)
 {
     m_client->Close();
     m_client_connecte = false;
-    m_bdd_connecte = false;
+    //m_bdd_connecte = false;
     
     delete m_client;
-    delete m_bdd_anodisation;
+    //delete m_bdd_anodisation;
 
     // Affichage du message
     message << wxT("\n");
@@ -422,6 +457,32 @@ void EvtFramePrincipal::DeconnexionClient(wxString message)
 void EvtFramePrincipal::AgitServeurPerdu(wxCommandEvent& event)
 {
     DeconnexionClient(event.GetString());
+}
+//
+// Partie manipulation texte
+//
+string EvtFramePrincipal::ConversionEnString(wxString texte)
+{
+    string temp_string = texte.ToStdString();
+    
+    return temp_string;
+}
+
+wxString EvtFramePrincipal::DecouperTexteDebut(wxString texte, int position)
+{
+    wxString fin(texte.substr(position+1));
+    
+    wxString debut = "";
+    texte.EndsWith(fin, &debut);
+    
+    return debut;
+}
+
+wxString EvtFramePrincipal::DecouperTexteFin(wxString texte, int position)
+{
+    wxString fin(texte.substr(position+1));
+    
+    return fin;
 }
 
 wxString EvtFramePrincipal::ConversionEnWxString(string texte)

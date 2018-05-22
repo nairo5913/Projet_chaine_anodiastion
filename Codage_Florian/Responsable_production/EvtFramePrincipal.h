@@ -49,32 +49,22 @@ class EvtFramePrincipal : public FramePrincipal
     // Handlers for FramePrincipal events.
     void OnFrameClose(wxCloseEvent& event);
     void OnButtonConnexionToggle(wxCommandEvent& event);
-    
     void OnListBoxAffichageSelection(wxCommandEvent& event);
-    
     void OnListBoxModifierSelection(wxCommandEvent& event);
     void OnApplyButtonModifierClick(wxCommandEvent& event);
     void OnCancelButtonModiffierClick(wxCommandEvent& event);
-    
     void OnCancelButtonCreerClick(wxCommandEvent& event);
     void OnSaveButtonCreerClick(wxCommandEvent& event);
-    
     void OnListBoxDetruireSelection(wxCommandEvent& event);
     void OnApplyButtonDetruireClick(wxCommandEvent& event);
-    
     void OnListBoxLancerSelection(wxCommandEvent& event);
     void OnOkButtonLancerClick(wxCommandEvent& event);
-    
     void OnListBoxTesterSelection(wxCommandEvent& event);
     void OnStopButtonTesterClick(wxCommandEvent& event);
     void OnOkButtonTesterClick(wxCommandEvent& event);
-    
     void OnButtonDisponibiliteBrasClick(wxCommandEvent& event);
-    
     void OnButtonTacheEnCoursClick(wxCommandEvent& event);
-    
     void OnButtonViderAffichageClick(wxCommandEvent& event);
-    
     void OnMenuQuitterSelection(wxCommandEvent& event);
     void OnMenuViderAffichageSelection(wxCommandEvent& event);
     void OnMenuAideSelection(wxCommandEvent& event);
@@ -86,8 +76,9 @@ class EvtFramePrincipal : public FramePrincipal
     //// end generated class members
    public:
     string ConversionEnString(wxString texte);
+    wxString DecouperTexteDebut(wxString texte, int position);
+    wxString DecouperTexteFin(wxString texte, int position);
     wxString ConversionEnWxString(string texte);
-    wxString DecouperTexte(wxString texte, int position);
 
    protected:
     // Affichage et action des events du client
@@ -110,6 +101,8 @@ class EvtFramePrincipal : public FramePrincipal
     void AfficheStatus(wxString texte, int position);
     // Déconnection du client
     void DeconnexionClient(wxString message);
+    void RempliListBox();
+    void VideListBox();
     // Fonction de mise en forme de la séléction pour garder que le début (id)
     wxString GardeIdSelection(wxString selection);
 };
