@@ -109,7 +109,8 @@ bool DataAnodisation::RecupereListeProcessus()
 {
     bool retour;
     
-    string requete = "SELECT id_processus, nom_processus FROM processus";
+    string requete = "SELECT id_processus, nom_processus FROM processus ORDER BY id_processus";
+    m_listeProcessus.clear();
     
     if(ExecuteSelect(requete))
     {
@@ -131,6 +132,8 @@ bool DataAnodisation::RecupereListeProcessus()
 bool DataAnodisation::RecupereListeTouteTrajectoires()
 {
     bool retour = false;
+    
+    string requete = "SELECT id_trajectoires, nom_trajectoires FROM trajectoires ORDER BY id_trajectoires";
 
     return retour;
 }

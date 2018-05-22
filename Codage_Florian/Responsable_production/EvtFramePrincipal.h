@@ -35,6 +35,8 @@ class Client;
 #include <iostream>
 using std::cout;
 using std::endl;
+#include <list>
+using std::list;
 #include <string>
 using std::string;
 #include <vector>

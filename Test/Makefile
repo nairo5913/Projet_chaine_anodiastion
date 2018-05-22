@@ -1,8 +1,8 @@
 .PHONY: clean All
 
 All:
-	@echo "----------Building project:[ Test_requete_avec_affichage_et_saisie - Debug ]----------"
-	@cd "Test_requete_avec_poco/Test_requete_avec_affichage_et_saisie" && "$(MAKE)" -f  "Test_requete_avec_affichage_et_saisie.mk"
+	@echo "----------Building project:[ Test_serveur - Debug ]----------"
+	@cd "Serveur/Test_serveur" && "$(MAKE)" -f  "Test_serveur.mk"
 clean:
-	@echo "----------Cleaning project:[ Test_requete_avec_affichage_et_saisie - Debug ]----------"
-	@cd "Test_requete_avec_poco/Test_requete_avec_affichage_et_saisie" && "$(MAKE)" -f  "Test_requete_avec_affichage_et_saisie.mk" clean
+	@echo "----------Cleaning project:[ Test_serveur - Debug ]----------"
+	@cd "Serveur/Test_serveur" && "$(MAKE)" -f  "Test_serveur.mk" clean

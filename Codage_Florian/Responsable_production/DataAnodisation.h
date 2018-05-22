@@ -8,6 +8,8 @@
 #ifndef DATAANODISATION_H
 #define DATAANODISATION_H
 
+#include <list>
+using std::list;
 #include <string>
 using std::string;
 #include <vector>

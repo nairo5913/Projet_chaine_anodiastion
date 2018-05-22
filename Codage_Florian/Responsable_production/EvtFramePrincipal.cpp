@@ -18,7 +18,7 @@ EvtFramePrincipal::EvtFramePrincipal(wxWindow* parent) : FramePrincipal(parent)
     // Modification du séparateur central de la wxStatusBar
     int widths[2];
     widths[0] = -1;
-    widths[1] = 130;
+    widths[1] = 140;
     m_statusBar->SetStatusWidths(2, widths);
     m_statusBar->SetStatusText(wxT("Déconnecté"), 1);
 
@@ -80,12 +80,12 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
             // Changement du label du toggle button
             m_toggleBtnConnexion->SetLabel(wxT("Déconnexion"));
             // Mise à jour de la statue bar
-            m_statusBar->SetStatusText(wxT("Connecté"), 1);
+            //m_statusBar->SetStatusText(wxT("Connecté"), 1);
 
             Layout();
             
             wxString message;
-            // S'occuper du client + test BdD
+            bool erreur = false;
             
             // Tester connexion à la BdD
             if(m_bdd_anodisation->IsConnexionOK())
@@ -95,12 +95,12 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
             }
             else
             {
-                message << wxT("Erreur lors de la connection à la base de données.\n\n") 
+                message.clear();
+                message << wxT("\t Erreur lors de la connection à la base de données.\n")
+                        << wxT("\n") << wxT("Raison : ")
                         << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
                 
-                m_textCtrlAffichage->AppendText(wxT("Erreur de connexion à la BdD.\n"));
-                wxLogError(message);
-                
+                erreur = true;
             }
             
             m_client = new Client(IP, PORT, this);
@@ -114,20 +114,58 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
             }
             else
             {
-                message << wxT("Erreur lors de la connection au client de communication.\n");
+                message << wxT("\t Erreur lors de la connection au client de communication.\n");
                 
+                erreur = true;
+            }
+            
+            // Mise à jour de la barre de statu en fonction de la connexion
+            if(m_bdd_connecte && !m_client_connecte)
+            {
+                m_statusBar->SetStatusText(wxT("Connecté à la bdd"), 1);
+            }
+            else if(!m_bdd_connecte && m_client_connecte)
+            {
+                m_statusBar->SetStatusText(wxT("Connecté au client"), 1);
+            }
+            else if(m_bdd_connecte && m_client_connecte)
+            {
+                m_statusBar->SetStatusText(wxT("Connecté"), 1);
+            }
+            else 
+            {
+                m_statusBar->SetStatusText(wxT("Non connecté"), 1);
+            }
+            
+            // Si il y a une erreur de connection l'afficher
+            if(erreur)
+            {
                 m_textCtrlAffichage->AppendText(message);
                 wxLogError(message);
             }
             
+            // Remplir la liste des processus
             if(m_bdd_anodisation->RecupereListeProcessus())
             {
                 vector<string> liste_processus = m_bdd_anodisation->GetListeProcessus();
                 
+                cout << "taille : " << liste_processus.size() << endl;
+                
                 for(unsigned int taille = 0; taille < liste_processus.size(); taille++)
                 {
-                    m_textCtrlAffichage->AppendText(liste_processus[taille] + wxT("saut\n"));
-                    cout << liste_processus[taille] << endl;
+                    if(taille%2 == 0)
+                    {
+                        m_textCtrlAffichage->AppendText(liste_processus[taille]);
+                        cout << "id : " << liste_processus[taille];
+                        m_listBoxAffichageProcessus->Append(liste_processus[taille] + wxT(" - "));
+                    }
+                    else
+                    {
+                        m_textCtrlAffichage->AppendText(liste_processus[taille] + wxT("\n"));
+                        cout << "Nom : " << liste_processus[taille] << endl;
+                        //m_listBoxAffichageProcessus->Append(taille/2, liste_processus[taille]);
+                    }
+                    
                 }
 
             }

@@ -79,10 +79,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	sbSizerSelectionProcessusAfficher = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowAffichageProcessus, wxID_ANY, wxT("Séléction du processus à afficher") ), wxHORIZONTAL );
 	
 	sbSizerSelectionProcessusAfficher->SetMinSize( wxSize( 280,-1 ) ); 
-	m_listBoxAffichageProcessus = new wxListBox( sbSizerSelectionProcessusAfficher->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_SORT );
-	m_listBoxAffichageProcessus->Append( wxT("01 - Processus 1") );
-	m_listBoxAffichageProcessus->Append( wxT("02 - Processus 2") );
-	m_listBoxAffichageProcessus->Append( wxT("03 - Processus 3") );
+	m_listBoxAffichageProcessus = new wxListBox( sbSizerSelectionProcessusAfficher->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_SORT ); 
 	sbSizerSelectionProcessusAfficher->Add( m_listBoxAffichageProcessus, 1, wxALL|wxEXPAND, 5 );
 	
 	
@@ -104,7 +101,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextIdAfficher->Wrap( -1 );
 	bSizerIdAfficher->Add( m_staticTextIdAfficher, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
-	m_textCtrlIdAfficher = new wxTextCtrl( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxT("1"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
+	m_textCtrlIdAfficher = new wxTextCtrl( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
 	m_textCtrlIdAfficher->Enable( false );
 	m_textCtrlIdAfficher->SetMaxSize( wxSize( 35,-1 ) );
 	
@@ -126,7 +123,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticDureeTotalAfficher->Wrap( -1 );
 	bSizerDureeTotalAfficher->Add( m_staticDureeTotalAfficher, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
-	m_textCtrlDureeTotalHeureAfficher = new wxTextCtrl( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxT("02"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
+	m_textCtrlDureeTotalHeureAfficher = new wxTextCtrl( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
 	#ifdef __WXGTK__
 	if ( !m_textCtrlDureeTotalHeureAfficher->HasFlag( wxTE_MULTILINE ) )
 	{
@@ -143,7 +140,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextDureeTotalMinuteAfficher->Wrap( -1 );
 	bSizerDureeTotalAfficher->Add( m_staticTextDureeTotalMinuteAfficher, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
-	textCtrlDureeTotalMinuteAfficher = new wxTextCtrl( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxT("52"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
+	textCtrlDureeTotalMinuteAfficher = new wxTextCtrl( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
 	#ifdef __WXGTK__
 	if ( !textCtrlDureeTotalMinuteAfficher->HasFlag( wxTE_MULTILINE ) )
 	{
@@ -160,7 +157,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextDureeTotalSecondeAfficher->Wrap( -1 );
 	bSizerDureeTotalAfficher->Add( m_staticTextDureeTotalSecondeAfficher, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
-	textCtrlDureeTotalSecondeAfficher = new wxTextCtrl( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxT("00"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
+	textCtrlDureeTotalSecondeAfficher = new wxTextCtrl( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
 	#ifdef __WXGTK__
 	if ( !textCtrlDureeTotalSecondeAfficher->HasFlag( wxTE_MULTILINE ) )
 	{
@@ -182,11 +179,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	wxStaticBoxSizer* sbSizerListeTrajectoiresAfficher;
 	sbSizerListeTrajectoiresAfficher = new wxStaticBoxSizer( new wxStaticBox( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxT("Liste des trajectoires") ), wxVERTICAL );
 	
-	m_listBoxListeTrajectoiresAfficher = new wxListBox( sbSizerListeTrajectoiresAfficher->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_listBoxListeTrajectoiresAfficher->Append( wxT("01 - Trajectoire 1 - Durée : 00:02:30 - Bain n°3 -> n°2") );
-	m_listBoxListeTrajectoiresAfficher->Append( wxT("02 - Trajectoire 2") );
-	m_listBoxListeTrajectoiresAfficher->Append( wxT("03 - Trajectoire 3") );
-	m_listBoxListeTrajectoiresAfficher->Append( wxT("04 - Trajectoire 4") );
+	m_listBoxListeTrajectoiresAfficher = new wxListBox( sbSizerListeTrajectoiresAfficher->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 ); 
 	sbSizerListeTrajectoiresAfficher->Add( m_listBoxListeTrajectoiresAfficher, 2, wxALIGN_CENTER_HORIZONTAL|wxALL|wxEXPAND, 5 );
 	
 	
@@ -211,7 +204,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextNomAfficher->Wrap( -1 );
 	bSizerNomAffichage->Add( m_staticTextNomAfficher, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
-	m_textCtrlNomAfficher = new wxTextCtrl( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxT("Processus 1"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
+	m_textCtrlNomAfficher = new wxTextCtrl( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
 	bSizerNomAffichage->Add( m_textCtrlNomAfficher, 1, wxALIGN_CENTER_VERTICAL, 5 );
 	
 	
@@ -230,7 +223,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextNombreBainAfficher->Wrap( -1 );
 	bSizerNombreBainAfficher->Add( m_staticTextNombreBainAfficher, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
-	m_textCtrlNombreBainAfficher = new wxTextCtrl( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxT("03"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
+	m_textCtrlNombreBainAfficher = new wxTextCtrl( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
 	#ifdef __WXGTK__
 	if ( !m_textCtrlNombreBainAfficher->HasFlag( wxTE_MULTILINE ) )
 	{
@@ -259,7 +252,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextOrdreTrajectoiresAfficher->Wrap( -1 );
 	bSizerOrdresTrajectoiresAfficher->Add( m_staticTextOrdreTrajectoiresAfficher, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
-	m_textCtrlOrdreTrajectoiresAfficher = new wxTextCtrl( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxT("3;2;1"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
+	m_textCtrlOrdreTrajectoiresAfficher = new wxTextCtrl( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
 	bSizerOrdresTrajectoiresAfficher->Add( m_textCtrlOrdreTrajectoiresAfficher, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
 	
