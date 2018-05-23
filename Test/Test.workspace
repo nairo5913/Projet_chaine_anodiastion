@@ -10,7 +10,7 @@
     <Project Name="Test_IHM_Responsable_production" Path="Test_IHM_Responsable_production/Test_IHM_Responsable_production.project" Active="No"/>
   </VirtualDirectory>
   <BuildMatrix>
-    <WorkspaceConfiguration Name="Debug" Selected="yes">
+    <WorkspaceConfiguration Name="Debug" Selected="no">
       <Environment/>
       <Project Name="Test_requete_avec_affichage_et_saisie" ConfigName="Debug"/>
       <Project Name="Test_serveur" ConfigName="Debug"/>

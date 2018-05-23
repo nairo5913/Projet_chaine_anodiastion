@@ -1,1 +1,1 @@
-./Debug/EvtFramePrincipal.cpp.o ./Debug/FramePrincipal.cpp.o ./Debug/MyApp.cpp.o ./Debug/Serveur.cpp.o ./Debug/DonneesClient.cpp.o
+./Release/EvtFramePrincipal.cpp.o ./Release/FramePrincipal.cpp.o ./Release/MyApp.cpp.o ./Release/Serveur.cpp.o ./Release/DonneesClient.cpp.o

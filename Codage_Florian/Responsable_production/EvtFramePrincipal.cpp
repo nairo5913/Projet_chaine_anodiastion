@@ -193,9 +193,13 @@ void EvtFramePrincipal::OnListBoxAffichageSelection(wxCommandEvent& event)
 {
     // TODO: Implement OnListBoxAffichageSelection
     // m_textCtrlAffichage->AppendText(wxT("Selection liste affichage processus\n"));
-    wxString selection = wxT("Votre séléction : ");
+    wxString selection;
     selection << m_listBoxAffichageProcessus->GetStringSelection() << wxT("\n");
     m_textCtrlAffichage->AppendText(selection);
+    
+    int separateur = selection.find(" - ");
+    wxString id_selection = DecouperTexteDebut(selection, separateur);
+    wxLogDebug(id_selection);
 }
 
 void EvtFramePrincipal::OnListBoxModifierSelection(wxCommandEvent& event)
@@ -372,7 +376,7 @@ void EvtFramePrincipal::RempliListBox()
     {
         vector<string> liste_processus = m_bdd_anodisation->GetListeProcessus();
         
-        cout << "taille : " << liste_processus.size() << endl;
+        //cout << "taille : " << liste_processus.size() << endl;
         wxString rempli;
         wxString nom;
         
@@ -470,7 +474,7 @@ string EvtFramePrincipal::ConversionEnString(wxString texte)
 
 wxString EvtFramePrincipal::DecouperTexteDebut(wxString texte, int position)
 {
-    wxString fin(texte.substr(position+1));
+    wxString fin(texte.substr(position));
     
     wxString debut = "";
     texte.EndsWith(fin, &debut);
@@ -480,7 +484,7 @@ wxString EvtFramePrincipal::DecouperTexteDebut(wxString texte, int position)
 
 wxString EvtFramePrincipal::DecouperTexteFin(wxString texte, int position)
 {
-    wxString fin(texte.substr(position+1));
+    wxString fin(texte.substr(position));
     
     return fin;
 }
