@@ -10,7 +10,7 @@
       <Project Name="Acces_BdD" ConfigName="Debug"/>
       <Project Name="Responsable_production" ConfigName="Debug"/>
     </WorkspaceConfiguration>
-    <WorkspaceConfiguration Name="Release" Selected="yes">
+    <WorkspaceConfiguration Name="Release" Selected="no">
       <Environment/>
       <Project Name="Client" ConfigName="Release"/>
       <Project Name="Acces_BdD" ConfigName="Release"/>
