@@ -32,12 +32,14 @@ class Serveur : public wxEvtHandler
         Serveur(EvtFramePrincipal *frame, long port, int maxclients=0);
         ~Serveur();
         bool IsOK(){return m_serveur_running;};
+        void SetBrasDispo(bool etat){m_bras_dispo = etat;};
         void Close();
     protected:
     private:
         EvtFramePrincipal *m_frame;
         wxSocketServer *m_serveur;
         bool m_serveur_running;
+        bool m_bras_dispo;
         int m_nombreClients;
         int m_nombreMaxClients;
         long m_port;

@@ -1,4 +1,4 @@
-Release/FramePrincipal.cpp.o: FramePrincipal.cpp FramePrincipal.h \
+Debug/FramePrincipal.cpp.o: FramePrincipal.cpp FramePrincipal.h \
  /usr/include/wx-3.0/wx/artprov.h /usr/include/wx-3.0/wx/string.h \
  /usr/include/wx-3.0/wx/defs.h /usr/include/wx-3.0/wx/platform.h \
  /usr/include/wx-3.0/wx/compiler.h \

@@ -1,7 +1,7 @@
-Release/FramePrincipal.cpp.o: FramePrincipal.cpp FramePrincipal.h \
- /usr/include/wx-3.0/wx/artprov.h /usr/include/wx-3.0/wx/string.h \
- /usr/include/wx-3.0/wx/defs.h /usr/include/wx-3.0/wx/platform.h \
- /usr/include/wx-3.0/wx/compiler.h \
+Debug/EvtFramePrincipal.cpp.o: EvtFramePrincipal.cpp EvtFramePrincipal.h \
+ FramePrincipal.h /usr/include/wx-3.0/wx/artprov.h \
+ /usr/include/wx-3.0/wx/string.h /usr/include/wx-3.0/wx/defs.h \
+ /usr/include/wx-3.0/wx/platform.h /usr/include/wx-3.0/wx/compiler.h \
  /usr/lib/x86_64-linux-gnu/wx/include/gtk2-unicode-3.0/wx/setup.h \
  /usr/include/wx-3.0/wx/chkconf.h /usr/include/wx-3.0/wx/gtk/chkconf.h \
  /usr/include/wx-3.0/wx/unix/chkconf.h /usr/include/wx-3.0/wx/version.h \
@@ -79,7 +79,17 @@ Release/FramePrincipal.cpp.o: FramePrincipal.cpp FramePrincipal.h \
  /usr/include/wx-3.0/wx/toplevel.h /usr/include/wx-3.0/wx/nonownedwnd.h \
  /usr/include/wx-3.0/wx/gtk/nonownedwnd.h \
  /usr/include/wx-3.0/wx/weakref.h /usr/include/wx-3.0/wx/meta/int2type.h \
- /usr/include/wx-3.0/wx/gtk/toplevel.h /usr/include/wx-3.0/wx/gtk/frame.h
+ /usr/include/wx-3.0/wx/gtk/toplevel.h /usr/include/wx-3.0/wx/gtk/frame.h \
+ Serveur.h EvtFramePrincipal.h DonneesClient.h Protocoles.h \
+ /usr/include/wx-3.0/wx/socket.h /usr/include/wx-3.0/wx/sckaddr.h \
+ /usr/include/wx-3.0/wx/log.h /usr/include/wx-3.0/wx/generic/logg.h \
+ /usr/include/wx-3.0/wx/msgdlg.h /usr/include/wx-3.0/wx/dialog.h \
+ /usr/include/wx-3.0/wx/sharedptr.h /usr/include/wx-3.0/wx/atomic.h \
+ /usr/include/wx-3.0/wx/gtk/dialog.h /usr/include/wx-3.0/wx/stockitem.h \
+ /usr/include/wx-3.0/wx/generic/msgdlgg.h \
+ /usr/include/wx-3.0/wx/gtk/msgdlg.h
+
+EvtFramePrincipal.h:
 
 FramePrincipal.h:
 
@@ -374,3 +384,35 @@ FramePrincipal.h:
 /usr/include/wx-3.0/wx/gtk/toplevel.h:
 
 /usr/include/wx-3.0/wx/gtk/frame.h:
+
+Serveur.h:
+
+EvtFramePrincipal.h:
+
+DonneesClient.h:
+
+Protocoles.h:
+
+/usr/include/wx-3.0/wx/socket.h:
+
+/usr/include/wx-3.0/wx/sckaddr.h:
+
+/usr/include/wx-3.0/wx/log.h:
+
+/usr/include/wx-3.0/wx/generic/logg.h:
+
+/usr/include/wx-3.0/wx/msgdlg.h:
+
+/usr/include/wx-3.0/wx/dialog.h:
+
+/usr/include/wx-3.0/wx/sharedptr.h:
+
+/usr/include/wx-3.0/wx/atomic.h:
+
+/usr/include/wx-3.0/wx/gtk/dialog.h:
+
+/usr/include/wx-3.0/wx/stockitem.h:
+
+/usr/include/wx-3.0/wx/generic/msgdlgg.h:
+
+/usr/include/wx-3.0/wx/gtk/msgdlg.h:

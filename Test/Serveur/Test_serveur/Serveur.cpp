@@ -13,6 +13,7 @@ Serveur::Serveur(EvtFramePrincipal *frame, long port, int maxclients)
     m_nombreMaxClients = maxclients;
     m_frame = frame;
     m_port = port;
+    m_bras_dispo = false;
 
     wxIPV4address addr;
     addr.Service(m_port);
@@ -284,9 +285,7 @@ void Serveur::DecodeMessage(wxString message, wxSocketBase *sock, DonneesClient 
             }
             else if(message.IsSameAs(DISPONIBILITE_BRAS))
             {
-                bool bras_dispo = true;
-                
-                if(bras_dispo)
+                if(m_bras_dispo)
                 {
                     wxString reponse(BRAS_DISPONIBLE);
                     EcritReponse(sock, reponse.ToStdString());
@@ -299,9 +298,9 @@ void Serveur::DecodeMessage(wxString message, wxSocketBase *sock, DonneesClient 
             }
             else if(message.IsSameAs(DEMANDE_TACHE_EN_COURS))
             {
-                bool bras_dispo = false, tache_cours = true;
+                bool tache_cours = true;
                 
-                if(!bras_dispo)
+                if(!m_bras_dispo)
                 {
                     if(tache_cours)
                     {

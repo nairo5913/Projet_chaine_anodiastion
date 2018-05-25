@@ -1,10 +1,10 @@
 #include "EvtFramePrincipal.h"
 
-EvtFramePrincipal::EvtFramePrincipal(wxWindow* parent) : FramePrincipal(parent)
+EvtFramePrincipal::EvtFramePrincipal(wxWindow* parent)
+    :
+    FramePrincipal(parent)
 {
     m_connecte = false;
-
-    m_panelParametreConnexion->Hide();
 
     // Modification du séparateur central de la wxStatusBar
     int widths[2];
@@ -13,6 +13,8 @@ EvtFramePrincipal::EvtFramePrincipal(wxWindow* parent) : FramePrincipal(parent)
     m_statusBar->SetStatusWidths(2, widths);
     m_statusBar->SetStatusText(wxT("Serveur déconnecté"), 0);
 
+    sbSizerGestion->Hide(true);
+    sbSizerGestion->Layout();
     Layout();
 }
 
@@ -38,15 +40,17 @@ void EvtFramePrincipal::OnButtonDemarrerServeurToggle(wxCommandEvent& event)
 
         if(m_connecte)
         {
-            // on connecte les événements venant du serveur
-            Connect(ID_SERVEUR, wxEVT_COMMAND_BUTTON_CLICKED,
-                    wxCommandEventHandler(EvtFramePrincipal::MAJnombreClients), NULL, this);
-            Connect(ID_SERVEUR + 1, wxEVT_COMMAND_BUTTON_CLICKED,
-                    wxCommandEventHandler(EvtFramePrincipal::AfficheMessageServeur), NULL, this);
+// on connecte les événements venant du serveur
+            Connect(ID_SERVEUR, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(EvtFramePrincipal::MAJnombreClients), NULL, this);
+            Connect(ID_SERVEUR + 1, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(EvtFramePrincipal::AfficheMessageServeur), NULL, this);
 
             m_statusBar->SetStatusText(wxT("Serveur connecté"), 0);
-            m_toggleBtnConnexion->SetLabel(wxT("Arrêt du serveur"));
             m_buttonViderAffichage->Show();
+            
+            m_textCtrlAffichage->Clear();
+            
+            sbSizerGestion->Show(true);
+            sbSizerGestion->Layout();
             Layout();
         }
         else
@@ -58,16 +62,30 @@ void EvtFramePrincipal::OnButtonDemarrerServeurToggle(wxCommandEvent& event)
             delete m_serveur;
         }
     }
-    else
-    {
-        ArretServeur(wxT("Arrêt du serveur"));
-    }
 }
 
 void EvtFramePrincipal::OnButtonClickViderAffichage(wxCommandEvent& event)
 {
     m_textCtrlAffichage->Clear();
 }
+
+void EvtFramePrincipal::OnToggleButtonDisponibiliteClick(wxCommandEvent& event)
+{
+    if(m_toggleBtnDisponibilite->GetValue())
+    {
+        m_textCtrlAffichage->AppendText(wxT("Bras disponible\n"));
+        m_serveur->SetBrasDispo(true);
+    }
+    else
+    {
+        m_textCtrlAffichage->AppendText(wxT("Bras non disponible\n"));
+        m_serveur->SetBrasDispo(false);
+        
+        m_toggleBtnDisponibilite->SetValue(false);
+        m_toggleBtnDisponibilite->SetLabel(wxT("Changer la disponibilité du bras\nen non disponible"));
+    }
+}
+
 
 void EvtFramePrincipal::AfficheMessageServeur(wxCommandEvent& event)
 {
@@ -79,22 +97,4 @@ void EvtFramePrincipal::MAJnombreClients(wxCommandEvent& event)
 {
     // affiche dans la statusbar sur événement du serveur
     m_statusBar->SetStatusText(event.GetString(), 1);
-}
-
-void EvtFramePrincipal::ArretServeur(wxString message)
-{
-    m_serveur->Close();
-    m_connecte = false;
-    delete m_serveur;
-
-    // Affichage du message
-    message << wxT("\n");
-    m_textCtrlAffichage->Clear();
-    m_textCtrlAffichage->AppendText(message);
-
-    // Mise à jour de l'IHM
-    m_toggleBtnConnexion->SetValue(false);
-    m_toggleBtnConnexion->SetLabel(wxT("Démarrer le serveur"));
-    m_statusBar->SetStatusText(wxT("Serveur déconnecté.\n"), 0);
-    Layout();
 }

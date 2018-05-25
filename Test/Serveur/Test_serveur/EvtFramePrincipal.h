@@ -31,6 +31,7 @@ class EvtFramePrincipal : public FramePrincipal
 		void OnFrameClose( wxCloseEvent& event );
 		void OnButtonDemarrerServeurToggle( wxCommandEvent& event );
 		void OnButtonClickViderAffichage( wxCommandEvent& event );
+		void OnToggleButtonDisponibiliteClick( wxCommandEvent& event );
 	public:
 		/** Constructor */
 		EvtFramePrincipal( wxWindow* parent );
@@ -42,8 +43,6 @@ class EvtFramePrincipal : public FramePrincipal
 
         void MAJnombreClients(wxCommandEvent& event);
         void AfficheMessageServeur(wxCommandEvent& event);
-        void ArretServeur(wxString message);
-
 
 };
 

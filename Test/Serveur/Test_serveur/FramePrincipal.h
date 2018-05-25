@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Feb 16 2016)
+// C++ code generated with wxFormBuilder (version Dec 21 2016)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO "NOT" EDIT THIS FILE!
@@ -11,17 +11,15 @@
 #include <wx/artprov.h>
 #include <wx/xrc/xmlres.h>
 #include <wx/string.h>
-#include <wx/stattext.h>
+#include <wx/tglbtn.h>
 #include <wx/gdicmn.h>
 #include <wx/font.h>
 #include <wx/colour.h>
 #include <wx/settings.h>
-#include <wx/textctrl.h>
 #include <wx/sizer.h>
-#include <wx/panel.h>
-#include <wx/tglbtn.h>
-#include <wx/button.h>
 #include <wx/statbox.h>
+#include <wx/button.h>
+#include <wx/textctrl.h>
 #include <wx/statusbr.h>
 #include <wx/frame.h>
 
@@ -36,11 +34,10 @@ class FramePrincipal : public wxFrame
 	private:
 	
 	protected:
-		wxPanel* m_panelParametreConnexion;
-		wxStaticText* m_staticTextPort;
-		wxTextCtrl* m_textCtrlPort;
 		wxToggleButton* m_toggleBtnConnexion;
+		wxStaticBoxSizer* sbSizerGestion;
 		wxButton* m_buttonViderAffichage;
+		wxToggleButton* m_toggleBtnDisponibilite;
 		wxTextCtrl* m_textCtrlAffichage;
 		wxStatusBar* m_statusBar;
 		
@@ -48,11 +45,12 @@ class FramePrincipal : public wxFrame
 		virtual void OnFrameClose( wxCloseEvent& event ) { event.Skip(); }
 		virtual void OnButtonDemarrerServeurToggle( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnButtonClickViderAffichage( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnToggleButtonDisponibiliteClick( wxCommandEvent& event ) { event.Skip(); }
 		
 	
 	public:
 		
-		FramePrincipal( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Serveur -> Client"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 600,500 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		FramePrincipal( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Serveur -> Client"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 500,400 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 		
 		~FramePrincipal();
 	
