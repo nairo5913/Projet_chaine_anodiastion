@@ -5,16 +5,16 @@
 ## Debug
 ProjectName            :=Regleur
 ConfigurationName      :=Debug
-WorkspacePath          :=/home/nairo5913/Ozanam/Projet_chaine_anodisation/Nassim/Projet_chaine_anodiastion/Nassim
-ProjectPath            :=/home/nairo5913/Ozanam/Projet_chaine_anodisation/Nassim/Projet_chaine_anodiastion/Nassim/Regleur
+WorkspacePath          :=/home/ir2/nboubziz/Documents/git/Nassim
+ProjectPath            :=/home/ir2/nboubziz/Documents/git/Nassim/Regleur
 IntermediateDirectory  :=./Debug
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
-User                   :=nairo5913
-Date                   :=22/05/2018
-CodeLitePath           :=/home/nairo5913/.codelite
+User                   :=Nassim BOUBZIZ
+Date                   :=25/05/2018
+CodeLitePath           :=/home/ir2/nboubziz/.codelite
 LinkerName             :=/usr/bin/g++
 SharedObjectLinkerName :=/usr/bin/g++ -shared -fPIC
 ObjectSuffix           :=.o
@@ -39,8 +39,8 @@ LinkOptions            :=  $(shell wx-config   --libs --unicode=yes)
 IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch)IHM 
 IncludePCH             := 
 RcIncludePath          := 
-Libs                   := 
-ArLibs                 :=  
+Libs                   := $(LibrarySwitch)PocoDataODBC $(LibrarySwitch)PocoData $(LibrarySwitch)PocoFoundation 
+ArLibs                 :=  "PocoDataODBC" "PocoData" "PocoFoundation" 
 LibPath                := $(LibraryPathSwitch). 
 
 ##
@@ -60,7 +60,7 @@ AS       := /usr/bin/as
 ## User defined environment variables
 ##
 CodeLiteDir:=/usr/share/codelite
-Objects0=$(IntermediateDirectory)/EvtFramePrincipal.cpp$(ObjectSuffix) $(IntermediateDirectory)/FramePrincipal.cpp$(ObjectSuffix) $(IntermediateDirectory)/MyApp.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/EvtFramePrincipal.cpp$(ObjectSuffix) $(IntermediateDirectory)/FramePrincipal.cpp$(ObjectSuffix) $(IntermediateDirectory)/MyApp.cpp$(ObjectSuffix) $(IntermediateDirectory)/DataAnnodisation.cpp$(ObjectSuffix) $(IntermediateDirectory)/Client.cpp$(ObjectSuffix) 
 
 
 
@@ -92,7 +92,7 @@ PreBuild:
 ## Objects
 ##
 $(IntermediateDirectory)/EvtFramePrincipal.cpp$(ObjectSuffix): EvtFramePrincipal.cpp $(IntermediateDirectory)/EvtFramePrincipal.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Nassim/Projet_chaine_anodiastion/Nassim/Regleur/EvtFramePrincipal.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/EvtFramePrincipal.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ir2/nboubziz/Documents/git/Nassim/Regleur/EvtFramePrincipal.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/EvtFramePrincipal.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/EvtFramePrincipal.cpp$(DependSuffix): EvtFramePrincipal.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/EvtFramePrincipal.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/EvtFramePrincipal.cpp$(DependSuffix) -MM EvtFramePrincipal.cpp
 
@@ -100,7 +100,7 @@ $(IntermediateDirectory)/EvtFramePrincipal.cpp$(PreprocessSuffix): EvtFramePrinc
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/EvtFramePrincipal.cpp$(PreprocessSuffix) EvtFramePrincipal.cpp
 
 $(IntermediateDirectory)/FramePrincipal.cpp$(ObjectSuffix): FramePrincipal.cpp $(IntermediateDirectory)/FramePrincipal.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Nassim/Projet_chaine_anodiastion/Nassim/Regleur/FramePrincipal.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/FramePrincipal.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ir2/nboubziz/Documents/git/Nassim/Regleur/FramePrincipal.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/FramePrincipal.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/FramePrincipal.cpp$(DependSuffix): FramePrincipal.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/FramePrincipal.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/FramePrincipal.cpp$(DependSuffix) -MM FramePrincipal.cpp
 
@@ -108,12 +108,28 @@ $(IntermediateDirectory)/FramePrincipal.cpp$(PreprocessSuffix): FramePrincipal.c
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/FramePrincipal.cpp$(PreprocessSuffix) FramePrincipal.cpp
 
 $(IntermediateDirectory)/MyApp.cpp$(ObjectSuffix): MyApp.cpp $(IntermediateDirectory)/MyApp.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Nassim/Projet_chaine_anodiastion/Nassim/Regleur/MyApp.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/MyApp.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ir2/nboubziz/Documents/git/Nassim/Regleur/MyApp.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/MyApp.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/MyApp.cpp$(DependSuffix): MyApp.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/MyApp.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/MyApp.cpp$(DependSuffix) -MM MyApp.cpp
 
 $(IntermediateDirectory)/MyApp.cpp$(PreprocessSuffix): MyApp.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/MyApp.cpp$(PreprocessSuffix) MyApp.cpp
+
+$(IntermediateDirectory)/DataAnnodisation.cpp$(ObjectSuffix): DataAnnodisation.cpp $(IntermediateDirectory)/DataAnnodisation.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ir2/nboubziz/Documents/git/Nassim/Regleur/DataAnnodisation.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/DataAnnodisation.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/DataAnnodisation.cpp$(DependSuffix): DataAnnodisation.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/DataAnnodisation.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/DataAnnodisation.cpp$(DependSuffix) -MM DataAnnodisation.cpp
+
+$(IntermediateDirectory)/DataAnnodisation.cpp$(PreprocessSuffix): DataAnnodisation.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/DataAnnodisation.cpp$(PreprocessSuffix) DataAnnodisation.cpp
+
+$(IntermediateDirectory)/Client.cpp$(ObjectSuffix): Client.cpp $(IntermediateDirectory)/Client.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ir2/nboubziz/Documents/git/Nassim/Regleur/Client.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Client.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Client.cpp$(DependSuffix): Client.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Client.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Client.cpp$(DependSuffix) -MM Client.cpp
+
+$(IntermediateDirectory)/Client.cpp$(PreprocessSuffix): Client.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Client.cpp$(PreprocessSuffix) Client.cpp
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

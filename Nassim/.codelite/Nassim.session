@@ -1,44 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Session Name="/home/nboubziz/Documents/Projet_chaine_anodiastion/Nassim/Nassim.workspace">
-  <int Value="4" Name="m_selectedTab"/>
-  <wxString Value="/home/nboubziz/Documents/Projet_chaine_anodiastion/Nassim/Nassim.workspace" Name="m_workspaceName"/>
+<Session Name="/home/ir2/nboubziz/Documents/git/Nassim/Nassim.workspace">
+  <int Value="3" Name="m_selectedTab"/>
+  <wxString Value="/home/ir2/nboubziz/Documents/git/Nassim/Nassim.workspace" Name="m_workspaceName"/>
   <TabInfoArray Name="TabInfoArray">
     <TabInfo>
-      <wxString Value="/home/nboubziz/Documents/Projet_chaine_anodiastion/Nassim/Client/Client.h" Name="FileName"/>
-      <int Value="15" Name="FirstVisibleLine"/>
-      <int Value="20" Name="CurrentLine"/>
+      <wxString Value="/home/ir2/nboubziz/Documents/git/Nassim/Regleur/DataAnnodisation.h" Name="FileName"/>
+      <int Value="23" Name="FirstVisibleLine"/>
+      <int Value="42" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
     <TabInfo>
-      <wxString Value="/home/nboubziz/Documents/Projet_chaine_anodiastion/Nassim/Client/EvtFramePrincipal.h" Name="FileName"/>
-      <int Value="15" Name="FirstVisibleLine"/>
-      <int Value="33" Name="CurrentLine"/>
+      <wxString Value="/home/ir2/nboubziz/Documents/git/Nassim/Regleur/DataAnnodisation.cpp" Name="FileName"/>
+      <int Value="78" Name="FirstVisibleLine"/>
+      <int Value="24" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
     <TabInfo>
-      <wxString Value="/home/nboubziz/Documents/Projet_chaine_anodiastion/Nassim/Client/Protocole.h" Name="FileName"/>
-      <int Value="9" Name="FirstVisibleLine"/>
-      <int Value="27" Name="CurrentLine"/>
+      <wxString Value="/home/ir2/nboubziz/Documents/git/Nassim/Regleur/EvtFramePrincipal.h" Name="FileName"/>
+      <int Value="43" Name="FirstVisibleLine"/>
+      <int Value="64" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
     <TabInfo>
-      <wxString Value="/home/nboubziz/Documents/Projet_chaine_anodiastion/Nassim/Client/Client.cpp" Name="FileName"/>
-      <int Value="101" Name="FirstVisibleLine"/>
-      <int Value="118" Name="CurrentLine"/>
+      <wxString Value="/home/ir2/nboubziz/Documents/git/Nassim/Regleur/EvtFramePrincipal.cpp" Name="FileName"/>
+      <int Value="61" Name="FirstVisibleLine"/>
+      <int Value="284" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds">
-        <IntVectorItem Value="0"/>
-        <IntVectorItem Value="8"/>
-        <IntVectorItem Value="110"/>
+        <IntVectorItem Value="267"/>
       </IntVector>
     </TabInfo>
     <TabInfo>
-      <wxString Value="/home/nboubziz/Documents/Projet_chaine_anodiastion/Nassim/Client/EvtFramePrincipal.cpp" Name="FileName"/>
-      <int Value="15" Name="FirstVisibleLine"/>
-      <int Value="24" Name="CurrentLine"/>
+      <wxString Value="/home/ir2/nboubziz/Documents/git/Nassim/Regleur/Client.h" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="17" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="/home/ir2/nboubziz/Documents/git/Nassim/Regleur/Client.cpp" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="0" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
