@@ -2,7 +2,7 @@
 <CodeLite_Workspace Name="Test_requete_avec_poco" Database="" Version="10.0.0">
   <Project Name="Test_requete_avec_affichage_et_saisie" Path="Test_requete_avec_affichage_et_saisie/Test_requete_avec_affichage_et_saisie.project" Active="Yes"/>
   <BuildMatrix>
-    <WorkspaceConfiguration Name="Debug" Selected="yes">
+    <WorkspaceConfiguration Name="Debug" Selected="no">
       <Environment/>
       <Project Name="Test_requete_avec_affichage_et_saisie" ConfigName="Debug"/>
     </WorkspaceConfiguration>

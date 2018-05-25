@@ -14,6 +14,7 @@ EvtFramePrincipal::EvtFramePrincipal(wxWindow* parent) : FramePrincipal(parent)
     m_identifie = false;
     m_fabrication = false;
     m_bdd_anodisation = new DataAnodisation(DSN);
+    m_donnees_IHM = new DonneesIHM(m_bdd_anodisation);
 
     // Modification du séparateur central de la wxStatusBar
     int widths[2];
@@ -295,61 +296,75 @@ void EvtFramePrincipal::OnOkButtonTesterClick(wxCommandEvent& event) // À coder
 
 void EvtFramePrincipal::OnButtonDisponibiliteBrasClick(wxCommandEvent& event)
 {
-    if(m_client->DemandeDisponibiliteBras())
+    if(m_client_connecte)
     {
-        // afficher/masquer les panel
-        m_panelBrasIndisponible->Hide();
-        m_panelBrasDisponible->Show();
-        m_panelPasTache->Show();
-        m_panelTacheEnCours->Hide();
-        
-        // Désactiver le bouton pour demander la tâche en cours
-        m_buttonTacheEnCours->Disable();
-        
-        // Réorganiser l'intérieur des sbSizer
-        sbSizerTacheEnCours->Layout();
-        sbSizerDisponibiliteBras->Layout();
+        if(m_client->DemandeDisponibiliteBras())
+        {
+            // afficher/masquer les panel
+            m_panelBrasIndisponible->Hide();
+            m_panelBrasDisponible->Show();
+            m_panelPasTache->Show();
+            m_panelTacheEnCours->Hide();
+            
+            // Désactiver le bouton pour demander la tâche en cours
+            m_buttonTacheEnCours->Disable();
+            
+            // Réorganiser l'intérieur des sbSizer
+            sbSizerTacheEnCours->Layout();
+            sbSizerDisponibiliteBras->Layout();
+        }
+        else
+        {
+            // afficher/masquer les panel
+            m_panelBrasIndisponible->Show();
+            m_panelBrasDisponible->Hide();
+            m_panelPasTache->Hide();
+            m_panelTacheEnCours->Hide();
+            
+            // Réactiver le bouton pour demander la tâche en cours
+            m_buttonTacheEnCours->Enable();
+        }
     }
     else
     {
-        // afficher/masquer les panel
-        m_panelBrasIndisponible->Show();
-        m_panelBrasDisponible->Hide();
-        m_panelPasTache->Hide();
-        m_panelTacheEnCours->Hide();
-        
-        // Réactiver le bouton pour demander la tâche en cours
-        m_buttonTacheEnCours->Enable();
+        wxLogError(wxT("Le client n'est pas connecté au serveur de la Raspberry pi."));
     }
 }
 
 void EvtFramePrincipal::OnButtonTacheEnCoursClick(wxCommandEvent& event) // À coder
 {
-    if(m_client->DemandeDisponibiliteBras())
+    if(m_client_connecte)
     {
-        // afficher/masquer les panel
-        m_panelBrasIndisponible->Hide();
-        m_panelBrasDisponible->Show();
-        m_panelPasTache->Show();
-        m_panelTacheEnCours->Hide();
-        
-        // Désactiver le bouton pour demander la tâche en cours
-        m_buttonTacheEnCours->Disable();
-        
-        // Réorganiser l'intérieur des sbSizer
-        sbSizerTacheEnCours->Layout();
-        sbSizerDisponibiliteBras->Layout();
+        if(m_client->DemandeDisponibiliteBras())
+        {
+            // afficher/masquer les panel
+            m_panelBrasIndisponible->Hide();
+            m_panelBrasDisponible->Show();
+            m_panelPasTache->Show();
+            m_panelTacheEnCours->Hide();
+            
+            // Désactiver le bouton pour demander la tâche en cours
+            m_buttonTacheEnCours->Disable();
+            
+            // Réorganiser l'intérieur des sbSizer
+            sbSizerTacheEnCours->Layout();
+            sbSizerDisponibiliteBras->Layout();
+        }
+        else
+        {
+            // afficher/masquer les panel
+            m_panelBrasIndisponible->Show();
+            m_panelBrasDisponible->Hide();
+            m_panelPasTache->Hide();
+            m_panelTacheEnCours->Hide();
+            
+            // Réactiver le bouton pour demander la tâche en cours
+            m_buttonTacheEnCours->Enable();
+        }
     }
     else
     {
-        // afficher/masquer les panel
-        m_panelBrasIndisponible->Show();
-        m_panelBrasDisponible->Hide();
-        m_panelPasTache->Hide();
-        m_panelTacheEnCours->Hide();
-        
-        // Réactiver le bouton pour demander la tâche en cours
-        m_buttonTacheEnCours->Enable();
+        wxLogError(wxT("Le client n'est pas connecté au serveur de la Raspberry pi."));
     }
 }
 
@@ -435,9 +450,9 @@ void EvtFramePrincipal::AfficheStatus(wxString texte, int position)
 
 void EvtFramePrincipal::RempliListBox()
 {
-    if(m_bdd_anodisation->RecupereListeProcessus())
+    if(m_donnees_IHM->RecupereListeProcessus())
     {
-        vector<string> liste_processus = m_bdd_anodisation->GetListeProcessus();
+        vector<string> liste_processus = m_donnees_IHM->GetListeProcessus();
         
         //cout << "taille : " << liste_processus.size() << endl;
         wxString rempli;

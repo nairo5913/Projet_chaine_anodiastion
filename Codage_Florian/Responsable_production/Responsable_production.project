@@ -15,6 +15,7 @@
     <File Name="DataAnodisation.cpp"/>
     <File Name="EvtFrameApropos.cpp"/>
     <File Name="EvtFrameAide.cpp"/>
+    <File Name="DonneesIHM.cpp"/>
   </VirtualDirectory>
   <VirtualDirectory Name="include">
     <File Name="EvtFramePrincipal.h"/>
@@ -25,6 +26,7 @@
     <File Name="DataAnodisation.h"/>
     <File Name="EvtFrameApropos.h"/>
     <File Name="EvtFrameAide.h"/>
+    <File Name="DonneesIHM.h"/>
   </VirtualDirectory>
   <VirtualDirectory Name="resources">
     <File Name="FramePrincipal.fbp"/>

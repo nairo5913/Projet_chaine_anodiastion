@@ -38,40 +38,16 @@ class DataAnodisation
         // Assesseur
         bool IsConnexionOK(){return m_connexionOK;};
         string GetLastError(){return m_last_error;};
-        string GetDureeTotal(){return m_dureeTotal;};
-        string GetNombreBain(){return m_nombreBain;};
-        string GetNomProcessus(){return m_nomProcessus;};
-        string GetOrdreTrajectoires(){return m_ordreTrajectoires;};
-        unsigned int GetNombreColonnes(){return m_nb_colones;};
         vector<string> GetLastResult(){return m_last_result;};
-        vector<string> GetListeTouteTrajectoires(){return m_listeTouteTrajectoires;};
-        vector<string> GetListeTrajectoiresProcessus(){return m_listeTrajectoiresProcessus;};
-        vector<string> GetListeProcessus(){return m_listeProcessus;};
         
-        // Recupération de données pour l'IHM
-        bool RecupereDureeTotal(string id_processus);
-        bool RecupereListeProcessus();
-        bool RecupereListeTouteTrajectoires();
-        bool RecupereListeTrajectoiresProcessus(string id_processus);
-        bool RecupereNombreBain(string id_processus);
-        bool RecupereNomProcessus(string id_processus);
-        bool RecupereOrdreTrajectoires(string id_processus);
         
     protected:
     private:
         Session *m_session;
         
         bool m_connexionOK;
-        string m_dureeTotal;
         string m_last_error;
         
-        string m_nomProcessus;
-        string m_nombreBain;
-        string m_ordreTrajectoires;
-        unsigned int m_nb_colones;
-        vector<string> m_listeTouteTrajectoires;
-        vector<string> m_listeTrajectoiresProcessus;
-        vector<string> m_listeProcessus;
         vector<string> m_last_result;
 };
 
