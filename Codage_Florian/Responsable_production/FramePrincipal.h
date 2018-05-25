@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Dec 21 2016)
+// C++ code generated with wxFormBuilder (version Feb 16 2016)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO "NOT" EDIT THIS FILE!
@@ -131,12 +131,14 @@ class FramePrincipal : public wxFrame
 		wxBitmapButton* m_bpButtonStopTester;
 		wxBitmapButton* m_bpButtonOKTester;
 		wxScrolledWindow* m_scrolledWindowInfoBras;
+		wxStaticBoxSizer* sbSizerDisponibiliteBras;
 		wxPanel* m_panelBrasDisponible;
 		wxStaticBitmap* m_bitmapBrasDisponible;
 		wxStaticText* m_staticTextBrasDisponible;
 		wxPanel* m_panelBrasIndisponible;
 		wxStaticBitmap* m_bitmapBrasIndisponible;
 		wxStaticText* m_staticTextBrasIndisponible;
+		wxStaticBoxSizer* sbSizerTacheEnCours;
 		wxPanel* m_panelTacheEnCours;
 		wxStaticText* m_staticTextTypeTache;
 		wxTextCtrl* m_textCtrlTypeTache;

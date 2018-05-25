@@ -20,7 +20,7 @@ EvtFramePrincipal::EvtFramePrincipal(wxWindow* parent) : FramePrincipal(parent)
     widths[0] = -1;
     widths[1] = 140;
     m_statusBar->SetStatusWidths(2, widths);
-    m_statusBar->SetStatusText(wxT("Déconnecté"), 1);
+    AfficheStatus(wxT("Déconnecté"), 1);
 
     // Connexion des événements du client
     Connect(ID_CLIENT, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(EvtFramePrincipal::AfficheInfoClient), NULL,
@@ -31,21 +31,24 @@ EvtFramePrincipal::EvtFramePrincipal(wxWindow* parent) : FramePrincipal(parent)
             NULL, this);
 }
 
-void EvtFramePrincipal::OnFrameClose(wxCloseEvent& event)
+void EvtFramePrincipal::OnFrameClose(wxCloseEvent& event) // À continuer
 {
-    // TODO: Implement OnFrameClose
     // Bloquer la fermeture de la fenêtre
     if(m_fabrication)
     {
         m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(*wxRED));
-        m_textCtrlAffichage->AppendText(wxT("\nVeulliez attendre la fin de la fabrication en cours!\n"));
+        m_textCtrlAffichage->AppendText(wxT("\nVeulliez attendre la fin de la fabrication en cours !\n"));
         m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(wxNullColour));
+        
+        // Boite de dialogue
+        wxMessageBox("\nUne fabrication est en cours.\nVeulliez attendre la fin de la fabrication en cours !\n", "Fabrication en cours !", wxOK_DEFAULT | wxICON_EXCLAMATION | wxCENTRE | wxSTAY_ON_TOP, this);
+        
     }
     else
     {
         if(m_client_connecte)
         {
-            DeconnexionClient(wxT("Déconnexion depuis le client"));
+            DeconnexionClient(wxT("Déconnexion depuis le poste responsable de production."));
         }
 
         Destroy();
@@ -54,7 +57,6 @@ void EvtFramePrincipal::OnFrameClose(wxCloseEvent& event)
 
 void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
 {
-    // TODO: Implement OnButtonConnexionTogglewxString message;
     /*wxString message;
     
     message << wxT("Identifiant : ") << m_textCtrlLogin->GetValue() << wxT("\nMot de passe : ")
@@ -79,8 +81,6 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
             m_notebookProcessus->Show();
             // Changement du label du toggle button
             m_toggleBtnConnexion->SetLabel(wxT("Déconnexion"));
-            // Mise à jour de la statue bar
-            //m_statusBar->SetStatusText(wxT("Connecté"), 1);
 
             Layout();
             
@@ -122,19 +122,21 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
             // Mise à jour de la barre de statu en fonction de la connexion
             if(m_bdd_connecte && !m_client_connecte)
             {
-                m_statusBar->SetStatusText(wxT("Connecté à la bdd"), 1);
+                AfficheStatus(wxT("Connecté à la bdd"), 1);
             }
             else if(!m_bdd_connecte && m_client_connecte)
             {
-                m_statusBar->SetStatusText(wxT("Connecté au client"), 1);
+                AfficheStatus(wxT("Connecté au client"), 1);
             }
             else if(m_bdd_connecte && m_client_connecte)
             {
-                m_statusBar->SetStatusText(wxT("Connecté"), 1);
+                
+                AfficheStatus(wxT(""), 0);
+                AfficheStatus(wxT("Connecté"), 1);
             }
             else 
             {
-                m_statusBar->SetStatusText(wxT("Non connecté"), 1);
+                AfficheStatus(wxT("Non connecté"), 1);
             }
             
             // Si il y a une erreur de connection l'afficher
@@ -160,6 +162,10 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
     else
     {
         // Vérifier conection client (m_connecte)
+        if(m_client_connecte)
+        {
+            DeconnexionClient(wxT("Déconnexion du responsable"));
+        }
         // Gérer déconnection du client
         // verifier que l'on a pas lancé de fabrication
 
@@ -180,7 +186,7 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
         m_toggleBtnConnexion->SetLabel(wxT("Connexion"));
         
         // Mise à jour de la statue bar
-        m_statusBar->SetStatusText(wxT("Déconnecté"), 1);
+        AfficheStatus(wxT("Déconnecté"), 1);
         
         // Vidange de l'affichage
         m_textCtrlAffichage->Clear();
@@ -189,45 +195,50 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
     }
 }
 
-void EvtFramePrincipal::OnListBoxAffichageSelection(wxCommandEvent& event)
+void EvtFramePrincipal::OnListBoxAffichageSelection(wxCommandEvent& event) // À coder
 {
-    // TODO: Implement OnListBoxAffichageSelection
     // m_textCtrlAffichage->AppendText(wxT("Selection liste affichage processus\n"));
     wxString selection;
     selection << m_listBoxAffichageProcessus->GetStringSelection() << wxT("\n");
     m_textCtrlAffichage->AppendText(selection);
     
-    int separateur = selection.find(" - ");
-    wxString id_selection = DecouperTexteDebut(selection, separateur);
-    wxLogDebug(id_selection);
+    // Récupération de l'id du processus
+    wxString id_selection = GardeIdSelection(selection);
+    wxLogDebug(wxT("Selection affichage processus : ") + id_selection);
 }
 
-void EvtFramePrincipal::OnListBoxModifierSelection(wxCommandEvent& event)
+void EvtFramePrincipal::OnListBoxModifierSelection(wxCommandEvent& event) // À coder
 {
-    // TODO: Implement OnListBoxModifierSelection
+    // Récupération de la saisie
+    wxString selection;
+    selection << m_listBoxModifierProcessus->GetStringSelection() << wxT("\n");
+    
+    // Garder de l'id du processus
+    wxString id_selection = GardeIdSelection(selection);
+    wxLogDebug(wxT("Selection modifier processus : ") + id_selection);
 }
 
-void EvtFramePrincipal::OnApplyButtonModifierClick(wxCommandEvent& event)
+void EvtFramePrincipal::OnApplyButtonModifierClick(wxCommandEvent& event) // À coder
 {
     // TODO: Implement OnApplyButtonModifierClick
 }
 
-void EvtFramePrincipal::OnCancelButtonModiffierClick(wxCommandEvent& event)
+void EvtFramePrincipal::OnCancelButtonModiffierClick(wxCommandEvent& event) // À coder
 {
     // TODO: Implement OnCancelButtonModiffierClick
 }
 
-void EvtFramePrincipal::OnCancelButtonCreerClick(wxCommandEvent& event)
+void EvtFramePrincipal::OnCancelButtonCreerClick(wxCommandEvent& event) // À coder
 {
     // TODO: Implement OnCancelButtonCreerClick
 }
 
-void EvtFramePrincipal::OnSaveButtonCreerClick(wxCommandEvent& event)
+void EvtFramePrincipal::OnSaveButtonCreerClick(wxCommandEvent& event) // À coder
 {
     // TODO: Implement OnSaveButtonCreerClick
 }
 
-void EvtFramePrincipal::OnListBoxDetruireSelection(wxCommandEvent& event)
+void EvtFramePrincipal::OnListBoxDetruireSelection(wxCommandEvent& event) // À coder
 {
     // TODO: Implement OnListBoxDetruireSelection
     m_textCtrlAffichage->AppendText(wxT("Selection liste détruire processus\n"));
@@ -242,12 +253,12 @@ void EvtFramePrincipal::OnListBoxDetruireSelection(wxCommandEvent& event)
     Layout();
 }
 
-void EvtFramePrincipal::OnApplyButtonDetruireClick(wxCommandEvent& event)
+void EvtFramePrincipal::OnApplyButtonDetruireClick(wxCommandEvent& event) // À coder
 {
-    // TODO: Implement OnApplyButtonDetruireClick
+    //
 }
 
-void EvtFramePrincipal::OnListBoxLancerSelection(wxCommandEvent& event)
+void EvtFramePrincipal::OnListBoxLancerSelection(wxCommandEvent& event) // À coder
 {
     // TODO: Implement OnListBoxLancerSelection
     m_textCtrlAffichage->AppendText(wxT("Selection liste détruire processus\n"));
@@ -262,57 +273,92 @@ void EvtFramePrincipal::OnListBoxLancerSelection(wxCommandEvent& event)
     Layout();
 }
 
-void EvtFramePrincipal::OnOkButtonLancerClick(wxCommandEvent& event)
+void EvtFramePrincipal::OnOkButtonLancerClick(wxCommandEvent& event) // À coder
 {
     // TODO: Implement OnOkButtonLancerClick
 }
 
-void EvtFramePrincipal::OnListBoxTesterSelection(wxCommandEvent& event)
+void EvtFramePrincipal::OnListBoxTesterSelection(wxCommandEvent& event) // À coder
 {
     // TODO: Implement OnListBoxTesterSelection
 }
 
-void EvtFramePrincipal::OnStopButtonTesterClick(wxCommandEvent& event)
+void EvtFramePrincipal::OnStopButtonTesterClick(wxCommandEvent& event) // À coder
 {
     // TODO: Implement OnStopButtonTesterClick
 }
 
-void EvtFramePrincipal::OnOkButtonTesterClick(wxCommandEvent& event)
+void EvtFramePrincipal::OnOkButtonTesterClick(wxCommandEvent& event) // À coder
 {
     // TODO: Implement OnOkButtonTesterClick
 }
 
 void EvtFramePrincipal::OnButtonDisponibiliteBrasClick(wxCommandEvent& event)
 {
-    // TODO: Implement OnButtonDisponibiliteBrasClick
-    //
-    // if else avec la requete au client
-    //
-    // m_panelBrasDisponible->Hide();
-    m_panelBrasIndisponible->Show();
-
-    Layout();
+    if(m_client->DemandeDisponibiliteBras())
+    {
+        // afficher/masquer les panel
+        m_panelBrasIndisponible->Hide();
+        m_panelBrasDisponible->Show();
+        m_panelPasTache->Show();
+        m_panelTacheEnCours->Hide();
+        
+        // Désactiver le bouton pour demander la tâche en cours
+        m_buttonTacheEnCours->Disable();
+        
+        // Réorganiser l'intérieur des sbSizer
+        sbSizerTacheEnCours->Layout();
+        sbSizerDisponibiliteBras->Layout();
+    }
+    else
+    {
+        // afficher/masquer les panel
+        m_panelBrasIndisponible->Show();
+        m_panelBrasDisponible->Hide();
+        m_panelPasTache->Hide();
+        m_panelTacheEnCours->Hide();
+        
+        // Réactiver le bouton pour demander la tâche en cours
+        m_buttonTacheEnCours->Enable();
+    }
 }
 
-void EvtFramePrincipal::OnButtonTacheEnCoursClick(wxCommandEvent& event)
+void EvtFramePrincipal::OnButtonTacheEnCoursClick(wxCommandEvent& event) // À coder
 {
-    // TODO: Implement OnButtonTacheEnCoursClick
-    //
-    // if else avec la requete au client
-    //
-    // m_panelPasTache->Hide();
-    m_panelTacheEnCours->Show();
-
-    Layout();
+    if(m_client->DemandeDisponibiliteBras())
+    {
+        // afficher/masquer les panel
+        m_panelBrasIndisponible->Hide();
+        m_panelBrasDisponible->Show();
+        m_panelPasTache->Show();
+        m_panelTacheEnCours->Hide();
+        
+        // Désactiver le bouton pour demander la tâche en cours
+        m_buttonTacheEnCours->Disable();
+        
+        // Réorganiser l'intérieur des sbSizer
+        sbSizerTacheEnCours->Layout();
+        sbSizerDisponibiliteBras->Layout();
+    }
+    else
+    {
+        // afficher/masquer les panel
+        m_panelBrasIndisponible->Show();
+        m_panelBrasDisponible->Hide();
+        m_panelPasTache->Hide();
+        m_panelTacheEnCours->Hide();
+        
+        // Réactiver le bouton pour demander la tâche en cours
+        m_buttonTacheEnCours->Enable();
+    }
 }
 
 void EvtFramePrincipal::OnButtonViderAffichageClick(wxCommandEvent& event)
 {
-    // TODO: Implement OnButtonViderAffichageClick
     m_textCtrlAffichage->Clear();
 }
 
-void EvtFramePrincipal::OnMenuQuitterSelection(wxCommandEvent& event)
+void EvtFramePrincipal::OnMenuQuitterSelection(wxCommandEvent& event) // À continuer
 {
     // TODO: Implement OnMenuQuitterSelection
     if(m_fabrication)
@@ -320,12 +366,15 @@ void EvtFramePrincipal::OnMenuQuitterSelection(wxCommandEvent& event)
         m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(*wxRED));
         m_textCtrlAffichage->AppendText(wxT("\nVeulliez attendre la fin de la fabrication en cours!\n"));
         m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(wxNullColour));
+        
+        // Boite de dialogue
+        wxMessageBox("\nUne fabrication est en cours.\nVeulliez attendre la fin de la fabrication en cours !\n", "Fabrication en cours !", wxOK_DEFAULT | wxICON_EXCLAMATION | wxCENTRE | wxSTAY_ON_TOP, this);
     }
     else
     {
         if(m_client_connecte)
         {
-            DeconnexionClient(wxT("Déconnexion depuis le client"));
+            DeconnexionClient(wxT("Déconnexion depuis le poste responsable de production."));
         }
 
         Destroy();
@@ -334,20 +383,17 @@ void EvtFramePrincipal::OnMenuQuitterSelection(wxCommandEvent& event)
 
 void EvtFramePrincipal::OnMenuViderAffichageSelection(wxCommandEvent& event)
 {
-    // TODO: Implement OnMenuViderAffichageSelection
     m_textCtrlAffichage->Clear();
 }
 
 void EvtFramePrincipal::OnMenuAideSelection(wxCommandEvent& event)
 {
-    // TODO: Implement OnMenuAideSelection
     EvtFrameAide* frame_aide = new EvtFrameAide(this);
     frame_aide->Show();
 }
 
 void EvtFramePrincipal::OnMenuAproposSelection(wxCommandEvent& event)
 {
-    // TODO: Implement OnMenuAproposSelection
     EvtFrameApropos* frame_apropos = new EvtFrameApropos(this);
     frame_apropos->Show();
 }
@@ -356,6 +402,15 @@ void EvtFramePrincipal::OnMenuAproposSelection(wxCommandEvent& event)
 //  Méthode du programme
 ////////////////////////////////////////////////////////////////////////////////
 //
+bool EvtFramePrincipal::LancerFabrication(wxString id_processus) // À coder
+{
+    bool retour = false;
+    
+    //
+    
+    return retour;
+}
+
 bool EvtFramePrincipal::VerificationLogin(wxString login, wxString  pass)
 {
     wxString identifiant = wxT("Responsable");
@@ -368,6 +423,14 @@ bool EvtFramePrincipal::VerificationLogin(wxString login, wxString  pass)
     }
 
     return retour;
+}
+
+//
+// IHM
+//
+void EvtFramePrincipal::AfficheStatus(wxString texte, int position)
+{
+    m_statusBar->SetStatusText(texte, position);
 }
 
 void EvtFramePrincipal::RempliListBox()
@@ -435,27 +498,37 @@ void EvtFramePrincipal::AfficheMessageClient(wxCommandEvent& event)
 void EvtFramePrincipal::AfficheInfoClient(wxCommandEvent& event)
 {
     // Affiche dans la barre de statusbar l'événement
-    m_statusBar->SetStatusText(event.GetString(), 0);
+    AfficheStatus(event.GetString(), 0);
 }
 
 void EvtFramePrincipal::DeconnexionClient(wxString message)
 {
     m_client->Close();
     m_client_connecte = false;
-    //m_bdd_connecte = false;
+    
+    if(message.EndsWith(wxT(": il a disparu\n")))
+    {
+        wxLogError(wxT("Le serveur de communication de la raspberry c'est déconnecté!"));
+    }
     
     delete m_client;
-    //delete m_bdd_anodisation;
-
     // Affichage du message
     message << wxT("\n");
 
     m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(*wxRED));
     m_textCtrlAffichage->AppendText(message);
     m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(wxNullColour));
-
-    // Mise à jour de l'IHM
-    // m_statusBar->SetStatusText(wxT("Déconnecté"), 0);
+    
+    AfficheStatus(wxT("Client déconnecté"), 0);
+    
+    if(m_bdd_anodisation)
+    {
+        AfficheStatus(wxT("Connecté à la bdd"), 1);
+    }
+    else
+    {
+        AfficheStatus(wxT("Non connecté"), 1);
+    }
 }
 
 void EvtFramePrincipal::AgitServeurPerdu(wxCommandEvent& event)
@@ -472,6 +545,12 @@ string EvtFramePrincipal::ConversionEnString(wxString texte)
     return temp_string;
 }
 
+wxString EvtFramePrincipal::ConversionEnWxString(string texte)
+{
+    wxString temp_wxstring(texte.c_str(), wxConvUTF8);
+    
+    return temp_wxstring;
+}
 wxString EvtFramePrincipal::DecouperTexteDebut(wxString texte, int position)
 {
     wxString fin(texte.substr(position));
@@ -489,9 +568,10 @@ wxString EvtFramePrincipal::DecouperTexteFin(wxString texte, int position)
     return fin;
 }
 
-wxString EvtFramePrincipal::ConversionEnWxString(string texte)
+wxString EvtFramePrincipal::GardeIdSelection(wxString texte)
 {
-    wxString temp_wxstring(texte.c_str(), wxConvUTF8);
+    int separateur = texte.find(" - ");
+    wxString id_selection = DecouperTexteDebut(texte, separateur);
     
-    return temp_wxstring;
+    return id_selection;
 }

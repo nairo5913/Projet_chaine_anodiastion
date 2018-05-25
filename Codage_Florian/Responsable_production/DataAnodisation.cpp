@@ -45,7 +45,7 @@ bool DataAnodisation::ExecuteInsert(string requete)  //À coder
     return retour;
 }
 
-bool DataAnodisation::ExecuteSelect(string requete)  //À coder
+bool DataAnodisation::ExecuteSelect(string requete)
 {
     bool retour = true;
 
@@ -98,7 +98,7 @@ bool DataAnodisation::ExecuteUpdate(string requete)  //À coder
     return retour;
 }
 
-bool DataAnodisation::RecupereDureeTotal(string id_processus)
+bool DataAnodisation::RecupereDureeTotal(string id_processus) // À coder
 {
     bool retour = false;
 
@@ -131,35 +131,51 @@ bool DataAnodisation::RecupereListeProcessus()
 
 bool DataAnodisation::RecupereListeTouteTrajectoires()
 {
-    bool retour = false;
+    bool retour;
     
-    string requete = "SELECT id_trajectoires, nom_trajectoires FROM trajectoires ORDER BY id_trajectoires";
+    string requete = "SELECT * FROM trajectoires ORDER BY id_trajectoire";
+    
+    m_listeTouteTrajectoires.clear();
+    
+    if(ExecuteSelect(requete))
+    {
+        retour = true;
+        
+        for(unsigned int taille = 0; taille < m_last_result.size(); taille++)
+        {
+            m_listeTouteTrajectoires.push_back(m_last_result[taille]);
+        }
+    }
+    else
+    {
+        retour = false;
+    }
 
     return retour;
 }
 
-bool DataAnodisation::RecupereListeTrajectoiresProcessus(string id_processus)
+bool DataAnodisation::RecupereListeTrajectoiresProcessus(string id_processus) // À coder
 {
     bool retour = false;
 
     return retour;
 }
 
-bool DataAnodisation::RecupereNombreBain(string id_processus)
+bool DataAnodisation::RecupereNombreBain(string id_processus) // À coder
 {
     bool retour = false;
 
     return retour;
 }
 
-bool DataAnodisation::RecupereNomProcessus(string id_processus)
+bool DataAnodisation::RecupereNomProcessus(string id_processus) // À coder
 {
     bool retour = false;
 
     return retour;
 }
 
-bool DataAnodisation::RecupereOrdreTrajectoires(string id_processus)
+bool DataAnodisation::RecupereOrdreTrajectoires(string id_processus) // À coder
 {
     bool retour = false;
 

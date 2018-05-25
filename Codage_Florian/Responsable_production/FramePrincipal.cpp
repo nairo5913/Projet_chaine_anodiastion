@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Dec 21 2016)
+// C++ code generated with wxFormBuilder (version Feb 16 2016)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO "NOT" EDIT THIS FILE!
@@ -26,7 +26,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	wxBoxSizer* bSizerLogin;
 	bSizerLogin = new wxBoxSizer( wxHORIZONTAL );
 	
-	m_staticTextLogin = new wxStaticText( sbSizerConnexion->GetStaticBox(), wxID_ANY, wxT("Entrez votre login : "), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextLogin = new wxStaticText( sbSizerConnexion->GetStaticBox(), wxID_ANY, wxT("Entrez votre login :"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextLogin->Wrap( -1 );
 	bSizerLogin->Add( m_staticTextLogin, 1, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
@@ -42,7 +42,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	wxBoxSizer* bSizerPass;
 	bSizerPass = new wxBoxSizer( wxHORIZONTAL );
 	
-	m_staticTextPass = new wxStaticText( sbSizerConnexion->GetStaticBox(), wxID_ANY, wxT("Entrez votre mot de passe : "), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextPass = new wxStaticText( sbSizerConnexion->GetStaticBox(), wxID_ANY, wxT("Entrez votre mot de passe :"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextPass->Wrap( -1 );
 	bSizerPass->Add( m_staticTextPass, 1, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
@@ -76,7 +76,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	bSizerAfficherProcessus = new wxBoxSizer( wxHORIZONTAL );
 	
 	wxStaticBoxSizer* sbSizerSelectionProcessusAfficher;
-	sbSizerSelectionProcessusAfficher = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowAffichageProcessus, wxID_ANY, wxT("Séléction du processus à afficher") ), wxHORIZONTAL );
+	sbSizerSelectionProcessusAfficher = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowAffichageProcessus, wxID_ANY, wxT("Sélection du processus à afficher") ), wxHORIZONTAL );
 	
 	sbSizerSelectionProcessusAfficher->SetMinSize( wxSize( 280,-1 ) ); 
 	m_listBoxAffichageProcessus = new wxListBox( sbSizerSelectionProcessusAfficher->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_SORT ); 
@@ -278,7 +278,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	bSizerModifierProcessus = new wxBoxSizer( wxHORIZONTAL );
 	
 	wxStaticBoxSizer* sbSizerSelectionProcessusModifier;
-	sbSizerSelectionProcessusModifier = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowModifierProcessus, wxID_ANY, wxT("Séléction du processus à modifier") ), wxHORIZONTAL );
+	sbSizerSelectionProcessusModifier = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowModifierProcessus, wxID_ANY, wxT("Sélection du processus à modifier") ), wxHORIZONTAL );
 	
 	sbSizerSelectionProcessusModifier->SetMinSize( wxSize( 280,-1 ) ); 
 	m_listBoxModifierProcessus = new wxListBox( sbSizerSelectionProcessusModifier->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_SORT ); 
@@ -500,7 +500,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	bSizerCreerProcessus = new wxBoxSizer( wxVERTICAL );
 	
 	wxStaticBoxSizer* sbSizerCreer;
-	sbSizerCreer = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowCreerProcessus, wxID_ANY, wxT("Création d'un processus") ), wxHORIZONTAL );
+	sbSizerCreer = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowCreerProcessus, wxID_ANY, wxT("Création d’un processus") ), wxHORIZONTAL );
 	
 	wxBoxSizer* bSizerCreerGauche;
 	bSizerCreerGauche = new wxBoxSizer( wxVERTICAL );
@@ -678,7 +678,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	bSizerDetruireProcessus = new wxBoxSizer( wxHORIZONTAL );
 	
 	wxStaticBoxSizer* sbSizerSelectionProcessusDetruire;
-	sbSizerSelectionProcessusDetruire = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowDetruireProcessus, wxID_ANY, wxT("Séléction du processus à détruire") ), wxHORIZONTAL );
+	sbSizerSelectionProcessusDetruire = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowDetruireProcessus, wxID_ANY, wxT("Sélection du processus à détruire") ), wxHORIZONTAL );
 	
 	sbSizerSelectionProcessusDetruire->SetMinSize( wxSize( 280,-1 ) ); 
 	m_listBoxDetruireProcessus = new wxListBox( sbSizerSelectionProcessusDetruire->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE ); 
@@ -695,13 +695,13 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	
 	m_staticTextDetruire = new wxStaticText( sbSizerDetruire->GetStaticBox(), wxID_ANY, wxT("Vous allez détruire le processus : "), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextDetruire->Wrap( -1 );
-	m_staticTextDetruire->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, wxEmptyString ) );
+	m_staticTextDetruire->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), 70, 90, 92, false, wxEmptyString ) );
 	
 	bSizerTitreDetruire->Add( m_staticTextDetruire, 0, wxTOP|wxBOTTOM|wxLEFT, 5 );
 	
 	m_staticTextDetuireTitre = new wxStaticText( sbSizerDetruire->GetStaticBox(), wxID_ANY, wxT("Processus 1"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextDetuireTitre->Wrap( -1 );
-	m_staticTextDetuireTitre->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, wxEmptyString ) );
+	m_staticTextDetuireTitre->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), 70, 90, 92, false, wxEmptyString ) );
 	
 	bSizerTitreDetruire->Add( m_staticTextDetuireTitre, 0, wxTOP|wxBOTTOM|wxRIGHT, 5 );
 	
@@ -839,7 +839,6 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	wxBoxSizer* bSizer57;
 	bSizer57 = new wxBoxSizer( wxHORIZONTAL );
 	
-	wxStaticBoxSizer* sbSizerDisponibiliteBras;
 	sbSizerDisponibiliteBras = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowInfoBras, wxID_ANY, wxT("Disponibilité du bras") ), wxVERTICAL );
 	
 	m_panelBrasDisponible = new wxPanel( sbSizerDisponibiliteBras->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
@@ -848,18 +847,24 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	wxBoxSizer* bSizerBrasDisponible;
 	bSizerBrasDisponible = new wxBoxSizer( wxHORIZONTAL );
 	
+	wxBoxSizer* bSizer56;
+	bSizer56 = new wxBoxSizer( wxVERTICAL );
 	
-	bSizerBrasDisponible->Add( 0, 0, 1, wxEXPAND, 5 );
+	wxBoxSizer* bSizer571;
+	bSizer571 = new wxBoxSizer( wxHORIZONTAL );
 	
 	m_bitmapBrasDisponible = new wxStaticBitmap( m_panelBrasDisponible, wxID_ANY, wxBitmap( wxT("../Images/VertAllume.bmp"), wxBITMAP_TYPE_ANY ), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizerBrasDisponible->Add( m_bitmapBrasDisponible, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	bSizer571->Add( m_bitmapBrasDisponible, 0, wxALL, 5 );
 	
 	m_staticTextBrasDisponible = new wxStaticText( m_panelBrasDisponible, wxID_ANY, wxT("Le bras est disponible"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextBrasDisponible->Wrap( -1 );
-	bSizerBrasDisponible->Add( m_staticTextBrasDisponible, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	bSizer571->Add( m_staticTextBrasDisponible, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
 	
-	bSizerBrasDisponible->Add( 0, 0, 1, wxEXPAND, 5 );
+	bSizer56->Add( bSizer571, 0, wxALIGN_CENTER_HORIZONTAL, 5 );
+	
+	
+	bSizerBrasDisponible->Add( bSizer56, 1, wxALIGN_CENTER_VERTICAL, 5 );
 	
 	
 	m_panelBrasDisponible->SetSizer( bSizerBrasDisponible );
@@ -868,21 +873,29 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	sbSizerDisponibiliteBras->Add( m_panelBrasDisponible, 1, wxEXPAND | wxALL, 5 );
 	
 	m_panelBrasIndisponible = new wxPanel( sbSizerDisponibiliteBras->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	m_panelBrasIndisponible->Hide();
+	
 	wxBoxSizer* bSizerBrasIndisponible;
 	bSizerBrasIndisponible = new wxBoxSizer( wxHORIZONTAL );
 	
+	wxBoxSizer* bSizer561;
+	bSizer561 = new wxBoxSizer( wxVERTICAL );
 	
-	bSizerBrasIndisponible->Add( 0, 0, 1, wxEXPAND, 5 );
+	wxBoxSizer* bSizer5711;
+	bSizer5711 = new wxBoxSizer( wxHORIZONTAL );
 	
 	m_bitmapBrasIndisponible = new wxStaticBitmap( m_panelBrasIndisponible, wxID_ANY, wxBitmap( wxT("../Images/RougeAllume.bmp"), wxBITMAP_TYPE_ANY ), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizerBrasIndisponible->Add( m_bitmapBrasIndisponible, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	bSizer5711->Add( m_bitmapBrasIndisponible, 0, wxALL, 5 );
 	
 	m_staticTextBrasIndisponible = new wxStaticText( m_panelBrasIndisponible, wxID_ANY, wxT("Le bras n'est pas disponible"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextBrasIndisponible->Wrap( -1 );
-	bSizerBrasIndisponible->Add( m_staticTextBrasIndisponible, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	bSizer5711->Add( m_staticTextBrasIndisponible, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
 	
-	bSizerBrasIndisponible->Add( 0, 0, 1, wxEXPAND, 5 );
+	bSizer561->Add( bSizer5711, 0, wxALIGN_CENTER_HORIZONTAL, 5 );
+	
+	
+	bSizerBrasIndisponible->Add( bSizer561, 1, wxALIGN_CENTER_VERTICAL, 5 );
 	
 	
 	m_panelBrasIndisponible->SetSizer( bSizerBrasIndisponible );
@@ -893,10 +906,11 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	
 	bSizer57->Add( sbSizerDisponibiliteBras, 1, wxALL|wxEXPAND, 5 );
 	
-	wxStaticBoxSizer* sbSizerTacheEnCours;
 	sbSizerTacheEnCours = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowInfoBras, wxID_ANY, wxT("Tâche en cours") ), wxVERTICAL );
 	
 	m_panelTacheEnCours = new wxPanel( sbSizerTacheEnCours->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	m_panelTacheEnCours->Hide();
+	
 	wxBoxSizer* bSizerTacheEnCoursPrincipal;
 	bSizerTacheEnCoursPrincipal = new wxBoxSizer( wxVERTICAL );
 	
@@ -1033,15 +1047,15 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	wxBoxSizer* bSizerPasTache;
 	bSizerPasTache = new wxBoxSizer( wxVERTICAL );
 	
-	
-	bSizerPasTache->Add( 0, 0, 1, wxEXPAND, 5 );
+	wxBoxSizer* bSizer53;
+	bSizer53 = new wxBoxSizer( wxHORIZONTAL );
 	
 	m_staticTextPasTache = new wxStaticText( m_panelPasTache, wxID_ANY, wxT("Il n'y a pas de tâche en cours"), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTRE );
 	m_staticTextPasTache->Wrap( -1 );
-	bSizerPasTache->Add( m_staticTextPasTache, 0, wxALIGN_CENTER|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	bSizer53->Add( m_staticTextPasTache, 0, wxALIGN_CENTER|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
 	
-	bSizerPasTache->Add( 0, 0, 1, wxEXPAND, 5 );
+	bSizerPasTache->Add( bSizer53, 1, wxALIGN_CENTER_HORIZONTAL, 5 );
 	
 	
 	m_panelPasTache->SetSizer( bSizerPasTache );
@@ -1094,7 +1108,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	wxStaticBoxSizer* sbSizerAffichage;
 	sbSizerAffichage = new wxStaticBoxSizer( new wxStaticBox( m_panelAffichage, wxID_ANY, wxT("Affichage") ), wxVERTICAL );
 	
-	m_textCtrlAffichage = new wxTextCtrl( sbSizerAffichage->GetStaticBox(), wxID_ANY, wxT("Connecter-vous pour pouvoir effectuer des actions.\n"), wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE|wxTE_READONLY );
+	m_textCtrlAffichage = new wxTextCtrl( sbSizerAffichage->GetStaticBox(), wxID_ANY, wxT("Connectez-vous pour pouvoir effectuer des actions.\n"), wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE|wxTE_READONLY );
 	sbSizerAffichage->Add( m_textCtrlAffichage, 1, wxALIGN_CENTER|wxALL|wxEXPAND, 5 );
 	
 	m_buttonViderAffichage = new wxButton( sbSizerAffichage->GetStaticBox(), wxID_ANY, wxT("ViderAffichage"), wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
@@ -1236,7 +1250,7 @@ FrameApropos::FrameApropos( wxWindow* parent, wxWindowID id, const wxString& tit
 	
 	m_staticTextTitre = new wxStaticText( m_panelApropos, wxID_ANY, wxT("À propos du projet"), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTRE );
 	m_staticTextTitre->Wrap( -1 );
-	m_staticTextTitre->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, wxEmptyString ) );
+	m_staticTextTitre->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), 70, 90, 92, false, wxEmptyString ) );
 	
 	bSizerApropos->Add( m_staticTextTitre, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 20 );
 	
@@ -1310,7 +1324,7 @@ FrameAide::FrameAide( wxWindow* parent, wxWindowID id, const wxString& title, co
 	
 	m_staticTextTitre = new wxStaticText( m_panelAide, wxID_ANY, wxT("Aide"), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTRE );
 	m_staticTextTitre->Wrap( -1 );
-	m_staticTextTitre->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, wxEmptyString ) );
+	m_staticTextTitre->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), 70, 90, 92, false, wxEmptyString ) );
 	
 	bSizerAide->Add( m_staticTextTitre, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 20 );
 	
