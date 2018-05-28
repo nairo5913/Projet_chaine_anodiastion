@@ -19,8 +19,13 @@ de production avec un serveur
 *******************************************************************************/
 #define ID_SERVEUR 200
 
-#include <Serveur.h>
+// Couleur wxWidget
+#include <wx/colour.h>
+#include <wx/gdicmn.h>
+// wxMessageBox
 #include <wx/msgdlg.h>
+
+#include <Serveur.h>
 class Serveur;
 
 /** Implementing FramePrincipal */
@@ -43,6 +48,7 @@ class EvtFramePrincipal : public FramePrincipal
 
         void MAJnombreClients(wxCommandEvent& event);
         void AfficheMessageServeur(wxCommandEvent& event);
+        void AfficheReponseServeur(wxCommandEvent& event);
 
 };
 

@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Dec 21 2016)
+// C++ code generated with wxFormBuilder (version Feb 16 2016)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO "NOT" EDIT THIS FILE!
@@ -17,9 +17,10 @@
 #include <wx/colour.h>
 #include <wx/settings.h>
 #include <wx/sizer.h>
-#include <wx/statbox.h>
-#include <wx/button.h>
+#include <wx/statline.h>
 #include <wx/textctrl.h>
+#include <wx/button.h>
+#include <wx/statbox.h>
 #include <wx/statusbr.h>
 #include <wx/frame.h>
 
@@ -35,17 +36,17 @@ class FramePrincipal : public wxFrame
 	
 	protected:
 		wxToggleButton* m_toggleBtnConnexion;
-		wxStaticBoxSizer* sbSizerGestion;
-		wxButton* m_buttonViderAffichage;
 		wxToggleButton* m_toggleBtnDisponibilite;
+		wxStaticLine* m_staticline3;
 		wxTextCtrl* m_textCtrlAffichage;
+		wxButton* m_buttonViderAffichage;
 		wxStatusBar* m_statusBar;
 		
 		// Virtual event handlers, overide them in your derived class
 		virtual void OnFrameClose( wxCloseEvent& event ) { event.Skip(); }
 		virtual void OnButtonDemarrerServeurToggle( wxCommandEvent& event ) { event.Skip(); }
-		virtual void OnButtonClickViderAffichage( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnToggleButtonDisponibiliteClick( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnButtonClickViderAffichage( wxCommandEvent& event ) { event.Skip(); }
 		
 	
 	public:

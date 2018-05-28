@@ -54,6 +54,7 @@ class Serveur : public wxEvtHandler
         void EcritReponse(wxSocketBase *sock, string reponse);
         void AfficheNombreClients();
         void AfficheMessage(wxString message);
+        void AfficheReponse(wxString reponse);
         wxString LitMessage(wxSocketBase *sock);
 };
 

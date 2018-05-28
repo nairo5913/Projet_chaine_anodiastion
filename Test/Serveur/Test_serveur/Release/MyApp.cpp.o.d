@@ -124,27 +124,25 @@ Release/MyApp.cpp.o: MyApp.cpp MyApp.h \
  /usr/include/wx-3.0-unofficial/wx/gtk/accel.h \
  /usr/include/wx-3.0-unofficial/wx/generic/accel.h \
  /usr/include/wx-3.0-unofficial/wx/gtk/window.h \
- /usr/include/wx-3.0-unofficial/wx/stattext.h \
+ /usr/include/wx-3.0-unofficial/wx/tglbtn.h \
+ /usr/include/wx-3.0-unofficial/wx/anybutton.h \
  /usr/include/wx-3.0-unofficial/wx/control.h \
  /usr/include/wx-3.0-unofficial/wx/gtk/control.h \
- /usr/include/wx-3.0-unofficial/wx/gtk/stattext.h \
+ /usr/include/wx-3.0-unofficial/wx/gtk/anybutton.h \
+ /usr/include/wx-3.0-unofficial/wx/gtk/tglbtn.h \
  /usr/include/wx-3.0-unofficial/wx/settings.h \
+ /usr/include/wx-3.0-unofficial/wx/sizer.h \
+ /usr/include/wx-3.0-unofficial/wx/statline.h \
+ /usr/include/wx-3.0-unofficial/wx/gtk/statline.h \
  /usr/include/wx-3.0-unofficial/wx/textctrl.h \
  /usr/include/wx-3.0-unofficial/wx/textentry.h \
  /usr/include/wx-3.0-unofficial/wx/gtk/textentry.h \
  /usr/include/wx-3.0-unofficial/wx/ioswrap.h \
  /usr/include/wx-3.0-unofficial/wx/gtk/textctrl.h \
- /usr/include/wx-3.0-unofficial/wx/sizer.h \
- /usr/include/wx-3.0-unofficial/wx/panel.h \
- /usr/include/wx-3.0-unofficial/wx/containr.h \
- /usr/include/wx-3.0-unofficial/wx/generic/panelg.h \
- /usr/include/wx-3.0-unofficial/wx/tglbtn.h \
- /usr/include/wx-3.0-unofficial/wx/anybutton.h \
- /usr/include/wx-3.0-unofficial/wx/gtk/anybutton.h \
- /usr/include/wx-3.0-unofficial/wx/gtk/tglbtn.h \
  /usr/include/wx-3.0-unofficial/wx/button.h \
  /usr/include/wx-3.0-unofficial/wx/gtk/button.h \
  /usr/include/wx-3.0-unofficial/wx/statbox.h \
+ /usr/include/wx-3.0-unofficial/wx/containr.h \
  /usr/include/wx-3.0-unofficial/wx/gtk/statbox.h \
  /usr/include/wx-3.0-unofficial/wx/statusbr.h \
  /usr/include/wx-3.0-unofficial/wx/generic/statusbr.h \
@@ -157,10 +155,7 @@ Release/MyApp.cpp.o: MyApp.cpp MyApp.h \
  /usr/include/wx-3.0-unofficial/wx/weakref.h \
  /usr/include/wx-3.0-unofficial/wx/meta/int2type.h \
  /usr/include/wx-3.0-unofficial/wx/gtk/toplevel.h \
- /usr/include/wx-3.0-unofficial/wx/gtk/frame.h Serveur.h \
- EvtFramePrincipal.h DonneesClient.h Protocoles.h \
- /usr/include/wx-3.0-unofficial/wx/socket.h \
- /usr/include/wx-3.0-unofficial/wx/sckaddr.h \
+ /usr/include/wx-3.0-unofficial/wx/gtk/frame.h \
  /usr/include/wx-3.0-unofficial/wx/msgdlg.h \
  /usr/include/wx-3.0-unofficial/wx/dialog.h \
  /usr/include/wx-3.0-unofficial/wx/sharedptr.h \
@@ -168,7 +163,10 @@ Release/MyApp.cpp.o: MyApp.cpp MyApp.h \
  /usr/include/wx-3.0-unofficial/wx/gtk/dialog.h \
  /usr/include/wx-3.0-unofficial/wx/stockitem.h \
  /usr/include/wx-3.0-unofficial/wx/generic/msgdlgg.h \
- /usr/include/wx-3.0-unofficial/wx/gtk/msgdlg.h
+ /usr/include/wx-3.0-unofficial/wx/gtk/msgdlg.h Serveur.h \
+ EvtFramePrincipal.h DonneesClient.h Protocoles.h \
+ /usr/include/wx-3.0-unofficial/wx/socket.h \
+ /usr/include/wx-3.0-unofficial/wx/sckaddr.h
 
 MyApp.h:
 
@@ -426,15 +424,25 @@ FramePrincipal.h:
 
 /usr/include/wx-3.0-unofficial/wx/gtk/window.h:
 
-/usr/include/wx-3.0-unofficial/wx/stattext.h:
+/usr/include/wx-3.0-unofficial/wx/tglbtn.h:
+
+/usr/include/wx-3.0-unofficial/wx/anybutton.h:
 
 /usr/include/wx-3.0-unofficial/wx/control.h:
 
 /usr/include/wx-3.0-unofficial/wx/gtk/control.h:
 
-/usr/include/wx-3.0-unofficial/wx/gtk/stattext.h:
+/usr/include/wx-3.0-unofficial/wx/gtk/anybutton.h:
+
+/usr/include/wx-3.0-unofficial/wx/gtk/tglbtn.h:
 
 /usr/include/wx-3.0-unofficial/wx/settings.h:
+
+/usr/include/wx-3.0-unofficial/wx/sizer.h:
+
+/usr/include/wx-3.0-unofficial/wx/statline.h:
+
+/usr/include/wx-3.0-unofficial/wx/gtk/statline.h:
 
 /usr/include/wx-3.0-unofficial/wx/textctrl.h:
 
@@ -446,27 +454,13 @@ FramePrincipal.h:
 
 /usr/include/wx-3.0-unofficial/wx/gtk/textctrl.h:
 
-/usr/include/wx-3.0-unofficial/wx/sizer.h:
-
-/usr/include/wx-3.0-unofficial/wx/panel.h:
-
-/usr/include/wx-3.0-unofficial/wx/containr.h:
-
-/usr/include/wx-3.0-unofficial/wx/generic/panelg.h:
-
-/usr/include/wx-3.0-unofficial/wx/tglbtn.h:
-
-/usr/include/wx-3.0-unofficial/wx/anybutton.h:
-
-/usr/include/wx-3.0-unofficial/wx/gtk/anybutton.h:
-
-/usr/include/wx-3.0-unofficial/wx/gtk/tglbtn.h:
-
 /usr/include/wx-3.0-unofficial/wx/button.h:
 
 /usr/include/wx-3.0-unofficial/wx/gtk/button.h:
 
 /usr/include/wx-3.0-unofficial/wx/statbox.h:
+
+/usr/include/wx-3.0-unofficial/wx/containr.h:
 
 /usr/include/wx-3.0-unofficial/wx/gtk/statbox.h:
 
@@ -494,18 +488,6 @@ FramePrincipal.h:
 
 /usr/include/wx-3.0-unofficial/wx/gtk/frame.h:
 
-Serveur.h:
-
-EvtFramePrincipal.h:
-
-DonneesClient.h:
-
-Protocoles.h:
-
-/usr/include/wx-3.0-unofficial/wx/socket.h:
-
-/usr/include/wx-3.0-unofficial/wx/sckaddr.h:
-
 /usr/include/wx-3.0-unofficial/wx/msgdlg.h:
 
 /usr/include/wx-3.0-unofficial/wx/dialog.h:
@@ -521,3 +503,15 @@ Protocoles.h:
 /usr/include/wx-3.0-unofficial/wx/generic/msgdlgg.h:
 
 /usr/include/wx-3.0-unofficial/wx/gtk/msgdlg.h:
+
+Serveur.h:
+
+EvtFramePrincipal.h:
+
+DonneesClient.h:
+
+Protocoles.h:
+
+/usr/include/wx-3.0-unofficial/wx/socket.h:
+
+/usr/include/wx-3.0-unofficial/wx/sckaddr.h:

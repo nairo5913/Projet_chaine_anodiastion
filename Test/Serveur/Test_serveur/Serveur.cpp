@@ -223,7 +223,7 @@ void Serveur::OnSocketEvent(wxSocketEvent &event)  // gestionnaire d'événement
 void Serveur::DecodeMessage(wxString message, wxSocketBase *sock, DonneesClient *donnees)
 {
     wxString texte = "";
-    
+
     switch(donnees->GetEtat())
     {
         case 0:  // Dans notre cas, il n'y a que l'état 0
@@ -235,52 +235,52 @@ void Serveur::DecodeMessage(wxString message, wxSocketBase *sock, DonneesClient 
             else if(message.StartsWith(DEMANDE_EXECUTION_PROCESSUS, &texte))
             {
                 bool test = true;
-                
+
                 wxString message;
                 message << "Le texte reçu est : " << texte << wxT("\n");
-                
-                wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_SERVEUR+1);
+
+                wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_SERVEUR + 1);
                 MyEvent.SetString(message);
                 wxPostEvent(m_frame, MyEvent);
-                
+
                 if(!test)
                 {
                     wxString reponse(EXECUTION_IMPOSSIBLE);
-                    EcritReponse(sock,reponse.ToStdString());
+                    EcritReponse(sock, reponse.ToStdString());
                 }
             }
             else if(message.StartsWith(DEMANDE_TEST_TRAJECTOIRE, &texte))
             {
                 bool test = true;
-                
+
                 wxString message;
                 message << "Le texte reçu est : " << texte << wxT("\n");
-                
-                wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_SERVEUR+1);
+
+                wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_SERVEUR + 1);
                 MyEvent.SetString(message);
                 wxPostEvent(m_frame, MyEvent);
-                
+
                 if(!test)
                 {
                     wxString reponse(EXECUTION_IMPOSSIBLE);
-                    EcritReponse(sock,reponse.ToStdString());
+                    EcritReponse(sock, reponse.ToStdString());
                 }
             }
             else if(message.StartsWith(DEMANDE_TEST_MOUVEMENT, &texte))
             {
                 bool test = true;
-                
+
                 wxString message;
                 message << "Le texte reçu est : " << texte << wxT("\n");
-                
-                wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_SERVEUR+1);
+
+                wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_SERVEUR + 1);
                 MyEvent.SetString(message);
                 wxPostEvent(m_frame, MyEvent);
-                
+
                 if(!test)
                 {
                     wxString reponse(EXECUTION_IMPOSSIBLE);
-                    EcritReponse(sock,reponse.ToStdString());
+                    EcritReponse(sock, reponse.ToStdString());
                 }
             }
             else if(message.IsSameAs(DISPONIBILITE_BRAS))
@@ -299,12 +299,11 @@ void Serveur::DecodeMessage(wxString message, wxSocketBase *sock, DonneesClient 
             else if(message.IsSameAs(DEMANDE_TACHE_EN_COURS))
             {
                 bool tache_cours = true;
-                
+
                 if(!m_bras_dispo)
                 {
                     if(tache_cours)
                     {
-                        
                         wxString reponse;
                         reponse << wxT(TACHE_EN_COURS) << "Trajectoire-018";
                         EcritReponse(sock, reponse.ToStdString());
@@ -363,6 +362,10 @@ void Serveur::EcritReponse(wxSocketBase *sock, string reponse)
         AfficheMessage("Erreur réseau: il faut redémarrer le serveur !");
         Close();
     }
+    else
+    {
+        AfficheReponse(wxT("Reponse du serveur : ") + reponse + wxT("\n"));
+    }
 }
 
 void Serveur::AfficheNombreClients()
@@ -387,6 +390,13 @@ void Serveur::AfficheMessage(wxString message)
 {
     wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_SERVEUR + 1);
     MyEvent.SetString(message);
+    wxPostEvent(m_frame, MyEvent);
+}
+
+void Serveur::AfficheReponse(wxString reponse)
+{
+    wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_SERVEUR + 2);
+    MyEvent.SetString(reponse);
     wxPostEvent(m_frame, MyEvent);
 }
 
