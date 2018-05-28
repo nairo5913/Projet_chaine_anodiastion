@@ -32,6 +32,7 @@ class Client;
 
 // Couleur wxWidget
 #include <wx/colour.h>
+#include <wx/gdicmn.h>
 // Boite de dialogue wxWidgets
 #include <wx/log.h>
 // wxMessageBox
@@ -51,35 +52,35 @@ using std::vector;
 /** Implementing FramePrincipal */
 class EvtFramePrincipal : public FramePrincipal
 {
-   protected:
-    // Handlers for FramePrincipal events.
-    void OnFrameClose(wxCloseEvent& event);
-    void OnButtonConnexionToggle(wxCommandEvent& event);
-    void OnListBoxAffichageSelection(wxCommandEvent& event);
-    void OnListBoxModifierSelection(wxCommandEvent& event);
-    void OnApplyButtonModifierClick(wxCommandEvent& event);
-    void OnCancelButtonModiffierClick(wxCommandEvent& event);
-    void OnCancelButtonCreerClick(wxCommandEvent& event);
-    void OnSaveButtonCreerClick(wxCommandEvent& event);
-    void OnListBoxDetruireSelection(wxCommandEvent& event);
-    void OnApplyButtonDetruireClick(wxCommandEvent& event);
-    void OnListBoxLancerSelection(wxCommandEvent& event);
-    void OnOkButtonLancerClick(wxCommandEvent& event);
-    void OnListBoxTesterSelection(wxCommandEvent& event);
-    void OnStopButtonTesterClick(wxCommandEvent& event);
-    void OnOkButtonTesterClick(wxCommandEvent& event);
-    void OnButtonDisponibiliteBrasClick(wxCommandEvent& event);
-    void OnButtonTacheEnCoursClick(wxCommandEvent& event);
-    void OnButtonViderAffichageClick(wxCommandEvent& event);
-    void OnMenuQuitterSelection(wxCommandEvent& event);
-    void OnMenuViderAffichageSelection(wxCommandEvent& event);
-    void OnMenuAideSelection(wxCommandEvent& event);
-    void OnMenuAproposSelection(wxCommandEvent& event);
-
-   public:
-    /** Constructor */
-    EvtFramePrincipal(wxWindow* parent);
-    //// end generated class members
+	protected:
+		// Handlers for FramePrincipal events.
+		void OnCharEntered( wxKeyEvent& event );
+		void OnFrameClose( wxCloseEvent& event );
+		void OnButtonConnexionToggle( wxCommandEvent& event );
+		void OnListBoxAffichageSelection( wxCommandEvent& event );
+		void OnListBoxModifierSelection( wxCommandEvent& event );
+		void OnApplyButtonModifierClick( wxCommandEvent& event );
+		void OnCancelButtonModiffierClick( wxCommandEvent& event );
+		void OnCancelButtonCreerClick( wxCommandEvent& event );
+		void OnSaveButtonCreerClick( wxCommandEvent& event );
+		void OnListBoxDetruireSelection( wxCommandEvent& event );
+		void OnApplyButtonDetruireClick( wxCommandEvent& event );
+		void OnListBoxLancerSelection( wxCommandEvent& event );
+		void OnOkButtonLancerClick( wxCommandEvent& event );
+		void OnListBoxTesterSelection( wxCommandEvent& event );
+		void OnStopButtonTesterClick( wxCommandEvent& event );
+		void OnOkButtonTesterClick( wxCommandEvent& event );
+		void OnButtonDisponibiliteBrasClick( wxCommandEvent& event );
+		void OnButtonTacheEnCoursClick( wxCommandEvent& event );
+		void OnButtonViderAffichageClick( wxCommandEvent& event );
+		void OnMenuQuitterSelection( wxCommandEvent& event );
+		void OnMenuViderAffichageSelection( wxCommandEvent& event );
+		void OnMenuAideSelection( wxCommandEvent& event );
+		void OnMenuAproposSelection( wxCommandEvent& event );
+	public:
+		/** Constructor */
+		EvtFramePrincipal( wxWindow* parent );
+	//// end generated class members
    public:
     string ConversionEnString(wxString texte);
     wxString DecouperTexteDebut(wxString texte, int position);
@@ -110,8 +111,9 @@ class EvtFramePrincipal : public FramePrincipal
     void DeconnexionClient(wxString message);
     void RempliListBox();
     void VideListBox();
+    wxBitmap BmpRouge, BmpVert;
     // Fonction de mise en forme de la séléction pour garder que le début (id)
     wxString GardeIdSelection(wxString texte);
 };
 
-#endif  // __EvtFramePrincipal__
+#endif // __EvtFramePrincipal__

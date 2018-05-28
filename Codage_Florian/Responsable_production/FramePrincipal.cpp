@@ -140,35 +140,35 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextDureeTotalMinuteAfficher->Wrap( -1 );
 	bSizerDureeTotalAfficher->Add( m_staticTextDureeTotalMinuteAfficher, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
-	textCtrlDureeTotalMinuteAfficher = new wxTextCtrl( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
+	m_textCtrlDureeTotalMinuteAfficher = new wxTextCtrl( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
 	#ifdef __WXGTK__
-	if ( !textCtrlDureeTotalMinuteAfficher->HasFlag( wxTE_MULTILINE ) )
+	if ( !m_textCtrlDureeTotalMinuteAfficher->HasFlag( wxTE_MULTILINE ) )
 	{
-	textCtrlDureeTotalMinuteAfficher->SetMaxLength( 2 );
+	m_textCtrlDureeTotalMinuteAfficher->SetMaxLength( 2 );
 	}
 	#else
-	textCtrlDureeTotalMinuteAfficher->SetMaxLength( 2 );
+	m_textCtrlDureeTotalMinuteAfficher->SetMaxLength( 2 );
 	#endif
-	textCtrlDureeTotalMinuteAfficher->SetMaxSize( wxSize( 35,-1 ) );
+	m_textCtrlDureeTotalMinuteAfficher->SetMaxSize( wxSize( 35,-1 ) );
 	
-	bSizerDureeTotalAfficher->Add( textCtrlDureeTotalMinuteAfficher, 1, wxALIGN_CENTER_VERTICAL, 5 );
+	bSizerDureeTotalAfficher->Add( m_textCtrlDureeTotalMinuteAfficher, 1, wxALIGN_CENTER_VERTICAL, 5 );
 	
 	m_staticTextDureeTotalSecondeAfficher = new wxStaticText( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxT(":"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextDureeTotalSecondeAfficher->Wrap( -1 );
 	bSizerDureeTotalAfficher->Add( m_staticTextDureeTotalSecondeAfficher, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
-	textCtrlDureeTotalSecondeAfficher = new wxTextCtrl( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
+	m_textCtrlDureeTotalSecondeAfficher = new wxTextCtrl( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
 	#ifdef __WXGTK__
-	if ( !textCtrlDureeTotalSecondeAfficher->HasFlag( wxTE_MULTILINE ) )
+	if ( !m_textCtrlDureeTotalSecondeAfficher->HasFlag( wxTE_MULTILINE ) )
 	{
-	textCtrlDureeTotalSecondeAfficher->SetMaxLength( 2 );
+	m_textCtrlDureeTotalSecondeAfficher->SetMaxLength( 2 );
 	}
 	#else
-	textCtrlDureeTotalSecondeAfficher->SetMaxLength( 2 );
+	m_textCtrlDureeTotalSecondeAfficher->SetMaxLength( 2 );
 	#endif
-	textCtrlDureeTotalSecondeAfficher->SetMaxSize( wxSize( 35,-1 ) );
+	m_textCtrlDureeTotalSecondeAfficher->SetMaxSize( wxSize( 35,-1 ) );
 	
-	bSizerDureeTotalAfficher->Add( textCtrlDureeTotalSecondeAfficher, 1, wxALIGN_CENTER_VERTICAL, 5 );
+	bSizerDureeTotalAfficher->Add( m_textCtrlDureeTotalSecondeAfficher, 1, wxALIGN_CENTER_VERTICAL, 5 );
 	
 	
 	bSizerDureeTotalAfficher->Add( 0, 0, 1, wxEXPAND, 5 );
@@ -177,7 +177,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	bSizerAfficherGauche->Add( bSizerDureeTotalAfficher, 1, wxALIGN_CENTER_HORIZONTAL|wxEXPAND, 5 );
 	
 	wxStaticBoxSizer* sbSizerListeTrajectoiresAfficher;
-	sbSizerListeTrajectoiresAfficher = new wxStaticBoxSizer( new wxStaticBox( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxT("Liste des trajectoires") ), wxVERTICAL );
+	sbSizerListeTrajectoiresAfficher = new wxStaticBoxSizer( new wxStaticBox( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxT("Liste des trajectoires du processus") ), wxVERTICAL );
 	
 	m_listBoxListeTrajectoiresAfficher = new wxListBox( sbSizerListeTrajectoiresAfficher->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 ); 
 	sbSizerListeTrajectoiresAfficher->Add( m_listBoxListeTrajectoiresAfficher, 2, wxALIGN_CENTER_HORIZONTAL|wxALL|wxEXPAND, 5 );
@@ -205,6 +205,14 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	bSizerNomAffichage->Add( m_staticTextNomAfficher, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
 	m_textCtrlNomAfficher = new wxTextCtrl( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
+	#ifdef __WXGTK__
+	if ( !m_textCtrlNomAfficher->HasFlag( wxTE_MULTILINE ) )
+	{
+	m_textCtrlNomAfficher->SetMaxLength( 100 );
+	}
+	#else
+	m_textCtrlNomAfficher->SetMaxLength( 100 );
+	#endif
 	bSizerNomAffichage->Add( m_textCtrlNomAfficher, 1, wxALIGN_CENTER_VERTICAL, 5 );
 	
 	
@@ -306,7 +314,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextIdModifier->Wrap( -1 );
 	bSizerIdModification->Add( m_staticTextIdModifier, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
-	m_textCtrlIdModifier = new wxTextCtrl( sbSizerModification->GetStaticBox(), wxID_ANY, wxT("1"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
+	m_textCtrlIdModifier = new wxTextCtrl( sbSizerModification->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
 	m_textCtrlIdModifier->Enable( false );
 	m_textCtrlIdModifier->SetMaxSize( wxSize( 35,-1 ) );
 	
@@ -328,7 +336,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticDureeTotalModifier->Wrap( -1 );
 	bSizerDureeTotalModifier->Add( m_staticDureeTotalModifier, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
-	m_textCtrlDureeTotalHeureModifier = new wxTextCtrl( sbSizerModification->GetStaticBox(), wxID_ANY, wxT("02"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
+	m_textCtrlDureeTotalHeureModifier = new wxTextCtrl( sbSizerModification->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
 	#ifdef __WXGTK__
 	if ( !m_textCtrlDureeTotalHeureModifier->HasFlag( wxTE_MULTILINE ) )
 	{
@@ -345,7 +353,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextDureeTotalMinuteModifier->Wrap( -1 );
 	bSizerDureeTotalModifier->Add( m_staticTextDureeTotalMinuteModifier, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
-	textCtrlDureeTotalMinuteModifier = new wxTextCtrl( sbSizerModification->GetStaticBox(), wxID_ANY, wxT("52"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
+	textCtrlDureeTotalMinuteModifier = new wxTextCtrl( sbSizerModification->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
 	#ifdef __WXGTK__
 	if ( !textCtrlDureeTotalMinuteModifier->HasFlag( wxTE_MULTILINE ) )
 	{
@@ -362,7 +370,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextDureeTotalSecondeModifier->Wrap( -1 );
 	bSizerDureeTotalModifier->Add( m_staticTextDureeTotalSecondeModifier, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
-	textCtrlDureeTotalSecondeModifier = new wxTextCtrl( sbSizerModification->GetStaticBox(), wxID_ANY, wxT("00"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
+	textCtrlDureeTotalSecondeModifier = new wxTextCtrl( sbSizerModification->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
 	#ifdef __WXGTK__
 	if ( !textCtrlDureeTotalSecondeModifier->HasFlag( wxTE_MULTILINE ) )
 	{
@@ -384,12 +392,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	wxStaticBoxSizer* sbSizerListeTrajectoiresModifier;
 	sbSizerListeTrajectoiresModifier = new wxStaticBoxSizer( new wxStaticBox( sbSizerModification->GetStaticBox(), wxID_ANY, wxT("Liste des trajectoires") ), wxVERTICAL );
 	
-	m_listBoxListeTrajectoiresModifier = new wxListBox( sbSizerListeTrajectoiresModifier->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_listBoxListeTrajectoiresModifier->Append( wxT("01 - Trajectoire 1 - Durée : 00:02:30 - Bain n°3 -> n°2") );
-	m_listBoxListeTrajectoiresModifier->Append( wxT("02 - Trajectoire 2") );
-	m_listBoxListeTrajectoiresModifier->Append( wxT("03 - Trajectoire 3") );
-	m_listBoxListeTrajectoiresModifier->Append( wxT("04 - Trajectoire 4") );
-	m_listBoxListeTrajectoiresModifier->Append( wxEmptyString );
+	m_listBoxListeTrajectoiresModifier = new wxListBox( sbSizerListeTrajectoiresModifier->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 ); 
 	sbSizerListeTrajectoiresModifier->Add( m_listBoxListeTrajectoiresModifier, 2, wxALIGN_CENTER_HORIZONTAL|wxALL|wxEXPAND, 5 );
 	
 	
@@ -414,7 +417,15 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextNomModifier->Wrap( -1 );
 	bSizerNomModification->Add( m_staticTextNomModifier, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
-	m_textCtrlNomModifier = new wxTextCtrl( sbSizerModification->GetStaticBox(), wxID_ANY, wxT("Processus 1"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
+	m_textCtrlNomModifier = new wxTextCtrl( sbSizerModification->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
+	#ifdef __WXGTK__
+	if ( !m_textCtrlNomModifier->HasFlag( wxTE_MULTILINE ) )
+	{
+	m_textCtrlNomModifier->SetMaxLength( 100 );
+	}
+	#else
+	m_textCtrlNomModifier->SetMaxLength( 100 );
+	#endif
 	bSizerNomModification->Add( m_textCtrlNomModifier, 1, wxALIGN_CENTER_VERTICAL, 5 );
 	
 	
@@ -433,7 +444,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextNombreBainModifier->Wrap( -1 );
 	bSizerNombreBainModifier->Add( m_staticTextNombreBainModifier, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
-	m_textCtrlNombreBainModifier = new wxTextCtrl( sbSizerModification->GetStaticBox(), wxID_ANY, wxT("03"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
+	m_textCtrlNombreBainModifier = new wxTextCtrl( sbSizerModification->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
 	#ifdef __WXGTK__
 	if ( !m_textCtrlNombreBainModifier->HasFlag( wxTE_MULTILINE ) )
 	{
@@ -462,7 +473,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextOrdreTrajectoiresModifier->Wrap( -1 );
 	bSizerOrdreTrajectoiresModifier->Add( m_staticTextOrdreTrajectoiresModifier, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
-	m_textCtrlOrdreTrajectoiresModifier = new wxTextCtrl( sbSizerModification->GetStaticBox(), wxID_ANY, wxT("3;2;1"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
+	m_textCtrlOrdreTrajectoiresModifier = new wxTextCtrl( sbSizerModification->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
 	bSizerOrdreTrajectoiresModifier->Add( m_textCtrlOrdreTrajectoiresModifier, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
 	
@@ -515,7 +526,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticDureeTotalCreer->Wrap( -1 );
 	bSizerDureeTotalCreer->Add( m_staticDureeTotalCreer, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
-	m_textCtrlDureeTotalHeureCreer = new wxTextCtrl( sbSizerCreer->GetStaticBox(), wxID_ANY, wxT("02"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
+	m_textCtrlDureeTotalHeureCreer = new wxTextCtrl( sbSizerCreer->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
 	#ifdef __WXGTK__
 	if ( !m_textCtrlDureeTotalHeureCreer->HasFlag( wxTE_MULTILINE ) )
 	{
@@ -532,7 +543,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextDureeTotalMinuteCreer->Wrap( -1 );
 	bSizerDureeTotalCreer->Add( m_staticTextDureeTotalMinuteCreer, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
-	textCtrlDureeTotalMinuteCreer = new wxTextCtrl( sbSizerCreer->GetStaticBox(), wxID_ANY, wxT("52"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
+	textCtrlDureeTotalMinuteCreer = new wxTextCtrl( sbSizerCreer->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
 	#ifdef __WXGTK__
 	if ( !textCtrlDureeTotalMinuteCreer->HasFlag( wxTE_MULTILINE ) )
 	{
@@ -549,7 +560,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextDureeTotalSecondeCreer->Wrap( -1 );
 	bSizerDureeTotalCreer->Add( m_staticTextDureeTotalSecondeCreer, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
-	textCtrlDureeTotalSecondeCreer = new wxTextCtrl( sbSizerCreer->GetStaticBox(), wxID_ANY, wxT("00"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
+	textCtrlDureeTotalSecondeCreer = new wxTextCtrl( sbSizerCreer->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
 	#ifdef __WXGTK__
 	if ( !textCtrlDureeTotalSecondeCreer->HasFlag( wxTE_MULTILINE ) )
 	{
@@ -571,12 +582,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	wxStaticBoxSizer* sbSizerListeTrajectoiresModifier1;
 	sbSizerListeTrajectoiresModifier1 = new wxStaticBoxSizer( new wxStaticBox( sbSizerCreer->GetStaticBox(), wxID_ANY, wxT("Liste des trajectoires") ), wxVERTICAL );
 	
-	m_listBoxListeTrajectoiresCreer = new wxListBox( sbSizerListeTrajectoiresModifier1->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_listBoxListeTrajectoiresCreer->Append( wxT("01 - Trajectoire 1 - Durée : 00:02:30 - Bain n°3 -> n°2") );
-	m_listBoxListeTrajectoiresCreer->Append( wxT("02 - Trajectoire 2") );
-	m_listBoxListeTrajectoiresCreer->Append( wxT("03 - Trajectoire 3") );
-	m_listBoxListeTrajectoiresCreer->Append( wxT("04 - Trajectoire 4") );
-	m_listBoxListeTrajectoiresCreer->Append( wxEmptyString );
+	m_listBoxListeTrajectoiresCreer = new wxListBox( sbSizerListeTrajectoiresModifier1->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 ); 
 	sbSizerListeTrajectoiresModifier1->Add( m_listBoxListeTrajectoiresCreer, 2, wxALIGN_CENTER_HORIZONTAL|wxALL|wxEXPAND, 5 );
 	
 	
@@ -601,7 +607,15 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextNomCreer->Wrap( -1 );
 	bSizerNomCreer->Add( m_staticTextNomCreer, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
-	m_textCtrlNomCreer = new wxTextCtrl( sbSizerCreer->GetStaticBox(), wxID_ANY, wxT("Processus 1"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
+	m_textCtrlNomCreer = new wxTextCtrl( sbSizerCreer->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
+	#ifdef __WXGTK__
+	if ( !m_textCtrlNomCreer->HasFlag( wxTE_MULTILINE ) )
+	{
+	m_textCtrlNomCreer->SetMaxLength( 100 );
+	}
+	#else
+	m_textCtrlNomCreer->SetMaxLength( 100 );
+	#endif
 	bSizerNomCreer->Add( m_textCtrlNomCreer, 1, wxALIGN_CENTER_VERTICAL, 5 );
 	
 	
@@ -620,7 +634,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextNombreBainCreer->Wrap( -1 );
 	bSizerNombreBainCreer->Add( m_staticTextNombreBainCreer, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
-	m_spinCtrlNombreBainCreer = new wxSpinCtrl( sbSizerCreer->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 6, 2 );
+	m_spinCtrlNombreBainCreer = new wxSpinCtrl( sbSizerCreer->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 6, 1 );
 	m_spinCtrlNombreBainCreer->SetMaxSize( wxSize( 50,-1 ) );
 	
 	bSizerNombreBainCreer->Add( m_spinCtrlNombreBainCreer, 0, wxALIGN_CENTER_VERTICAL, 5 );
@@ -641,7 +655,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextOrdreTrajectoiresCreer->Wrap( -1 );
 	bSizerOrdresTrajectoiresCreer->Add( m_staticTextOrdreTrajectoiresCreer, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
-	m_textCtrlOrdreTrajectoiresCreer = new wxTextCtrl( sbSizerCreer->GetStaticBox(), wxID_ANY, wxT("3;2;1"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
+	m_textCtrlOrdreTrajectoiresCreer = new wxTextCtrl( sbSizerCreer->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
 	bSizerOrdresTrajectoiresCreer->Add( m_textCtrlOrdreTrajectoiresCreer, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
 	
@@ -836,75 +850,26 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	wxBoxSizer* bSizerInfoBrasPrincipal;
 	bSizerInfoBrasPrincipal = new wxBoxSizer( wxVERTICAL );
 	
-	wxBoxSizer* bSizer57;
-	bSizer57 = new wxBoxSizer( wxHORIZONTAL );
+	wxBoxSizer* bSizerInfos;
+	bSizerInfos = new wxBoxSizer( wxHORIZONTAL );
 	
 	sbSizerDisponibiliteBras = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowInfoBras, wxID_ANY, wxT("Disponibilité du bras") ), wxVERTICAL );
 	
-	m_panelBrasDisponible = new wxPanel( sbSizerDisponibiliteBras->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
-	m_panelBrasDisponible->Hide();
+	wxBoxSizer* bSizerDisponibiliteBras;
+	bSizerDisponibiliteBras = new wxBoxSizer( wxHORIZONTAL );
 	
-	wxBoxSizer* bSizerBrasDisponible;
-	bSizerBrasDisponible = new wxBoxSizer( wxHORIZONTAL );
+	m_bitmapDisponibiliteBras = new wxStaticBitmap( sbSizerDisponibiliteBras->GetStaticBox(), wxID_ANY, wxBitmap( wxT("../Images/EteintBlanc.bmp"), wxBITMAP_TYPE_ANY ), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizerDisponibiliteBras->Add( m_bitmapDisponibiliteBras, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
-	wxBoxSizer* bSizer56;
-	bSizer56 = new wxBoxSizer( wxVERTICAL );
-	
-	wxBoxSizer* bSizer571;
-	bSizer571 = new wxBoxSizer( wxHORIZONTAL );
-	
-	m_bitmapBrasDisponible = new wxStaticBitmap( m_panelBrasDisponible, wxID_ANY, wxBitmap( wxT("../Images/VertAllume.bmp"), wxBITMAP_TYPE_ANY ), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer571->Add( m_bitmapBrasDisponible, 0, wxALL, 5 );
-	
-	m_staticTextBrasDisponible = new wxStaticText( m_panelBrasDisponible, wxID_ANY, wxT("Le bras est disponible"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticTextBrasDisponible->Wrap( -1 );
-	bSizer571->Add( m_staticTextBrasDisponible, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	m_staticTextDisponibiliteBras = new wxStaticText( sbSizerDisponibiliteBras->GetStaticBox(), wxID_ANY, wxT("Veulliez demander la disponibilité du bras."), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextDisponibiliteBras->Wrap( -1 );
+	bSizerDisponibiliteBras->Add( m_staticTextDisponibiliteBras, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
 	
-	bSizer56->Add( bSizer571, 0, wxALIGN_CENTER_HORIZONTAL, 5 );
+	sbSizerDisponibiliteBras->Add( bSizerDisponibiliteBras, 1, wxALIGN_CENTER_HORIZONTAL, 5 );
 	
 	
-	bSizerBrasDisponible->Add( bSizer56, 1, wxALIGN_CENTER_VERTICAL, 5 );
-	
-	
-	m_panelBrasDisponible->SetSizer( bSizerBrasDisponible );
-	m_panelBrasDisponible->Layout();
-	bSizerBrasDisponible->Fit( m_panelBrasDisponible );
-	sbSizerDisponibiliteBras->Add( m_panelBrasDisponible, 1, wxEXPAND | wxALL, 5 );
-	
-	m_panelBrasIndisponible = new wxPanel( sbSizerDisponibiliteBras->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
-	m_panelBrasIndisponible->Hide();
-	
-	wxBoxSizer* bSizerBrasIndisponible;
-	bSizerBrasIndisponible = new wxBoxSizer( wxHORIZONTAL );
-	
-	wxBoxSizer* bSizer561;
-	bSizer561 = new wxBoxSizer( wxVERTICAL );
-	
-	wxBoxSizer* bSizer5711;
-	bSizer5711 = new wxBoxSizer( wxHORIZONTAL );
-	
-	m_bitmapBrasIndisponible = new wxStaticBitmap( m_panelBrasIndisponible, wxID_ANY, wxBitmap( wxT("../Images/RougeAllume.bmp"), wxBITMAP_TYPE_ANY ), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer5711->Add( m_bitmapBrasIndisponible, 0, wxALL, 5 );
-	
-	m_staticTextBrasIndisponible = new wxStaticText( m_panelBrasIndisponible, wxID_ANY, wxT("Le bras n'est pas disponible"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticTextBrasIndisponible->Wrap( -1 );
-	bSizer5711->Add( m_staticTextBrasIndisponible, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
-	
-	
-	bSizer561->Add( bSizer5711, 0, wxALIGN_CENTER_HORIZONTAL, 5 );
-	
-	
-	bSizerBrasIndisponible->Add( bSizer561, 1, wxALIGN_CENTER_VERTICAL, 5 );
-	
-	
-	m_panelBrasIndisponible->SetSizer( bSizerBrasIndisponible );
-	m_panelBrasIndisponible->Layout();
-	bSizerBrasIndisponible->Fit( m_panelBrasIndisponible );
-	sbSizerDisponibiliteBras->Add( m_panelBrasIndisponible, 1, wxEXPAND | wxALL, 5 );
-	
-	
-	bSizer57->Add( sbSizerDisponibiliteBras, 1, wxALL|wxEXPAND, 5 );
+	bSizerInfos->Add( sbSizerDisponibiliteBras, 1, wxALL|wxEXPAND, 5 );
 	
 	sbSizerTacheEnCours = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowInfoBras, wxID_ANY, wxT("Tâche en cours") ), wxVERTICAL );
 	
@@ -1064,10 +1029,10 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	sbSizerTacheEnCours->Add( m_panelPasTache, 1, wxEXPAND | wxALL, 5 );
 	
 	
-	bSizer57->Add( sbSizerTacheEnCours, 1, wxALL|wxEXPAND, 5 );
+	bSizerInfos->Add( sbSizerTacheEnCours, 1, wxALL|wxEXPAND, 5 );
 	
 	
-	bSizerInfoBrasPrincipal->Add( bSizer57, 1, wxALIGN_CENTER_HORIZONTAL|wxEXPAND, 5 );
+	bSizerInfoBrasPrincipal->Add( bSizerInfos, 1, wxALIGN_CENTER_HORIZONTAL|wxEXPAND, 5 );
 	
 	wxBoxSizer* bSizerBouttons;
 	bSizerBouttons = new wxBoxSizer( wxHORIZONTAL );
@@ -1108,7 +1073,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	wxStaticBoxSizer* sbSizerAffichage;
 	sbSizerAffichage = new wxStaticBoxSizer( new wxStaticBox( m_panelAffichage, wxID_ANY, wxT("Affichage") ), wxVERTICAL );
 	
-	m_textCtrlAffichage = new wxTextCtrl( sbSizerAffichage->GetStaticBox(), wxID_ANY, wxT("Connectez-vous pour pouvoir effectuer des actions.\n"), wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE|wxTE_READONLY );
+	m_textCtrlAffichage = new wxTextCtrl( sbSizerAffichage->GetStaticBox(), wxID_ANY, wxT("\n\n\t\tConnectez-vous pour pouvoir effectuer des actions.\n"), wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE|wxTE_READONLY|wxTE_RICH|wxTE_RICH2 );
 	sbSizerAffichage->Add( m_textCtrlAffichage, 1, wxALIGN_CENTER|wxALL|wxEXPAND, 5 );
 	
 	m_buttonViderAffichage = new wxButton( sbSizerAffichage->GetStaticBox(), wxID_ANY, wxT("ViderAffichage"), wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
@@ -1141,7 +1106,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	
 	m_menuVues = new wxMenu();
 	wxMenuItem* m_menuItemViderAffichage;
-	m_menuItemViderAffichage = new wxMenuItem( m_menuVues, wxID_ANY, wxString( wxT("Vider l'affichage") ) , wxEmptyString, wxITEM_NORMAL );
+	m_menuItemViderAffichage = new wxMenuItem( m_menuVues, wxID_ANY, wxString( wxT("Vider l'affichage") ) + wxT('\t') + wxT("F3"), wxEmptyString, wxITEM_NORMAL );
 	m_menuVues->Append( m_menuItemViderAffichage );
 	
 	m_menubarFramePrincipal->Append( m_menuVues, wxT("Vues") ); 
@@ -1159,7 +1124,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_menuAide->AppendSeparator();
 	
 	wxMenuItem* m_menuItemApropos;
-	m_menuItemApropos = new wxMenuItem( m_menuAide, wxID_ANY, wxString( wxT("À propos ...") ) , wxEmptyString, wxITEM_NORMAL );
+	m_menuItemApropos = new wxMenuItem( m_menuAide, wxID_ANY, wxString( wxT("À propos ...") ) + wxT('\t') + wxT("F2"), wxEmptyString, wxITEM_NORMAL );
 	m_menuAide->Append( m_menuItemApropos );
 	
 	m_menubarFramePrincipal->Append( m_menuAide, wxT("Aide") ); 
@@ -1171,69 +1136,141 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	this->Centre( wxBOTH );
 	
 	// Connect Events
+	this->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ) );
 	this->Connect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( FramePrincipal::OnFrameClose ) );
+	m_panelConnexion->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_staticTextLogin->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_textCtrlLogin->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
 	m_textCtrlLogin->Connect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( FramePrincipal::OnButtonConnexionToggle ), NULL, this );
+	m_staticTextPass->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_textCtrlPass->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
 	m_textCtrlPass->Connect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( FramePrincipal::OnButtonConnexionToggle ), NULL, this );
+	m_toggleBtnConnexion->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
 	m_toggleBtnConnexion->Connect( wxEVT_COMMAND_TOGGLEBUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnButtonConnexionToggle ), NULL, this );
+	m_notebookProcessus->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_scrolledWindowAffichageProcessus->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_listBoxAffichageProcessus->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
 	m_listBoxAffichageProcessus->Connect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( FramePrincipal::OnListBoxAffichageSelection ), NULL, this );
 	m_listBoxAffichageProcessus->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( FramePrincipal::OnListBoxAffichageSelection ), NULL, this );
+	m_staticTextIdAfficher->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_textCtrlIdAfficher->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_staticDureeTotalAfficher->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_textCtrlDureeTotalHeureAfficher->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_staticTextDureeTotalMinuteAfficher->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_textCtrlDureeTotalMinuteAfficher->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_staticTextDureeTotalSecondeAfficher->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_textCtrlDureeTotalSecondeAfficher->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_listBoxListeTrajectoiresAfficher->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_staticTextNomAfficher->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_textCtrlNomAfficher->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_staticTextNombreBainAfficher->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_textCtrlNombreBainAfficher->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_staticTextOrdreTrajectoiresAfficher->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_textCtrlOrdreTrajectoiresAfficher->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_scrolledWindowModifierProcessus->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
 	m_listBoxModifierProcessus->Connect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( FramePrincipal::OnListBoxModifierSelection ), NULL, this );
 	m_listBoxModifierProcessus->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( FramePrincipal::OnListBoxModifierSelection ), NULL, this );
 	m_sdbSizerModifierApply->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnApplyButtonModifierClick ), NULL, this );
 	m_sdbSizerModifierCancel->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnCancelButtonModiffierClick ), NULL, this );
+	m_scrolledWindowCreerProcessus->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
 	m_sdbSizerCreerCancel->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnCancelButtonCreerClick ), NULL, this );
 	m_sdbSizerCreerSave->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnSaveButtonCreerClick ), NULL, this );
+	m_scrolledWindowDetruireProcessus->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
 	m_listBoxDetruireProcessus->Connect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( FramePrincipal::OnListBoxDetruireSelection ), NULL, this );
 	m_listBoxDetruireProcessus->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( FramePrincipal::OnListBoxDetruireSelection ), NULL, this );
 	m_sdbSizerDetruireApply->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnApplyButtonDetruireClick ), NULL, this );
+	m_scrolledWindowLancerProcessus->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
 	m_listBoxLancerProcessus->Connect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( FramePrincipal::OnListBoxLancerSelection ), NULL, this );
 	m_listBoxLancerProcessus->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( FramePrincipal::OnListBoxLancerSelection ), NULL, this );
 	m_sdbSizerLancerProcessusOK->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnOkButtonLancerClick ), NULL, this );
+	m_scrolledWindowTesterProcessus->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
 	m_listBoxTesterProcessus->Connect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( FramePrincipal::OnListBoxTesterSelection ), NULL, this );
 	m_listBoxTesterProcessus->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( FramePrincipal::OnListBoxTesterSelection ), NULL, this );
 	m_bpButtonStopTester->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnStopButtonTesterClick ), NULL, this );
 	m_bpButtonOKTester->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnOkButtonTesterClick ), NULL, this );
+	m_scrolledWindowInfoBras->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
 	m_buttonDisponibiliteBras->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnButtonDisponibiliteBrasClick ), NULL, this );
 	m_buttonTacheEnCours->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnButtonTacheEnCoursClick ), NULL, this );
+	m_panelAffichage->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_textCtrlAffichage->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
 	m_buttonViderAffichage->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnButtonViderAffichageClick ), NULL, this );
+	m_buttonViderAffichage->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_menubarFramePrincipal->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
 	this->Connect( m_menuItemQuitter->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( FramePrincipal::OnMenuQuitterSelection ) );
 	this->Connect( m_menuItemViderAffichage->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( FramePrincipal::OnMenuViderAffichageSelection ) );
 	this->Connect( m_menuItemAide->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( FramePrincipal::OnMenuAideSelection ) );
 	this->Connect( m_menuItemApropos->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( FramePrincipal::OnMenuAproposSelection ) );
+	m_statusBar->Connect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
 }
 
 FramePrincipal::~FramePrincipal()
 {
 	// Disconnect Events
+	this->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ) );
 	this->Disconnect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( FramePrincipal::OnFrameClose ) );
+	m_panelConnexion->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_staticTextLogin->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_textCtrlLogin->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
 	m_textCtrlLogin->Disconnect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( FramePrincipal::OnButtonConnexionToggle ), NULL, this );
+	m_staticTextPass->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_textCtrlPass->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
 	m_textCtrlPass->Disconnect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( FramePrincipal::OnButtonConnexionToggle ), NULL, this );
+	m_toggleBtnConnexion->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
 	m_toggleBtnConnexion->Disconnect( wxEVT_COMMAND_TOGGLEBUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnButtonConnexionToggle ), NULL, this );
+	m_notebookProcessus->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_scrolledWindowAffichageProcessus->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_listBoxAffichageProcessus->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
 	m_listBoxAffichageProcessus->Disconnect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( FramePrincipal::OnListBoxAffichageSelection ), NULL, this );
 	m_listBoxAffichageProcessus->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( FramePrincipal::OnListBoxAffichageSelection ), NULL, this );
+	m_staticTextIdAfficher->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_textCtrlIdAfficher->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_staticDureeTotalAfficher->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_textCtrlDureeTotalHeureAfficher->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_staticTextDureeTotalMinuteAfficher->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_textCtrlDureeTotalMinuteAfficher->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_staticTextDureeTotalSecondeAfficher->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_textCtrlDureeTotalSecondeAfficher->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_listBoxListeTrajectoiresAfficher->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_staticTextNomAfficher->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_textCtrlNomAfficher->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_staticTextNombreBainAfficher->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_textCtrlNombreBainAfficher->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_staticTextOrdreTrajectoiresAfficher->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_textCtrlOrdreTrajectoiresAfficher->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_scrolledWindowModifierProcessus->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
 	m_listBoxModifierProcessus->Disconnect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( FramePrincipal::OnListBoxModifierSelection ), NULL, this );
 	m_listBoxModifierProcessus->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( FramePrincipal::OnListBoxModifierSelection ), NULL, this );
 	m_sdbSizerModifierApply->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnApplyButtonModifierClick ), NULL, this );
 	m_sdbSizerModifierCancel->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnCancelButtonModiffierClick ), NULL, this );
+	m_scrolledWindowCreerProcessus->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
 	m_sdbSizerCreerCancel->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnCancelButtonCreerClick ), NULL, this );
 	m_sdbSizerCreerSave->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnSaveButtonCreerClick ), NULL, this );
+	m_scrolledWindowDetruireProcessus->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
 	m_listBoxDetruireProcessus->Disconnect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( FramePrincipal::OnListBoxDetruireSelection ), NULL, this );
 	m_listBoxDetruireProcessus->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( FramePrincipal::OnListBoxDetruireSelection ), NULL, this );
 	m_sdbSizerDetruireApply->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnApplyButtonDetruireClick ), NULL, this );
+	m_scrolledWindowLancerProcessus->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
 	m_listBoxLancerProcessus->Disconnect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( FramePrincipal::OnListBoxLancerSelection ), NULL, this );
 	m_listBoxLancerProcessus->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( FramePrincipal::OnListBoxLancerSelection ), NULL, this );
 	m_sdbSizerLancerProcessusOK->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnOkButtonLancerClick ), NULL, this );
+	m_scrolledWindowTesterProcessus->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
 	m_listBoxTesterProcessus->Disconnect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( FramePrincipal::OnListBoxTesterSelection ), NULL, this );
 	m_listBoxTesterProcessus->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( FramePrincipal::OnListBoxTesterSelection ), NULL, this );
 	m_bpButtonStopTester->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnStopButtonTesterClick ), NULL, this );
 	m_bpButtonOKTester->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnOkButtonTesterClick ), NULL, this );
+	m_scrolledWindowInfoBras->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
 	m_buttonDisponibiliteBras->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnButtonDisponibiliteBrasClick ), NULL, this );
 	m_buttonTacheEnCours->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnButtonTacheEnCoursClick ), NULL, this );
+	m_panelAffichage->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_textCtrlAffichage->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
 	m_buttonViderAffichage->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnButtonViderAffichageClick ), NULL, this );
+	m_buttonViderAffichage->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
+	m_menubarFramePrincipal->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
 	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( FramePrincipal::OnMenuQuitterSelection ) );
 	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( FramePrincipal::OnMenuViderAffichageSelection ) );
 	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( FramePrincipal::OnMenuAideSelection ) );
 	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( FramePrincipal::OnMenuAproposSelection ) );
+	m_statusBar->Disconnect( wxEVT_CHAR, wxKeyEventHandler( FramePrincipal::OnCharEntered ), NULL, this );
 	
 }
 

@@ -163,37 +163,14 @@ vector<string> Client::DemandeTacheEnCours()
         
         if(reponse.StartsWith(TACHE_EN_COURS, &texte))
         {
-            // Requete à la bdd ou envoi directe à voir
-            // données statique en attendant venant du serveur
-            // 
-            // On décordique les données du serveur contenu dans le texte
             int separateur = texte.find("-");
-            //wxString t (texte.substr(separateur-1));
-            wxString id_p(texte.substr(separateur+1));
-            wxString fin = wxT("-") + id_p;
-            wxString t = "";
-            texte.EndsWith(fin, &t);
             
-            // Conversion en string
-            string type = t.ToStdString();
-            string id_tache = id_p.ToStdString();
-            
-            // Affichage de débogage
-            /*wxString message;
-            message << wxT("\n Texte : ") << texte
-                    << wxT("\n Séparateur : ") << separateur
-                    << wxT("\n Type : ") << type
-                    << wxT("\n id tache : ") << id_tache
-                    << wxT("\n");
-            
-            wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
-            MyEvent.SetString(message);
-            wxPostEvent(m_frame, MyEvent);*/
+            string type = m_frame->ConversionEnString(m_frame->DecouperTexteDebut(texte, separateur));
+            string id_tache = m_frame->ConversionEnString(m_frame->DecouperTexteFin(texte, separateur+1));
             
             // Première cellule "type", deuxième cellule "id"
             tache.push_back(type);
             tache.push_back(id_tache);
-            
         }
         else if(reponse.IsSameAs(PAS_TACHE_EN_COURS))
         {

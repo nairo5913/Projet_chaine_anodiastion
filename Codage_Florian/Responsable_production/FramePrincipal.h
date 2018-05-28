@@ -62,9 +62,9 @@ class FramePrincipal : public wxFrame
 		wxStaticText* m_staticDureeTotalAfficher;
 		wxTextCtrl* m_textCtrlDureeTotalHeureAfficher;
 		wxStaticText* m_staticTextDureeTotalMinuteAfficher;
-		wxTextCtrl* textCtrlDureeTotalMinuteAfficher;
+		wxTextCtrl* m_textCtrlDureeTotalMinuteAfficher;
 		wxStaticText* m_staticTextDureeTotalSecondeAfficher;
-		wxTextCtrl* textCtrlDureeTotalSecondeAfficher;
+		wxTextCtrl* m_textCtrlDureeTotalSecondeAfficher;
 		wxListBox* m_listBoxListeTrajectoiresAfficher;
 		wxStaticLine* m_staticlineAfficher;
 		wxStaticText* m_staticTextNomAfficher;
@@ -132,12 +132,8 @@ class FramePrincipal : public wxFrame
 		wxBitmapButton* m_bpButtonOKTester;
 		wxScrolledWindow* m_scrolledWindowInfoBras;
 		wxStaticBoxSizer* sbSizerDisponibiliteBras;
-		wxPanel* m_panelBrasDisponible;
-		wxStaticBitmap* m_bitmapBrasDisponible;
-		wxStaticText* m_staticTextBrasDisponible;
-		wxPanel* m_panelBrasIndisponible;
-		wxStaticBitmap* m_bitmapBrasIndisponible;
-		wxStaticText* m_staticTextBrasIndisponible;
+		wxStaticBitmap* m_bitmapDisponibiliteBras;
+		wxStaticText* m_staticTextDisponibiliteBras;
 		wxStaticBoxSizer* sbSizerTacheEnCours;
 		wxPanel* m_panelTacheEnCours;
 		wxStaticText* m_staticTextTypeTache;
@@ -164,6 +160,7 @@ class FramePrincipal : public wxFrame
 		wxStatusBar* m_statusBar;
 		
 		// Virtual event handlers, overide them in your derived class
+		virtual void OnCharEntered( wxKeyEvent& event ) { event.Skip(); }
 		virtual void OnFrameClose( wxCloseEvent& event ) { event.Skip(); }
 		virtual void OnButtonConnexionToggle( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnListBoxAffichageSelection( wxCommandEvent& event ) { event.Skip(); }
@@ -190,7 +187,7 @@ class FramePrincipal : public wxFrame
 	
 	public:
 		
-		FramePrincipal( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Anodisation - Responsable de production"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 1200,750 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		FramePrincipal( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Anodisation - Responsable de production"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 1200,750 ), long style = wxCAPTION|wxCLOSE_BOX|wxDEFAULT_FRAME_STYLE|wxMAXIMIZE_BOX|wxMINIMIZE_BOX|wxRESIZE_BORDER|wxSYSTEM_MENU|wxTAB_TRAVERSAL );
 		
 		~FramePrincipal();
 	

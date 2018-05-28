@@ -1,3 +1,11 @@
+/*******************************************************************************
+  *  Fichier:  DonneesIHM.h
+  *  Projet:   Chaîne d'anodisation - Gestion du PC responsable de production
+  *  Crée le:  25/05/2018
+  *  Utilité:  Récuperer les données pour l'IHM depuis la Base de données et 
+               stockage dans des variables
+  *  Auteur:   Florian Provost
+*******************************************************************************/
 #ifndef DONNEESIHM_H
 #define DONNEESIHM_H
 

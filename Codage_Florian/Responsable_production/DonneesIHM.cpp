@@ -1,3 +1,11 @@
+/*******************************************************************************
+  *  Fichier:  DonneesIHM.cpp
+  *  Projet:   Chaîne d'anodisation - Gestion du PC responsable de production
+  *  Crée le:  25/05/2018
+  *  Utilité:  Récuperer les données pour l'IHM depuis la Base de données et 
+               stockage dans des variables
+  *  Auteur:   Florian Provost
+*******************************************************************************/
 #include "DonneesIHM.h"
 
 DonneesIHM::DonneesIHM(DataAnodisation *bdd)
@@ -11,10 +19,25 @@ DonneesIHM::~DonneesIHM()
 }
 
 
-bool DonneesIHM::RecupereDureeTotal(string id_processus) // À coder
+bool DonneesIHM::RecupereDureeTotal(string id_processus)
 {
     bool retour = false;
-
+    
+    string requete = "SELECT duree_processus FROM processus WHERE id_processus=" + id_processus;
+    
+    if(m_bdd_anodisation->ExecuteSelect(requete))
+    {
+        vector<string> dernier_resultat = m_bdd_anodisation->GetLastResult();
+        
+        m_dureeTotal = dernier_resultat[0];
+        
+        retour = true;
+    }
+    else
+    {
+        retour = false;
+    }
+    
     return retour;
 }
 
@@ -72,6 +95,8 @@ bool DonneesIHM::RecupereListeTouteTrajectoires()
 bool DonneesIHM::RecupereListeTrajectoiresProcessus(string id_processus) // À coder
 {
     bool retour = false;
+    
+    string requete = "SELECT";
 
     return retour;
 }
@@ -79,13 +104,43 @@ bool DonneesIHM::RecupereListeTrajectoiresProcessus(string id_processus) // À c
 bool DonneesIHM::RecupereNombreBain(string id_processus) // À coder
 {
     bool retour = false;
-
+    
+    /*string requete = "SELECT nom_processus FROM processus WHERE id_processus=" + id_processus;
+    
+    if(m_bdd_anodisation->ExecuteSelect(requete))
+    {
+        vector<string> dernier_resultat = m_bdd_anodisation->GetLastResult();
+        
+        m_nomProcessus = dernier_resultat[0];
+        
+        retour = true;
+    }
+    else
+    {
+        retour = false;
+    }*/
+    
     return retour;
 }
 
-bool DonneesIHM::RecupereNomProcessus(string id_processus) // À coder
+bool DonneesIHM::RecupereNomProcessus(string id_processus)
 {
     bool retour = false;
+    
+    string requete = "SELECT nom_processus FROM processus WHERE id_processus=" + id_processus;
+    
+    if(m_bdd_anodisation->ExecuteSelect(requete))
+    {
+        vector<string> dernier_resultat = m_bdd_anodisation->GetLastResult();
+        
+        m_nomProcessus = dernier_resultat[0];
+        
+        retour = true;
+    }
+    else
+    {
+        retour = false;
+    }
 
     return retour;
 }
