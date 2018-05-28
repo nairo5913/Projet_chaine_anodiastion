@@ -37,7 +37,7 @@ FOND_BLANC="\\033[47m"
 ### Test si un seul parametre ###
 if [ $# -ne 0 ]
 then
-   echo "Usage : $0 $ROUGE aucun paramètre $NORMAL"
+   echo -e "Usage : $0 $ROUGE aucun paramètre $NORMAL"
    exit 1
 fi
 
