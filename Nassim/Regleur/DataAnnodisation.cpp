@@ -4,6 +4,7 @@ DataAnodisation::DataAnodisation(string dsn)
 {
     m_session = NULL;
     m_connexionOK = true;
+    
 
     ODBC::Connector::registerConnector();
 
@@ -91,18 +92,54 @@ bool DataAnodisation::ExecuteUpdate(string requete)  //À coder
     return retour;
 }
 
-bool DataAnodisation::RecupereDureeTotal(string id_processus) // À coder
+bool DataAnodisation::RecupereDureeTotalMouvement(string id_mouvement)
 {
     bool retour = false;
-
+    
+    string requete = "SELECT duree_mouvement FROM mouvements WHERE id_mouvement=" + id_mouvement;
+    
+    if(ExecuteSelect(requete))
+    {
+        vector<string> dernier_resultat = GetLastResult();
+        
+        m_dureeTotalMouvement = dernier_resultat[0];
+        
+        retour = true;
+    }
+    else
+    {
+        retour = false;
+    }
+    
     return retour;
 }
 
+bool DataAnodisation::RecupereDureeTotalTrajectoire(string id_trajectoire)
+{
+    bool retour = false;
+    
+    string requete = "SELECT duree_trajectoire FROM trajectoires WHERE id_trajectoire=" + id_trajectoire;
+    
+    if(ExecuteSelect(requete))
+    {
+        vector<string> dernier_resultat = GetLastResult();
+        
+        m_dureeTotalTrajectoire = dernier_resultat[0];
+        
+        retour = true;
+    }
+    else
+    {
+        retour = false;
+    }
+    
+    return retour;
+}
 
 bool DataAnodisation::RecupereListeToutMouvements()
 {
     bool retour;
-    string requete = "SELECT * FROM mouvements ORDER BY id_mouvement";
+    string requete = "SELECT id_mouvement, nom_mouvement FROM mouvements ORDER BY id_mouvement";
     
     m_listeToutMouvements.clear();
     
@@ -127,7 +164,7 @@ bool DataAnodisation::RecupereListeTouteTrajectoires()
 {
     bool retour;
     
-    string requete = "SELECT * FROM trajectoires ORDER BY id_trajectoire";
+    string requete = "SELECT id_trajectoire, nom_trajectoire FROM trajectoires ORDER BY id_trajectoire";
     
     m_listeTouteTrajectoires.clear();
     
@@ -148,24 +185,52 @@ bool DataAnodisation::RecupereListeTouteTrajectoires()
     return retour;
 }
 
-bool DataAnodisation::RecupereListeMouvementsTrajectoires(string id_mouvement) // À coder
+bool DataAnodisation::RecupereListeMouvementsTrajectoires(string id_trajectoire) // À coder
+{
+    
+}
+
+
+bool DataAnodisation::RecupereNomMouvement(string id_mouvement)
 {
     bool retour = false;
+    
+    string requete = "SELECT nom_mouvement FROM mouvements WHERE id_mouvement=" + id_mouvement;
+    
+    if(ExecuteSelect(requete))
+    {
+        vector<string> dernier_resultat= GetLastResult();
+        
+        m_nomMouvement= dernier_resultat[0];
+        
+        retour=true;
+    }
+    else
+    {
+        retour=false;
+    }
 
     return retour;
 }
 
-
-bool DataAnodisation::RecupereNomMouvement(string id_mouvement) // À coder
+bool DataAnodisation::RecupereNomTrajectoire(string id_trajectoire)
 {
     bool retour = false;
-
-    return retour;
-}
-
-bool DataAnodisation::RecupereNomTrajectoire(string id_trajectoire) // À coder
-{
-    bool retour = false;
+    
+    string requete = "SELECT nom_trajectoire FROM trajectoires WHERE id_trajectoire=" + id_trajectoire;
+    
+    if(ExecuteSelect(requete))
+    {
+        vector<string> dernier_resultat= GetLastResult();
+        
+        m_nomTrajectoire= dernier_resultat[0];
+        
+        retour=true;
+    }
+    else
+    {
+        retour=false;
+    }
 
     return retour;
 }
@@ -173,6 +238,108 @@ bool DataAnodisation::RecupereNomTrajectoire(string id_trajectoire) // À coder
 bool DataAnodisation::RecupereOrdreMouvements(string id_trajectoire) // À coder
 {
     bool retour = false;
+    string requete = "SELECT ordre_mouvements FROM intermediaire_mouvements_trajectoires WHERE id_t=" +id_trajectoire;
+    
+    if(ExecuteSelect(requete))
+    {
+        vector<string> dernier_resultat=GetLastResult();
+        
+        m_ordreMouvements= dernier_resultat[0];
+        
+        retour=true;
+    }
 
     return retour;
+}
+
+bool DataAnodisation::RecupereAxeXMouvement(string id_mouvement)
+{
+    bool retour = false;
+    
+    string requete = "SELECT axe_x FROM mouvements WHERE id_mouvement=" +id_mouvement;
+    
+    if(ExecuteSelect(requete))
+    {
+        vector<string> dernier_resultat=GetLastResult();
+        
+        m_AxeXMouvement= dernier_resultat[0];
+    
+        retour = true;
+    }
+    
+    return retour;
+}
+
+bool DataAnodisation::RecupereAxeYMouvement(string id_mouvement)
+{
+    bool retour = false;
+    
+    string requete = "SELECT axe_y FROM mouvements WHERE id_mouvement=" +id_mouvement;
+    
+    if(ExecuteSelect(requete))
+    {
+        vector<string> dernier_resultat=GetLastResult();
+        
+        m_AxeYMouvement= dernier_resultat[0];
+        
+        retour = true;
+    }
+    
+    return retour;
+}
+
+bool DataAnodisation::RecupereAxeZMouvement(string id_mouvement)
+{
+    
+    bool retour = false;
+    
+    string requete = "SELECT axe_z FROM mouvements WHERE id_mouvement=" +id_mouvement;
+    
+    if(ExecuteSelect(requete))
+    {
+        vector<string> dernier_resultat=GetLastResult();
+        
+        m_AxeZMouvement = dernier_resultat[0];
+        
+        retour = true;
+        
+    }
+    return retour;
+}
+bool DataAnodisation::RecupereDepartTrajectoire(string id_trajectoire)
+{
+    bool retour = false;
+    
+    string requete = "SELECT point_depart FROM intermediaire_mouvements_trajectoires WHERE id_t=" +id_trajectoire;
+    
+    if(ExecuteSelect(requete))
+    {   
+        vector<string> dernier_resultat=GetLastResult();
+        //for(unsigned int i; i<dernier_resultat.size();i++)
+        //{
+        //    cout<<dernier_resultat[i]<<endl;
+        //}
+        
+        m_DepartTrajectoire = dernier_resultat[0];
+        
+        retour = true;
+    }
+    return retour;
+}
+
+bool DataAnodisation::RecupereAriveeTrajectoire(string id_trajectoire)
+{
+    bool retour = false;
+    
+    string requete = "SELECT point_arrive FROM intermediaire_mouvements_trajectoires WHERE id_t=" +id_trajectoire;
+    
+    if(ExecuteSelect(requete))
+    {
+        vector<string> dernier_resultat=GetLastResult();
+        
+        m_ArriveeTrajectoire = dernier_resultat[0];
+        
+        retour = true;
+    }
+    return retour; 
 }

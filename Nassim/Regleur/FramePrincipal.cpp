@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Feb 16 2016)
+// C++ code generated with wxFormBuilder (version Dec 21 2016)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO "NOT" EDIT THIS FILE!
@@ -100,14 +100,10 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	bSizerAfficherMouvements = new wxBoxSizer( wxHORIZONTAL );
 	
 	wxStaticBoxSizer* sbSizerSelectionAfficherMouvements;
-	sbSizerSelectionAfficherMouvements = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowAffichageMouvements, wxID_ANY, wxT("Séléction du processus à afficher") ), wxHORIZONTAL );
+	sbSizerSelectionAfficherMouvements = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowAffichageMouvements, wxID_ANY, wxT("Séléction du mouvement à afficher") ), wxHORIZONTAL );
 	
 	sbSizerSelectionAfficherMouvements->SetMinSize( wxSize( 280,-1 ) ); 
-	m_listBoxAffichageMouvements = new wxListBox( sbSizerSelectionAfficherMouvements->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_SORT );
-	m_listBoxAffichageMouvements->Append( wxT("Mouvement 1") );
-	m_listBoxAffichageMouvements->Append( wxT("Mouvement 2") );
-	m_listBoxAffichageMouvements->Append( wxT("Mouvement 3") );
-	m_listBoxAffichageMouvements->Append( wxT("Mouvement 4") );
+	m_listBoxAffichageMouvements = new wxListBox( sbSizerSelectionAfficherMouvements->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_SORT ); 
 	sbSizerSelectionAfficherMouvements->Add( m_listBoxAffichageMouvements, 1, wxALL|wxEXPAND, 5 );
 	
 	
@@ -129,7 +125,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextNomAfficherMouvements->Wrap( -1 );
 	bSizerNomAffichageMouvements->Add( m_staticTextNomAfficherMouvements, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
-	m_textCtrlNomAfficherMouvements = new wxTextCtrl( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxT("Mouvement 1"), wxDefaultPosition, wxSize( 130,-1 ), wxTE_CENTRE|wxTE_READONLY );
+	m_textCtrlNomAfficherMouvements = new wxTextCtrl( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 130,-1 ), wxTE_CENTRE|wxTE_READONLY );
 	bSizerNomAffichageMouvements->Add( m_textCtrlNomAfficherMouvements, 0, wxALIGN_CENTER_VERTICAL, 5 );
 	
 	
@@ -148,31 +144,31 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextDureeHeureAfficherMouvements1->Wrap( -1 );
 	bSizerNomAffichageMouvements1->Add( m_staticTextDureeHeureAfficherMouvements1, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
-	m_textCtrlDureeHeureAfficherMouvements1 = new wxTextCtrl( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxT("00"), wxDefaultPosition, wxSize( 130,-1 ), wxTE_CENTRE|wxTE_READONLY );
-	m_textCtrlDureeHeureAfficherMouvements1->SetMinSize( wxSize( 35,-1 ) );
-	m_textCtrlDureeHeureAfficherMouvements1->SetMaxSize( wxSize( 35,-1 ) );
+	m_textCtrlDureeHeureAfficherMouvements = new wxTextCtrl( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxT("00"), wxDefaultPosition, wxSize( 130,-1 ), wxTE_CENTRE|wxTE_READONLY );
+	m_textCtrlDureeHeureAfficherMouvements->SetMinSize( wxSize( 35,-1 ) );
+	m_textCtrlDureeHeureAfficherMouvements->SetMaxSize( wxSize( 35,-1 ) );
 	
-	bSizerNomAffichageMouvements1->Add( m_textCtrlDureeHeureAfficherMouvements1, 0, wxALIGN_CENTER_VERTICAL, 5 );
+	bSizerNomAffichageMouvements1->Add( m_textCtrlDureeHeureAfficherMouvements, 0, wxALIGN_CENTER_VERTICAL, 5 );
 	
 	m_staticTextDureeMinuteAfficherMouvements = new wxStaticText( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxT(" :"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextDureeMinuteAfficherMouvements->Wrap( -1 );
 	bSizerNomAffichageMouvements1->Add( m_staticTextDureeMinuteAfficherMouvements, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
-	m_textCtrlDureeHeureAfficherMouvements11 = new wxTextCtrl( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxT("00"), wxDefaultPosition, wxSize( 130,-1 ), wxTE_CENTRE|wxTE_READONLY );
-	m_textCtrlDureeHeureAfficherMouvements11->SetMinSize( wxSize( 35,-1 ) );
-	m_textCtrlDureeHeureAfficherMouvements11->SetMaxSize( wxSize( 35,-1 ) );
+	m_textCtrlDureeMinuteAfficherMouvements = new wxTextCtrl( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxT("00"), wxDefaultPosition, wxSize( 130,-1 ), wxTE_CENTRE|wxTE_READONLY );
+	m_textCtrlDureeMinuteAfficherMouvements->SetMinSize( wxSize( 35,-1 ) );
+	m_textCtrlDureeMinuteAfficherMouvements->SetMaxSize( wxSize( 35,-1 ) );
 	
-	bSizerNomAffichageMouvements1->Add( m_textCtrlDureeHeureAfficherMouvements11, 0, wxALIGN_CENTER_VERTICAL, 5 );
+	bSizerNomAffichageMouvements1->Add( m_textCtrlDureeMinuteAfficherMouvements, 0, wxALIGN_CENTER_VERTICAL, 5 );
 	
 	m_staticTextDureeSecondeAfficherMouvements = new wxStaticText( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxT(":"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextDureeSecondeAfficherMouvements->Wrap( -1 );
 	bSizerNomAffichageMouvements1->Add( m_staticTextDureeSecondeAfficherMouvements, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
-	m_textCtrlDureeHeureAfficherMouvements12 = new wxTextCtrl( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxT("00"), wxDefaultPosition, wxSize( 130,-1 ), wxTE_CENTRE|wxTE_READONLY );
-	m_textCtrlDureeHeureAfficherMouvements12->SetMinSize( wxSize( 35,-1 ) );
-	m_textCtrlDureeHeureAfficherMouvements12->SetMaxSize( wxSize( 35,-1 ) );
+	m_textCtrlDureeSecondeAfficherMouvements = new wxTextCtrl( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxT("00"), wxDefaultPosition, wxSize( 130,-1 ), wxTE_CENTRE|wxTE_READONLY );
+	m_textCtrlDureeSecondeAfficherMouvements->SetMinSize( wxSize( 35,-1 ) );
+	m_textCtrlDureeSecondeAfficherMouvements->SetMaxSize( wxSize( 35,-1 ) );
 	
-	bSizerNomAffichageMouvements1->Add( m_textCtrlDureeHeureAfficherMouvements12, 0, wxALIGN_CENTER_VERTICAL, 5 );
+	bSizerNomAffichageMouvements1->Add( m_textCtrlDureeSecondeAfficherMouvements, 0, wxALIGN_CENTER_VERTICAL, 5 );
 	
 	
 	bSizerNomAffichageMouvements1->Add( 0, 0, 1, wxEXPAND, 5 );
@@ -189,30 +185,6 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	wxBoxSizer* bSizerAfficherDroiteMouvements;
 	bSizerAfficherDroiteMouvements = new wxBoxSizer( wxVERTICAL );
 	
-	wxBoxSizer* bSizerPartieBrasAfficherMouvements;
-	bSizerPartieBrasAfficherMouvements = new wxBoxSizer( wxHORIZONTAL );
-	
-	
-	bSizerPartieBrasAfficherMouvements->Add( 0, 0, 1, wxEXPAND, 5 );
-	
-	m_staticTextPartieBrasAfficheMouvementsr = new wxStaticText( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxT("Sélection de la partie du  bras :"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticTextPartieBrasAfficheMouvementsr->Wrap( -1 );
-	bSizerPartieBrasAfficherMouvements->Add( m_staticTextPartieBrasAfficheMouvementsr, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
-	
-	wxString m_choicePartieBrasAfficherMouvementChoices[] = { wxT("Bassin"), wxT("Épaule"), wxT("Coude"), wxT("Poigné") };
-	int m_choicePartieBrasAfficherMouvementNChoices = sizeof( m_choicePartieBrasAfficherMouvementChoices ) / sizeof( wxString );
-	m_choicePartieBrasAfficherMouvement = new wxChoice( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choicePartieBrasAfficherMouvementNChoices, m_choicePartieBrasAfficherMouvementChoices, 0 );
-	m_choicePartieBrasAfficherMouvement->SetSelection( 0 );
-	m_choicePartieBrasAfficherMouvement->Enable( false );
-	
-	bSizerPartieBrasAfficherMouvements->Add( m_choicePartieBrasAfficherMouvement, 0, wxALIGN_CENTER_VERTICAL, 5 );
-	
-	
-	bSizerPartieBrasAfficherMouvements->Add( 0, 0, 1, wxEXPAND, 5 );
-	
-	
-	bSizerAfficherDroiteMouvements->Add( bSizerPartieBrasAfficherMouvements, 1, wxALIGN_CENTER_HORIZONTAL|wxEXPAND, 5 );
-	
 	wxStaticBoxSizer* sbSizerCoordonneesAfficherMouvements;
 	sbSizerCoordonneesAfficherMouvements = new wxStaticBoxSizer( new wxStaticBox( sbSizerAfficher->GetStaticBox(), wxID_ANY, wxT("Coordonnées") ), wxHORIZONTAL );
 	
@@ -223,7 +195,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextxAfficherMouvements->Wrap( -1 );
 	sbSizerCoordonneesAfficherMouvements->Add( m_staticTextxAfficherMouvements, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
-	m_textCtrlxAfficherMouvements = new wxTextCtrl( sbSizerCoordonneesAfficherMouvements->GetStaticBox(), wxID_ANY, wxT("100"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
+	m_textCtrlxAfficherMouvements = new wxTextCtrl( sbSizerCoordonneesAfficherMouvements->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
 	#ifdef __WXGTK__
 	if ( !m_textCtrlxAfficherMouvements->HasFlag( wxTE_MULTILINE ) )
 	{
@@ -241,7 +213,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextyAfficherMouvements->Wrap( -1 );
 	sbSizerCoordonneesAfficherMouvements->Add( m_staticTextyAfficherMouvements, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
-	m_textCtrlyAfficherMouvements = new wxTextCtrl( sbSizerCoordonneesAfficherMouvements->GetStaticBox(), wxID_ANY, wxT("50"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
+	m_textCtrlyAfficherMouvements = new wxTextCtrl( sbSizerCoordonneesAfficherMouvements->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
 	#ifdef __WXGTK__
 	if ( !m_textCtrlyAfficherMouvements->HasFlag( wxTE_MULTILINE ) )
 	{
@@ -259,7 +231,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextzAfficherMouvements->Wrap( -1 );
 	sbSizerCoordonneesAfficherMouvements->Add( m_staticTextzAfficherMouvements, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
-	m_textCtrlzAfficherMouvements = new wxTextCtrl( sbSizerCoordonneesAfficherMouvements->GetStaticBox(), wxID_ANY, wxT("10"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
+	m_textCtrlzAfficherMouvements = new wxTextCtrl( sbSizerCoordonneesAfficherMouvements->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
 	#ifdef __WXGTK__
 	if ( !m_textCtrlzAfficherMouvements->HasFlag( wxTE_MULTILINE ) )
 	{
@@ -289,21 +261,17 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_scrolledWindowAffichageMouvements->SetSizer( bSizerAfficherMouvements );
 	m_scrolledWindowAffichageMouvements->Layout();
 	bSizerAfficherMouvements->Fit( m_scrolledWindowAffichageMouvements );
-	m_notebookMouvements->AddPage( m_scrolledWindowAffichageMouvements, wxT("Afficher les mouvements"), true );
+	m_notebookMouvements->AddPage( m_scrolledWindowAffichageMouvements, wxT("Afficher les mouvements"), false );
 	m_scrolledWindowModifierMouvements = new wxScrolledWindow( m_notebookMouvements, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxHSCROLL|wxVSCROLL, wxT("i") );
 	m_scrolledWindowModifierMouvements->SetScrollRate( 5, 5 );
 	wxBoxSizer* bSizerModifierMouvements;
 	bSizerModifierMouvements = new wxBoxSizer( wxHORIZONTAL );
 	
 	wxStaticBoxSizer* sbSizerSelectionModifierMouvements;
-	sbSizerSelectionModifierMouvements = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowModifierMouvements, wxID_ANY, wxT("Séléction du processus à afficher") ), wxHORIZONTAL );
+	sbSizerSelectionModifierMouvements = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowModifierMouvements, wxID_ANY, wxT("Séléction du mouvement à modifier") ), wxHORIZONTAL );
 	
 	sbSizerSelectionModifierMouvements->SetMinSize( wxSize( 280,-1 ) ); 
-	m_listBoxModifierMouvements = new wxListBox( sbSizerSelectionModifierMouvements->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_SORT );
-	m_listBoxModifierMouvements->Append( wxT("Mouvement 1") );
-	m_listBoxModifierMouvements->Append( wxT("Mouvement 2") );
-	m_listBoxModifierMouvements->Append( wxT("Mouvement 3") );
-	m_listBoxModifierMouvements->Append( wxT("Mouvement 4") );
+	m_listBoxModifierMouvements = new wxListBox( sbSizerSelectionModifierMouvements->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_SORT ); 
 	sbSizerSelectionModifierMouvements->Add( m_listBoxModifierMouvements, 1, wxALL|wxEXPAND, 5 );
 	
 	
@@ -328,7 +296,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextNomModifierMouvements->Wrap( -1 );
 	bSizerNomModifierMouvements->Add( m_staticTextNomModifierMouvements, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
-	m_textCtrlNomModifierMouvements = new wxTextCtrl( sbSizerModifier->GetStaticBox(), wxID_ANY, wxT("Mouvement 1"), wxDefaultPosition, wxSize( 130,-1 ), wxTE_CENTRE|wxTE_READONLY );
+	m_textCtrlNomModifierMouvements = new wxTextCtrl( sbSizerModifier->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 130,-1 ), wxTE_CENTRE );
 	bSizerNomModifierMouvements->Add( m_textCtrlNomModifierMouvements, 0, wxALIGN_CENTER_VERTICAL, 5 );
 	
 	
@@ -347,7 +315,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextDureeHeureModifierMouvements->Wrap( -1 );
 	bSizerNomModificationMouvements->Add( m_staticTextDureeHeureModifierMouvements, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
-	m_textCtrlDureeHeureModifierMouvements = new wxTextCtrl( sbSizerModifier->GetStaticBox(), wxID_ANY, wxT("00"), wxDefaultPosition, wxSize( 130,-1 ), wxTE_CENTRE );
+	m_textCtrlDureeHeureModifierMouvements = new wxTextCtrl( sbSizerModifier->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 130,-1 ), wxTE_CENTRE );
 	m_textCtrlDureeHeureModifierMouvements->SetMinSize( wxSize( 35,-1 ) );
 	m_textCtrlDureeHeureModifierMouvements->SetMaxSize( wxSize( 35,-1 ) );
 	
@@ -357,7 +325,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextDureeMinuteModifierMouvement->Wrap( -1 );
 	bSizerNomModificationMouvements->Add( m_staticTextDureeMinuteModifierMouvement, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
-	m_textCtrlDureeMinutesModifierMouvements = new wxTextCtrl( sbSizerModifier->GetStaticBox(), wxID_ANY, wxT("00"), wxDefaultPosition, wxSize( 130,-1 ), wxTE_CENTRE );
+	m_textCtrlDureeMinutesModifierMouvements = new wxTextCtrl( sbSizerModifier->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 130,-1 ), wxTE_CENTRE );
 	m_textCtrlDureeMinutesModifierMouvements->SetMinSize( wxSize( 35,-1 ) );
 	m_textCtrlDureeMinutesModifierMouvements->SetMaxSize( wxSize( 35,-1 ) );
 	
@@ -367,7 +335,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextDureeSecondeModifierMouvements->Wrap( -1 );
 	bSizerNomModificationMouvements->Add( m_staticTextDureeSecondeModifierMouvements, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
-	m_textCtrlDureeSecondeModifierMouvements = new wxTextCtrl( sbSizerModifier->GetStaticBox(), wxID_ANY, wxT("00"), wxDefaultPosition, wxSize( 130,-1 ), wxTE_CENTRE );
+	m_textCtrlDureeSecondeModifierMouvements = new wxTextCtrl( sbSizerModifier->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 130,-1 ), wxTE_CENTRE );
 	m_textCtrlDureeSecondeModifierMouvements->SetMinSize( wxSize( 35,-1 ) );
 	m_textCtrlDureeSecondeModifierMouvements->SetMaxSize( wxSize( 35,-1 ) );
 	
@@ -388,30 +356,6 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	wxBoxSizer* bSizerModifierDroiteMouvements;
 	bSizerModifierDroiteMouvements = new wxBoxSizer( wxVERTICAL );
 	
-	wxBoxSizer* bSizerPartieBrasModifierMouvements;
-	bSizerPartieBrasModifierMouvements = new wxBoxSizer( wxHORIZONTAL );
-	
-	
-	bSizerPartieBrasModifierMouvements->Add( 0, 0, 1, wxEXPAND, 5 );
-	
-	m_staticTextPartieBrasModifierMouvementsr = new wxStaticText( sbSizerModifier->GetStaticBox(), wxID_ANY, wxT("Sélection de la partie du  bras :"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticTextPartieBrasModifierMouvementsr->Wrap( -1 );
-	bSizerPartieBrasModifierMouvements->Add( m_staticTextPartieBrasModifierMouvementsr, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
-	
-	wxString m_choicePartieBrasModifierMouvementChoices[] = { wxT("Bassin"), wxT("Épaule"), wxT("Coude"), wxT("Poigné") };
-	int m_choicePartieBrasModifierMouvementNChoices = sizeof( m_choicePartieBrasModifierMouvementChoices ) / sizeof( wxString );
-	m_choicePartieBrasModifierMouvement = new wxChoice( sbSizerModifier->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choicePartieBrasModifierMouvementNChoices, m_choicePartieBrasModifierMouvementChoices, 0 );
-	m_choicePartieBrasModifierMouvement->SetSelection( 0 );
-	m_choicePartieBrasModifierMouvement->Enable( false );
-	
-	bSizerPartieBrasModifierMouvements->Add( m_choicePartieBrasModifierMouvement, 0, wxALIGN_CENTER_VERTICAL, 5 );
-	
-	
-	bSizerPartieBrasModifierMouvements->Add( 0, 0, 1, wxEXPAND, 5 );
-	
-	
-	bSizerModifierDroiteMouvements->Add( bSizerPartieBrasModifierMouvements, 1, wxALIGN_CENTER_HORIZONTAL|wxEXPAND, 5 );
-	
 	wxStaticBoxSizer* sbSizerCoordonneesModifierMouvements;
 	sbSizerCoordonneesModifierMouvements = new wxStaticBoxSizer( new wxStaticBox( sbSizerModifier->GetStaticBox(), wxID_ANY, wxT("Coordonnées") ), wxHORIZONTAL );
 	
@@ -422,7 +366,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextxModifierMouvements->Wrap( -1 );
 	sbSizerCoordonneesModifierMouvements->Add( m_staticTextxModifierMouvements, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
-	m_textCtrlxModifierMouvements = new wxTextCtrl( sbSizerCoordonneesModifierMouvements->GetStaticBox(), wxID_ANY, wxT("100"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
+	m_textCtrlxModifierMouvements = new wxTextCtrl( sbSizerCoordonneesModifierMouvements->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
 	#ifdef __WXGTK__
 	if ( !m_textCtrlxModifierMouvements->HasFlag( wxTE_MULTILINE ) )
 	{
@@ -440,7 +384,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextyModifierMouvements->Wrap( -1 );
 	sbSizerCoordonneesModifierMouvements->Add( m_staticTextyModifierMouvements, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
-	m_textCtrlyModifierMouvements = new wxTextCtrl( sbSizerCoordonneesModifierMouvements->GetStaticBox(), wxID_ANY, wxT("50"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
+	m_textCtrlyModifierMouvements = new wxTextCtrl( sbSizerCoordonneesModifierMouvements->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
 	#ifdef __WXGTK__
 	if ( !m_textCtrlyModifierMouvements->HasFlag( wxTE_MULTILINE ) )
 	{
@@ -458,7 +402,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextzModifierMouvements->Wrap( -1 );
 	sbSizerCoordonneesModifierMouvements->Add( m_staticTextzModifierMouvements, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
-	m_textCtrlzModifierMouvements = new wxTextCtrl( sbSizerCoordonneesModifierMouvements->GetStaticBox(), wxID_ANY, wxT("10"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
+	m_textCtrlzModifierMouvements = new wxTextCtrl( sbSizerCoordonneesModifierMouvements->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
 	#ifdef __WXGTK__
 	if ( !m_textCtrlzModifierMouvements->HasFlag( wxTE_MULTILINE ) )
 	{
@@ -525,7 +469,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextNomCreerMouvements->Wrap( -1 );
 	bSizerNomCreerMouvements1->Add( m_staticTextNomCreerMouvements, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
-	m_textCtrlNomCreerMouvements = new wxTextCtrl( sbSizerCreer->GetStaticBox(), wxID_ANY, wxT("Mouvement 1"), wxDefaultPosition, wxSize( 130,-1 ), wxTE_CENTRE|wxTE_READONLY );
+	m_textCtrlNomCreerMouvements = new wxTextCtrl( sbSizerCreer->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 130,-1 ), wxTE_CENTRE|wxTE_READONLY );
 	bSizerNomCreerMouvements1->Add( m_textCtrlNomCreerMouvements, 0, wxALIGN_CENTER_VERTICAL, 5 );
 	
 	
@@ -585,30 +529,6 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	wxBoxSizer* bSizerCreerDroiteMouvements;
 	bSizerCreerDroiteMouvements = new wxBoxSizer( wxVERTICAL );
 	
-	wxBoxSizer* bSizerPartieBrasCreerMouvements;
-	bSizerPartieBrasCreerMouvements = new wxBoxSizer( wxHORIZONTAL );
-	
-	
-	bSizerPartieBrasCreerMouvements->Add( 0, 0, 1, wxEXPAND, 5 );
-	
-	m_staticTextPartieBrasCreerMouvementsr = new wxStaticText( sbSizerCreer->GetStaticBox(), wxID_ANY, wxT("Sélection de la partie du  bras :"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticTextPartieBrasCreerMouvementsr->Wrap( -1 );
-	bSizerPartieBrasCreerMouvements->Add( m_staticTextPartieBrasCreerMouvementsr, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
-	
-	wxString m_choicePartieBrasCreerMouvementChoices[] = { wxT("Bassin"), wxT("Épaule"), wxT("Coude"), wxT("Poigné") };
-	int m_choicePartieBrasCreerMouvementNChoices = sizeof( m_choicePartieBrasCreerMouvementChoices ) / sizeof( wxString );
-	m_choicePartieBrasCreerMouvement = new wxChoice( sbSizerCreer->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choicePartieBrasCreerMouvementNChoices, m_choicePartieBrasCreerMouvementChoices, 0 );
-	m_choicePartieBrasCreerMouvement->SetSelection( 0 );
-	m_choicePartieBrasCreerMouvement->Enable( false );
-	
-	bSizerPartieBrasCreerMouvements->Add( m_choicePartieBrasCreerMouvement, 0, wxALIGN_CENTER_VERTICAL, 5 );
-	
-	
-	bSizerPartieBrasCreerMouvements->Add( 0, 0, 1, wxEXPAND, 5 );
-	
-	
-	bSizerCreerDroiteMouvements->Add( bSizerPartieBrasCreerMouvements, 1, wxALIGN_CENTER_HORIZONTAL|wxEXPAND, 5 );
-	
 	wxStaticBoxSizer* sbSizerCoordonneesCreerMouvements;
 	sbSizerCoordonneesCreerMouvements = new wxStaticBoxSizer( new wxStaticBox( sbSizerCreer->GetStaticBox(), wxID_ANY, wxT("Coordonnées") ), wxHORIZONTAL );
 	
@@ -619,7 +539,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextCreerMouvements->Wrap( -1 );
 	sbSizerCoordonneesCreerMouvements->Add( m_staticTextCreerMouvements, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
-	m_textCtrlxCreerMouvements = new wxTextCtrl( sbSizerCoordonneesCreerMouvements->GetStaticBox(), wxID_ANY, wxT("100"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
+	m_textCtrlxCreerMouvements = new wxTextCtrl( sbSizerCoordonneesCreerMouvements->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
 	#ifdef __WXGTK__
 	if ( !m_textCtrlxCreerMouvements->HasFlag( wxTE_MULTILINE ) )
 	{
@@ -637,7 +557,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextyCreerMouvements->Wrap( -1 );
 	sbSizerCoordonneesCreerMouvements->Add( m_staticTextyCreerMouvements, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
-	m_textCtrlyCreerMouvements = new wxTextCtrl( sbSizerCoordonneesCreerMouvements->GetStaticBox(), wxID_ANY, wxT("50"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
+	m_textCtrlyCreerMouvements = new wxTextCtrl( sbSizerCoordonneesCreerMouvements->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
 	#ifdef __WXGTK__
 	if ( !m_textCtrlyCreerMouvements->HasFlag( wxTE_MULTILINE ) )
 	{
@@ -655,7 +575,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextzCreerMouvements->Wrap( -1 );
 	sbSizerCoordonneesCreerMouvements->Add( m_staticTextzCreerMouvements, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
-	m_textCtrlzCreerMouvements = new wxTextCtrl( sbSizerCoordonneesCreerMouvements->GetStaticBox(), wxID_ANY, wxT("10"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
+	m_textCtrlzCreerMouvements = new wxTextCtrl( sbSizerCoordonneesCreerMouvements->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
 	#ifdef __WXGTK__
 	if ( !m_textCtrlzCreerMouvements->HasFlag( wxTE_MULTILINE ) )
 	{
@@ -702,14 +622,10 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	bSizerDetruireMouvements = new wxBoxSizer( wxHORIZONTAL );
 	
 	wxStaticBoxSizer* sbSizerSelectionDetruireMouvements;
-	sbSizerSelectionDetruireMouvements = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowDetruireMouvements1, wxID_ANY, wxT("Séléction du processus à afficher") ), wxHORIZONTAL );
+	sbSizerSelectionDetruireMouvements = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowDetruireMouvements1, wxID_ANY, wxT("Séléction du mouvement a detruire") ), wxHORIZONTAL );
 	
 	sbSizerSelectionDetruireMouvements->SetMinSize( wxSize( 280,-1 ) ); 
-	m_listBoxDetruireMouvements = new wxListBox( sbSizerSelectionDetruireMouvements->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_SORT );
-	m_listBoxDetruireMouvements->Append( wxT("Mouvement 1") );
-	m_listBoxDetruireMouvements->Append( wxT("Mouvement 2") );
-	m_listBoxDetruireMouvements->Append( wxT("Mouvement 3") );
-	m_listBoxDetruireMouvements->Append( wxT("Mouvement 4") );
+	m_listBoxDetruireMouvements = new wxListBox( sbSizerSelectionDetruireMouvements->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_SORT ); 
 	sbSizerSelectionDetruireMouvements->Add( m_listBoxDetruireMouvements, 1, wxALL|wxEXPAND, 5 );
 	
 	
@@ -746,14 +662,10 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	bSizerTesterMouvements = new wxBoxSizer( wxHORIZONTAL );
 	
 	wxStaticBoxSizer* sbSizerSelectionTesterMouvements;
-	sbSizerSelectionTesterMouvements = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowDetruireMouvements11, wxID_ANY, wxT("Séléction du processus à afficher") ), wxHORIZONTAL );
+	sbSizerSelectionTesterMouvements = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowDetruireMouvements11, wxID_ANY, wxT("Séléction du mouvement a tester") ), wxHORIZONTAL );
 	
 	sbSizerSelectionTesterMouvements->SetMinSize( wxSize( 280,-1 ) ); 
-	m_listBoxTesterMouvements = new wxListBox( sbSizerSelectionTesterMouvements->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_SORT );
-	m_listBoxTesterMouvements->Append( wxT("Mouvement 1") );
-	m_listBoxTesterMouvements->Append( wxT("Mouvement 2") );
-	m_listBoxTesterMouvements->Append( wxT("Mouvement 3") );
-	m_listBoxTesterMouvements->Append( wxT("Mouvement 4") );
+	m_listBoxTesterMouvements = new wxListBox( sbSizerSelectionTesterMouvements->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_SORT ); 
 	sbSizerSelectionTesterMouvements->Add( m_listBoxTesterMouvements, 1, wxALL|wxEXPAND, 5 );
 	
 	
@@ -783,7 +695,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_scrolledWindowDetruireMouvements11->SetSizer( bSizerTesterMouvements );
 	m_scrolledWindowDetruireMouvements11->Layout();
 	bSizerTesterMouvements->Fit( m_scrolledWindowDetruireMouvements11 );
-	m_notebookMouvements->AddPage( m_scrolledWindowDetruireMouvements11, wxT("TEST"), false );
+	m_notebookMouvements->AddPage( m_scrolledWindowDetruireMouvements11, wxT("TEST"), true );
 	
 	bSizerPrincipal->Add( m_notebookMouvements, 1, wxEXPAND|wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
 	
@@ -799,11 +711,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	sbSizerSelectionAfficherTrajectoires = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowAffichageTrajectoires, wxID_ANY, wxT("Séléction de la trajectoires à afficher") ), wxHORIZONTAL );
 	
 	sbSizerSelectionAfficherTrajectoires->SetMinSize( wxSize( 280,-1 ) ); 
-	m_listBoxAffichageTrajectoires = new wxListBox( sbSizerSelectionAfficherTrajectoires->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_SORT );
-	m_listBoxAffichageTrajectoires->Append( wxT("Trajectoire 1") );
-	m_listBoxAffichageTrajectoires->Append( wxT("Trajectoire 2") );
-	m_listBoxAffichageTrajectoires->Append( wxT("Trajectoire 3") );
-	m_listBoxAffichageTrajectoires->Append( wxT("Trajectoire 4") );
+	m_listBoxAffichageTrajectoires = new wxListBox( sbSizerSelectionAfficherTrajectoires->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_SORT ); 
 	sbSizerSelectionAfficherTrajectoires->Add( m_listBoxAffichageTrajectoires, 1, wxALL|wxEXPAND, 5 );
 	
 	
@@ -821,11 +729,11 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	
 	bSizerNomAffichageTrajectoires->Add( 0, 0, 1, wxEXPAND, 5 );
 	
-	m_staticTextNomAfficherTrajectoire = new wxStaticText( sbSizerAfficherTrajectoires->GetStaticBox(), wxID_ANY, wxT("Nom du Mouvement :"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextNomAfficherTrajectoire = new wxStaticText( sbSizerAfficherTrajectoires->GetStaticBox(), wxID_ANY, wxT("Nom de la trajectoire :"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextNomAfficherTrajectoire->Wrap( -1 );
 	bSizerNomAffichageTrajectoires->Add( m_staticTextNomAfficherTrajectoire, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
-	m_textCtrlNomAfficherTrajectoires = new wxTextCtrl( sbSizerAfficherTrajectoires->GetStaticBox(), wxID_ANY, wxT("Mouvement 1"), wxDefaultPosition, wxSize( 130,-1 ), wxTE_CENTRE|wxTE_READONLY );
+	m_textCtrlNomAfficherTrajectoires = new wxTextCtrl( sbSizerAfficherTrajectoires->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 130,-1 ), wxTE_CENTRE|wxTE_READONLY );
 	bSizerNomAffichageTrajectoires->Add( m_textCtrlNomAfficherTrajectoires, 0, wxALIGN_CENTER_VERTICAL, 5 );
 	
 	
@@ -833,6 +741,32 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	
 	
 	bSizerAfficherGaucheTrajectoires->Add( bSizerNomAffichageTrajectoires, 1, wxALIGN_CENTER_HORIZONTAL|wxEXPAND, 5 );
+	
+	wxBoxSizer* bSizerDepartArrivee;
+	bSizerDepartArrivee = new wxBoxSizer( wxHORIZONTAL );
+	
+	
+	bSizerDepartArrivee->Add( 0, 0, 1, wxEXPAND, 5 );
+	
+	m_staticText42 = new wxStaticText( sbSizerAfficherTrajectoires->GetStaticBox(), wxID_ANY, wxT("Départ:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText42->Wrap( -1 );
+	bSizerDepartArrivee->Add( m_staticText42, 0, wxALL, 5 );
+	
+	m_textCtrlBaindedepartAfficher = new wxTextCtrl( sbSizerAfficherTrajectoires->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizerDepartArrivee->Add( m_textCtrlBaindedepartAfficher, 0, wxALL, 5 );
+	
+	m_staticText43 = new wxStaticText( sbSizerAfficherTrajectoires->GetStaticBox(), wxID_ANY, wxT("Arrivé:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText43->Wrap( -1 );
+	bSizerDepartArrivee->Add( m_staticText43, 0, wxALL, 5 );
+	
+	m_textCtrlBainDarriveeAfficher = new wxTextCtrl( sbSizerAfficherTrajectoires->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizerDepartArrivee->Add( m_textCtrlBainDarriveeAfficher, 0, wxALL, 5 );
+	
+	
+	bSizerDepartArrivee->Add( 0, 0, 1, wxEXPAND, 5 );
+	
+	
+	bSizerAfficherGaucheTrajectoires->Add( bSizerDepartArrivee, 1, wxEXPAND, 5 );
 	
 	wxBoxSizer* bSizerDureeAffichageTrajectoires;
 	bSizerDureeAffichageTrajectoires = new wxBoxSizer( wxHORIZONTAL );
@@ -882,101 +816,20 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticlineAfficherMouvements1 = new wxStaticLine( sbSizerAfficherTrajectoires->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_VERTICAL );
 	sbSizerAfficherTrajectoires->Add( m_staticlineAfficherMouvements1, 0, wxEXPAND | wxALL, 5 );
 	
-	wxBoxSizer* bSizerAfficherDroiteTrajectoires;
-	bSizerAfficherDroiteTrajectoires = new wxBoxSizer( wxVERTICAL );
+	wxBoxSizer* bSizerAfficherCompositionTrajectoires;
+	bSizerAfficherCompositionTrajectoires = new wxBoxSizer( wxVERTICAL );
 	
-	wxBoxSizer* bSizerPartieBrasAfficherTrajectoires;
-	bSizerPartieBrasAfficherTrajectoires = new wxBoxSizer( wxHORIZONTAL );
+	wxStaticBoxSizer* sbSizerCompositionTrajectoires;
+	sbSizerCompositionTrajectoires = new wxStaticBoxSizer( new wxStaticBox( sbSizerAfficherTrajectoires->GetStaticBox(), wxID_ANY, wxT("Coomposition") ), wxHORIZONTAL );
 	
-	
-	bSizerPartieBrasAfficherTrajectoires->Add( 0, 0, 1, wxEXPAND, 5 );
-	
-	m_staticTextPartieBrasAfficheTrajectoires = new wxStaticText( sbSizerAfficherTrajectoires->GetStaticBox(), wxID_ANY, wxT("Sélection de la partie du  bras :"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticTextPartieBrasAfficheTrajectoires->Wrap( -1 );
-	bSizerPartieBrasAfficherTrajectoires->Add( m_staticTextPartieBrasAfficheTrajectoires, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
-	
-	wxString m_choicePartieBrasAfficherTrajectoiresChoices[] = { wxT("Bassin"), wxT("Épaule"), wxT("Coude"), wxT("Poigné") };
-	int m_choicePartieBrasAfficherTrajectoiresNChoices = sizeof( m_choicePartieBrasAfficherTrajectoiresChoices ) / sizeof( wxString );
-	m_choicePartieBrasAfficherTrajectoires = new wxChoice( sbSizerAfficherTrajectoires->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choicePartieBrasAfficherTrajectoiresNChoices, m_choicePartieBrasAfficherTrajectoiresChoices, 0 );
-	m_choicePartieBrasAfficherTrajectoires->SetSelection( 0 );
-	m_choicePartieBrasAfficherTrajectoires->Enable( false );
-	
-	bSizerPartieBrasAfficherTrajectoires->Add( m_choicePartieBrasAfficherTrajectoires, 0, wxALIGN_CENTER_VERTICAL, 5 );
+	m_listBoxCompositionTrajectoire = new wxListBox( sbSizerCompositionTrajectoires->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 ); 
+	sbSizerCompositionTrajectoires->Add( m_listBoxCompositionTrajectoire, 1, wxALL|wxEXPAND, 5 );
 	
 	
-	bSizerPartieBrasAfficherTrajectoires->Add( 0, 0, 1, wxEXPAND, 5 );
+	bSizerAfficherCompositionTrajectoires->Add( sbSizerCompositionTrajectoires, 1, wxALL|wxEXPAND, 5 );
 	
 	
-	bSizerAfficherDroiteTrajectoires->Add( bSizerPartieBrasAfficherTrajectoires, 1, wxALIGN_CENTER_HORIZONTAL|wxEXPAND, 5 );
-	
-	wxStaticBoxSizer* sbSizerCoordonneesAfficherTrajectoires;
-	sbSizerCoordonneesAfficherTrajectoires = new wxStaticBoxSizer( new wxStaticBox( sbSizerAfficherTrajectoires->GetStaticBox(), wxID_ANY, wxT("Coordonnées") ), wxHORIZONTAL );
-	
-	
-	sbSizerCoordonneesAfficherTrajectoires->Add( 0, 0, 1, wxEXPAND, 5 );
-	
-	m_staticTextxAfficherTrajectoires = new wxStaticText( sbSizerCoordonneesAfficherTrajectoires->GetStaticBox(), wxID_ANY, wxT("x :"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticTextxAfficherTrajectoires->Wrap( -1 );
-	sbSizerCoordonneesAfficherTrajectoires->Add( m_staticTextxAfficherTrajectoires, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
-	
-	m_textCtrlxAfficherTrajectoires = new wxTextCtrl( sbSizerCoordonneesAfficherTrajectoires->GetStaticBox(), wxID_ANY, wxT("100"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
-	#ifdef __WXGTK__
-	if ( !m_textCtrlxAfficherTrajectoires->HasFlag( wxTE_MULTILINE ) )
-	{
-	m_textCtrlxAfficherTrajectoires->SetMaxLength( 3 );
-	}
-	#else
-	m_textCtrlxAfficherTrajectoires->SetMaxLength( 3 );
-	#endif
-	m_textCtrlxAfficherTrajectoires->SetMinSize( wxSize( 50,-1 ) );
-	m_textCtrlxAfficherTrajectoires->SetMaxSize( wxSize( 50,-1 ) );
-	
-	sbSizerCoordonneesAfficherTrajectoires->Add( m_textCtrlxAfficherTrajectoires, 0, wxALIGN_CENTER_VERTICAL|wxRIGHT, 5 );
-	
-	m_staticTextyAfficherTrajectoires = new wxStaticText( sbSizerCoordonneesAfficherTrajectoires->GetStaticBox(), wxID_ANY, wxT("y :"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticTextyAfficherTrajectoires->Wrap( -1 );
-	sbSizerCoordonneesAfficherTrajectoires->Add( m_staticTextyAfficherTrajectoires, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
-	
-	m_textCtrlyAfficherTrajectoires = new wxTextCtrl( sbSizerCoordonneesAfficherTrajectoires->GetStaticBox(), wxID_ANY, wxT("50"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
-	#ifdef __WXGTK__
-	if ( !m_textCtrlyAfficherTrajectoires->HasFlag( wxTE_MULTILINE ) )
-	{
-	m_textCtrlyAfficherTrajectoires->SetMaxLength( 3 );
-	}
-	#else
-	m_textCtrlyAfficherTrajectoires->SetMaxLength( 3 );
-	#endif
-	m_textCtrlyAfficherTrajectoires->SetMinSize( wxSize( 50,-1 ) );
-	m_textCtrlyAfficherTrajectoires->SetMaxSize( wxSize( 50,-1 ) );
-	
-	sbSizerCoordonneesAfficherTrajectoires->Add( m_textCtrlyAfficherTrajectoires, 0, wxALIGN_CENTER_VERTICAL|wxRIGHT, 5 );
-	
-	m_staticTextzAfficherTrajectoires = new wxStaticText( sbSizerCoordonneesAfficherTrajectoires->GetStaticBox(), wxID_ANY, wxT("z :"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticTextzAfficherTrajectoires->Wrap( -1 );
-	sbSizerCoordonneesAfficherTrajectoires->Add( m_staticTextzAfficherTrajectoires, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
-	
-	m_textCtrlzAfficherTrajectoires = new wxTextCtrl( sbSizerCoordonneesAfficherTrajectoires->GetStaticBox(), wxID_ANY, wxT("10"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
-	#ifdef __WXGTK__
-	if ( !m_textCtrlzAfficherTrajectoires->HasFlag( wxTE_MULTILINE ) )
-	{
-	m_textCtrlzAfficherTrajectoires->SetMaxLength( 3 );
-	}
-	#else
-	m_textCtrlzAfficherTrajectoires->SetMaxLength( 3 );
-	#endif
-	m_textCtrlzAfficherTrajectoires->SetMinSize( wxSize( 50,-1 ) );
-	m_textCtrlzAfficherTrajectoires->SetMaxSize( wxSize( 50,-1 ) );
-	
-	sbSizerCoordonneesAfficherTrajectoires->Add( m_textCtrlzAfficherTrajectoires, 0, wxALIGN_CENTER_VERTICAL, 5 );
-	
-	
-	sbSizerCoordonneesAfficherTrajectoires->Add( 0, 0, 1, wxEXPAND, 5 );
-	
-	
-	bSizerAfficherDroiteTrajectoires->Add( sbSizerCoordonneesAfficherTrajectoires, 1, wxALL|wxEXPAND, 5 );
-	
-	
-	sbSizerAfficherTrajectoires->Add( bSizerAfficherDroiteTrajectoires, 1, wxEXPAND, 5 );
+	sbSizerAfficherTrajectoires->Add( bSizerAfficherCompositionTrajectoires, 1, wxEXPAND, 5 );
 	
 	
 	bSizerAfficherTrajectoires->Add( sbSizerAfficherTrajectoires, 1, wxALL|wxEXPAND, 5 );
@@ -985,21 +838,17 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_scrolledWindowAffichageTrajectoires->SetSizer( bSizerAfficherTrajectoires );
 	m_scrolledWindowAffichageTrajectoires->Layout();
 	bSizerAfficherTrajectoires->Fit( m_scrolledWindowAffichageTrajectoires );
-	m_notebookTrajectoires->AddPage( m_scrolledWindowAffichageTrajectoires, wxT("Afficher les trajectoires"), true );
+	m_notebookTrajectoires->AddPage( m_scrolledWindowAffichageTrajectoires, wxT("Afficher les trajectoires"), false );
 	m_scrolledWindowModifierTrajectoires = new wxScrolledWindow( m_notebookTrajectoires, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxHSCROLL|wxVSCROLL, wxT("i") );
 	m_scrolledWindowModifierTrajectoires->SetScrollRate( 5, 5 );
 	wxBoxSizer* bSizerModifierTrajectoires;
 	bSizerModifierTrajectoires = new wxBoxSizer( wxHORIZONTAL );
 	
 	wxStaticBoxSizer* sbSizerSelectionModifierMouvements1;
-	sbSizerSelectionModifierMouvements1 = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowModifierTrajectoires, wxID_ANY, wxT("Séléction du processus à afficher") ), wxHORIZONTAL );
+	sbSizerSelectionModifierMouvements1 = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowModifierTrajectoires, wxID_ANY, wxT("Séléction de la trajectoire a modifier") ), wxHORIZONTAL );
 	
 	sbSizerSelectionModifierMouvements1->SetMinSize( wxSize( 280,-1 ) ); 
-	m_listBoxModifierTrajectoires = new wxListBox( sbSizerSelectionModifierMouvements1->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_SORT );
-	m_listBoxModifierTrajectoires->Append( wxT("Mouvement 1") );
-	m_listBoxModifierTrajectoires->Append( wxT("Mouvement 2") );
-	m_listBoxModifierTrajectoires->Append( wxT("Mouvement 3") );
-	m_listBoxModifierTrajectoires->Append( wxT("Mouvement 4") );
+	m_listBoxModifierTrajectoires = new wxListBox( sbSizerSelectionModifierMouvements1->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_SORT ); 
 	sbSizerSelectionModifierMouvements1->Add( m_listBoxModifierTrajectoires, 1, wxALL|wxEXPAND, 5 );
 	
 	
@@ -1020,11 +869,11 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	
 	bSizerNomModifierTrajectoires->Add( 0, 0, 1, wxEXPAND, 5 );
 	
-	m_staticTextNomModifierTrajectoires = new wxStaticText( sbSizerTrajectoires->GetStaticBox(), wxID_ANY, wxT("Nom du Mouvement :"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextNomModifierTrajectoires = new wxStaticText( sbSizerTrajectoires->GetStaticBox(), wxID_ANY, wxT("Nom de la trajectoire:"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextNomModifierTrajectoires->Wrap( -1 );
 	bSizerNomModifierTrajectoires->Add( m_staticTextNomModifierTrajectoires, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
-	m_textCtrlNomModifierTrajectoires = new wxTextCtrl( sbSizerTrajectoires->GetStaticBox(), wxID_ANY, wxT("Mouvement 1"), wxDefaultPosition, wxSize( 130,-1 ), wxTE_CENTRE|wxTE_READONLY );
+	m_textCtrlNomModifierTrajectoires = new wxTextCtrl( sbSizerTrajectoires->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 130,-1 ), wxTE_CENTRE );
 	bSizerNomModifierTrajectoires->Add( m_textCtrlNomModifierTrajectoires, 0, wxALIGN_CENTER_VERTICAL, 5 );
 	
 	
@@ -1032,6 +881,32 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	
 	
 	bSizerModifierGaucheTrajectoires->Add( bSizerNomModifierTrajectoires, 1, wxALIGN_CENTER_HORIZONTAL|wxEXPAND, 5 );
+	
+	wxBoxSizer* bSizer48;
+	bSizer48 = new wxBoxSizer( wxHORIZONTAL );
+	
+	
+	bSizer48->Add( 0, 0, 1, wxEXPAND, 5 );
+	
+	m_staticText44 = new wxStaticText( sbSizerTrajectoires->GetStaticBox(), wxID_ANY, wxT("Départ"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText44->Wrap( -1 );
+	bSizer48->Add( m_staticText44, 0, wxALL, 5 );
+	
+	m_textCtrlBainDeDepartModifier = new wxTextCtrl( sbSizerTrajectoires->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer48->Add( m_textCtrlBainDeDepartModifier, 0, wxALL, 5 );
+	
+	m_staticText45 = new wxStaticText( sbSizerTrajectoires->GetStaticBox(), wxID_ANY, wxT("Arrivé"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText45->Wrap( -1 );
+	bSizer48->Add( m_staticText45, 0, wxALL, 5 );
+	
+	m_textCtrlBainDarriveeModifier = new wxTextCtrl( sbSizerTrajectoires->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer48->Add( m_textCtrlBainDarriveeModifier, 0, wxALL, 5 );
+	
+	
+	bSizer48->Add( 0, 0, 1, wxEXPAND, 5 );
+	
+	
+	bSizerModifierGaucheTrajectoires->Add( bSizer48, 1, wxEXPAND, 5 );
 	
 	wxBoxSizer* bSizerDureeModificationTrajectoires;
 	bSizerDureeModificationTrajectoires = new wxBoxSizer( wxHORIZONTAL );
@@ -1081,98 +956,24 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticlineModifierTrajectoires = new wxStaticLine( sbSizerTrajectoires->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_VERTICAL );
 	bSizerModifierPrincipalTrajectoires->Add( m_staticlineModifierTrajectoires, 0, wxEXPAND | wxALL, 5 );
 	
-	wxBoxSizer* bSizerModifierDroiteTrajectoires;
-	bSizerModifierDroiteTrajectoires = new wxBoxSizer( wxVERTICAL );
+	wxBoxSizer* bSizerModifierCompositionTrajectoires;
+	bSizerModifierCompositionTrajectoires = new wxBoxSizer( wxVERTICAL );
 	
-	wxBoxSizer* bSizerPartieBrasModifierTrajectoires;
-	bSizerPartieBrasModifierTrajectoires = new wxBoxSizer( wxHORIZONTAL );
+	wxStaticBoxSizer* sbSizerCoompositionModifierTrajectoires;
+	sbSizerCoompositionModifierTrajectoires = new wxStaticBoxSizer( new wxStaticBox( sbSizerTrajectoires->GetStaticBox(), wxID_ANY, wxT("Composition") ), wxVERTICAL );
 	
+	m_listBoxModifierCompositionTrajectoire = new wxListBox( sbSizerCoompositionModifierTrajectoires->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 ); 
+	sbSizerCoompositionModifierTrajectoires->Add( m_listBoxModifierCompositionTrajectoire, 1, wxALL|wxEXPAND, 5 );
 	
-	bSizerPartieBrasModifierTrajectoires->Add( 0, 0, 1, wxEXPAND, 5 );
+	m_staticText47 = new wxStaticText( sbSizerCoompositionModifierTrajectoires->GetStaticBox(), wxID_ANY, wxT("Nouvelle ordre des mouvements:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText47->Wrap( -1 );
+	sbSizerCoompositionModifierTrajectoires->Add( m_staticText47, 0, wxALIGN_CENTER|wxALL, 5 );
 	
-	m_staticTextPartieBrasModifierTrajectoires = new wxStaticText( sbSizerTrajectoires->GetStaticBox(), wxID_ANY, wxT("Sélection de la partie du  bras :"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticTextPartieBrasModifierTrajectoires->Wrap( -1 );
-	bSizerPartieBrasModifierTrajectoires->Add( m_staticTextPartieBrasModifierTrajectoires, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
-	
-	wxString m_choicePartieBrasModifierTrajectoiresChoices[] = { wxT("Bassin"), wxT("Épaule"), wxT("Coude"), wxT("Poigné") };
-	int m_choicePartieBrasModifierTrajectoiresNChoices = sizeof( m_choicePartieBrasModifierTrajectoiresChoices ) / sizeof( wxString );
-	m_choicePartieBrasModifierTrajectoires = new wxChoice( sbSizerTrajectoires->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choicePartieBrasModifierTrajectoiresNChoices, m_choicePartieBrasModifierTrajectoiresChoices, 0 );
-	m_choicePartieBrasModifierTrajectoires->SetSelection( 0 );
-	m_choicePartieBrasModifierTrajectoires->Enable( false );
-	
-	bSizerPartieBrasModifierTrajectoires->Add( m_choicePartieBrasModifierTrajectoires, 0, wxALIGN_CENTER_VERTICAL, 5 );
+	m_textCtrlOrdreMouvements = new wxTextCtrl( sbSizerCoompositionModifierTrajectoires->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	sbSizerCoompositionModifierTrajectoires->Add( m_textCtrlOrdreMouvements, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
 	
-	bSizerPartieBrasModifierTrajectoires->Add( 0, 0, 1, wxEXPAND, 5 );
-	
-	
-	bSizerModifierDroiteTrajectoires->Add( bSizerPartieBrasModifierTrajectoires, 1, wxALIGN_CENTER_HORIZONTAL|wxEXPAND, 5 );
-	
-	wxStaticBoxSizer* sbSizerCoordonneesModifierTrajectoires;
-	sbSizerCoordonneesModifierTrajectoires = new wxStaticBoxSizer( new wxStaticBox( sbSizerTrajectoires->GetStaticBox(), wxID_ANY, wxT("Coordonnées") ), wxHORIZONTAL );
-	
-	
-	sbSizerCoordonneesModifierTrajectoires->Add( 0, 0, 1, wxEXPAND, 5 );
-	
-	m_staticTextxModifierTrajectoires = new wxStaticText( sbSizerCoordonneesModifierTrajectoires->GetStaticBox(), wxID_ANY, wxT("x :"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticTextxModifierTrajectoires->Wrap( -1 );
-	sbSizerCoordonneesModifierTrajectoires->Add( m_staticTextxModifierTrajectoires, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
-	
-	m_textCtrlxModifierTrajectoires = new wxTextCtrl( sbSizerCoordonneesModifierTrajectoires->GetStaticBox(), wxID_ANY, wxT("100"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
-	#ifdef __WXGTK__
-	if ( !m_textCtrlxModifierTrajectoires->HasFlag( wxTE_MULTILINE ) )
-	{
-	m_textCtrlxModifierTrajectoires->SetMaxLength( 3 );
-	}
-	#else
-	m_textCtrlxModifierTrajectoires->SetMaxLength( 3 );
-	#endif
-	m_textCtrlxModifierTrajectoires->SetMinSize( wxSize( 50,-1 ) );
-	m_textCtrlxModifierTrajectoires->SetMaxSize( wxSize( 50,-1 ) );
-	
-	sbSizerCoordonneesModifierTrajectoires->Add( m_textCtrlxModifierTrajectoires, 0, wxALIGN_CENTER_VERTICAL|wxRIGHT, 5 );
-	
-	m_staticTextyModifierTrajectoires = new wxStaticText( sbSizerCoordonneesModifierTrajectoires->GetStaticBox(), wxID_ANY, wxT("y :"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticTextyModifierTrajectoires->Wrap( -1 );
-	sbSizerCoordonneesModifierTrajectoires->Add( m_staticTextyModifierTrajectoires, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
-	
-	m_textCtrlyModifierTrajectoires = new wxTextCtrl( sbSizerCoordonneesModifierTrajectoires->GetStaticBox(), wxID_ANY, wxT("50"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
-	#ifdef __WXGTK__
-	if ( !m_textCtrlyModifierTrajectoires->HasFlag( wxTE_MULTILINE ) )
-	{
-	m_textCtrlyModifierTrajectoires->SetMaxLength( 3 );
-	}
-	#else
-	m_textCtrlyModifierTrajectoires->SetMaxLength( 3 );
-	#endif
-	m_textCtrlyModifierTrajectoires->SetMinSize( wxSize( 50,-1 ) );
-	m_textCtrlyModifierTrajectoires->SetMaxSize( wxSize( 50,-1 ) );
-	
-	sbSizerCoordonneesModifierTrajectoires->Add( m_textCtrlyModifierTrajectoires, 0, wxALIGN_CENTER_VERTICAL|wxRIGHT, 5 );
-	
-	m_staticTextzModifierTrajectoires = new wxStaticText( sbSizerCoordonneesModifierTrajectoires->GetStaticBox(), wxID_ANY, wxT("z :"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticTextzModifierTrajectoires->Wrap( -1 );
-	sbSizerCoordonneesModifierTrajectoires->Add( m_staticTextzModifierTrajectoires, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
-	
-	m_textCtrlzModifierTrajectoires = new wxTextCtrl( sbSizerCoordonneesModifierTrajectoires->GetStaticBox(), wxID_ANY, wxT("10"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
-	#ifdef __WXGTK__
-	if ( !m_textCtrlzModifierTrajectoires->HasFlag( wxTE_MULTILINE ) )
-	{
-	m_textCtrlzModifierTrajectoires->SetMaxLength( 3 );
-	}
-	#else
-	m_textCtrlzModifierTrajectoires->SetMaxLength( 3 );
-	#endif
-	m_textCtrlzModifierTrajectoires->SetMinSize( wxSize( 50,-1 ) );
-	m_textCtrlzModifierTrajectoires->SetMaxSize( wxSize( 50,-1 ) );
-	
-	sbSizerCoordonneesModifierTrajectoires->Add( m_textCtrlzModifierTrajectoires, 0, wxALIGN_CENTER_VERTICAL, 5 );
-	
-	
-	sbSizerCoordonneesModifierTrajectoires->Add( 0, 0, 1, wxEXPAND, 5 );
-	
-	
-	bSizerModifierDroiteTrajectoires->Add( sbSizerCoordonneesModifierTrajectoires, 1, wxALL|wxEXPAND, 5 );
+	bSizerModifierCompositionTrajectoires->Add( sbSizerCoompositionModifierTrajectoires, 1, wxALL|wxEXPAND, 5 );
 	
 	m_sdbSizerModifierTrajectoires = new wxStdDialogButtonSizer();
 	m_sdbSizerModifierTrajectoiresApply = new wxButton( sbSizerTrajectoires->GetStaticBox(), wxID_APPLY );
@@ -1181,10 +982,10 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_sdbSizerModifierTrajectoires->AddButton( m_sdbSizerModifierTrajectoiresCancel );
 	m_sdbSizerModifierTrajectoires->Realize();
 	
-	bSizerModifierDroiteTrajectoires->Add( m_sdbSizerModifierTrajectoires, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
+	bSizerModifierCompositionTrajectoires->Add( m_sdbSizerModifierTrajectoires, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
 	
 	
-	bSizerModifierPrincipalTrajectoires->Add( bSizerModifierDroiteTrajectoires, 1, wxEXPAND, 5 );
+	bSizerModifierPrincipalTrajectoires->Add( bSizerModifierCompositionTrajectoires, 1, wxEXPAND, 5 );
 	
 	
 	sbSizerTrajectoires->Add( bSizerModifierPrincipalTrajectoires, 1, wxEXPAND, 5 );
@@ -1217,11 +1018,11 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	
 	bSizerNomCreerTrajectoires->Add( 0, 0, 1, wxEXPAND, 5 );
 	
-	m_staticTextNomCreerTrajectoires = new wxStaticText( sbSizerCreerTrajectoires->GetStaticBox(), wxID_ANY, wxT("Nom du Mouvement :"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextNomCreerTrajectoires = new wxStaticText( sbSizerCreerTrajectoires->GetStaticBox(), wxID_ANY, wxT("Nom de la trajectoire :"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextNomCreerTrajectoires->Wrap( -1 );
 	bSizerNomCreerTrajectoires->Add( m_staticTextNomCreerTrajectoires, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
-	m_textCtrlNomCreerTrajectoires = new wxTextCtrl( sbSizerCreerTrajectoires->GetStaticBox(), wxID_ANY, wxT("Trajectoire 1"), wxDefaultPosition, wxSize( 130,-1 ), wxTE_CENTRE|wxTE_READONLY );
+	m_textCtrlNomCreerTrajectoires = new wxTextCtrl( sbSizerCreerTrajectoires->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 130,-1 ), wxTE_CENTRE|wxTE_READONLY );
 	bSizerNomCreerTrajectoires->Add( m_textCtrlNomCreerTrajectoires, 0, wxALIGN_CENTER_VERTICAL, 5 );
 	
 	
@@ -1272,6 +1073,51 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	
 	bSizerModifierCreerTrajectoires->Add( bSizerDureeCreerTrajectoires, 1, wxEXPAND, 5 );
 	
+	wxBoxSizer* bSizerDepartAriveeTrajectoire;
+	bSizerDepartAriveeTrajectoire = new wxBoxSizer( wxHORIZONTAL );
+	
+	
+	bSizerDepartAriveeTrajectoire->Add( 0, 0, 1, wxEXPAND, 5 );
+	
+	m_staticText46 = new wxStaticText( sbSizerCreerTrajectoires->GetStaticBox(), wxID_ANY, wxT("Départ"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText46->Wrap( -1 );
+	bSizerDepartAriveeTrajectoire->Add( m_staticText46, 0, wxALL, 5 );
+	
+	m_textCtrlDepartTrajectoireCreation = new wxTextCtrl( sbSizerCreerTrajectoires->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizerDepartAriveeTrajectoire->Add( m_textCtrlDepartTrajectoireCreation, 0, wxALL, 5 );
+	
+	m_staticText471 = new wxStaticText( sbSizerCreerTrajectoires->GetStaticBox(), wxID_ANY, wxT("Arivée"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText471->Wrap( -1 );
+	bSizerDepartAriveeTrajectoire->Add( m_staticText471, 0, wxALL, 5 );
+	
+	m_textCtrlAriveeTrajectoireCreation = new wxTextCtrl( sbSizerCreerTrajectoires->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizerDepartAriveeTrajectoire->Add( m_textCtrlAriveeTrajectoireCreation, 0, wxALL, 5 );
+	
+	
+	bSizerDepartAriveeTrajectoire->Add( 0, 0, 1, wxEXPAND, 5 );
+	
+	
+	bSizerModifierCreerTrajectoires->Add( bSizerDepartAriveeTrajectoire, 1, wxEXPAND, 5 );
+	
+	wxBoxSizer* bSizerOrganisationMouvements;
+	bSizerOrganisationMouvements = new wxBoxSizer( wxHORIZONTAL );
+	
+	
+	bSizerOrganisationMouvements->Add( 0, 0, 1, wxEXPAND, 5 );
+	
+	m_staticTextOrganisationMouvements = new wxStaticText( sbSizerCreerTrajectoires->GetStaticBox(), wxID_ANY, wxT("Entrer l'ordre des mouvements, \nen les séparant par des \";\""), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextOrganisationMouvements->Wrap( -1 );
+	bSizerOrganisationMouvements->Add( m_staticTextOrganisationMouvements, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	
+	m_textCtrlOrganisationMouvements = new wxTextCtrl( sbSizerCreerTrajectoires->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizerOrganisationMouvements->Add( m_textCtrlOrganisationMouvements, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	
+	
+	bSizerOrganisationMouvements->Add( 0, 0, 1, wxEXPAND, 5 );
+	
+	
+	bSizerModifierCreerTrajectoires->Add( bSizerOrganisationMouvements, 1, wxEXPAND, 5 );
+	
 	
 	bSizerCreerPrincipalTrajectoires->Add( bSizerModifierCreerTrajectoires, 1, wxALL|wxEXPAND, 5 );
 	
@@ -1281,95 +1127,14 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	wxBoxSizer* bSizerCreerDroiteTrajectoires;
 	bSizerCreerDroiteTrajectoires = new wxBoxSizer( wxVERTICAL );
 	
-	wxBoxSizer* bSizerPartieBrasCreerTrajectoires;
-	bSizerPartieBrasCreerTrajectoires = new wxBoxSizer( wxHORIZONTAL );
+	wxStaticBoxSizer* sbSizer27;
+	sbSizer27 = new wxStaticBoxSizer( new wxStaticBox( sbSizerCreerTrajectoires->GetStaticBox(), wxID_ANY, wxT("Liste des mouvements") ), wxVERTICAL );
+	
+	m_listBoxCreerTrajectoires = new wxListBox( sbSizer27->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 ); 
+	sbSizer27->Add( m_listBoxCreerTrajectoires, 1, wxALL|wxEXPAND, 5 );
 	
 	
-	bSizerPartieBrasCreerTrajectoires->Add( 0, 0, 1, wxEXPAND, 5 );
-	
-	m_staticTextPartieBrasCreerTrajectoires = new wxStaticText( sbSizerCreerTrajectoires->GetStaticBox(), wxID_ANY, wxT("Sélection de la partie du  bras :"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticTextPartieBrasCreerTrajectoires->Wrap( -1 );
-	bSizerPartieBrasCreerTrajectoires->Add( m_staticTextPartieBrasCreerTrajectoires, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
-	
-	wxString m_choicePartieBrasCreerTrajectoiresChoices[] = { wxT("Bassin"), wxT("Épaule"), wxT("Coude"), wxT("Poigné") };
-	int m_choicePartieBrasCreerTrajectoiresNChoices = sizeof( m_choicePartieBrasCreerTrajectoiresChoices ) / sizeof( wxString );
-	m_choicePartieBrasCreerTrajectoires = new wxChoice( sbSizerCreerTrajectoires->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choicePartieBrasCreerTrajectoiresNChoices, m_choicePartieBrasCreerTrajectoiresChoices, 0 );
-	m_choicePartieBrasCreerTrajectoires->SetSelection( 0 );
-	m_choicePartieBrasCreerTrajectoires->Enable( false );
-	
-	bSizerPartieBrasCreerTrajectoires->Add( m_choicePartieBrasCreerTrajectoires, 0, wxALIGN_CENTER_VERTICAL, 5 );
-	
-	
-	bSizerPartieBrasCreerTrajectoires->Add( 0, 0, 1, wxEXPAND, 5 );
-	
-	
-	bSizerCreerDroiteTrajectoires->Add( bSizerPartieBrasCreerTrajectoires, 1, wxALIGN_CENTER_HORIZONTAL|wxEXPAND, 5 );
-	
-	wxStaticBoxSizer* sbSizerCoordonneesCreerTrajectoires;
-	sbSizerCoordonneesCreerTrajectoires = new wxStaticBoxSizer( new wxStaticBox( sbSizerCreerTrajectoires->GetStaticBox(), wxID_ANY, wxT("Coordonnées") ), wxHORIZONTAL );
-	
-	
-	sbSizerCoordonneesCreerTrajectoires->Add( 0, 0, 1, wxEXPAND, 5 );
-	
-	m_staticTextCreerTrajectoires = new wxStaticText( sbSizerCoordonneesCreerTrajectoires->GetStaticBox(), wxID_ANY, wxT("x :"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticTextCreerTrajectoires->Wrap( -1 );
-	sbSizerCoordonneesCreerTrajectoires->Add( m_staticTextCreerTrajectoires, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
-	
-	m_textCtrlxCreerTrajectoires = new wxTextCtrl( sbSizerCoordonneesCreerTrajectoires->GetStaticBox(), wxID_ANY, wxT("100"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
-	#ifdef __WXGTK__
-	if ( !m_textCtrlxCreerTrajectoires->HasFlag( wxTE_MULTILINE ) )
-	{
-	m_textCtrlxCreerTrajectoires->SetMaxLength( 3 );
-	}
-	#else
-	m_textCtrlxCreerTrajectoires->SetMaxLength( 3 );
-	#endif
-	m_textCtrlxCreerTrajectoires->SetMinSize( wxSize( 50,-1 ) );
-	m_textCtrlxCreerTrajectoires->SetMaxSize( wxSize( 50,-1 ) );
-	
-	sbSizerCoordonneesCreerTrajectoires->Add( m_textCtrlxCreerTrajectoires, 0, wxALIGN_CENTER_VERTICAL|wxRIGHT, 5 );
-	
-	m_staticTextyCreerTrajectoires = new wxStaticText( sbSizerCoordonneesCreerTrajectoires->GetStaticBox(), wxID_ANY, wxT("y :"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticTextyCreerTrajectoires->Wrap( -1 );
-	sbSizerCoordonneesCreerTrajectoires->Add( m_staticTextyCreerTrajectoires, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
-	
-	m_textCtrlyCreerTrajectoires = new wxTextCtrl( sbSizerCoordonneesCreerTrajectoires->GetStaticBox(), wxID_ANY, wxT("50"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
-	#ifdef __WXGTK__
-	if ( !m_textCtrlyCreerTrajectoires->HasFlag( wxTE_MULTILINE ) )
-	{
-	m_textCtrlyCreerTrajectoires->SetMaxLength( 3 );
-	}
-	#else
-	m_textCtrlyCreerTrajectoires->SetMaxLength( 3 );
-	#endif
-	m_textCtrlyCreerTrajectoires->SetMinSize( wxSize( 50,-1 ) );
-	m_textCtrlyCreerTrajectoires->SetMaxSize( wxSize( 50,-1 ) );
-	
-	sbSizerCoordonneesCreerTrajectoires->Add( m_textCtrlyCreerTrajectoires, 0, wxALIGN_CENTER_VERTICAL|wxRIGHT, 5 );
-	
-	m_staticTextzCreerTrajectoires = new wxStaticText( sbSizerCoordonneesCreerTrajectoires->GetStaticBox(), wxID_ANY, wxT("z :"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticTextzCreerTrajectoires->Wrap( -1 );
-	sbSizerCoordonneesCreerTrajectoires->Add( m_staticTextzCreerTrajectoires, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
-	
-	m_textCtrlzCreerTrajectoires = new wxTextCtrl( sbSizerCoordonneesCreerTrajectoires->GetStaticBox(), wxID_ANY, wxT("10"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
-	#ifdef __WXGTK__
-	if ( !m_textCtrlzCreerTrajectoires->HasFlag( wxTE_MULTILINE ) )
-	{
-	m_textCtrlzCreerTrajectoires->SetMaxLength( 3 );
-	}
-	#else
-	m_textCtrlzCreerTrajectoires->SetMaxLength( 3 );
-	#endif
-	m_textCtrlzCreerTrajectoires->SetMinSize( wxSize( 50,-1 ) );
-	m_textCtrlzCreerTrajectoires->SetMaxSize( wxSize( 50,-1 ) );
-	
-	sbSizerCoordonneesCreerTrajectoires->Add( m_textCtrlzCreerTrajectoires, 0, wxALIGN_CENTER_VERTICAL, 5 );
-	
-	
-	sbSizerCoordonneesCreerTrajectoires->Add( 0, 0, 1, wxEXPAND, 5 );
-	
-	
-	bSizerCreerDroiteTrajectoires->Add( sbSizerCoordonneesCreerTrajectoires, 1, wxALL|wxEXPAND, 5 );
+	bSizerCreerDroiteTrajectoires->Add( sbSizer27, 1, wxALL|wxEXPAND, 5 );
 	
 	m_sdbSizerCreerTrajectoires = new wxStdDialogButtonSizer();
 	m_sdbSizerCreerTrajectoiresSave = new wxButton( sbSizerCreerTrajectoires->GetStaticBox(), wxID_SAVE );
@@ -1398,14 +1163,10 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	bSizerDetruireTrajectoires = new wxBoxSizer( wxHORIZONTAL );
 	
 	wxStaticBoxSizer* sbSizerSelectionDetruireTrajectoires;
-	sbSizerSelectionDetruireTrajectoires = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowDetruireTrajectoires, wxID_ANY, wxT("Séléction du processus à afficher") ), wxHORIZONTAL );
+	sbSizerSelectionDetruireTrajectoires = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowDetruireTrajectoires, wxID_ANY, wxT("Séléction de la trajectoire a detruire") ), wxHORIZONTAL );
 	
 	sbSizerSelectionDetruireTrajectoires->SetMinSize( wxSize( 280,-1 ) ); 
-	m_listBoxDetruireTrajectoires = new wxListBox( sbSizerSelectionDetruireTrajectoires->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_SORT );
-	m_listBoxDetruireTrajectoires->Append( wxT("Mouvement 1") );
-	m_listBoxDetruireTrajectoires->Append( wxT("Mouvement 2") );
-	m_listBoxDetruireTrajectoires->Append( wxT("Mouvement 3") );
-	m_listBoxDetruireTrajectoires->Append( wxT("Mouvement 4") );
+	m_listBoxDetruireTrajectoires = new wxListBox( sbSizerSelectionDetruireTrajectoires->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_SORT ); 
 	sbSizerSelectionDetruireTrajectoires->Add( m_listBoxDetruireTrajectoires, 1, wxALL|wxEXPAND, 5 );
 	
 	
@@ -1414,7 +1175,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	wxStaticBoxSizer* sbSizerDetruireTrajectoires;
 	sbSizerDetruireTrajectoires = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowDetruireTrajectoires, wxID_ANY, wxT("Affichage") ), wxVERTICAL );
 	
-	m_staticTextDetruireTrajectoires = new wxStaticText( sbSizerDetruireTrajectoires->GetStaticBox(), wxID_ANY, wxT("Eẗes vous sur de vouloir supprimer ce mouvement ?"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextDetruireTrajectoires = new wxStaticText( sbSizerDetruireTrajectoires->GetStaticBox(), wxID_ANY, wxT("Eẗes vous sur de vouloir supprimer cette trajectoire ?"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextDetruireTrajectoires->Wrap( -1 );
 	sbSizerDetruireTrajectoires->Add( m_staticTextDetruireTrajectoires, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
 	
@@ -1442,14 +1203,10 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	bSizerTesterTrajectoires = new wxBoxSizer( wxHORIZONTAL );
 	
 	wxStaticBoxSizer* sbSizerSelectionTesterTrajectoires;
-	sbSizerSelectionTesterTrajectoires = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowTestTrajectoires, wxID_ANY, wxT("Séléction du processus à afficher") ), wxHORIZONTAL );
+	sbSizerSelectionTesterTrajectoires = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowTestTrajectoires, wxID_ANY, wxT("Séléction de la trajectoire a tester") ), wxHORIZONTAL );
 	
 	sbSizerSelectionTesterTrajectoires->SetMinSize( wxSize( 280,-1 ) ); 
-	m_listBoxTesterTrajectoires = new wxListBox( sbSizerSelectionTesterTrajectoires->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_SORT );
-	m_listBoxTesterTrajectoires->Append( wxT("Mouvement 1") );
-	m_listBoxTesterTrajectoires->Append( wxT("Mouvement 2") );
-	m_listBoxTesterTrajectoires->Append( wxT("Mouvement 3") );
-	m_listBoxTesterTrajectoires->Append( wxT("Mouvement 4") );
+	m_listBoxTesterTrajectoires = new wxListBox( sbSizerSelectionTesterTrajectoires->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_SORT ); 
 	sbSizerSelectionTesterTrajectoires->Add( m_listBoxTesterTrajectoires, 1, wxALL|wxEXPAND, 5 );
 	
 	
@@ -1479,7 +1236,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_scrolledWindowTestTrajectoires->SetSizer( bSizerTesterTrajectoires );
 	m_scrolledWindowTestTrajectoires->Layout();
 	bSizerTesterTrajectoires->Fit( m_scrolledWindowTestTrajectoires );
-	m_notebookTrajectoires->AddPage( m_scrolledWindowTestTrajectoires, wxT("TEST"), false );
+	m_notebookTrajectoires->AddPage( m_scrolledWindowTestTrajectoires, wxT("TEST"), true );
 	
 	bSizerPrincipal->Add( m_notebookTrajectoires, 1, wxEXPAND | wxALL, 5 );
 	
@@ -1538,6 +1295,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_listBoxModifierTrajectoires->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( FramePrincipal::OnListBoxModifierSelectionTrajectoires ), NULL, this );
 	m_sdbSizerModifierTrajectoiresApply->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnApplyButtonModifierTrajectoiresClick ), NULL, this );
 	m_sdbSizerModifierTrajectoiresCancel->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnCancelButtonModifierTrajectoiresClick ), NULL, this );
+	m_listBoxCreerTrajectoires->Connect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( FramePrincipal::OnListBoxSelectionMouvementsCreationTrajectoire ), NULL, this );
 	m_sdbSizerCreerTrajectoiresSave->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnSaveButtonCreerTrajectoiresClick ), NULL, this );
 	m_listBoxDetruireTrajectoires->Connect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( FramePrincipal::OnListBoxDetruireSelectionTrajectoires ), NULL, this );
 	m_listBoxDetruireTrajectoires->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( FramePrincipal::OnListBoxDetruireSelectionTrajectoires ), NULL, this );
@@ -1576,6 +1334,7 @@ FramePrincipal::~FramePrincipal()
 	m_listBoxModifierTrajectoires->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( FramePrincipal::OnListBoxModifierSelectionTrajectoires ), NULL, this );
 	m_sdbSizerModifierTrajectoiresApply->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnApplyButtonModifierTrajectoiresClick ), NULL, this );
 	m_sdbSizerModifierTrajectoiresCancel->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnCancelButtonModifierTrajectoiresClick ), NULL, this );
+	m_listBoxCreerTrajectoires->Disconnect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( FramePrincipal::OnListBoxSelectionMouvementsCreationTrajectoire ), NULL, this );
 	m_sdbSizerCreerTrajectoiresSave->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnSaveButtonCreerTrajectoiresClick ), NULL, this );
 	m_listBoxDetruireTrajectoires->Disconnect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( FramePrincipal::OnListBoxDetruireSelectionTrajectoires ), NULL, this );
 	m_listBoxDetruireTrajectoires->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( FramePrincipal::OnListBoxDetruireSelectionTrajectoires ), NULL, this );

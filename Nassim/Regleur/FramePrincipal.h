@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Feb 16 2016)
+// C++ code generated with wxFormBuilder (version Dec 21 2016)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO "NOT" EDIT THIS FILE!
@@ -25,7 +25,6 @@
 #include <wx/statbox.h>
 #include <wx/listbox.h>
 #include <wx/statline.h>
-#include <wx/choice.h>
 #include <wx/scrolwin.h>
 #include <wx/bitmap.h>
 #include <wx/image.h>
@@ -60,14 +59,12 @@ class FramePrincipal : public wxFrame
 		wxStaticText* m_staticTextNomAfficherMouvements;
 		wxTextCtrl* m_textCtrlNomAfficherMouvements;
 		wxStaticText* m_staticTextDureeHeureAfficherMouvements1;
-		wxTextCtrl* m_textCtrlDureeHeureAfficherMouvements1;
+		wxTextCtrl* m_textCtrlDureeHeureAfficherMouvements;
 		wxStaticText* m_staticTextDureeMinuteAfficherMouvements;
-		wxTextCtrl* m_textCtrlDureeHeureAfficherMouvements11;
+		wxTextCtrl* m_textCtrlDureeMinuteAfficherMouvements;
 		wxStaticText* m_staticTextDureeSecondeAfficherMouvements;
-		wxTextCtrl* m_textCtrlDureeHeureAfficherMouvements12;
+		wxTextCtrl* m_textCtrlDureeSecondeAfficherMouvements;
 		wxStaticLine* m_staticlineAfficherMouvements;
-		wxStaticText* m_staticTextPartieBrasAfficheMouvementsr;
-		wxChoice* m_choicePartieBrasAfficherMouvement;
 		wxStaticText* m_staticTextxAfficherMouvements;
 		wxTextCtrl* m_textCtrlxAfficherMouvements;
 		wxStaticText* m_staticTextyAfficherMouvements;
@@ -85,8 +82,6 @@ class FramePrincipal : public wxFrame
 		wxStaticText* m_staticTextDureeSecondeModifierMouvements;
 		wxTextCtrl* m_textCtrlDureeSecondeModifierMouvements;
 		wxStaticLine* m_staticlineModifierMouvements;
-		wxStaticText* m_staticTextPartieBrasModifierMouvementsr;
-		wxChoice* m_choicePartieBrasModifierMouvement;
 		wxStaticText* m_staticTextxModifierMouvements;
 		wxTextCtrl* m_textCtrlxModifierMouvements;
 		wxStaticText* m_staticTextyModifierMouvements;
@@ -106,8 +101,6 @@ class FramePrincipal : public wxFrame
 		wxStaticText* m_staticTextDureeSecondeCreerMouvements;
 		wxTextCtrl* m_textCtrlDureeSecondeCreerMouvements;
 		wxStaticLine* m_staticlineCreerMouvements;
-		wxStaticText* m_staticTextPartieBrasCreerMouvementsr;
-		wxChoice* m_choicePartieBrasCreerMouvement;
 		wxStaticText* m_staticTextCreerMouvements;
 		wxTextCtrl* m_textCtrlxCreerMouvements;
 		wxStaticText* m_staticTextyCreerMouvements;
@@ -131,6 +124,10 @@ class FramePrincipal : public wxFrame
 		wxListBox* m_listBoxAffichageTrajectoires;
 		wxStaticText* m_staticTextNomAfficherTrajectoire;
 		wxTextCtrl* m_textCtrlNomAfficherTrajectoires;
+		wxStaticText* m_staticText42;
+		wxTextCtrl* m_textCtrlBaindedepartAfficher;
+		wxStaticText* m_staticText43;
+		wxTextCtrl* m_textCtrlBainDarriveeAfficher;
 		wxStaticText* m_staticTextDureeHeureAfficherTrajectoires;
 		wxTextCtrl* m_textCtrlDureeHeureAfficherTrajectoires;
 		wxStaticText* m_staticTextDureeMinuteAfficherTrajectoires;
@@ -138,18 +135,15 @@ class FramePrincipal : public wxFrame
 		wxStaticText* m_staticTextDureeSecondeAfficherTrajectoires;
 		wxTextCtrl* m_textCtrlDureeSecondesAfficherTrajectoires;
 		wxStaticLine* m_staticlineAfficherMouvements1;
-		wxStaticText* m_staticTextPartieBrasAfficheTrajectoires;
-		wxChoice* m_choicePartieBrasAfficherTrajectoires;
-		wxStaticText* m_staticTextxAfficherTrajectoires;
-		wxTextCtrl* m_textCtrlxAfficherTrajectoires;
-		wxStaticText* m_staticTextyAfficherTrajectoires;
-		wxTextCtrl* m_textCtrlyAfficherTrajectoires;
-		wxStaticText* m_staticTextzAfficherTrajectoires;
-		wxTextCtrl* m_textCtrlzAfficherTrajectoires;
+		wxListBox* m_listBoxCompositionTrajectoire;
 		wxScrolledWindow* m_scrolledWindowModifierTrajectoires;
 		wxListBox* m_listBoxModifierTrajectoires;
 		wxStaticText* m_staticTextNomModifierTrajectoires;
 		wxTextCtrl* m_textCtrlNomModifierTrajectoires;
+		wxStaticText* m_staticText44;
+		wxTextCtrl* m_textCtrlBainDeDepartModifier;
+		wxStaticText* m_staticText45;
+		wxTextCtrl* m_textCtrlBainDarriveeModifier;
 		wxStaticText* m_staticTextDureeHeureModifierTrajectoires;
 		wxTextCtrl* m_textCtrlDureeHeureModifierTrajectoires;
 		wxStaticText* m_staticTextDureeMinuteModifierTrajectoires;
@@ -157,14 +151,9 @@ class FramePrincipal : public wxFrame
 		wxStaticText* m_staticTextDureeSecondeModifierTrajectoires;
 		wxTextCtrl* m_textCtrlDureeSecondeModifierTrajectoires;
 		wxStaticLine* m_staticlineModifierTrajectoires;
-		wxStaticText* m_staticTextPartieBrasModifierTrajectoires;
-		wxChoice* m_choicePartieBrasModifierTrajectoires;
-		wxStaticText* m_staticTextxModifierTrajectoires;
-		wxTextCtrl* m_textCtrlxModifierTrajectoires;
-		wxStaticText* m_staticTextyModifierTrajectoires;
-		wxTextCtrl* m_textCtrlyModifierTrajectoires;
-		wxStaticText* m_staticTextzModifierTrajectoires;
-		wxTextCtrl* m_textCtrlzModifierTrajectoires;
+		wxListBox* m_listBoxModifierCompositionTrajectoire;
+		wxStaticText* m_staticText47;
+		wxTextCtrl* m_textCtrlOrdreMouvements;
 		wxStdDialogButtonSizer* m_sdbSizerModifierTrajectoires;
 		wxButton* m_sdbSizerModifierTrajectoiresApply;
 		wxButton* m_sdbSizerModifierTrajectoiresCancel;
@@ -177,15 +166,14 @@ class FramePrincipal : public wxFrame
 		wxTextCtrl* m_textCtrlDureeMinutesCreerTrajectoires;
 		wxStaticText* m_staticTextDureeSecondeCreerTrajectoires;
 		wxTextCtrl* m_textCtrlDureeSecondeCreerTrajectoires;
+		wxStaticText* m_staticText46;
+		wxTextCtrl* m_textCtrlDepartTrajectoireCreation;
+		wxStaticText* m_staticText471;
+		wxTextCtrl* m_textCtrlAriveeTrajectoireCreation;
+		wxStaticText* m_staticTextOrganisationMouvements;
+		wxTextCtrl* m_textCtrlOrganisationMouvements;
 		wxStaticLine* m_staticlineCreerTrajectoires;
-		wxStaticText* m_staticTextPartieBrasCreerTrajectoires;
-		wxChoice* m_choicePartieBrasCreerTrajectoires;
-		wxStaticText* m_staticTextCreerTrajectoires;
-		wxTextCtrl* m_textCtrlxCreerTrajectoires;
-		wxStaticText* m_staticTextyCreerTrajectoires;
-		wxTextCtrl* m_textCtrlyCreerTrajectoires;
-		wxStaticText* m_staticTextzCreerTrajectoires;
-		wxTextCtrl* m_textCtrlzCreerTrajectoires;
+		wxListBox* m_listBoxCreerTrajectoires;
 		wxStdDialogButtonSizer* m_sdbSizerCreerTrajectoires;
 		wxButton* m_sdbSizerCreerTrajectoiresSave;
 		wxScrolledWindow* m_scrolledWindowDetruireTrajectoires;
@@ -221,6 +209,7 @@ class FramePrincipal : public wxFrame
 		virtual void OnListBoxModifierSelectionTrajectoires( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnApplyButtonModifierTrajectoiresClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnCancelButtonModifierTrajectoiresClick( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnListBoxSelectionMouvementsCreationTrajectoire( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnSaveButtonCreerTrajectoiresClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnListBoxDetruireSelectionTrajectoires( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnYesButtonDetruireTrajectoiresClick( wxCommandEvent& event ) { event.Skip(); }
@@ -231,7 +220,7 @@ class FramePrincipal : public wxFrame
 	
 	public:
 		
-		FramePrincipal( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Anodisation - Régleur"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 1000,750 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		FramePrincipal( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Anodisation - Régleur"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 1145,750 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 		
 		~FramePrincipal();
 	

@@ -52,6 +52,7 @@ class EvtFramePrincipal : public FramePrincipal
 		void OnListBoxModifierSelectionTrajectoires( wxCommandEvent& event );
 		void OnApplyButtonModifierTrajectoiresClick( wxCommandEvent& event );
 		void OnCancelButtonModifierTrajectoiresClick( wxCommandEvent& event );
+		void OnListBoxSelectionMouvementsCreationTrajectoire( wxCommandEvent& event );
 		void OnSaveButtonCreerTrajectoiresClick( wxCommandEvent& event );
 		void OnListBoxDetruireSelectionTrajectoires( wxCommandEvent& event );
 		void OnYesButtonDetruireTrajectoiresClick( wxCommandEvent& event );
@@ -61,8 +62,6 @@ class EvtFramePrincipal : public FramePrincipal
 	public:
 		/** Constructor */
 		EvtFramePrincipal( wxWindow* parent );
-        string ConversionEnString(wxString texte);
-        wxString ConversionEnWxString(string texte);
 	//// end generated class members
     private:
         Client *m_client;
@@ -71,20 +70,23 @@ class EvtFramePrincipal : public FramePrincipal
         bool m_client_connecte;
         bool m_identifie;
         bool VerificationLogin(wxString login, wxString pass);
-        
-        void Deconnexion(wxString message);
+        void AfficheStatus(wxString texte, int position);
+        void RempliListBoxMouvements();
+        void RempliListBoxTrajectoires();
+        wxString GardeIdSelection(wxString texte);
+        void VideListBoxMouvements();
+        void VideListBoxTrajectoires();
+        void DeconnexionClient(wxString message);
     protected:
         void AfficheInfoClient(wxCommandEvent& event);
         void AfficheMessageClient(wxCommandEvent& event);
         void AgitServeurPerdu(wxCommandEvent& event);
 
     public:
-
-
-
-
-
-
+        string ConversionEnString(wxString texte);
+        wxString ConversionEnWxString(string texte);
+        wxString DecouperTexteDebut(wxString texte, int position);
+        wxString DecouperTexteFin(wxString texte, int position);
 
 
 

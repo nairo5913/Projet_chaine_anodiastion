@@ -1,51 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Session Name="/home/ir2/nboubziz/Documents/git/Nassim/Nassim.workspace">
-  <int Value="3" Name="m_selectedTab"/>
-  <wxString Value="/home/ir2/nboubziz/Documents/git/Nassim/Nassim.workspace" Name="m_workspaceName"/>
+<Session Name="/home/nboubziz/Documents/Projet_chaine_anodiastion/Nassim/Nassim.workspace">
+  <int Value="5" Name="m_selectedTab"/>
+  <wxString Value="/home/nboubziz/Documents/Projet_chaine_anodiastion/Nassim/Nassim.workspace" Name="m_workspaceName"/>
   <TabInfoArray Name="TabInfoArray">
     <TabInfo>
-      <wxString Value="/home/ir2/nboubziz/Documents/git/Nassim/Regleur/DataAnnodisation.h" Name="FileName"/>
-      <int Value="23" Name="FirstVisibleLine"/>
-      <int Value="42" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="/home/ir2/nboubziz/Documents/git/Nassim/Regleur/DataAnnodisation.cpp" Name="FileName"/>
-      <int Value="78" Name="FirstVisibleLine"/>
-      <int Value="24" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="/home/ir2/nboubziz/Documents/git/Nassim/Regleur/EvtFramePrincipal.h" Name="FileName"/>
-      <int Value="43" Name="FirstVisibleLine"/>
-      <int Value="64" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="/home/ir2/nboubziz/Documents/git/Nassim/Regleur/EvtFramePrincipal.cpp" Name="FileName"/>
-      <int Value="61" Name="FirstVisibleLine"/>
-      <int Value="284" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds">
-        <IntVectorItem Value="267"/>
-      </IntVector>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="/home/ir2/nboubziz/Documents/git/Nassim/Regleur/Client.h" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="17" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="/home/ir2/nboubziz/Documents/git/Nassim/Regleur/Client.cpp" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
+      <wxString Value="/home/nboubziz/Documents/Projet_chaine_anodiastion/Nassim/Regleur/Client.h" Name="FileName"/>
+      <int Value="3" Name="FirstVisibleLine"/>
       <int Value="0" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="/home/nboubziz/Documents/Projet_chaine_anodiastion/Nassim/Regleur/Client.cpp" Name="FileName"/>
+      <int Value="323" Name="FirstVisibleLine"/>
+      <int Value="5" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="/home/nboubziz/Documents/Projet_chaine_anodiastion/Nassim/Regleur/DataAnnodisation.h" Name="FileName"/>
+      <int Value="45" Name="FirstVisibleLine"/>
+      <int Value="55" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="/home/nboubziz/Documents/Projet_chaine_anodiastion/Nassim/Regleur/DataAnnodisation.cpp" Name="FileName"/>
+      <int Value="12" Name="FirstVisibleLine"/>
+      <int Value="139" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds">
+        <IntVectorItem Value="3"/>
+        <IntVectorItem Value="23"/>
+        <IntVectorItem Value="28"/>
+        <IntVectorItem Value="35"/>
+        <IntVectorItem Value="42"/>
+        <IntVectorItem Value="88"/>
+        <IntVectorItem Value="95"/>
+        <IntVectorItem Value="117"/>
+        <IntVectorItem Value="163"/>
+        <IntVectorItem Value="188"/>
+        <IntVectorItem Value="194"/>
+        <IntVectorItem Value="216"/>
+        <IntVectorItem Value="255"/>
+        <IntVectorItem Value="273"/>
+        <IntVectorItem Value="291"/>
+        <IntVectorItem Value="309"/>
+        <IntVectorItem Value="330"/>
+      </IntVector>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="/home/nboubziz/Documents/Projet_chaine_anodiastion/Nassim/Regleur/EvtFramePrincipal.h" Name="FileName"/>
+      <int Value="33" Name="FirstVisibleLine"/>
+      <int Value="54" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="/home/nboubziz/Documents/Projet_chaine_anodiastion/Nassim/Regleur/EvtFramePrincipal.cpp" Name="FileName"/>
+      <int Value="367" Name="FirstVisibleLine"/>
+      <int Value="673" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds">
+        <IntVectorItem Value="3"/>
+        <IntVectorItem Value="21"/>
+        <IntVectorItem Value="26"/>
+        <IntVectorItem Value="166"/>
+        <IntVectorItem Value="173"/>
+        <IntVectorItem Value="330"/>
+        <IntVectorItem Value="410"/>
+        <IntVectorItem Value="415"/>
+        <IntVectorItem Value="420"/>
+        <IntVectorItem Value="425"/>
+        <IntVectorItem Value="430"/>
+        <IntVectorItem Value="435"/>
+        <IntVectorItem Value="505"/>
+        <IntVectorItem Value="591"/>
+        <IntVectorItem Value="689"/>
+        <IntVectorItem Value="694"/>
+        <IntVectorItem Value="699"/>
+        <IntVectorItem Value="704"/>
+        <IntVectorItem Value="709"/>
+        <IntVectorItem Value="714"/>
+        <IntVectorItem Value="719"/>
+        <IntVectorItem Value="727"/>
+        <IntVectorItem Value="766"/>
+        <IntVectorItem Value="799"/>
+        <IntVectorItem Value="805"/>
+        <IntVectorItem Value="835"/>
+        <IntVectorItem Value="842"/>
+        <IntVectorItem Value="850"/>
+        <IntVectorItem Value="858"/>
+        <IntVectorItem Value="863"/>
+        <IntVectorItem Value="868"/>
+        <IntVectorItem Value="878"/>
+        <IntVectorItem Value="892"/>
+        <IntVectorItem Value="899"/>
+      </IntVector>
     </TabInfo>
   </TabInfoArray>
   <SerializedObject Name="m_breakpoints">
