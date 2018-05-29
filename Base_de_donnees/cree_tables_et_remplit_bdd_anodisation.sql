@@ -24,7 +24,9 @@ CREATE TABLE "mouvements" (
     id_mouvement SERIAL,
     nom_mouvement char(100) NOT NULL,
     contenu_mouvement text,
-    axe char,
+    axe_x integer,
+    axe_y integer,
+    axe_z integer,
     --partie_bras char(6),
     vitesse char,
     temps_attente time without time zone,
@@ -53,8 +55,8 @@ CREATE TABLE "intermediaire_mouvements_trajectoires" (
     id_t integer REFERENCES trajectoires (id_trajectoire),
     id_m integer REFERENCES mouvements (id_mouvement),
     ordre_mouvements text NOT NULL,
-    point_depart char,
-    point_arrive char
+    point_depart char(6),
+    point_arrive char(6)
     /*PRIMARY KEY (id_m, id_t)*/
 );
 
