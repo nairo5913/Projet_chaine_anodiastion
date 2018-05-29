@@ -80,9 +80,9 @@ class FramePrincipal : public wxFrame
 		wxStaticText* m_staticDureeTotalModifier;
 		wxTextCtrl* m_textCtrlDureeTotalHeureModifier;
 		wxStaticText* m_staticTextDureeTotalMinuteModifier;
-		wxTextCtrl* textCtrlDureeTotalMinuteModifier;
+		wxTextCtrl* m_textCtrlDureeTotalMinuteModifier;
 		wxStaticText* m_staticTextDureeTotalSecondeModifier;
-		wxTextCtrl* textCtrlDureeTotalSecondeModifier;
+		wxTextCtrl* m_textCtrlDureeTotalSecondeModifier;
 		wxListBox* m_listBoxListeTrajectoiresModifier;
 		wxStaticLine* m_staticlineModification;
 		wxStaticText* m_staticTextNomModifier;
@@ -100,7 +100,7 @@ class FramePrincipal : public wxFrame
 		wxStaticText* m_staticTextDureeTotalMinuteCreer;
 		wxTextCtrl* textCtrlDureeTotalMinuteCreer;
 		wxStaticText* m_staticTextDureeTotalSecondeCreer;
-		wxTextCtrl* textCtrlDureeTotalSecondeCreer;
+		wxTextCtrl* m_textCtrlDureeTotalSecondeCreer;
 		wxListBox* m_listBoxListeTrajectoiresCreer;
 		wxStaticLine* m_staticlineCreer;
 		wxStaticText* m_staticTextNomCreer;
@@ -165,6 +165,8 @@ class FramePrincipal : public wxFrame
 		virtual void OnButtonConnexionToggle( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnListBoxAffichageSelection( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnListBoxModifierSelection( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnCharEnteredNum( wxKeyEvent& event ) { event.Skip(); }
+		virtual void OnCharEnteredOrdre( wxKeyEvent& event ) { event.Skip(); }
 		virtual void OnApplyButtonModifierClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnCancelButtonModiffierClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnCancelButtonCreerClick( wxCommandEvent& event ) { event.Skip(); }

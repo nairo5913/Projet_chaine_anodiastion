@@ -92,11 +92,43 @@ bool DonneesIHM::RecupereListeTouteTrajectoires()
     return retour;
 }
 
-bool DonneesIHM::RecupereListeTrajectoiresProcessus(string id_processus) // À coder
+bool DonneesIHM::RecupereListeTrajectoiresProcessus(string id_processus) // À finir
 {
-    bool retour = false;
+    bool retour;
     
-    string requete = "SELECT";
+    string requete = "SELECT id_t FROM intermediaire_processus_trajectoires WHERE id_p=" + id_processus;
+    
+    if(m_bdd_anodisation->ExecuteSelect(requete))
+    {
+        vector<string> dernier_resultat = m_bdd_anodisation->GetLastResult();
+        
+        for(unsigned int taille = 0; taille < dernier_resultat.size(); taille++)
+        {
+            string requete = "SELECT id_trajectoire, nom_trajectoire, contenu_trajectoire, duree_trajectoire FROM trajectoires WHERE id_trajectoire=" + dernier_resultat[taille];
+            
+            if(m_bdd_anodisation->ExecuteSelect(requete))
+            {
+                retour = true;
+                vector<string> resultat_traj = m_bdd_anodisation->GetLastResult();
+                
+                for(unsigned int nombre = 0; nombre < resultat_traj.size(); nombre++)
+                {
+                    
+                    m_listeTrajectoiresProcessus.push_back(resultat_traj[nombre]);
+                }
+            }
+            else
+            {
+                
+                retour = false;
+            }
+            
+        }
+    }
+    else
+    {
+        retour = false;
+    }
 
     return retour;
 }
@@ -137,10 +169,6 @@ bool DonneesIHM::RecupereNomProcessus(string id_processus)
         
         retour = true;
     }
-    else
-    {
-        retour = false;
-    }
 
     return retour;
 }
@@ -148,6 +176,17 @@ bool DonneesIHM::RecupereNomProcessus(string id_processus)
 bool DonneesIHM::RecupereOrdreTrajectoires(string id_processus) // À coder
 {
     bool retour = false;
-
+    
+    string requete = "SELECT ordre_trajectoires FROM intermediaire_processus_trajectoires WHERE id_p=" + id_processus;
+    
+    if(m_bdd_anodisation->ExecuteSelect(requete))
+    {
+        vector<string> dernier_resultat = m_bdd_anodisation->GetLastResult();
+        
+        m_ordreTrajectoires = dernier_resultat[0];
+        
+        retour = true;
+    }
+    
     return retour;
 }

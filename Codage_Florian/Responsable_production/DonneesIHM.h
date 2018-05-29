@@ -15,6 +15,9 @@ using std::list;
 using std::string;
 #include <vector>
 using std::vector;
+#include <iostream>
+using std::cout;
+using std::endl;
 
 #include "DataAnodisation.h"
 

@@ -1,10 +1,3 @@
-/*******************************************************************************
-  *  Fichier:  EvtFramePrincipal.cpp
-  *  Projet:   Chaîne d'anodisation - Gestion du PC responsable de production
-  *  Crée le:  29/04/2018
-  *  Utilité:  Gestion des événements du frame principal
-  *  Auteur:   Florian Provost
-*******************************************************************************/
 #include "EvtFramePrincipal.h"
 
 EvtFramePrincipal::EvtFramePrincipal(wxWindow* parent) : FramePrincipal(parent)
@@ -35,11 +28,7 @@ EvtFramePrincipal::EvtFramePrincipal(wxWindow* parent) : FramePrincipal(parent)
     BmpRouge.LoadFile(wxT("../Images/RougeAllume.bmp"), wxBITMAP_TYPE_BMP);
     BmpVert.LoadFile(wxT("../Images/VertAllume.bmp"), wxBITMAP_TYPE_BMP);
 }
-//
-////////////////////////////////////////////////////////////////////////////////
-//  Méthode lié à l'IHM
-////////////////////////////////////////////////////////////////////////////////
-//
+
 void EvtFramePrincipal::OnCharEntered(wxKeyEvent& event)
 {
     // TODO: Implement OnCharEntered
@@ -108,7 +97,7 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
         if(VerificationLogin(m_textCtrlLogin->GetValue(), m_textCtrlPass->GetValue()))
         {
             m_textCtrlAffichage->Clear();
-            m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(*wxGREEN));
+            m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(wxColour("FOREST GREEN")));
             m_textCtrlAffichage->AppendText(wxT("\n\tIdentification OK\n\n"));
             m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(wxNullColour));
 
@@ -189,7 +178,8 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
         }
         else
         {
-            m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(*wxRED));
+            // m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(*wxRED));
+            m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(wxColour("ORANGE RED")));
             m_textCtrlAffichage->AppendText(wxT("\n\tMauvais identifiant ou mot de passe !\n\n"));
             m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(wxNullColour));
 
@@ -239,7 +229,7 @@ void EvtFramePrincipal::OnListBoxAffichageSelection(wxCommandEvent& event)
 
     // Récupération de l'id du processus
     wxString id_selection = GardeIdSelection(selection);
-    
+
     // Vider les text control
     // du coté droit
     m_textCtrlIdAfficher->Clear();
@@ -247,110 +237,411 @@ void EvtFramePrincipal::OnListBoxAffichageSelection(wxCommandEvent& event)
     m_textCtrlDureeTotalMinuteAfficher->Clear();
     m_textCtrlDureeTotalSecondeAfficher->Clear();
     m_listBoxListeTrajectoiresAfficher->Clear();
-    
+
     // Du coté gauche
     m_textCtrlNomAfficher->Clear();
     m_textCtrlNombreBainAfficher->Clear();
     m_textCtrlOrdreTrajectoiresAfficher->Clear();
-    
+
     // Remplisage
     m_textCtrlIdAfficher->AppendText(id_selection);
-    
+
     // Durée total du processus
     if(m_donnees_IHM->RecupereDureeTotal(ConversionEnString(id_selection)))
     {
         wxString duree = ConversionEnWxString(m_donnees_IHM->GetDureeTotal());
         wxString heure = DecouperTexteDebut(duree, 2);
         m_textCtrlDureeTotalHeureAfficher->AppendText(heure);
-        
+
         wxString temp = DecouperTexteDebut(duree, 5);
         wxString minute = DecouperTexteFin(temp, 3);
         m_textCtrlDureeTotalMinuteAfficher->AppendText(minute);
-        
+
         wxString seconde = DecouperTexteFin(duree, 6);
         m_textCtrlDureeTotalSecondeAfficher->AppendText(seconde);
-        
-        m_textCtrlAffichage->AppendText(duree + wxT("\n"));
-        
     }
     else
     {
         wxString message;
-        message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n")
-                << wxT("Raison : ") << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
+        message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n") << wxT("Raison : ")
+                << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
         m_textCtrlAffichage->AppendText(message);
     }
-    
+
     // Liste des trajectoires du processus
-    /*if(m_donnees_IHM->RecupereListeTrajectoiresProcessus(ConversionEnString(id_selection)))
+    if(m_donnees_IHM->RecupereListeTrajectoiresProcessus(ConversionEnString(id_selection)))
     {
-        
+        vector<string> resultat = m_donnees_IHM->GetListeTrajectoiresProcessus();
+        m_listBoxListeTrajectoiresAfficher->Clear();
+
+        for(unsigned int taille = 0; taille < resultat.size(); taille++)
+        {
+            // m_textCtrlAffichage->AppendText(ConversionEnWxString(resultat[taille]));
+            // m_textCtrlAffichage->AppendText(wxT("\n"));
+
+            wxString rempli;
+
+            if(taille % 4 == 0 && taille != 0)
+            {
+                // m_textCtrlAffichage->AppendText(wxT("Modulo " + rempli + wxT("\n")));
+                rempli << resultat[taille];
+                m_listBoxListeTrajectoiresAfficher->Append(rempli);
+                rempli.clear();
+                // rempli << resultat[taille] << wxT(" - ");
+            }
+            else
+            {
+                // m_textCtrlAffichage->AppendText(wxT("Hors modulo " + rempli + wxT("\n")));
+                rempli << resultat[taille] << wxT(" - ");
+                // m_textCtrlAffichage->AppendText(liste_processus[taille] + wxT("\n"));
+            }
+        }
     }
     else
     {
         wxString message;
-        message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n")
-                << wxT("Raison : ") << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
+        message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n") << wxT("Raison : ")
+                << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
         m_textCtrlAffichage->AppendText(message);
-    }*/
-    
+    }
+
     // Nom du processus
     if(m_donnees_IHM->RecupereNomProcessus(ConversionEnString(id_selection)))
     {
         wxString temp = ConversionEnWxString(m_donnees_IHM->GetNomProcessus());
-        
+
         int separateur = temp.find("   ");
         wxString nom = DecouperTexteDebut(temp, separateur);
-        
+
         m_textCtrlNomAfficher->AppendText(nom);
-        
     }
     else
     {
         wxString message;
-        message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n")
-                << wxT("Raison : ") << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
+        message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n") << wxT("Raison : ")
+                << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
         m_textCtrlAffichage->AppendText(message);
     }
-    
+
     // Nombre de bain du processus
     /*if(m_donnees_IHM->RecupereNombreBain(ConversionEnString(id_selection)))
     {
-        
-        
+
+
     }
     else
     {
-        wxString message;
-        message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n")
-                << wxT("Raison : ") << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
-        m_textCtrlAffichage->AppendText(message);
+    wxString message;
+    message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n")
+    << wxT("Raison : ") << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
+    m_textCtrlAffichage->AppendText(message);
     }*/
-    
+
     // Ordre des trajectoires
-    /*if(m_donnees_IHM->RecupereOrdreTrajectoires(ConversionEnString(id_selection)))
+    if(m_donnees_IHM->RecupereOrdreTrajectoires(ConversionEnString(id_selection)))
     {
-        
-        
+        wxString ordre = ConversionEnWxString(m_donnees_IHM->GetOrdreTrajectoires());
+
+        m_textCtrlOrdreTrajectoiresAfficher->AppendText(ordre);
     }
     else
     {
         wxString message;
-        message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n")
-                << wxT("Raison : ") << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
+        message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n") << wxT("Raison : ")
+                << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
+
         m_textCtrlAffichage->AppendText(message);
-    }*/
+    }
 }
 
 void EvtFramePrincipal::OnListBoxModifierSelection(wxCommandEvent& event)
 {
     // Récupération de la saisie
-    wxString selection;
-    selection << m_listBoxModifierProcessus->GetStringSelection() << wxT("\n");
+    wxString selection = m_listBoxModifierProcessus->GetStringSelection();
 
-    // Garder de l'id du processus
+    // Récupération de l'id du processus
     wxString id_selection = GardeIdSelection(selection);
-    wxLogDebug(wxT("Selection modifier processus : ") + id_selection);
+
+    // Vider les text control
+    // du coté droit
+    m_textCtrlIdModifier->Clear();
+    m_textCtrlDureeTotalHeureModifier->Clear();
+    m_textCtrlDureeTotalMinuteModifier->Clear();
+    m_textCtrlDureeTotalSecondeModifier->Clear();
+
+    // Du coté gauche
+    m_textCtrlNomModifier->Clear();
+    m_textCtrlNombreBainModifier->Clear();
+    m_textCtrlOrdreTrajectoiresModifier->Clear();
+
+    // Remplisage
+    m_textCtrlIdModifier->AppendText(id_selection);
+
+    // Durée total du processus
+    if(m_donnees_IHM->RecupereDureeTotal(ConversionEnString(id_selection)))
+    {
+        wxString duree = ConversionEnWxString(m_donnees_IHM->GetDureeTotal());
+        wxString heure = DecouperTexteDebut(duree, 2);
+        m_textCtrlDureeTotalHeureModifier->AppendText(heure);
+
+        wxString temp = DecouperTexteDebut(duree, 5);
+        wxString minute = DecouperTexteFin(temp, 3);
+        m_textCtrlDureeTotalMinuteModifier->AppendText(minute);
+
+        wxString seconde = DecouperTexteFin(duree, 6);
+        m_textCtrlDureeTotalSecondeModifier->AppendText(seconde);
+    }
+    else
+    {
+        wxString message;
+        message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n") << wxT("Raison : ")
+                << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
+        m_textCtrlAffichage->AppendText(message);
+    }
+    
+    // Nom du processus
+    if(m_donnees_IHM->RecupereNomProcessus(ConversionEnString(id_selection)))
+    {
+        wxString temp = ConversionEnWxString(m_donnees_IHM->GetNomProcessus());
+
+        int separateur = temp.find("   ");
+        wxString nom = DecouperTexteDebut(temp, separateur);
+
+        m_textCtrlNomModifier->AppendText(nom);
+    }
+    else
+    {
+        wxString message;
+        message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n") << wxT("Raison : ")
+                << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
+        m_textCtrlAffichage->AppendText(message);
+    }
+
+    // Nombre de bain du processus
+    /*if(m_donnees_IHM->RecupereNombreBain(ConversionEnString(id_selection)))
+    {
+
+
+    }
+    else
+    {
+    wxString message;
+    message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n")
+    << wxT("Raison : ") << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
+    m_textCtrlAffichage->AppendText(message);
+    }*/
+
+    // Ordre des trajectoires
+    if(m_donnees_IHM->RecupereOrdreTrajectoires(ConversionEnString(id_selection)))
+    {
+        wxString ordre = ConversionEnWxString(m_donnees_IHM->GetOrdreTrajectoires());
+
+        m_textCtrlOrdreTrajectoiresModifier->AppendText(ordre);
+    }
+    else
+    {
+        wxString message;
+        message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n") << wxT("Raison : ")
+                << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
+
+        m_textCtrlAffichage->AppendText(message);
+    }
+}
+
+void EvtFramePrincipal::OnCharEnteredNum(wxKeyEvent& event)
+{
+    switch(event.GetKeyCode())
+    {
+        case '0':
+
+            event.Skip();
+            break;
+
+        case '1':
+
+            event.Skip();
+            break;
+
+        case '2':
+
+            event.Skip();
+            break;
+
+        case '3':
+
+            event.Skip();
+            break;
+
+        case '4':
+            event.Skip();
+            break;
+
+        case '5':
+
+            event.Skip();
+            break;
+
+        case '6':
+
+            event.Skip();
+            break;
+
+        case '7':
+
+            event.Skip();
+            break;
+
+        case '8':
+
+            event.Skip();
+            break;
+
+        case '9':
+
+            event.Skip();
+            break;
+
+        case WXK_BACK:
+
+            event.Skip();
+            break;
+
+        case WXK_DELETE:
+
+            event.Skip();
+            break;
+
+        case WXK_TAB:
+
+            event.Skip();
+            break;
+
+        case WXK_LEFT:
+
+            event.Skip();
+            break;
+
+        case WXK_UP:
+
+            event.Skip();
+            break;
+
+        case WXK_RIGHT:
+
+            event.Skip();
+            break;
+
+        case WXK_DOWN:
+
+            event.Skip();
+            break;
+
+        default:
+
+            // On ne fait rien
+            break;
+    }
+}
+
+void EvtFramePrincipal::OnCharEnteredOrdre(wxKeyEvent& event)
+{
+    // TODO: Implement OnCharEnteredOrdre
+    switch(event.GetKeyCode())
+    {
+        case '0':
+
+            event.Skip();
+            break;
+
+        case '1':
+
+            event.Skip();
+            break;
+
+        case '2':
+
+            event.Skip();
+            break;
+
+        case '3':
+
+            event.Skip();
+            break;
+
+        case '4':
+            event.Skip();
+            break;
+
+        case '5':
+
+            event.Skip();
+            break;
+
+        case '6':
+
+            event.Skip();
+            break;
+
+        case '7':
+
+            event.Skip();
+            break;
+
+        case '8':
+
+            event.Skip();
+            break;
+
+        case '9':
+
+            event.Skip();
+            break;
+
+        case ';':
+
+            event.Skip();
+            break;
+
+        case WXK_BACK:
+
+            event.Skip();
+            break;
+
+        case WXK_DELETE:
+
+            event.Skip();
+            break;
+
+        case WXK_TAB:
+
+            event.Skip();
+            break;
+
+        case WXK_LEFT:
+
+            event.Skip();
+            break;
+
+        case WXK_UP:
+
+            event.Skip();
+            break;
+
+        case WXK_RIGHT:
+
+            event.Skip();
+            break;
+
+        case WXK_DOWN:
+
+            event.Skip();
+            break;
+
+        default:
+
+            // On ne fait rien
+            break;
+    }
 }
 
 void EvtFramePrincipal::OnApplyButtonModifierClick(wxCommandEvent& event)
@@ -361,11 +652,151 @@ void EvtFramePrincipal::OnApplyButtonModifierClick(wxCommandEvent& event)
 void EvtFramePrincipal::OnCancelButtonModiffierClick(wxCommandEvent& event)
 {
     // TODO: Implement OnCancelButtonModiffierClick
+    // Récupération de la saisie
+    wxString selection = m_listBoxModifierProcessus->GetStringSelection();
+
+    // Récupération de l'id du processus
+    wxString id_selection = GardeIdSelection(selection);
+
+    // Vider les text control
+    // du coté droit
+    m_textCtrlIdModifier->Clear();
+    m_textCtrlDureeTotalHeureModifier->Clear();
+    m_textCtrlDureeTotalMinuteModifier->Clear();
+    m_textCtrlDureeTotalSecondeModifier->Clear();
+
+    // Du coté gauche
+    m_textCtrlNomModifier->Clear();
+    m_textCtrlNombreBainModifier->Clear();
+    m_textCtrlOrdreTrajectoiresModifier->Clear();
+
+    // Remplisage
+    m_textCtrlIdModifier->AppendText(id_selection);
+
+    // Durée total du processus
+    if(m_donnees_IHM->RecupereDureeTotal(ConversionEnString(id_selection)))
+    {
+        wxString duree = ConversionEnWxString(m_donnees_IHM->GetDureeTotal());
+        wxString heure = DecouperTexteDebut(duree, 2);
+        m_textCtrlDureeTotalHeureModifier->AppendText(heure);
+
+        wxString temp = DecouperTexteDebut(duree, 5);
+        wxString minute = DecouperTexteFin(temp, 3);
+        m_textCtrlDureeTotalMinuteModifier->AppendText(minute);
+
+        wxString seconde = DecouperTexteFin(duree, 6);
+        m_textCtrlDureeTotalSecondeModifier->AppendText(seconde);
+    }
+    else
+    {
+        wxString message;
+        message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n") << wxT("Raison : ")
+                << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
+        m_textCtrlAffichage->AppendText(message);
+    }
+
+    // Liste des trajectoires du processus
+    if(m_donnees_IHM->RecupereListeTouteTrajectoires())  // À faire
+    {
+        vector<string> liste_trajectoire = m_donnees_IHM->GetListeTouteTrajectoires();
+
+        wxString rempli;
+        wxString nom;
+
+        for(unsigned int taille = 0; taille < liste_trajectoire.size(); taille++)
+        {
+            // m_textCtrlAffichage->AppendText(liste_trajectoire[taille] + wxT("\n"));
+            taille = taille + 1;
+
+            if(taille % 4 == 0 && taille != 0)
+            {
+                rempli << wxT("Durée : ") << liste_trajectoire[taille - 1];
+                m_listBoxListeTrajectoiresModifier->Append(rempli);
+                rempli.clear();
+            }
+            else if(taille % 4 != 0 && taille % 2 == 0)
+            {
+                nom.clear();
+                nom << liste_trajectoire[taille - 1];
+
+                int separateur = nom.find("   ");
+                rempli << DecouperTexteDebut(nom, separateur) << wxT(" - ");
+            }
+            else
+            {
+                // m_textCtrlAffichage->AppendText(liste_trajectoire[taille-1] + wxT("\n"));
+                rempli << liste_trajectoire[taille - 1] << wxT(" - ");
+            }
+
+            taille = taille - 1;
+        }
+    }
+    else
+    {
+        wxString message;
+        message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n") << wxT("Raison : ")
+                << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
+        m_textCtrlAffichage->AppendText(message);
+    }
+
+    // Nom du processus
+    if(m_donnees_IHM->RecupereNomProcessus(ConversionEnString(id_selection)))
+    {
+        wxString temp = ConversionEnWxString(m_donnees_IHM->GetNomProcessus());
+
+        int separateur = temp.find("   ");
+        wxString nom = DecouperTexteDebut(temp, separateur);
+
+        m_textCtrlNomModifier->AppendText(nom);
+    }
+    else
+    {
+        wxString message;
+        message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n") << wxT("Raison : ")
+                << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
+        m_textCtrlAffichage->AppendText(message);
+    }
+
+    // Nombre de bain du processus
+    /*if(m_donnees_IHM->RecupereNombreBain(ConversionEnString(id_selection)))
+    {
+
+
+    }
+    else
+    {
+    wxString message;
+    message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n")
+    << wxT("Raison : ") << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
+    m_textCtrlAffichage->AppendText(message);
+    }*/
+
+    // Ordre des trajectoires
+    if(m_donnees_IHM->RecupereOrdreTrajectoires(ConversionEnString(id_selection)))
+    {
+        wxString ordre = ConversionEnWxString(m_donnees_IHM->GetOrdreTrajectoires());
+
+        m_textCtrlOrdreTrajectoiresModifier->AppendText(ordre);
+    }
+    else
+    {
+        wxString message;
+        message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n") << wxT("Raison : ")
+                << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
+
+        m_textCtrlAffichage->AppendText(message);
+    }
 }
 
 void EvtFramePrincipal::OnCancelButtonCreerClick(wxCommandEvent& event)
 {
     // TODO: Implement OnCancelButtonCreerClick
+    m_textCtrlDureeTotalHeureCreer->Clear();
+    textCtrlDureeTotalMinuteCreer->Clear();
+    m_textCtrlDureeTotalSecondeCreer->Clear();
+    m_textCtrlNomCreer->Clear();
+    m_textCtrlOrdreTrajectoiresCreer->Clear();
+    m_spinCtrlNombreBainCreer->SetValue(1);
 }
 
 void EvtFramePrincipal::OnSaveButtonCreerClick(wxCommandEvent& event)
@@ -375,12 +806,8 @@ void EvtFramePrincipal::OnSaveButtonCreerClick(wxCommandEvent& event)
 
 void EvtFramePrincipal::OnListBoxDetruireSelection(wxCommandEvent& event)
 {
-    // TODO: Implement OnListBoxDetruireSelection
-    m_textCtrlAffichage->AppendText(wxT("Selection liste détruire processus\n"));
-    wxString selection = wxT("Votre séléction : ");
-    selection << m_listBoxDetruireProcessus->GetStringSelection() << wxT("\n");
-    m_textCtrlAffichage->AppendText(selection);
-
+    wxString selection = m_listBoxDetruireProcessus->GetStringSelection();
+    
     wxString message;
     message << m_listBoxDetruireProcessus->GetStringSelection() << wxT("\n");
     m_staticTextDetuireTitre->SetLabel(message);
@@ -390,7 +817,19 @@ void EvtFramePrincipal::OnListBoxDetruireSelection(wxCommandEvent& event)
 
 void EvtFramePrincipal::OnApplyButtonDetruireClick(wxCommandEvent& event)
 {
-    //
+    wxString selection = m_listBoxDetruireProcessus->GetStringSelection();
+    wxString id_selection = GardeIdSelection(selection);
+    
+    //string requete = "DELETE * FROM processus WHERE id_processus=" + id_selection;
+    
+    /*if(m_bdd_anodisation->ExecuteDelete())
+    {
+        
+    }
+    else
+    {
+        
+    }*/
 }
 
 void EvtFramePrincipal::OnListBoxLancerSelection(wxCommandEvent& event)
@@ -590,14 +1029,20 @@ bool EvtFramePrincipal::LancerFabrication(wxString id_processus)
     return retour;
 }
 
-void EvtFramePrincipal::VideListBox()
+bool EvtFramePrincipal::VerificationLogin(wxString login, wxString pass)
 {
-    m_listBoxAffichageProcessus->Clear();
-    m_listBoxDetruireProcessus->Clear();
-    m_listBoxLancerProcessus->Clear();
-    m_listBoxModifierProcessus->Clear();
-    m_listBoxTesterProcessus->Clear();
+    wxString identifiant = wxT("Responsable");
+    wxString motpasse = wxT("responsable");
+    bool retour = false;
+
+    if(identifiant == login && motpasse == pass)
+    {
+        retour = true;
+    }
+
+    return retour;
 }
+
 //
 // Partie client de communication
 //
@@ -613,6 +1058,10 @@ void EvtFramePrincipal::AfficheInfoClient(wxCommandEvent& event)
     AfficheStatus(event.GetString(), 0);
 }
 
+void EvtFramePrincipal::AgitServeurPerdu(wxCommandEvent& event)
+{
+    DeconnexionClient(event.GetString());
+}
 void EvtFramePrincipal::DeconnexionClient(wxString message)
 {
     m_client->Close();
@@ -642,12 +1091,6 @@ void EvtFramePrincipal::DeconnexionClient(wxString message)
         AfficheStatus(wxT("Non connecté"), 1);
     }
 }
-
-void EvtFramePrincipal::AgitServeurPerdu(wxCommandEvent& event)
-{
-    DeconnexionClient(event.GetString());
-}
-
 //
 // IHM
 //
@@ -656,37 +1099,12 @@ void EvtFramePrincipal::AfficheStatus(wxString texte, int position)
     m_statusBar->SetStatusText(texte, position);
 }
 
-wxString EvtFramePrincipal::DecouperTexteDebut(wxString texte, int position)
-{
-    wxString fin(texte.substr(position));
-
-    wxString debut = "";
-    texte.EndsWith(fin, &debut);
-
-    return debut;
-}
-
-bool EvtFramePrincipal::VerificationLogin(wxString login, wxString pass)
-{
-    wxString identifiant = wxT("Responsable");
-    wxString motpasse = wxT("responsable");
-    bool retour = false;
-
-    if(identifiant == login && motpasse == pass)
-    {
-        retour = true;
-    }
-
-    return retour;
-}
-
 void EvtFramePrincipal::RempliListBox()
 {
     if(m_donnees_IHM->RecupereListeProcessus())
     {
         vector<string> liste_processus = m_donnees_IHM->GetListeProcessus();
 
-        // cout << "taille : " << liste_processus.size() << endl;
         wxString rempli;
         wxString nom;
 
@@ -720,6 +1138,60 @@ void EvtFramePrincipal::RempliListBox()
     {
         m_textCtrlAffichage->AppendText(m_bdd_anodisation->GetLastError());
     }
+    
+    
+    if(m_donnees_IHM->RecupereListeTouteTrajectoires())
+    {
+        vector<string> liste_trajectoire = m_donnees_IHM->GetListeTouteTrajectoires();
+
+        wxString rempli;
+        wxString nom;
+
+        for(unsigned int taille = 0; taille < liste_trajectoire.size(); taille++)
+        {
+            // m_textCtrlAffichage->AppendText(liste_trajectoire[taille] + wxT("\n"));
+            taille = taille + 1;
+
+            if(taille % 4 == 0 && taille != 0)
+            {
+                rempli << wxT("Durée : ") << liste_trajectoire[taille - 1];
+                m_listBoxListeTrajectoiresCreer->Append(rempli);
+                m_listBoxListeTrajectoiresModifier->Append(rempli);
+                rempli.clear();
+            }
+            else if(taille % 4 != 0 && taille % 2 == 0)
+            {
+                nom.clear();
+                nom << liste_trajectoire[taille - 1];
+
+                int separateur = nom.find("   ");
+                rempli << DecouperTexteDebut(nom, separateur) << wxT(" - ");
+            }
+            else
+            {
+                // m_textCtrlAffichage->AppendText(liste_trajectoire[taille-1] + wxT("\n"));
+                rempli << liste_trajectoire[taille - 1] << wxT(" - ");
+            }
+
+            taille = taille - 1;
+        }
+    }
+    else
+    {
+        wxString message;
+        message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n") << wxT("Raison : ")
+                << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
+        m_textCtrlAffichage->AppendText(message);
+    }
+}
+
+void EvtFramePrincipal::VideListBox()
+{
+    m_listBoxAffichageProcessus->Clear();
+    m_listBoxDetruireProcessus->Clear();
+    m_listBoxLancerProcessus->Clear();
+    m_listBoxModifierProcessus->Clear();
+    m_listBoxTesterProcessus->Clear();
 }
 //
 // Partie manipulation texte
@@ -730,6 +1202,7 @@ string EvtFramePrincipal::ConversionEnString(wxString texte)
 
     return temp_string;
 }
+
 wxString EvtFramePrincipal::ConversionEnWxString(string texte)
 {
     wxString temp_wxstring(texte.c_str(), wxConvUTF8);
@@ -745,9 +1218,20 @@ wxString EvtFramePrincipal::GardeIdSelection(wxString texte)
     return id_selection;
 }
 
+wxString EvtFramePrincipal::DecouperTexteDebut(wxString texte, int position)
+{
+    wxString fin(texte.substr(position));
+
+    wxString debut = "";
+    texte.EndsWith(fin, &debut);
+
+    return debut;
+}
+
 wxString EvtFramePrincipal::DecouperTexteFin(wxString texte, int position)
 {
     wxString fin(texte.substr(position));
 
     return fin;
 }
+
