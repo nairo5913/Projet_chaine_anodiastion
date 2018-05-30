@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Feb 16 2016)
+// C++ code generated with wxFormBuilder (version Dec 21 2016)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO "NOT" EDIT THIS FILE!
@@ -39,6 +39,8 @@
 
 ///////////////////////////////////////////////////////////////////////////
 
+#define wxID_ORDRE_MODIFIER 1000
+#define wxID_ORDRE_CREER 1001
 
 ///////////////////////////////////////////////////////////////////////////////
 /// Class FramePrincipal
@@ -98,7 +100,7 @@ class FramePrincipal : public wxFrame
 		wxStaticText* m_staticDureeTotalCreer;
 		wxTextCtrl* m_textCtrlDureeTotalHeureCreer;
 		wxStaticText* m_staticTextDureeTotalMinuteCreer;
-		wxTextCtrl* textCtrlDureeTotalMinuteCreer;
+		wxTextCtrl* m_textCtrlDureeTotalMinuteCreer;
 		wxStaticText* m_staticTextDureeTotalSecondeCreer;
 		wxTextCtrl* m_textCtrlDureeTotalSecondeCreer;
 		wxListBox* m_listBoxListeTrajectoiresCreer;
@@ -116,12 +118,28 @@ class FramePrincipal : public wxFrame
 		wxListBox* m_listBoxDetruireProcessus;
 		wxStaticText* m_staticTextDetruire;
 		wxStaticText* m_staticTextDetuireTitre;
+		wxStaticText* m_staticTextDureeTotalProcessusDetruire;
+		wxStaticText* m_staticTextDureeTotalValeurDetruire;
+		wxStaticLine* m_staticlineSeparateurGaucheDroiteDetruire;
+		wxStaticText* m_staticTextNombreBainDetruire;
+		wxStaticText* m_staticTextNombreBainValeurDetruire;
+		wxStaticText* m_staticTextOrdreTrajectoiresDetruire;
+		wxStaticText* m_staticTextOrdreTrajectoiresDetruireValeur;
+		wxStaticLine* m_staticlineSeparateurDetailBoutonDetruire;
 		wxStdDialogButtonSizer* m_sdbSizerDetruire;
 		wxButton* m_sdbSizerDetruireApply;
 		wxScrolledWindow* m_scrolledWindowLancerProcessus;
 		wxListBox* m_listBoxLancerProcessus;
 		wxStaticText* m_staticTextLancer;
 		wxStaticText* m_staticTextLancerTitre;
+		wxStaticText* m_staticTextDureeTotalProcessusLancer;
+		wxStaticText* m_staticTextDureeTotalValeurLancer;
+		wxStaticLine* m_staticlineSeparateurGaucheDroiteLancer;
+		wxStaticText* m_staticTextNombreBainLancer;
+		wxStaticText* m_staticTextNombreBainValeurLancer;
+		wxStaticText* m_staticTextOrdreTrajectoiresLancer;
+		wxStaticText* m_staticTextOrdreTrajectoiresValeurLancer;
+		wxStaticLine* m_staticlineSeparateurDetailBoutonLancer;
 		wxStdDialogButtonSizer* m_sdbSizerLancerProcessus;
 		wxButton* m_sdbSizerLancerProcessusOK;
 		wxScrolledWindow* m_scrolledWindowTesterProcessus;

@@ -8,6 +8,8 @@ EvtFramePrincipal::EvtFramePrincipal(wxWindow* parent) : FramePrincipal(parent)
     m_fabrication = false;
     m_bdd_anodisation = new DataAnodisation(DSN);
     m_donnees_IHM = new DonneesIHM(m_bdd_anodisation);
+    point_virgule_saisie_creer = true;
+    point_virgule_saisie_modifier = true;
 
     // Modification du séparateur central de la wxStatusBar
     int widths[2];
@@ -36,7 +38,7 @@ void EvtFramePrincipal::OnCharEntered(wxKeyEvent& event)
     {
         case WXK_F1:
             // m_textCtrlAffichage->AppendText(wxT("Touche F1.\n"));
-
+            
             event.Skip();
             break;
 
@@ -545,94 +547,279 @@ void EvtFramePrincipal::OnCharEnteredNum(wxKeyEvent& event)
 
 void EvtFramePrincipal::OnCharEnteredOrdre(wxKeyEvent& event)
 {
-    // TODO: Implement OnCharEnteredOrdre
     switch(event.GetKeyCode())
     {
         case '0':
-
+            if(event.GetId() == wxID_ORDRE_MODIFIER)
+            {
+                if (point_virgule_saisie_modifier)
+                {
+                    point_virgule_saisie_modifier = false;
+                }
+            }
+            else if(event.GetId() == wxID_ORDRE_CREER)
+            {
+                if (point_virgule_saisie_creer)
+                {
+                    point_virgule_saisie_creer = false;
+                }
+            }
             event.Skip();
             break;
 
         case '1':
-
+            if(event.GetId() == wxID_ORDRE_MODIFIER)
+            {
+                if (point_virgule_saisie_modifier)
+                {
+                    point_virgule_saisie_modifier = false;
+                }
+            }
+            else if(event.GetId() == wxID_ORDRE_CREER)
+            {
+                if (point_virgule_saisie_creer)
+                {
+                    point_virgule_saisie_creer = false;
+                }
+            }
             event.Skip();
             break;
 
         case '2':
-
+            if(event.GetId() == wxID_ORDRE_MODIFIER)
+            {
+                if (point_virgule_saisie_modifier)
+                {
+                    point_virgule_saisie_modifier = false;
+                }
+            }
+            else if(event.GetId() == wxID_ORDRE_CREER)
+            {
+                if (point_virgule_saisie_creer)
+                {
+                    point_virgule_saisie_creer = false;
+                }
+            }
             event.Skip();
             break;
 
         case '3':
-
+            if(event.GetId() == wxID_ORDRE_MODIFIER)
+            {
+                if (point_virgule_saisie_modifier)
+                {
+                    point_virgule_saisie_modifier = false;
+                }
+            }
+            else if(event.GetId() == wxID_ORDRE_CREER)
+            {
+                if (point_virgule_saisie_creer)
+                {
+                    point_virgule_saisie_creer = false;
+                }
+            }
             event.Skip();
             break;
-
+            
         case '4':
+            if(event.GetId() == wxID_ORDRE_MODIFIER)
+            {
+                if (point_virgule_saisie_modifier)
+                {
+                    point_virgule_saisie_modifier = false;
+                }
+            }
+            else if(event.GetId() == wxID_ORDRE_CREER)
+            {
+                if (point_virgule_saisie_creer)
+                {
+                    point_virgule_saisie_creer = false;
+                }
+            }
             event.Skip();
             break;
-
+            
         case '5':
-
+            if(event.GetId() == wxID_ORDRE_MODIFIER)
+            {
+                if (point_virgule_saisie_modifier)
+                {
+                    point_virgule_saisie_modifier = false;
+                }
+            }
+            else if(event.GetId() == wxID_ORDRE_CREER)
+            {
+                if (point_virgule_saisie_creer)
+                {
+                    point_virgule_saisie_creer = false;
+                }
+            }
             event.Skip();
             break;
-
+            
         case '6':
-
+            if(event.GetId() == wxID_ORDRE_MODIFIER)
+            {
+                if (point_virgule_saisie_modifier)
+                {
+                    point_virgule_saisie_modifier = false;
+                }
+            }
+            else if(event.GetId() == wxID_ORDRE_CREER)
+            {
+                if (point_virgule_saisie_creer)
+                {
+                    point_virgule_saisie_creer = false;
+                }
+            }
             event.Skip();
             break;
-
+            
         case '7':
-
+            if(event.GetId() == wxID_ORDRE_MODIFIER)
+            {
+                if (point_virgule_saisie_modifier)
+                {
+                    point_virgule_saisie_modifier = false;
+                }
+            }
+            else if(event.GetId() == wxID_ORDRE_CREER)
+            {
+                if (point_virgule_saisie_creer)
+                {
+                    point_virgule_saisie_creer = false;
+                }
+            }
             event.Skip();
             break;
-
+            
         case '8':
-
+            if(event.GetId() == wxID_ORDRE_MODIFIER)
+            {
+                if (point_virgule_saisie_modifier)
+                {
+                    point_virgule_saisie_modifier = false;
+                }
+            }
+            else if(event.GetId() == wxID_ORDRE_CREER)
+            {
+                if (point_virgule_saisie_creer)
+                {
+                    point_virgule_saisie_creer = false;
+                }
+            }
             event.Skip();
             break;
 
         case '9':
-
+            if(event.GetId() == wxID_ORDRE_MODIFIER)
+            {
+                if (point_virgule_saisie_modifier)
+                {
+                    point_virgule_saisie_modifier = false;
+                }
+            }
+            else if(event.GetId() == wxID_ORDRE_CREER)
+            {
+                if (point_virgule_saisie_creer)
+                {
+                    point_virgule_saisie_creer = false;
+                }
+            }
             event.Skip();
             break;
 
         case ';':
+            if(event.GetId() == wxID_ORDRE_MODIFIER)
+            {
+                if (!point_virgule_saisie_modifier)
+                {
+                    point_virgule_saisie_modifier = true;
+                    event.Skip();
+                }
+            }
+            else if(event.GetId() == wxID_ORDRE_CREER)
+            {
+                if (!point_virgule_saisie_creer)
+                {
+                    point_virgule_saisie_creer = true;
+                    event.Skip();
+                }
+            }
+            break;
+
+        case WXK_BACK: // Retour arrière
+            if(event.GetId() == wxID_ORDRE_MODIFIER)
+            {
+                wxString temp = m_textCtrlOrdreTrajectoiresModifier->GetValue();
+                
+                if (!temp.IsEmpty())
+                {
+                    if (temp.Last()==wxT(';'))
+                    {
+                        point_virgule_saisie_modifier = false;
+                    }
+                    
+                    if(temp.length() == 1)
+                    {
+                        point_virgule_saisie_modifier = true;
+                    }
+                }
+                else
+                {
+                    point_virgule_saisie_modifier = true;
+                }
+            }
+            else if(event.GetId() == wxID_ORDRE_CREER)
+            {
+                wxString temp = m_textCtrlOrdreTrajectoiresCreer->GetValue();
+                
+                if (!temp.IsEmpty())
+                {
+                    if (temp.Last()==wxT(';'))
+                    {
+                        point_virgule_saisie_creer = false;
+                    }
+                    
+                    if(temp.length() == 1)
+                    {
+                        point_virgule_saisie_creer = true;
+                    }
+                }
+                else
+                {
+                    point_virgule_saisie_creer = true;
+                }
+            }
+            event.Skip();
+            break;
+
+        /*case WXK_DELETE: // Touche supprimer
+
+            event.Skip();
+            break;*/
+
+        case WXK_TAB: // Touche Tab
 
             event.Skip();
             break;
 
-        case WXK_BACK:
+        case WXK_LEFT: // Touche fleche gauche
 
             event.Skip();
             break;
 
-        case WXK_DELETE:
+        case WXK_UP: // Touche fleche haut
 
             event.Skip();
             break;
 
-        case WXK_TAB:
+        case WXK_RIGHT: // Touche fleche droite
 
             event.Skip();
             break;
 
-        case WXK_LEFT:
-
-            event.Skip();
-            break;
-
-        case WXK_UP:
-
-            event.Skip();
-            break;
-
-        case WXK_RIGHT:
-
-            event.Skip();
-            break;
-
-        case WXK_DOWN:
+        case WXK_DOWN: // Touche fleche bas
 
             event.Skip();
             break;
@@ -790,9 +977,8 @@ void EvtFramePrincipal::OnCancelButtonModiffierClick(wxCommandEvent& event)
 
 void EvtFramePrincipal::OnCancelButtonCreerClick(wxCommandEvent& event)
 {
-    // TODO: Implement OnCancelButtonCreerClick
     m_textCtrlDureeTotalHeureCreer->Clear();
-    textCtrlDureeTotalMinuteCreer->Clear();
+    m_textCtrlDureeTotalMinuteCreer->Clear();
     m_textCtrlDureeTotalSecondeCreer->Clear();
     m_textCtrlNomCreer->Clear();
     m_textCtrlOrdreTrajectoiresCreer->Clear();
@@ -834,15 +1020,7 @@ void EvtFramePrincipal::OnApplyButtonDetruireClick(wxCommandEvent& event)
 
 void EvtFramePrincipal::OnListBoxLancerSelection(wxCommandEvent& event)
 {
-    // TODO: Implement OnListBoxLancerSelection
-    m_textCtrlAffichage->AppendText(wxT("Selection liste détruire processus\n"));
-    wxString selection = wxT("Votre séléction : ");
-    selection << m_listBoxLancerProcessus->GetStringSelection() << wxT("\n");
-    m_textCtrlAffichage->AppendText(selection);
-
-    wxString message;
-    message << m_listBoxLancerProcessus->GetStringSelection() << wxT("\n");
-    m_staticTextLancerTitre->SetLabel(message);
+    
 
     Layout();
 }

@@ -103,6 +103,8 @@ class EvtFramePrincipal : public FramePrincipal
     bool m_client_connecte;
     bool m_fabrication;
     bool m_identifie;
+    bool point_virgule_saisie_creer;
+    bool point_virgule_saisie_modifier;
 
     bool LancerFabrication(wxString id_processus);
     // Tester le login et le mot de passe
