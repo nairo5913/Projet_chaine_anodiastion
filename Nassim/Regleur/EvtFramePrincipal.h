@@ -73,6 +73,7 @@ class EvtFramePrincipal : public FramePrincipal
         void AfficheStatus(wxString texte, int position);
         void RempliListBoxMouvements();
         void RempliListBoxTrajectoires();
+        //void RempliListBoxMouvementsModifierTrajectoires();
         wxString GardeIdSelection(wxString texte);
         void VideListBoxMouvements();
         void VideListBoxTrajectoires();

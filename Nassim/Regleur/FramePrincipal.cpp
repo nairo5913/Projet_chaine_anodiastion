@@ -960,7 +960,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	bSizerModifierCompositionTrajectoires = new wxBoxSizer( wxVERTICAL );
 	
 	wxStaticBoxSizer* sbSizerCoompositionModifierTrajectoires;
-	sbSizerCoompositionModifierTrajectoires = new wxStaticBoxSizer( new wxStaticBox( sbSizerTrajectoires->GetStaticBox(), wxID_ANY, wxT("Composition") ), wxVERTICAL );
+	sbSizerCoompositionModifierTrajectoires = new wxStaticBoxSizer( new wxStaticBox( sbSizerTrajectoires->GetStaticBox(), wxID_ANY, wxT("liste des mouvements") ), wxVERTICAL );
 	
 	m_listBoxModifierCompositionTrajectoire = new wxListBox( sbSizerCoompositionModifierTrajectoires->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 ); 
 	sbSizerCoompositionModifierTrajectoires->Add( m_listBoxModifierCompositionTrajectoire, 1, wxALL|wxEXPAND, 5 );
@@ -997,7 +997,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_scrolledWindowModifierTrajectoires->SetSizer( bSizerModifierTrajectoires );
 	m_scrolledWindowModifierTrajectoires->Layout();
 	bSizerModifierTrajectoires->Fit( m_scrolledWindowModifierTrajectoires );
-	m_notebookTrajectoires->AddPage( m_scrolledWindowModifierTrajectoires, wxT("Modifier les trajectoires"), false );
+	m_notebookTrajectoires->AddPage( m_scrolledWindowModifierTrajectoires, wxT("Modifier les trajectoires"), true );
 	m_scrolledWindowCreerTrajectoires = new wxScrolledWindow( m_notebookTrajectoires, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxHSCROLL|wxVSCROLL, wxT("i") );
 	m_scrolledWindowCreerTrajectoires->SetScrollRate( 5, 5 );
 	wxBoxSizer* bSizerCreerTrajectoires;
@@ -1236,7 +1236,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_scrolledWindowTestTrajectoires->SetSizer( bSizerTesterTrajectoires );
 	m_scrolledWindowTestTrajectoires->Layout();
 	bSizerTesterTrajectoires->Fit( m_scrolledWindowTestTrajectoires );
-	m_notebookTrajectoires->AddPage( m_scrolledWindowTestTrajectoires, wxT("TEST"), true );
+	m_notebookTrajectoires->AddPage( m_scrolledWindowTestTrajectoires, wxT("TEST"), false );
 	
 	bSizerPrincipal->Add( m_notebookTrajectoires, 1, wxEXPAND | wxALL, 5 );
 	

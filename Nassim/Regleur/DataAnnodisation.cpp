@@ -185,9 +185,28 @@ bool DataAnodisation::RecupereListeTouteTrajectoires()
     return retour;
 }
 
-bool DataAnodisation::RecupereListeMouvementsTrajectoires(string id_trajectoire) // À coder
+bool DataAnodisation::RecupereListeMouvementsCreationTrajectoires() // À coder
 {
+    bool retour;
+    string requete = "SELECT id_mouvement, nom_mouvement, contenu_mouvement FROM mouvements ORDER BY id_mouvement";
     
+    m_listeMouvementsCreationTrajectoires.clear();
+    
+    if(ExecuteSelect(requete))
+    {
+        retour = true;
+        
+        for(unsigned int taille = 0; taille < m_last_result.size(); taille++)
+        {
+            m_listeMouvementsCreationTrajectoires.push_back(m_last_result[taille]);
+        }
+    }
+    else
+    {
+        retour = false;
+    }
+    
+    return retour;
 }
 
 

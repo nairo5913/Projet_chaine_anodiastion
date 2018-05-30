@@ -70,7 +70,7 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
                 erreur = true;
             }
 
-            m_client = new Client("192.168.1.16", 30000, this);
+            m_client = new Client("localhost", 30000, this);
             // m_client_connecte = m_client->IsOK();
 
             // Tester la connection du client de communication
@@ -115,6 +115,8 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
             VideListBoxTrajectoires();
             RempliListBoxMouvements();
             RempliListBoxTrajectoires();
+            //RempliListBoxMouvementsModifierTrajectoires();
+            
         }
         else
         {
@@ -327,7 +329,7 @@ void EvtFramePrincipal::OnListBoxModifierSelectionMouvements(wxCommandEvent& eve
     }
 }
 
-void EvtFramePrincipal::OnApplyButtonModifierMouvementClick(wxCommandEvent& event)
+void EvtFramePrincipal::OnApplyButtonModifierMouvementClick(wxCommandEvent& event) // a coder
 {
     // TODO: Implement OnApplyButtonModifierMouvementClick
 }
@@ -407,27 +409,27 @@ void EvtFramePrincipal::OnCancelButtonModifierMouvementClick(wxCommandEvent& eve
     }
 }
 
-void EvtFramePrincipal::OnSaveButtonCreerMouvementClick(wxCommandEvent& event)
+void EvtFramePrincipal::OnSaveButtonCreerMouvementClick(wxCommandEvent& event) // a coder
 {
     // TODO: Implement OnSaveButtonCreerMouvementClick
 }
 
-void EvtFramePrincipal::OnListBoxDetruireSelectionMouvements(wxCommandEvent& event)
+void EvtFramePrincipal::OnListBoxDetruireSelectionMouvements(wxCommandEvent& event) // a coder
 {
     // TODO: Implement OnListBoxDetruireSelectionMouvements
 }
 
-void EvtFramePrincipal::OnYesButtonDetruireMouvementClick(wxCommandEvent& event)
+void EvtFramePrincipal::OnYesButtonDetruireMouvementClick(wxCommandEvent& event) // a coder
 {
     // TODO: Implement OnYesButtonDetruireMouvementClick
 }
 
-void EvtFramePrincipal::OnListBoxTesterSelectionMouvements(wxCommandEvent& event)
+void EvtFramePrincipal::OnListBoxTesterSelectionMouvements(wxCommandEvent& event) // a coder
 {
     // TODO: Implement OnListBoxTesterSelectionMouvements
 }
 
-void EvtFramePrincipal::OnYesButtonTesterMouvementClick(wxCommandEvent& event)
+void EvtFramePrincipal::OnYesButtonTesterMouvementClick(wxCommandEvent& event) // a coder
 {
     // TODO: Implement OnYesButtonTesterMouvementClick
 }
@@ -588,7 +590,7 @@ void EvtFramePrincipal::OnListBoxModifierSelectionTrajectoires(wxCommandEvent& e
     }
 }
 
-void EvtFramePrincipal::OnApplyButtonModifierTrajectoiresClick(wxCommandEvent& event)
+void EvtFramePrincipal::OnApplyButtonModifierTrajectoiresClick(wxCommandEvent& event) // a coder
 {
     // TODO: Implement OnApplyButtonModifierTrajectoiresClick
 }
@@ -667,46 +669,32 @@ void EvtFramePrincipal::OnCancelButtonModifierTrajectoiresClick(wxCommandEvent& 
     }
 }
 
-void EvtFramePrincipal::OnListBoxSelectionMouvementsCreationTrajectoire(wxCommandEvent& event)
+void EvtFramePrincipal::OnListBoxSelectionMouvementsCreationTrajectoire(wxCommandEvent& event) // a coder
 {
-
     
-    /*if(m_bdd_anodisation->RecupereListeToutMouvements())
-    {
-        for()
-        /*wxString nom = ConversionEnWxString(m_bdd_anodisation->GetListeToutMouvements());
-        int separateur = nom.find(wxT("   "));
-        wxString nomdecoupe = DecouperTexteDebut(nom, separateur);
-
-        m_listBoxCreerTrajectoires->Append(wxT("bla"));
-    }
-    else
-    {
-        m_textCtrlAffichage->AppendText(wxT("erreur\n"));
-    }*/
 }
 
-void EvtFramePrincipal::OnSaveButtonCreerTrajectoiresClick(wxCommandEvent& event)
+void EvtFramePrincipal::OnSaveButtonCreerTrajectoiresClick(wxCommandEvent& event) // a coder
 {
     // TODO: Implement OnSaveButtonCreerTrajectoiresClick
 }
 
-void EvtFramePrincipal::OnListBoxDetruireSelectionTrajectoires(wxCommandEvent& event)
+void EvtFramePrincipal::OnListBoxDetruireSelectionTrajectoires(wxCommandEvent& event) // a coder
 {
     // TODO: Implement OnListBoxDetruireSelectionTrajectoires
 }
 
-void EvtFramePrincipal::OnYesButtonDetruireTrajectoiresClick(wxCommandEvent& event)
+void EvtFramePrincipal::OnYesButtonDetruireTrajectoiresClick(wxCommandEvent& event) // a coder
 {
     // TODO: Implement OnYesButtonDetruireTrajectoiresClick
 }
 
-void EvtFramePrincipal::OnListBoxTesterSelectionTrajectoires(wxCommandEvent& event)
+void EvtFramePrincipal::OnListBoxTesterSelectionTrajectoires(wxCommandEvent& event) // a coder
 {
     // TODO: Implement OnListBoxTesterSelectionTrajectoires
 }
 
-void EvtFramePrincipal::OnYesButtonTesterTrajectoiresClick(wxCommandEvent& event)
+void EvtFramePrincipal::OnYesButtonTesterTrajectoiresClick(wxCommandEvent& event) // a coder
 {
     // TODO: Implement OnYesButtonTesterTrajectoiresClick
 }
@@ -761,10 +749,39 @@ void EvtFramePrincipal::RempliListBoxTrajectoires()
             }
         }
     }
+    if(m_bdd_anodisation->RecupereListeToutMouvements())
+    {
+        vector<string> liste_mouvement = m_bdd_anodisation->GetListeToutMouvements();
+
+        wxString rempli;
+        wxString nom;
+
+        for(unsigned int taille = 0; taille < liste_mouvement.size(); taille++)
+        {
+            if(taille % 2 == 0)
+            {
+                rempli.clear();
+                rempli << liste_mouvement[taille] << wxT("-");
+            }
+            else
+            {
+                nom.clear();
+                nom << liste_mouvement[taille];
+
+                int separateur = nom.find("   ");
+                rempli << DecouperTexteDebut(nom, separateur);
+
+                m_listBoxModifierCompositionTrajectoire->Append(rempli);
+                m_listBoxCreerTrajectoires->Append(rempli);
+                
+            }
+        }
+    }
 }
 
 void EvtFramePrincipal::RempliListBoxMouvements()
 {
+    
     if(m_bdd_anodisation->RecupereListeToutMouvements())
     {
         vector<string> liste_mouvement = m_bdd_anodisation->GetListeToutMouvements();
@@ -791,6 +808,7 @@ void EvtFramePrincipal::RempliListBoxMouvements()
                 m_listBoxDetruireMouvements->Append(rempli);
                 m_listBoxTesterMouvements->Append(rempli);
                 m_listBoxModifierMouvements->Append(rempli);
+                
             }
         }
     }
@@ -902,4 +920,6 @@ void EvtFramePrincipal::VideListBoxTrajectoires()
     m_listBoxDetruireTrajectoires->Clear();
     m_listBoxTesterTrajectoires->Clear();
     m_listBoxModifierTrajectoires->Clear();
+    m_listBoxModifierCompositionTrajectoire->Clear();
+    m_listBoxCreerTrajectoires->Clear();
 }

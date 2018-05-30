@@ -55,11 +55,12 @@ class DataAnodisation
         vector<string> GetLastResult(){return m_last_result;};
         vector<string> GetListeToutMouvements(){return m_listeToutMouvements;};
         vector<string> GetListeTouteTrajectoires(){return m_listeTouteTrajectoires;};
-        vector<string> GetListeMouvementsTrajectoires(){return m_listeMouvementsTrajectoires;};
+        vector<string> GetListeMouvementsCreationTrajectoires(){return m_listeMouvementsCreationTrajectoires;};
         vector<string> GetListeTrajectoires(){return m_listeTrajectoires;};
         
         // Recupération de données pour l'IHM
         bool RecupereDureeTotalMouvement(string id_mouvement);
+        
         bool RecupereAxeXMouvement(string id_mouvement);
         bool RecupereAxeYMouvement(string id_mouvement);
         bool RecupereAxeZMouvement(string id_mouvement);
@@ -68,7 +69,7 @@ class DataAnodisation
         bool RecupereDureeTotalTrajectoire(string id_trajectoire);
         bool RecupereListeToutMouvements();
         bool RecupereListeTouteTrajectoires();
-        bool RecupereListeMouvementsTrajectoires(string id_mouvement);
+        bool RecupereListeMouvementsCreationTrajectoires();
         bool RecupereNomMouvement(string mouvement);
         bool RecupereNomTrajectoire(string id_trajectoire);
         bool RecupereOrdreMouvements(string id_processus);
@@ -94,7 +95,7 @@ class DataAnodisation
         unsigned int m_nb_colones;
         vector<string> m_listeTouteTrajectoires;
         vector<string> m_listeToutMouvements;
-        vector<string> m_listeMouvementsTrajectoires;
+        vector<string> m_listeMouvementsCreationTrajectoires;
         vector<string> m_listeMouvement;
         vector<string> m_listeTrajectoires;
         vector<string> m_last_result;
