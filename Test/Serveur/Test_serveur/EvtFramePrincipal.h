@@ -33,10 +33,18 @@ class EvtFramePrincipal : public FramePrincipal
 {
 	protected:
 		// Handlers for FramePrincipal events.
+		void OnCharEntered( wxKeyEvent& event );
 		void OnFrameClose( wxCloseEvent& event );
 		void OnButtonDemarrerServeurToggle( wxCommandEvent& event );
-		void OnButtonClickViderAffichage( wxCommandEvent& event );
 		void OnToggleButtonDisponibiliteClick( wxCommandEvent& event );
+		void OnChoiceTache( wxCommandEvent& event );
+		void OnButtonClickViderAffichage( wxCommandEvent& event );
+		void OnMenuSelectionQuitter( wxCommandEvent& event );
+		void OnMenuSelectionChangerDisponibiliteBras( wxCommandEvent& event );
+		void OnMenuSelectionMouvement( wxCommandEvent& event );
+		void OnMenuSelectionProcessus( wxCommandEvent& event );
+		void OnMenuSelectionTrajectoire( wxCommandEvent& event );
+		void OnMenuSelectionViderAffichage( wxCommandEvent& event );
 	public:
 		/** Constructor */
 		EvtFramePrincipal( wxWindow* parent );
@@ -49,6 +57,13 @@ class EvtFramePrincipal : public FramePrincipal
         void MAJnombreClients(wxCommandEvent& event);
         void AfficheMessageServeur(wxCommandEvent& event);
         void AfficheReponseServeur(wxCommandEvent& event);
+
+
+
+
+
+
+
 
 };
 

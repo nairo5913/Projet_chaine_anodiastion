@@ -13,7 +13,7 @@ Serveur::Serveur(EvtFramePrincipal *frame, long port, int maxclients)
     m_nombreMaxClients = maxclients;
     m_frame = frame;
     m_port = port;
-    m_bras_dispo = false;
+    m_bras_dispo = true;
 
     wxIPV4address addr;
     addr.Service(m_port);
@@ -305,7 +305,7 @@ void Serveur::DecodeMessage(wxString message, wxSocketBase *sock, DonneesClient 
                     if(tache_cours)
                     {
                         wxString reponse;
-                        reponse << wxT(TACHE_EN_COURS) << "Trajectoire-018";
+                        reponse << wxT(TACHE_EN_COURS) << m_tache << "-1";
                         EcritReponse(sock, reponse.ToStdString());
                     }
                     else
