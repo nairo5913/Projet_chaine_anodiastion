@@ -2,15 +2,7 @@
 <Session Name="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/Serveur/Serveur.workspace">
   <int Value="0" Name="m_selectedTab"/>
   <wxString Value="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/Serveur/Serveur.workspace" Name="m_workspaceName"/>
-  <TabInfoArray Name="TabInfoArray">
-    <TabInfo>
-      <wxString Value="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/Serveur/Test_serveur/EvtFramePrincipal.cpp" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="14" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-  </TabInfoArray>
+  <TabInfoArray Name="TabInfoArray"/>
   <SerializedObject Name="m_breakpoints">
     <long Value="0" Name="Count"/>
   </SerializedObject>
