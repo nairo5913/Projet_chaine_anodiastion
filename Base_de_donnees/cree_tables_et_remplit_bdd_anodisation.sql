@@ -3,12 +3,12 @@ CREATE TABLE "processus" (
     nom_processus char(100) NOT NULL,
     processus_valide boolean DEFAULT FALSE,
     duree_processus time without time zone NOT NULL,
-    nombre_bain integer,
+    nombre_bain integer NOT NULL,
     PRIMARY KEY (id_processus)
 ) WITHOUT OIDS;
 
 COMMENT ON TABLE "processus" IS 'Contient les détails des processus';
-\COPY processus (nom_processus, processus_valide, duree_processus) FROM './Donnees/donnees_processus.csv' WITH DELIMITER ',';
+\COPY processus (nom_processus, processus_valide, duree_processus, nombre_bain) FROM './Donnees/donnees_processus.csv' WITH DELIMITER ',';
 
 CREATE TABLE "trajectoires" (
     id_trajectoire SERIAL,

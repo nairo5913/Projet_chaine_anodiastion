@@ -1,4 +1,4 @@
-Processus 1,false,00:01:00
-Processus 2,false,00:02:35
-Processus 3,false,00:42:15
-Processus 4,false,01:52:38
+Processus 1,false,00:01:00,1
+Processus 2,false,00:02:35,1
+Processus 3,false,00:42:15,2
+Processus 4,false,01:52:38,1
