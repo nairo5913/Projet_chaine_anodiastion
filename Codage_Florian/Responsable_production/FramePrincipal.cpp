@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Feb 16 2016)
+// C++ code generated with wxFormBuilder (version Dec 21 2016)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO "NOT" EDIT THIS FILE!
@@ -67,7 +67,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	bSizerConnexion->Fit( m_panelConnexion );
 	bSizerPrincipal->Add( m_panelConnexion, 0, wxEXPAND|wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
 	
-	m_notebookProcessus = new wxNotebook( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
+	m_notebookProcessus = new wxNotebook( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNB_TOP );
 	m_notebookProcessus->Hide();
 	
 	m_scrolledWindowAffichageProcessus = new wxScrolledWindow( m_notebookProcessus, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxHSCROLL|wxVSCROLL, wxT("i") );
@@ -402,7 +402,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	bSizerModificationPrincipal->Add( bSizerModificationGauche, 1, wxALL|wxEXPAND, 5 );
 	
 	m_staticlineModification = new wxStaticLine( sbSizerModification->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_VERTICAL );
-	bSizerModificationPrincipal->Add( m_staticlineModification, 0, wxEXPAND | wxALL, 5 );
+	bSizerModificationPrincipal->Add( m_staticlineModification, 0, wxEXPAND|wxALL, 5 );
 	
 	wxBoxSizer* bSizerModificationDroite;
 	bSizerModificationDroite = new wxBoxSizer( wxVERTICAL );
@@ -479,6 +479,9 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	
 	
 	sbSizerModification->Add( bSizerModificationPrincipal, 1, wxEXPAND, 5 );
+	
+	m_staticline10 = new wxStaticLine( sbSizerModification->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL );
+	sbSizerModification->Add( m_staticline10, 0, wxEXPAND|wxRIGHT|wxLEFT, 5 );
 	
 	m_sdbSizerModifier = new wxStdDialogButtonSizer();
 	m_sdbSizerModifierApply = new wxButton( sbSizerModification->GetStaticBox(), wxID_APPLY );
@@ -669,7 +672,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_sdbSizerCreer->AddButton( m_sdbSizerCreerCancel );
 	m_sdbSizerCreer->Realize();
 	
-	bSizerCreerProcessus->Add( m_sdbSizerCreer, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
+	bSizerCreerProcessus->Add( m_sdbSizerCreer, 0, wxALIGN_CENTER_HORIZONTAL|wxBOTTOM|wxRIGHT|wxLEFT, 5 );
 	
 	
 	m_scrolledWindowCreerProcessus->SetSizer( bSizerCreerProcessus );
@@ -701,18 +704,18 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	
 	m_staticTextDetruire = new wxStaticText( sbSizerDetruire->GetStaticBox(), wxID_ANY, wxT("Vous allez détruire le processus : "), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextDetruire->Wrap( -1 );
-	m_staticTextDetruire->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), 70, 90, 92, false, wxEmptyString ) );
+	m_staticTextDetruire->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, wxEmptyString ) );
 	
 	bSizerTitreDetruire->Add( m_staticTextDetruire, 0, wxTOP|wxBOTTOM|wxLEFT, 5 );
 	
 	m_staticTextDetuireTitre = new wxStaticText( sbSizerDetruire->GetStaticBox(), wxID_ANY, wxT("Processus 1"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextDetuireTitre->Wrap( -1 );
-	m_staticTextDetuireTitre->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), 70, 90, 92, false, wxEmptyString ) );
+	m_staticTextDetuireTitre->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, wxEmptyString ) );
 	
 	bSizerTitreDetruire->Add( m_staticTextDetuireTitre, 0, wxTOP|wxBOTTOM|wxRIGHT, 5 );
 	
 	
-	sbSizerDetruire->Add( bSizerTitreDetruire, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_TOP|wxALL, 5 );
+	sbSizerDetruire->Add( bSizerTitreDetruire, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_TOP|wxTOP|wxRIGHT|wxLEFT, 5 );
 	
 	wxBoxSizer* bSizerDetailDetruire;
 	bSizerDetailDetruire = new wxBoxSizer( wxHORIZONTAL );
@@ -757,7 +760,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextNombreBainDetruire->Wrap( -1 );
 	bSizerNombreBainDetruire->Add( m_staticTextNombreBainDetruire, 0, wxALIGN_CENTER_VERTICAL, 5 );
 	
-	m_staticTextNombreBainValeurDetruire = new wxStaticText( sbSizerDetruire->GetStaticBox(), wxID_ANY, wxT("a faire"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextNombreBainValeurDetruire = new wxStaticText( sbSizerDetruire->GetStaticBox(), wxID_ANY, wxT("0"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextNombreBainValeurDetruire->Wrap( -1 );
 	bSizerNombreBainDetruire->Add( m_staticTextNombreBainValeurDetruire, 0, wxALIGN_CENTER_VERTICAL, 5 );
 	
@@ -793,7 +796,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	sbSizerDetruire->Add( bSizerDetailDetruire, 1, wxALL|wxEXPAND, 5 );
 	
 	m_staticlineSeparateurDetailBoutonDetruire = new wxStaticLine( sbSizerDetruire->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL );
-	sbSizerDetruire->Add( m_staticlineSeparateurDetailBoutonDetruire, 0, wxEXPAND | wxALL, 5 );
+	sbSizerDetruire->Add( m_staticlineSeparateurDetailBoutonDetruire, 0, wxEXPAND|wxRIGHT|wxLEFT, 5 );
 	
 	m_sdbSizerDetruire = new wxStdDialogButtonSizer();
 	m_sdbSizerDetruireApply = new wxButton( sbSizerDetruire->GetStaticBox(), wxID_APPLY );
@@ -833,18 +836,18 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	
 	m_staticTextLancer = new wxStaticText( sbSizerLancement->GetStaticBox(), wxID_ANY, wxT("Vous allez lancer la fabrication du processus : "), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextLancer->Wrap( -1 );
-	m_staticTextLancer->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), 70, 90, 92, false, wxEmptyString ) );
+	m_staticTextLancer->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, wxEmptyString ) );
 	
 	bSizerTitreLancer->Add( m_staticTextLancer, 0, wxTOP|wxBOTTOM|wxLEFT, 5 );
 	
 	m_staticTextLancerTitre = new wxStaticText( sbSizerLancement->GetStaticBox(), wxID_ANY, wxT("Processus 1"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextLancerTitre->Wrap( -1 );
-	m_staticTextLancerTitre->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), 70, 90, 92, false, wxEmptyString ) );
+	m_staticTextLancerTitre->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, wxEmptyString ) );
 	
 	bSizerTitreLancer->Add( m_staticTextLancerTitre, 0, wxTOP|wxBOTTOM|wxRIGHT, 5 );
 	
 	
-	sbSizerLancement->Add( bSizerTitreLancer, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
+	sbSizerLancement->Add( bSizerTitreLancer, 0, wxALIGN_CENTER_HORIZONTAL|wxTOP|wxRIGHT|wxLEFT, 5 );
 	
 	bSizerDetailLancer = new wxBoxSizer( wxHORIZONTAL );
 	
@@ -886,7 +889,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextNombreBainLancer->Wrap( -1 );
 	bSizerNombreBainLancer->Add( m_staticTextNombreBainLancer, 0, wxALIGN_CENTER_VERTICAL, 5 );
 	
-	m_staticTextNombreBainValeurLancer = new wxStaticText( sbSizerLancement->GetStaticBox(), wxID_ANY, wxT("a faire"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextNombreBainValeurLancer = new wxStaticText( sbSizerLancement->GetStaticBox(), wxID_ANY, wxT("0"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextNombreBainValeurLancer->Wrap( -1 );
 	bSizerNombreBainLancer->Add( m_staticTextNombreBainValeurLancer, 0, wxALIGN_CENTER_VERTICAL, 5 );
 	
@@ -922,7 +925,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	sbSizerLancement->Add( bSizerDetailLancer, 1, wxALL|wxEXPAND, 5 );
 	
 	m_staticlineSeparateurDetailBoutonLancer = new wxStaticLine( sbSizerLancement->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL );
-	sbSizerLancement->Add( m_staticlineSeparateurDetailBoutonLancer, 0, wxEXPAND | wxALL, 5 );
+	sbSizerLancement->Add( m_staticlineSeparateurDetailBoutonLancer, 0, wxEXPAND|wxRIGHT|wxLEFT, 5 );
 	
 	m_sdbSizerLancerProcessus = new wxStdDialogButtonSizer();
 	m_sdbSizerLancerProcessusOK = new wxButton( sbSizerLancement->GetStaticBox(), wxID_OK );
@@ -962,18 +965,18 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	
 	m_staticTextTester = new wxStaticText( sbSizerTester->GetStaticBox(), wxID_ANY, wxT("Vous allez lancer le test du processus : "), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextTester->Wrap( -1 );
-	m_staticTextTester->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), 70, 90, 92, false, wxEmptyString ) );
+	m_staticTextTester->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, wxEmptyString ) );
 	
 	bSizerTitreTester->Add( m_staticTextTester, 0, wxTOP|wxBOTTOM|wxLEFT, 5 );
 	
 	m_staticTextTesterTitre = new wxStaticText( sbSizerTester->GetStaticBox(), wxID_ANY, wxT("Processus 1"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextTesterTitre->Wrap( -1 );
-	m_staticTextTesterTitre->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), 70, 90, 92, false, wxEmptyString ) );
+	m_staticTextTesterTitre->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, wxEmptyString ) );
 	
 	bSizerTitreTester->Add( m_staticTextTesterTitre, 0, wxTOP|wxBOTTOM|wxRIGHT, 5 );
 	
 	
-	sbSizerTester->Add( bSizerTitreTester, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
+	sbSizerTester->Add( bSizerTitreTester, 0, wxALIGN_CENTER_HORIZONTAL|wxTOP|wxRIGHT|wxLEFT, 5 );
 	
 	bSizerDetailTester = new wxBoxSizer( wxHORIZONTAL );
 	
@@ -1015,7 +1018,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextNombreBainTester->Wrap( -1 );
 	bSizerNombreBainTester->Add( m_staticTextNombreBainTester, 0, wxALIGN_CENTER_VERTICAL, 5 );
 	
-	m_staticTextNombreBainValeurTester = new wxStaticText( sbSizerTester->GetStaticBox(), wxID_ANY, wxT("a faire"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextNombreBainValeurTester = new wxStaticText( sbSizerTester->GetStaticBox(), wxID_ANY, wxT("0"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextNombreBainValeurTester->Wrap( -1 );
 	bSizerNombreBainTester->Add( m_staticTextNombreBainValeurTester, 0, wxALIGN_CENTER_VERTICAL, 5 );
 	
@@ -1051,16 +1054,16 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	sbSizerTester->Add( bSizerDetailTester, 1, wxALL|wxEXPAND, 5 );
 	
 	m_staticlineSeparateurDetailBoutonsTester = new wxStaticLine( sbSizerTester->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL );
-	sbSizerTester->Add( m_staticlineSeparateurDetailBoutonsTester, 0, wxEXPAND | wxALL, 5 );
+	sbSizerTester->Add( m_staticlineSeparateurDetailBoutonsTester, 0, wxEXPAND|wxRIGHT|wxLEFT, 5 );
 	
 	wxBoxSizer* bSizerButonTester;
 	bSizerButonTester = new wxBoxSizer( wxHORIZONTAL );
 	
 	m_bpButtonStopTester = new wxBitmapButton( sbSizerTester->GetStaticBox(), wxID_ANY, wxBitmap( wxT("../Images/stop_petit.png"), wxBITMAP_TYPE_ANY ), wxDefaultPosition, wxDefaultSize, wxBU_AUTODRAW );
-	bSizerButonTester->Add( m_bpButtonStopTester, 0, wxALIGN_BOTTOM|wxRIGHT, 3 );
+	bSizerButonTester->Add( m_bpButtonStopTester, 0, wxALIGN_BOTTOM|wxTOP|wxRIGHT, 3 );
 	
 	m_bpButtonOKTester = new wxBitmapButton( sbSizerTester->GetStaticBox(), wxID_ANY, wxBitmap( wxT("../Images/ok-button-petit.png"), wxBITMAP_TYPE_ANY ), wxDefaultPosition, wxDefaultSize, wxBU_AUTODRAW );
-	bSizerButonTester->Add( m_bpButtonOKTester, 0, wxALIGN_BOTTOM|wxLEFT, 3 );
+	bSizerButonTester->Add( m_bpButtonOKTester, 0, wxALIGN_BOTTOM|wxTOP|wxLEFT, 3 );
 	
 	
 	sbSizerTester->Add( bSizerButonTester, 0, wxALIGN_BOTTOM|wxALIGN_CENTER_HORIZONTAL|wxBOTTOM, 5 );
@@ -1268,7 +1271,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	bSizerBoutonBras = new wxBoxSizer( wxVERTICAL );
 	
 	m_buttonDisponibiliteBras = new wxButton( m_scrolledWindowInfoBras, wxID_ANY, wxT("Demander la disponibilité du bras"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizerBoutonBras->Add( m_buttonDisponibiliteBras, 0, wxALIGN_BOTTOM|wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
+	bSizerBoutonBras->Add( m_buttonDisponibiliteBras, 0, wxALIGN_BOTTOM|wxALIGN_CENTER_HORIZONTAL|wxBOTTOM|wxRIGHT|wxLEFT, 5 );
 	
 	
 	bSizerBouttons->Add( bSizerBoutonBras, 1, wxEXPAND, 5 );
@@ -1277,7 +1280,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	bSizerBoutonTache = new wxBoxSizer( wxVERTICAL );
 	
 	m_buttonTacheEnCours = new wxButton( m_scrolledWindowInfoBras, wxID_ANY, wxT("Demander la tâche en cours"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizerBoutonTache->Add( m_buttonTacheEnCours, 0, wxALIGN_BOTTOM|wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
+	bSizerBoutonTache->Add( m_buttonTacheEnCours, 0, wxALIGN_BOTTOM|wxALIGN_CENTER_HORIZONTAL|wxBOTTOM|wxRIGHT|wxLEFT, 5 );
 	
 	
 	bSizerBouttons->Add( bSizerBoutonTache, 1, wxEXPAND, 5 );
@@ -1530,7 +1533,7 @@ FrameApropos::FrameApropos( wxWindow* parent, wxWindowID id, const wxString& tit
 	
 	m_staticTextTitre = new wxStaticText( m_panelApropos, wxID_ANY, wxT("À propos du projet"), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTRE );
 	m_staticTextTitre->Wrap( -1 );
-	m_staticTextTitre->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), 70, 90, 92, false, wxEmptyString ) );
+	m_staticTextTitre->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, wxEmptyString ) );
 	
 	bSizerApropos->Add( m_staticTextTitre, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 20 );
 	
@@ -1604,7 +1607,7 @@ FrameAide::FrameAide( wxWindow* parent, wxWindowID id, const wxString& title, co
 	
 	m_staticTextTitre = new wxStaticText( m_panelAide, wxID_ANY, wxT("Aide"), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTRE );
 	m_staticTextTitre->Wrap( -1 );
-	m_staticTextTitre->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), 70, 90, 92, false, wxEmptyString ) );
+	m_staticTextTitre->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, wxEmptyString ) );
 	
 	bSizerAide->Add( m_staticTextTitre, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 20 );
 	

@@ -33,7 +33,31 @@ DataAnodisation::~DataAnodisation()
 
 bool DataAnodisation::ExecuteDelete(string requete)  //À coder
 {
-    bool retour = false;
+    bool retour = true;
+    
+    if(m_session != NULL)
+    {
+        Statement* supression;
+
+        try
+        {
+            supression = new Statement(*m_session);
+            *supression << requete;
+            
+            supression->execute();
+        }
+        catch(ODBC::StatementException& se)
+        {
+            m_last_error = se.toString();
+            retour = false;
+        }
+    }
+    else
+    {
+        m_last_error = "Non connecté à la BdD";
+        retour = false;
+    }
+    
     return retour;
 }
 

@@ -962,7 +962,17 @@ void EvtFramePrincipal::OnListBoxDetruireSelection(wxCommandEvent& event)
     {
         AfficheErreurRemplisage(ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
     }
-
+    
+    // Nombre de bain du processus
+    if(m_donnees_IHM->RecupereNombreBain(ConversionEnString(id_selection)))
+    {
+        m_staticTextNombreBainValeurDetruire->SetLabel(m_donnees_IHM->GetNombreBain());
+    }
+    else
+    {
+        AfficheErreurRemplisage(ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
+    }
+    
     // Ordre des trajectoires
     if(m_donnees_IHM->RecupereOrdreTrajectoires(ConversionEnString(id_selection)))
     {
@@ -981,18 +991,37 @@ void EvtFramePrincipal::OnListBoxDetruireSelection(wxCommandEvent& event)
 void EvtFramePrincipal::OnApplyButtonDetruireClick(wxCommandEvent& event)
 {
     wxString selection = m_listBoxDetruireProcessus->GetStringSelection();
-    wxString id_selection = GardeIdSelection(selection);
+    string id_selection = ConversionEnString(GardeIdSelection(selection));
 
-    // string requete = "DELETE * FROM processus WHERE id_processus=" + id_selection;
+    string requete = "DELETE FROM intermediaire_processus_trajectoires WHERE id_p=" + id_selection;
 
-    /*if(m_bdd_anodisation->ExecuteDelete())
+    if(m_bdd_anodisation->ExecuteDelete(requete))
     {
-
+        requete = "DELETE FROM processus WHERE id_processus=" + id_selection;
+        
+        if(m_bdd_anodisation->ExecuteDelete(requete))
+        {
+            int separateur = selection.find(" - ");
+            wxString message;
+            message << wxT("Supression du processus : ")
+                    << DecouperTexteFin(selection, separateur + 3)
+                    << wxT(" réussi !\n");
+            
+            m_textCtrlAffichage->AppendText(message);
+            wxLogMessage(message);
+            
+            VideListBox();
+            RempliListBox();
+        }
+        else
+        {
+            AfficheErreurRemplisage(ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+        }
     }
     else
     {
-
-    }*/
+        AfficheErreurRemplisage(ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+    }
 }
 //
 // Lancer un processus
@@ -1014,6 +1043,16 @@ void EvtFramePrincipal::OnListBoxLancerSelection(wxCommandEvent& event)
     {
         wxString duree = ConversionEnWxString(m_donnees_IHM->GetDureeTotal());
         m_staticTextDureeTotalValeurLancer->SetLabel(duree);
+    }
+    else
+    {
+        AfficheErreurRemplisage(ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
+    }
+    
+    // Nombre de bain du processus
+    if(m_donnees_IHM->RecupereNombreBain(ConversionEnString(id_selection)))
+    {
+        m_staticTextNombreBainValeurLancer->SetLabel(m_donnees_IHM->GetNombreBain());
     }
     else
     {
@@ -1071,7 +1110,17 @@ void EvtFramePrincipal::OnListBoxTesterSelection(wxCommandEvent& event)
     {
         AfficheErreurRemplisage(ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
     }
-
+    
+    // Nombre de bain du processus
+    if(m_donnees_IHM->RecupereNombreBain(ConversionEnString(id_selection)))
+    {
+        m_staticTextNombreBainValeurTester->SetLabel(m_donnees_IHM->GetNombreBain());
+    }
+    else
+    {
+        AfficheErreurRemplisage(ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
+    }
+    
     // Ordre des trajectoires
     if(m_donnees_IHM->RecupereOrdreTrajectoires(ConversionEnString(id_selection)))
     {

@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Feb 16 2016)
+// C++ code generated with wxFormBuilder (version Dec 21 2016)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO "NOT" EDIT THIS FILE!
@@ -93,6 +93,7 @@ class FramePrincipal : public wxFrame
 		wxSpinCtrl* m_spinCtrlNombreBainModifier;
 		wxStaticText* m_staticTextOrdreTrajectoiresModifier;
 		wxTextCtrl* m_textCtrlOrdreTrajectoiresModifier;
+		wxStaticLine* m_staticline10;
 		wxStdDialogButtonSizer* m_sdbSizerModifier;
 		wxButton* m_sdbSizerModifierApply;
 		wxButton* m_sdbSizerModifierCancel;
