@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Dec 21 2016)
+// C++ code generated with wxFormBuilder (version Feb 16 2016)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO "NOT" EDIT THIS FILE!
@@ -28,8 +28,8 @@
 #include <wx/bitmap.h>
 #include <wx/image.h>
 #include <wx/icon.h>
-#include <wx/button.h>
 #include <wx/spinctrl.h>
+#include <wx/button.h>
 #include <wx/bmpbuttn.h>
 #include <wx/statbmp.h>
 #include <wx/notebook.h>
@@ -90,7 +90,7 @@ class FramePrincipal : public wxFrame
 		wxStaticText* m_staticTextNomModifier;
 		wxTextCtrl* m_textCtrlNomModifier;
 		wxStaticText* m_staticTextNombreBainModifier;
-		wxTextCtrl* m_textCtrlNombreBainModifier;
+		wxSpinCtrl* m_spinCtrlNombreBainModifier;
 		wxStaticText* m_staticTextOrdreTrajectoiresModifier;
 		wxTextCtrl* m_textCtrlOrdreTrajectoiresModifier;
 		wxStdDialogButtonSizer* m_sdbSizerModifier;
@@ -118,11 +118,14 @@ class FramePrincipal : public wxFrame
 		wxListBox* m_listBoxDetruireProcessus;
 		wxStaticText* m_staticTextDetruire;
 		wxStaticText* m_staticTextDetuireTitre;
+		wxBoxSizer* bSizerDureeTotalDetruire;
 		wxStaticText* m_staticTextDureeTotalProcessusDetruire;
 		wxStaticText* m_staticTextDureeTotalValeurDetruire;
 		wxStaticLine* m_staticlineSeparateurGaucheDroiteDetruire;
+		wxBoxSizer* bSizerNombreBainDetruire;
 		wxStaticText* m_staticTextNombreBainDetruire;
 		wxStaticText* m_staticTextNombreBainValeurDetruire;
+		wxBoxSizer* bSizerOrdreTrajectoiresDetruire;
 		wxStaticText* m_staticTextOrdreTrajectoiresDetruire;
 		wxStaticText* m_staticTextOrdreTrajectoiresDetruireValeur;
 		wxStaticLine* m_staticlineSeparateurDetailBoutonDetruire;
@@ -132,11 +135,17 @@ class FramePrincipal : public wxFrame
 		wxListBox* m_listBoxLancerProcessus;
 		wxStaticText* m_staticTextLancer;
 		wxStaticText* m_staticTextLancerTitre;
+		wxBoxSizer* bSizerDetailLancer;
+		wxBoxSizer* bSizerLancerDroit;
+		wxBoxSizer* bSizerDureeTotalLancer;
 		wxStaticText* m_staticTextDureeTotalProcessusLancer;
 		wxStaticText* m_staticTextDureeTotalValeurLancer;
 		wxStaticLine* m_staticlineSeparateurGaucheDroiteLancer;
+		wxBoxSizer* bSizerLancerGauche;
+		wxBoxSizer* bSizerNombreBainLancer;
 		wxStaticText* m_staticTextNombreBainLancer;
 		wxStaticText* m_staticTextNombreBainValeurLancer;
+		wxBoxSizer* bSizerOrdreTrajectoiresLancer;
 		wxStaticText* m_staticTextOrdreTrajectoiresLancer;
 		wxStaticText* m_staticTextOrdreTrajectoiresValeurLancer;
 		wxStaticLine* m_staticlineSeparateurDetailBoutonLancer;
@@ -146,6 +155,20 @@ class FramePrincipal : public wxFrame
 		wxListBox* m_listBoxTesterProcessus;
 		wxStaticText* m_staticTextTester;
 		wxStaticText* m_staticTextTesterTitre;
+		wxBoxSizer* bSizerDetailTester;
+		wxBoxSizer* bSizerTesterDroit;
+		wxBoxSizer* bSizerDureeTotalTester;
+		wxStaticText* m_staticTextDureeTotalProcessusTester;
+		wxStaticText* m_staticTextDureeTotalValeurTester;
+		wxStaticLine* m_staticlineSeparateurGaucheDroiteTester;
+		wxBoxSizer* bSizerTesterGauche;
+		wxBoxSizer* bSizerNombreBainTester;
+		wxStaticText* m_staticTextNombreBainTester;
+		wxStaticText* m_staticTextNombreBainValeurTester;
+		wxBoxSizer* bSizerOrdreTrajectoiresTester;
+		wxStaticText* m_staticTextOrdreTrajectoiresTester;
+		wxStaticText* m_staticTextOrdreTrajectoiresValeurTester;
+		wxStaticLine* m_staticlineSeparateurDetailBoutonsTester;
 		wxBitmapButton* m_bpButtonStopTester;
 		wxBitmapButton* m_bpButtonOKTester;
 		wxScrolledWindow* m_scrolledWindowInfoBras;
@@ -154,6 +177,7 @@ class FramePrincipal : public wxFrame
 		wxStaticText* m_staticTextDisponibiliteBras;
 		wxStaticBoxSizer* sbSizerTacheEnCours;
 		wxPanel* m_panelTacheEnCours;
+		wxBoxSizer* bSizerTacheEnCoursPrincipal;
 		wxStaticText* m_staticTextTypeTache;
 		wxTextCtrl* m_textCtrlTypeTache;
 		wxStaticText* m_staticTextNomTache;

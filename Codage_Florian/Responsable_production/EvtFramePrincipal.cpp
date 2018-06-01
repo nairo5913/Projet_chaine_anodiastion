@@ -1,13 +1,19 @@
+/*******************************************************************************
+ *  Fichier:  EvtFramePrincipal.cpp
+ *  Projet:   Chaîne d'anodisation - Gestion du PC responsable de production
+ *  Crée le:  29/04/2018
+ *  Utilité:  Gestion des événements du frame principal
+ *  Auteur:   Florian Provost
+*******************************************************************************/
 #include "EvtFramePrincipal.h"
 
 EvtFramePrincipal::EvtFramePrincipal(wxWindow* parent) : FramePrincipal(parent)
 {
     m_client_connecte = false;
     m_bdd_connecte = false;
+    m_bdd_anodisation = NULL;
     m_identifie = false;
     m_fabrication = false;
-    m_bdd_anodisation = new DataAnodisation(DSN);
-    m_donnees_IHM = new DonneesIHM(m_bdd_anodisation);
     point_virgule_saisie_creer = true;
     point_virgule_saisie_modifier = true;
 
@@ -31,36 +37,11 @@ EvtFramePrincipal::EvtFramePrincipal(wxWindow* parent) : FramePrincipal(parent)
     BmpVert.LoadFile(wxT("../Images/VertAllume.bmp"), wxBITMAP_TYPE_BMP);
 }
 
-void EvtFramePrincipal::OnCharEntered(wxKeyEvent& event)
-{
-    // TODO: Implement OnCharEntered
-    switch(event.GetKeyCode())
-    {
-        case WXK_F1:
-            // m_textCtrlAffichage->AppendText(wxT("Touche F1.\n"));
-            
-            event.Skip();
-            break;
-
-        case WXK_F2:
-            // m_textCtrlAffichage->AppendText(wxT("Touche F2.\n"));
-
-            event.Skip();
-            break;
-
-        case WXK_F3:
-            // m_textCtrlAffichage->AppendText(wxT("Touche F3.\n"));
-
-            event.Skip();
-            break;
-
-        default:
-
-            event.Skip();
-            break;
-    }
-}
-
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+//                     Méthode générées par wxFormBuilder                     //
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 void EvtFramePrincipal::OnFrameClose(wxCloseEvent& event)
 {
     // Bloquer la fermeture de la fenêtre
@@ -76,9 +57,17 @@ void EvtFramePrincipal::OnFrameClose(wxCloseEvent& event)
     }
     else
     {
-        if(m_client_connecte)
+        if(m_identifie)
         {
-            DeconnexionClient(wxT("Déconnexion depuis le poste responsable de production."));
+            delete m_bdd_anodisation;
+            m_bdd_anodisation = NULL;
+
+            delete m_donnees_IHM;
+
+            if(m_client_connecte)
+            {
+                DeconnexionClient(wxT("Déconnexion depuis le poste responsable de production."));
+            }
         }
 
         Destroy();
@@ -117,6 +106,9 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
 
             wxString message;
             bool erreur = false;
+
+            m_bdd_anodisation = new DataAnodisation(DSN);
+            m_donnees_IHM = new DonneesIHM(m_bdd_anodisation);
 
             // Tester connexion à la BdD
             if(m_bdd_anodisation->IsConnexionOK())
@@ -200,6 +192,11 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
 
         m_identifie = false;
 
+        delete m_bdd_anodisation;
+        m_bdd_anodisation = NULL;
+
+        delete m_donnees_IHM;
+
         // Activation des textCtrl de connexion
         m_textCtrlLogin->Enable();
         m_textCtrlPass->Enable();
@@ -226,11 +223,8 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
 
 void EvtFramePrincipal::OnListBoxAffichageSelection(wxCommandEvent& event)
 {
-    // m_textCtrlAffichage->AppendText(wxT("Selection liste affichage processus\n"));
-    wxString selection = m_listBoxAffichageProcessus->GetStringSelection();
-
     // Récupération de l'id du processus
-    wxString id_selection = GardeIdSelection(selection);
+    wxString id_selection = GardeIdSelection(m_listBoxAffichageProcessus->GetStringSelection());
 
     // Vider les text control
     // du coté droit
@@ -252,22 +246,16 @@ void EvtFramePrincipal::OnListBoxAffichageSelection(wxCommandEvent& event)
     if(m_donnees_IHM->RecupereDureeTotal(ConversionEnString(id_selection)))
     {
         wxString duree = ConversionEnWxString(m_donnees_IHM->GetDureeTotal());
-        wxString heure = DecouperTexteDebut(duree, 2);
-        m_textCtrlDureeTotalHeureAfficher->AppendText(heure);
+        m_textCtrlDureeTotalHeureAfficher->AppendText(DecouperTexteDebut(duree, 2));
 
         wxString temp = DecouperTexteDebut(duree, 5);
-        wxString minute = DecouperTexteFin(temp, 3);
-        m_textCtrlDureeTotalMinuteAfficher->AppendText(minute);
-
-        wxString seconde = DecouperTexteFin(duree, 6);
-        m_textCtrlDureeTotalSecondeAfficher->AppendText(seconde);
+        m_textCtrlDureeTotalMinuteAfficher->AppendText(DecouperTexteFin(temp, 3));
+        
+        m_textCtrlDureeTotalSecondeAfficher->AppendText(DecouperTexteFin(duree, 6));
     }
     else
     {
-        wxString message;
-        message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n") << wxT("Raison : ")
-                << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
-        m_textCtrlAffichage->AppendText(message);
+        AfficheErreurRemplisage(ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
     }
 
     // Liste des trajectoires du processus
@@ -301,10 +289,7 @@ void EvtFramePrincipal::OnListBoxAffichageSelection(wxCommandEvent& event)
     }
     else
     {
-        wxString message;
-        message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n") << wxT("Raison : ")
-                << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
-        m_textCtrlAffichage->AppendText(message);
+        AfficheErreurRemplisage(ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
     }
 
     // Nom du processus
@@ -319,134 +304,60 @@ void EvtFramePrincipal::OnListBoxAffichageSelection(wxCommandEvent& event)
     }
     else
     {
-        wxString message;
-        message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n") << wxT("Raison : ")
-                << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
-        m_textCtrlAffichage->AppendText(message);
+        AfficheErreurRemplisage(ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
     }
 
     // Nombre de bain du processus
-    /*if(m_donnees_IHM->RecupereNombreBain(ConversionEnString(id_selection)))
+    if(m_donnees_IHM->RecupereNombreBain(ConversionEnString(id_selection)))
     {
-
-
+        m_textCtrlNombreBainAfficher->AppendText(ConversionEnWxString(m_donnees_IHM->GetNombreBain()));
     }
     else
     {
-    wxString message;
-    message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n")
-    << wxT("Raison : ") << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
-    m_textCtrlAffichage->AppendText(message);
-    }*/
+        AfficheErreurRemplisage(ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
+    }
 
     // Ordre des trajectoires
     if(m_donnees_IHM->RecupereOrdreTrajectoires(ConversionEnString(id_selection)))
     {
-        wxString ordre = ConversionEnWxString(m_donnees_IHM->GetOrdreTrajectoires());
-
-        m_textCtrlOrdreTrajectoiresAfficher->AppendText(ordre);
+        m_textCtrlOrdreTrajectoiresAfficher->AppendText(ConversionEnWxString(m_donnees_IHM->GetOrdreTrajectoires()));
     }
     else
     {
-        wxString message;
-        message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n") << wxT("Raison : ")
-                << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
-
-        m_textCtrlAffichage->AppendText(message);
+        AfficheErreurRemplisage(ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
     }
 }
 
-void EvtFramePrincipal::OnListBoxModifierSelection(wxCommandEvent& event)
+//
+// Saisie au clavier
+//
+void EvtFramePrincipal::OnCharEntered(wxKeyEvent& event)
 {
-    // Récupération de la saisie
-    wxString selection = m_listBoxModifierProcessus->GetStringSelection();
-
-    // Récupération de l'id du processus
-    wxString id_selection = GardeIdSelection(selection);
-
-    // Vider les text control
-    // du coté droit
-    m_textCtrlIdModifier->Clear();
-    m_textCtrlDureeTotalHeureModifier->Clear();
-    m_textCtrlDureeTotalMinuteModifier->Clear();
-    m_textCtrlDureeTotalSecondeModifier->Clear();
-
-    // Du coté gauche
-    m_textCtrlNomModifier->Clear();
-    m_textCtrlNombreBainModifier->Clear();
-    m_textCtrlOrdreTrajectoiresModifier->Clear();
-
-    // Remplisage
-    m_textCtrlIdModifier->AppendText(id_selection);
-
-    // Durée total du processus
-    if(m_donnees_IHM->RecupereDureeTotal(ConversionEnString(id_selection)))
+    // TODO: Implement OnCharEntered
+    switch(event.GetKeyCode())
     {
-        wxString duree = ConversionEnWxString(m_donnees_IHM->GetDureeTotal());
-        wxString heure = DecouperTexteDebut(duree, 2);
-        m_textCtrlDureeTotalHeureModifier->AppendText(heure);
+        case WXK_F1:
+            // m_textCtrlAffichage->AppendText(wxT("Touche F1.\n"));
 
-        wxString temp = DecouperTexteDebut(duree, 5);
-        wxString minute = DecouperTexteFin(temp, 3);
-        m_textCtrlDureeTotalMinuteModifier->AppendText(minute);
+            event.Skip();
+            break;
 
-        wxString seconde = DecouperTexteFin(duree, 6);
-        m_textCtrlDureeTotalSecondeModifier->AppendText(seconde);
-    }
-    else
-    {
-        wxString message;
-        message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n") << wxT("Raison : ")
-                << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
-        m_textCtrlAffichage->AppendText(message);
-    }
-    
-    // Nom du processus
-    if(m_donnees_IHM->RecupereNomProcessus(ConversionEnString(id_selection)))
-    {
-        wxString temp = ConversionEnWxString(m_donnees_IHM->GetNomProcessus());
+        case WXK_F2:
+            // m_textCtrlAffichage->AppendText(wxT("Touche F2.\n"));
 
-        int separateur = temp.find("   ");
-        wxString nom = DecouperTexteDebut(temp, separateur);
+            event.Skip();
+            break;
 
-        m_textCtrlNomModifier->AppendText(nom);
-    }
-    else
-    {
-        wxString message;
-        message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n") << wxT("Raison : ")
-                << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
-        m_textCtrlAffichage->AppendText(message);
-    }
+        case WXK_F3:
+            // m_textCtrlAffichage->AppendText(wxT("Touche F3.\n"));
 
-    // Nombre de bain du processus
-    /*if(m_donnees_IHM->RecupereNombreBain(ConversionEnString(id_selection)))
-    {
+            event.Skip();
+            break;
 
+        default:
 
-    }
-    else
-    {
-    wxString message;
-    message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n")
-    << wxT("Raison : ") << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
-    m_textCtrlAffichage->AppendText(message);
-    }*/
-
-    // Ordre des trajectoires
-    if(m_donnees_IHM->RecupereOrdreTrajectoires(ConversionEnString(id_selection)))
-    {
-        wxString ordre = ConversionEnWxString(m_donnees_IHM->GetOrdreTrajectoires());
-
-        m_textCtrlOrdreTrajectoiresModifier->AppendText(ordre);
-    }
-    else
-    {
-        wxString message;
-        message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n") << wxT("Raison : ")
-                << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
-
-        m_textCtrlAffichage->AppendText(message);
+            event.Skip();
+            break;
     }
 }
 
@@ -552,14 +463,14 @@ void EvtFramePrincipal::OnCharEnteredOrdre(wxKeyEvent& event)
         case '0':
             if(event.GetId() == wxID_ORDRE_MODIFIER)
             {
-                if (point_virgule_saisie_modifier)
+                if(point_virgule_saisie_modifier)
                 {
                     point_virgule_saisie_modifier = false;
                 }
             }
             else if(event.GetId() == wxID_ORDRE_CREER)
             {
-                if (point_virgule_saisie_creer)
+                if(point_virgule_saisie_creer)
                 {
                     point_virgule_saisie_creer = false;
                 }
@@ -570,14 +481,14 @@ void EvtFramePrincipal::OnCharEnteredOrdre(wxKeyEvent& event)
         case '1':
             if(event.GetId() == wxID_ORDRE_MODIFIER)
             {
-                if (point_virgule_saisie_modifier)
+                if(point_virgule_saisie_modifier)
                 {
                     point_virgule_saisie_modifier = false;
                 }
             }
             else if(event.GetId() == wxID_ORDRE_CREER)
             {
-                if (point_virgule_saisie_creer)
+                if(point_virgule_saisie_creer)
                 {
                     point_virgule_saisie_creer = false;
                 }
@@ -588,14 +499,14 @@ void EvtFramePrincipal::OnCharEnteredOrdre(wxKeyEvent& event)
         case '2':
             if(event.GetId() == wxID_ORDRE_MODIFIER)
             {
-                if (point_virgule_saisie_modifier)
+                if(point_virgule_saisie_modifier)
                 {
                     point_virgule_saisie_modifier = false;
                 }
             }
             else if(event.GetId() == wxID_ORDRE_CREER)
             {
-                if (point_virgule_saisie_creer)
+                if(point_virgule_saisie_creer)
                 {
                     point_virgule_saisie_creer = false;
                 }
@@ -606,104 +517,104 @@ void EvtFramePrincipal::OnCharEnteredOrdre(wxKeyEvent& event)
         case '3':
             if(event.GetId() == wxID_ORDRE_MODIFIER)
             {
-                if (point_virgule_saisie_modifier)
+                if(point_virgule_saisie_modifier)
                 {
                     point_virgule_saisie_modifier = false;
                 }
             }
             else if(event.GetId() == wxID_ORDRE_CREER)
             {
-                if (point_virgule_saisie_creer)
+                if(point_virgule_saisie_creer)
                 {
                     point_virgule_saisie_creer = false;
                 }
             }
             event.Skip();
             break;
-            
+
         case '4':
             if(event.GetId() == wxID_ORDRE_MODIFIER)
             {
-                if (point_virgule_saisie_modifier)
+                if(point_virgule_saisie_modifier)
                 {
                     point_virgule_saisie_modifier = false;
                 }
             }
             else if(event.GetId() == wxID_ORDRE_CREER)
             {
-                if (point_virgule_saisie_creer)
+                if(point_virgule_saisie_creer)
                 {
                     point_virgule_saisie_creer = false;
                 }
             }
             event.Skip();
             break;
-            
+
         case '5':
             if(event.GetId() == wxID_ORDRE_MODIFIER)
             {
-                if (point_virgule_saisie_modifier)
+                if(point_virgule_saisie_modifier)
                 {
                     point_virgule_saisie_modifier = false;
                 }
             }
             else if(event.GetId() == wxID_ORDRE_CREER)
             {
-                if (point_virgule_saisie_creer)
+                if(point_virgule_saisie_creer)
                 {
                     point_virgule_saisie_creer = false;
                 }
             }
             event.Skip();
             break;
-            
+
         case '6':
             if(event.GetId() == wxID_ORDRE_MODIFIER)
             {
-                if (point_virgule_saisie_modifier)
+                if(point_virgule_saisie_modifier)
                 {
                     point_virgule_saisie_modifier = false;
                 }
             }
             else if(event.GetId() == wxID_ORDRE_CREER)
             {
-                if (point_virgule_saisie_creer)
+                if(point_virgule_saisie_creer)
                 {
                     point_virgule_saisie_creer = false;
                 }
             }
             event.Skip();
             break;
-            
+
         case '7':
             if(event.GetId() == wxID_ORDRE_MODIFIER)
             {
-                if (point_virgule_saisie_modifier)
+                if(point_virgule_saisie_modifier)
                 {
                     point_virgule_saisie_modifier = false;
                 }
             }
             else if(event.GetId() == wxID_ORDRE_CREER)
             {
-                if (point_virgule_saisie_creer)
+                if(point_virgule_saisie_creer)
                 {
                     point_virgule_saisie_creer = false;
                 }
             }
             event.Skip();
             break;
-            
+
         case '8':
             if(event.GetId() == wxID_ORDRE_MODIFIER)
             {
-                if (point_virgule_saisie_modifier)
+                if(point_virgule_saisie_modifier)
                 {
                     point_virgule_saisie_modifier = false;
                 }
             }
             else if(event.GetId() == wxID_ORDRE_CREER)
             {
-                if (point_virgule_saisie_creer)
+                if(point_virgule_saisie_creer)
                 {
                     point_virgule_saisie_creer = false;
                 }
@@ -714,14 +625,14 @@ void EvtFramePrincipal::OnCharEnteredOrdre(wxKeyEvent& event)
         case '9':
             if(event.GetId() == wxID_ORDRE_MODIFIER)
             {
-                if (point_virgule_saisie_modifier)
+                if(point_virgule_saisie_modifier)
                 {
                     point_virgule_saisie_modifier = false;
                 }
             }
             else if(event.GetId() == wxID_ORDRE_CREER)
             {
-                if (point_virgule_saisie_creer)
+                if(point_virgule_saisie_creer)
                 {
                     point_virgule_saisie_creer = false;
                 }
@@ -732,7 +643,7 @@ void EvtFramePrincipal::OnCharEnteredOrdre(wxKeyEvent& event)
         case ';':
             if(event.GetId() == wxID_ORDRE_MODIFIER)
             {
-                if (!point_virgule_saisie_modifier)
+                if(!point_virgule_saisie_modifier)
                 {
                     point_virgule_saisie_modifier = true;
                     event.Skip();
@@ -740,7 +651,7 @@ void EvtFramePrincipal::OnCharEnteredOrdre(wxKeyEvent& event)
             }
             else if(event.GetId() == wxID_ORDRE_CREER)
             {
-                if (!point_virgule_saisie_creer)
+                if(!point_virgule_saisie_creer)
                 {
                     point_virgule_saisie_creer = true;
                     event.Skip();
@@ -748,18 +659,18 @@ void EvtFramePrincipal::OnCharEnteredOrdre(wxKeyEvent& event)
             }
             break;
 
-        case WXK_BACK: // Retour arrière
+        case WXK_BACK:  // Retour arrière
             if(event.GetId() == wxID_ORDRE_MODIFIER)
             {
                 wxString temp = m_textCtrlOrdreTrajectoiresModifier->GetValue();
-                
-                if (!temp.IsEmpty())
+
+                if(!temp.IsEmpty())
                 {
-                    if (temp.Last()==wxT(';'))
+                    if(temp.Last() == wxT(';'))
                     {
                         point_virgule_saisie_modifier = false;
                     }
-                    
+
                     if(temp.length() == 1)
                     {
                         point_virgule_saisie_modifier = true;
@@ -773,14 +684,14 @@ void EvtFramePrincipal::OnCharEnteredOrdre(wxKeyEvent& event)
             else if(event.GetId() == wxID_ORDRE_CREER)
             {
                 wxString temp = m_textCtrlOrdreTrajectoiresCreer->GetValue();
-                
-                if (!temp.IsEmpty())
+
+                if(!temp.IsEmpty())
                 {
-                    if (temp.Last()==wxT(';'))
+                    if(temp.Last() == wxT(';'))
                     {
                         point_virgule_saisie_creer = false;
                     }
-                    
+
                     if(temp.length() == 1)
                     {
                         point_virgule_saisie_creer = true;
@@ -799,27 +710,27 @@ void EvtFramePrincipal::OnCharEnteredOrdre(wxKeyEvent& event)
             event.Skip();
             break;*/
 
-        case WXK_TAB: // Touche Tab
+        case WXK_TAB:  // Touche Tab
 
             event.Skip();
             break;
 
-        case WXK_LEFT: // Touche fleche gauche
+        case WXK_LEFT:  // Touche fleche gauche
 
             event.Skip();
             break;
 
-        case WXK_UP: // Touche fleche haut
+        case WXK_UP:  // Touche fleche haut
 
             event.Skip();
             break;
 
-        case WXK_RIGHT: // Touche fleche droite
+        case WXK_RIGHT:  // Touche fleche droite
 
             event.Skip();
             break;
 
-        case WXK_DOWN: // Touche fleche bas
+        case WXK_DOWN:  // Touche fleche bas
 
             event.Skip();
             break;
@@ -828,6 +739,79 @@ void EvtFramePrincipal::OnCharEnteredOrdre(wxKeyEvent& event)
 
             // On ne fait rien
             break;
+    }
+}
+//
+// Modifier un processus
+//
+void EvtFramePrincipal::OnListBoxModifierSelection(wxCommandEvent& event)
+{
+    // Récupération de l'id du processus
+    wxString id_selection = GardeIdSelection(m_listBoxModifierProcessus->GetStringSelection());
+
+    // Vider les text control
+    // du coté droit
+    m_textCtrlIdModifier->Clear();
+    m_textCtrlDureeTotalHeureModifier->Clear();
+    m_textCtrlDureeTotalMinuteModifier->Clear();
+    m_textCtrlDureeTotalSecondeModifier->Clear();
+
+    // Du coté gauche
+    m_textCtrlNomModifier->Clear();
+    m_textCtrlOrdreTrajectoiresModifier->Clear();
+
+    // Remplisage
+    m_textCtrlIdModifier->AppendText(id_selection);
+
+    // Durée total du processus
+    if(m_donnees_IHM->RecupereDureeTotal(ConversionEnString(id_selection)))
+    {
+        wxString duree = ConversionEnWxString(m_donnees_IHM->GetDureeTotal());
+        m_textCtrlDureeTotalHeureModifier->AppendText(DecouperTexteDebut(duree, 2));
+
+        wxString temp = DecouperTexteDebut(duree, 5);
+        m_textCtrlDureeTotalMinuteModifier->AppendText(DecouperTexteFin(temp, 3));
+
+        m_textCtrlDureeTotalSecondeModifier->AppendText(DecouperTexteFin(duree, 6));
+    }
+    else
+    {
+        AfficheErreurRemplisage(ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
+    }
+
+    // Nom du processus
+    if(m_donnees_IHM->RecupereNomProcessus(ConversionEnString(id_selection)))
+    {
+        wxString temp = ConversionEnWxString(m_donnees_IHM->GetNomProcessus());
+
+        int separateur = temp.find("   ");
+        wxString nom = DecouperTexteDebut(temp, separateur);
+
+        m_textCtrlNomModifier->AppendText(nom);
+    }
+    else
+    {
+        AfficheErreurRemplisage(ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
+    }
+
+    // Nombre de bain du processus
+    if(m_donnees_IHM->RecupereNombreBain(ConversionEnString(id_selection)))
+    {
+        m_spinCtrlNombreBainModifier->SetValue(m_donnees_IHM->GetNombreBain());
+    }
+    else
+    {
+        AfficheErreurRemplisage(ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
+    }
+
+    // Ordre des trajectoires
+    if(m_donnees_IHM->RecupereOrdreTrajectoires(ConversionEnString(id_selection)))
+    {
+        m_textCtrlOrdreTrajectoiresModifier->AppendText(ConversionEnWxString(m_donnees_IHM->GetOrdreTrajectoires()));
+    }
+    else
+    {
+        AfficheErreurRemplisage(ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
     }
 }
 
@@ -854,7 +838,6 @@ void EvtFramePrincipal::OnCancelButtonModiffierClick(wxCommandEvent& event)
 
     // Du coté gauche
     m_textCtrlNomModifier->Clear();
-    m_textCtrlNombreBainModifier->Clear();
     m_textCtrlOrdreTrajectoiresModifier->Clear();
 
     // Remplisage
@@ -878,51 +861,7 @@ void EvtFramePrincipal::OnCancelButtonModiffierClick(wxCommandEvent& event)
     {
         wxString message;
         message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n") << wxT("Raison : ")
-                << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
-        m_textCtrlAffichage->AppendText(message);
-    }
-
-    // Liste des trajectoires du processus
-    if(m_donnees_IHM->RecupereListeTouteTrajectoires())  // À faire
-    {
-        vector<string> liste_trajectoire = m_donnees_IHM->GetListeTouteTrajectoires();
-
-        wxString rempli;
-        wxString nom;
-
-        for(unsigned int taille = 0; taille < liste_trajectoire.size(); taille++)
-        {
-            // m_textCtrlAffichage->AppendText(liste_trajectoire[taille] + wxT("\n"));
-            taille = taille + 1;
-
-            if(taille % 4 == 0 && taille != 0)
-            {
-                rempli << wxT("Durée : ") << liste_trajectoire[taille - 1];
-                m_listBoxListeTrajectoiresModifier->Append(rempli);
-                rempli.clear();
-            }
-            else if(taille % 4 != 0 && taille % 2 == 0)
-            {
-                nom.clear();
-                nom << liste_trajectoire[taille - 1];
-
-                int separateur = nom.find("   ");
-                rempli << DecouperTexteDebut(nom, separateur) << wxT(" - ");
-            }
-            else
-            {
-                // m_textCtrlAffichage->AppendText(liste_trajectoire[taille-1] + wxT("\n"));
-                rempli << liste_trajectoire[taille - 1] << wxT(" - ");
-            }
-
-            taille = taille - 1;
-        }
-    }
-    else
-    {
-        wxString message;
-        message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n") << wxT("Raison : ")
-                << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
+                << ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()) << wxT("\n");
         m_textCtrlAffichage->AppendText(message);
     }
 
@@ -940,23 +879,19 @@ void EvtFramePrincipal::OnCancelButtonModiffierClick(wxCommandEvent& event)
     {
         wxString message;
         message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n") << wxT("Raison : ")
-                << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
+                << ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()) << wxT("\n");
         m_textCtrlAffichage->AppendText(message);
     }
 
     // Nombre de bain du processus
-    /*if(m_donnees_IHM->RecupereNombreBain(ConversionEnString(id_selection)))
+    if(m_donnees_IHM->RecupereNombreBain(ConversionEnString(id_selection)))
     {
-
-
+        m_spinCtrlNombreBainModifier->SetValue(m_donnees_IHM->GetNombreBain());
     }
     else
     {
-    wxString message;
-    message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n")
-    << wxT("Raison : ") << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
-    m_textCtrlAffichage->AppendText(message);
-    }*/
+        AfficheErreurRemplisage(ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
+    }
 
     // Ordre des trajectoires
     if(m_donnees_IHM->RecupereOrdreTrajectoires(ConversionEnString(id_selection)))
@@ -969,12 +904,14 @@ void EvtFramePrincipal::OnCancelButtonModiffierClick(wxCommandEvent& event)
     {
         wxString message;
         message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n") << wxT("Raison : ")
-                << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
+                << ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()) << wxT("\n");
 
         m_textCtrlAffichage->AppendText(message);
     }
 }
-
+//
+// Créer un processus
+//
 void EvtFramePrincipal::OnCancelButtonCreerClick(wxCommandEvent& event)
 {
     m_textCtrlDureeTotalHeureCreer->Clear();
@@ -987,16 +924,56 @@ void EvtFramePrincipal::OnCancelButtonCreerClick(wxCommandEvent& event)
 
 void EvtFramePrincipal::OnSaveButtonCreerClick(wxCommandEvent& event)
 {
-    // TODO: Implement OnSaveButtonCreerClick
-}
+    vector<string> donnees;
+    donnees.push_back("Test Processus");
+    donnees.push_back("00:01:02");
 
+    if(m_bdd_anodisation->ExecuteInsert(donnees))
+    {
+        m_textCtrlAffichage->AppendText(wxT("OK\n"));
+    }
+    else
+    {
+        AfficheErreurRemplisage(ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+    }
+}
+//
+// Détruire un processus
+//
 void EvtFramePrincipal::OnListBoxDetruireSelection(wxCommandEvent& event)
 {
     wxString selection = m_listBoxDetruireProcessus->GetStringSelection();
-    
+
     wxString message;
-    message << m_listBoxDetruireProcessus->GetStringSelection() << wxT("\n");
+    int separateur = selection.find(" - ");
+    message << DecouperTexteFin(selection, separateur + 3) << wxT("\n");
     m_staticTextDetuireTitre->SetLabel(message);
+
+    // Récupération de l'id du processus
+    wxString id_selection = GardeIdSelection(selection);
+
+    // Durée total
+    if(m_donnees_IHM->RecupereDureeTotal(ConversionEnString(id_selection)))
+    {
+        wxString duree = ConversionEnWxString(m_donnees_IHM->GetDureeTotal());
+        m_staticTextDureeTotalValeurDetruire->SetLabel(duree);
+    }
+    else
+    {
+        AfficheErreurRemplisage(ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
+    }
+
+    // Ordre des trajectoires
+    if(m_donnees_IHM->RecupereOrdreTrajectoires(ConversionEnString(id_selection)))
+    {
+        wxString ordre = ConversionEnWxString(m_donnees_IHM->GetOrdreTrajectoires());
+
+        m_staticTextOrdreTrajectoiresDetruireValeur->SetLabel(ordre);
+    }
+    else
+    {
+        AfficheErreurRemplisage(ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
+    }
 
     Layout();
 }
@@ -1005,23 +982,59 @@ void EvtFramePrincipal::OnApplyButtonDetruireClick(wxCommandEvent& event)
 {
     wxString selection = m_listBoxDetruireProcessus->GetStringSelection();
     wxString id_selection = GardeIdSelection(selection);
-    
-    //string requete = "DELETE * FROM processus WHERE id_processus=" + id_selection;
-    
+
+    // string requete = "DELETE * FROM processus WHERE id_processus=" + id_selection;
+
     /*if(m_bdd_anodisation->ExecuteDelete())
     {
-        
+
     }
     else
     {
-        
+
     }*/
 }
-
+//
+// Lancer un processus
+//
 void EvtFramePrincipal::OnListBoxLancerSelection(wxCommandEvent& event)
 {
-    
+    wxString selection = m_listBoxLancerProcessus->GetStringSelection();
 
+    wxString message;
+    int separateur = selection.find(" - ");
+    message << DecouperTexteFin(selection, separateur + 3) << wxT("\n");
+    m_staticTextLancerTitre->SetLabel(message);
+
+    // Récupération de l'id du processus
+    wxString id_selection = GardeIdSelection(selection);
+
+    // Durée total
+    if(m_donnees_IHM->RecupereDureeTotal(ConversionEnString(id_selection)))
+    {
+        wxString duree = ConversionEnWxString(m_donnees_IHM->GetDureeTotal());
+        m_staticTextDureeTotalValeurLancer->SetLabel(duree);
+    }
+    else
+    {
+        AfficheErreurRemplisage(ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
+    }
+
+    // Ordre des trajectoires
+    if(m_donnees_IHM->RecupereOrdreTrajectoires(ConversionEnString(id_selection)))
+    {
+        wxString ordre = ConversionEnWxString(m_donnees_IHM->GetOrdreTrajectoires());
+
+        m_staticTextOrdreTrajectoiresValeurLancer->SetLabel(ordre);
+    }
+    else
+    {
+        AfficheErreurRemplisage(ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
+    }
+
+    bSizerLancerDroit->Layout();
+    bSizerLancerGauche->Layout();
+    bSizerDetailLancer->Layout();
     Layout();
 }
 
@@ -1029,10 +1042,52 @@ void EvtFramePrincipal::OnOkButtonLancerClick(wxCommandEvent& event)
 {
     // TODO: Implement OnOkButtonLancerClick
 }
-
+//
+// Tester un processus
+//
 void EvtFramePrincipal::OnListBoxTesterSelection(wxCommandEvent& event)
 {
-    // TODO: Implement OnListBoxTesterSelection
+    wxString selection = m_listBoxTesterProcessus->GetStringSelection();
+
+    wxString message;
+    int separateur = selection.find(" - ");
+    message << DecouperTexteFin(selection, separateur + 3) << wxT("\n");
+    m_staticTextTesterTitre->SetLabel(message);
+
+    // Récupération de l'id du processus
+    wxString id_selection = GardeIdSelection(selection);
+
+    // Vider les données
+    m_staticTextDureeTotalValeurTester->SetLabel(wxT(""));
+    m_staticTextOrdreTrajectoiresValeurTester->SetLabel(wxT(""));
+
+    // Durée total
+    if(m_donnees_IHM->RecupereDureeTotal(ConversionEnString(id_selection)))
+    {
+        wxString duree = ConversionEnWxString(m_donnees_IHM->GetDureeTotal());
+        m_staticTextDureeTotalValeurTester->SetLabel(duree);
+    }
+    else
+    {
+        AfficheErreurRemplisage(ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
+    }
+
+    // Ordre des trajectoires
+    if(m_donnees_IHM->RecupereOrdreTrajectoires(ConversionEnString(id_selection)))
+    {
+        wxString ordre = ConversionEnWxString(m_donnees_IHM->GetOrdreTrajectoires());
+
+        m_staticTextOrdreTrajectoiresValeurTester->SetLabel(ordre);
+    }
+    else
+    {
+        AfficheErreurRemplisage(ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
+    }
+
+    bSizerTesterDroit->Layout();
+    bSizerTesterGauche->Layout();
+    bSizerDetailTester->Layout();
+    Layout();
 }
 
 void EvtFramePrincipal::OnStopButtonTesterClick(wxCommandEvent& event)
@@ -1044,7 +1099,9 @@ void EvtFramePrincipal::OnOkButtonTesterClick(wxCommandEvent& event)
 {
     // TODO: Implement OnOkButtonTesterClick
 }
-
+//
+// Disponibilité bras et détail de la tache en cours
+//
 void EvtFramePrincipal::OnButtonDisponibiliteBrasClick(wxCommandEvent& event)
 {
     if(m_client_connecte)
@@ -1110,6 +1167,7 @@ void EvtFramePrincipal::OnButtonTacheEnCoursClick(wxCommandEvent& event)
 
             m_staticTextDisponibiliteBras->SetLabel(wxT("Le bras n'est pas disponible"));
             m_bitmapDisponibiliteBras->SetBitmap(BmpRouge);
+            bSizerTacheEnCoursPrincipal->Layout();
 
             // Réactiver le bouton pour demander la tâche en cours
             m_buttonTacheEnCours->Enable();
@@ -1141,6 +1199,7 @@ void EvtFramePrincipal::OnButtonTacheEnCoursClick(wxCommandEvent& event)
                 m_textCtrlAffichage->AppendText(message);
             }
         }
+        Layout();
     }
     else
     {
@@ -1152,7 +1211,9 @@ void EvtFramePrincipal::OnButtonViderAffichageClick(wxCommandEvent& event)
 {
     m_textCtrlAffichage->Clear();
 }
-
+//
+// Barre de menu
+//
 void EvtFramePrincipal::OnMenuQuitterSelection(wxCommandEvent& event)
 {
     // TODO: Implement OnMenuQuitterSelection
@@ -1168,9 +1229,17 @@ void EvtFramePrincipal::OnMenuQuitterSelection(wxCommandEvent& event)
     }
     else
     {
-        if(m_client_connecte)
+        if(m_identifie)
         {
-            DeconnexionClient(wxT("Déconnexion depuis le poste responsable de production."));
+            delete m_bdd_anodisation;
+            m_bdd_anodisation = NULL;
+
+            delete m_donnees_IHM;
+
+            if(m_client_connecte)
+            {
+                DeconnexionClient(wxT("Déconnexion depuis le poste responsable de production."));
+            }
         }
 
         Destroy();
@@ -1193,11 +1262,11 @@ void EvtFramePrincipal::OnMenuAproposSelection(wxCommandEvent& event)
     EvtFrameApropos* frame_apropos = new EvtFrameApropos(this);
     frame_apropos->Show();
 }
-//
 ////////////////////////////////////////////////////////////////////////////////
-//  Méthode du programme
 ////////////////////////////////////////////////////////////////////////////////
-//
+//                            Méthode du programme                            //
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 bool EvtFramePrincipal::LancerFabrication(wxString id_processus)
 {
     bool retour = false;
@@ -1277,6 +1346,26 @@ void EvtFramePrincipal::AfficheStatus(wxString texte, int position)
     m_statusBar->SetStatusText(texte, position);
 }
 
+void EvtFramePrincipal::AfficheErreurRemplisage(wxString erreur)
+{
+    wxString message;
+    message << wxT("\n") << wxT("Erreur lors de la requête à la base de données.\n") << wxT("\n");
+
+    wxTextAttr centre;
+    centre.SetAlignment(wxTEXT_ALIGNMENT_CENTRE);
+    m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(wxColour("SALMON")));
+    m_textCtrlAffichage->SetDefaultStyle(centre);
+    m_textCtrlAffichage->AppendText(message);
+    m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(wxNullColour));
+
+    message.clear();
+    message << wxT("Raison : ") << erreur << wxT("\n");
+
+    m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(wxColour("SLATE BLUE")));
+    m_textCtrlAffichage->AppendText(message);
+    m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(wxNullColour));
+}
+
 void EvtFramePrincipal::RempliListBox()
 {
     if(m_donnees_IHM->RecupereListeProcessus())
@@ -1314,10 +1403,9 @@ void EvtFramePrincipal::RempliListBox()
     }
     else
     {
-        m_textCtrlAffichage->AppendText(m_bdd_anodisation->GetLastError());
+        m_textCtrlAffichage->AppendText(m_donnees_IHM->GetDerniereErreur());
     }
-    
-    
+
     if(m_donnees_IHM->RecupereListeTouteTrajectoires())
     {
         vector<string> liste_trajectoire = m_donnees_IHM->GetListeTouteTrajectoires();
@@ -1358,7 +1446,7 @@ void EvtFramePrincipal::RempliListBox()
     {
         wxString message;
         message << wxT("\t Erreur lors de la requête à la base de données.\n") << wxT("\n") << wxT("Raison : ")
-                << ConversionEnWxString(m_bdd_anodisation->GetLastError()) << wxT("\n");
+                << ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()) << wxT("\n");
         m_textCtrlAffichage->AppendText(message);
     }
 }
@@ -1370,6 +1458,9 @@ void EvtFramePrincipal::VideListBox()
     m_listBoxLancerProcessus->Clear();
     m_listBoxModifierProcessus->Clear();
     m_listBoxTesterProcessus->Clear();
+    m_listBoxListeTrajectoiresAfficher->Clear();
+    m_listBoxListeTrajectoiresCreer->Clear();
+    m_listBoxListeTrajectoiresModifier->Clear();
 }
 //
 // Partie manipulation texte
@@ -1412,4 +1503,3 @@ wxString EvtFramePrincipal::DecouperTexteFin(wxString texte, int position)
 
     return fin;
 }
-

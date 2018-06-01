@@ -1,9 +1,9 @@
 /*******************************************************************************
-  *  Fichier:  Client.cpp
-  *  Projet:   Chaîne d'anodisation - Gestion du PC responsable de production
-  *  Crée le:  29/04/2018
-  *  Utilité:  Gestion du client
-  *  Auteur:   Florian Provost
+ *  Fichier:  Client.cpp
+ *  Projet:   Chaîne d'anodisation - Gestion du PC responsable de production
+ *  Crée le:  29/04/2018
+ *  Utilité:  Gestion du client
+ *  Auteur:   Florian Provost
 *******************************************************************************/
 #include "Client.h"
 

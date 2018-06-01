@@ -1,9 +1,9 @@
 /*******************************************************************************
-  *  Fichier:  DataAnnodiastion.cpp
-  *  Projet:   Chaîne d'anodisation - Gestion du PC responsable de production
-  *  Crée le:  29/04/2018
-  *  Utilité:  Permet l'accès à la BdD Anodisation_test
-  *  Auteur:   Florian Provost
+ *  Fichier:  DataAnnodiastion.cpp
+ *  Projet:   Chaîne d'anodisation - Gestion du PC responsable de production
+ *  Crée le:  29/04/2018
+ *  Utilité:  Permet l'accès à la BdD Anodisation_test
+ *  Auteur:   Florian Provost
 *******************************************************************************/
 #include "DataAnodisation.h"
 
@@ -34,14 +34,31 @@ DataAnodisation::~DataAnodisation()
 bool DataAnodisation::ExecuteDelete(string requete)  //À coder
 {
     bool retour = false;
-
     return retour;
 }
 
-bool DataAnodisation::ExecuteInsert(string requete)  //À coder
+bool DataAnodisation::ExecuteInsert(vector<string> donnees)  //À coder
 {
-    bool retour = false;
-
+    bool retour = true;
+    
+    if(m_session != NULL)
+    {
+        Statement *insert;
+        
+        try
+        {
+            insert = new Statement(*m_session);
+            *insert << "INSERT INTO processus (nom_processus, duree_processus) VALUES(:np, :dp)", use(donnees);
+            insert->execute();
+            
+        }
+        catch(ODBC::StatementException& se)
+        {
+            m_last_error = se.toString();
+            retour = false;
+        }
+    }
+    
     return retour;
 }
 
@@ -86,6 +103,11 @@ bool DataAnodisation::ExecuteSelect(string requete)
             m_last_error = se.toString();
             retour = false;
         }
+    }
+    else
+    {
+        m_last_error = "Non connecté à la BdD";
+        retour = false;
     }
 
     return retour;

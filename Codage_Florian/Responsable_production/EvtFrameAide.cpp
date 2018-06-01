@@ -1,9 +1,9 @@
 /*******************************************************************************
-  *  Fichier:  EvtFrameAide.cpp
-  *  Projet:   Chaîne d'anodisation - Gestion du PC responsable de production
-  *  Crée le:  15/05/2018
-  *  Utilité:  Gestion des événements du frame aide
-  *  Auteur:   Florian Provost
+ *  Fichier:  EvtFrameAide.cpp
+ *  Projet:   Chaîne d'anodisation - Gestion du PC responsable de production
+ *  Crée le:  15/05/2018
+ *  Utilité:  Gestion des événements du frame aide
+ *  Auteur:   Florian Provost
 *******************************************************************************/
 #include "EvtFrameAide.h"
 

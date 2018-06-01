@@ -1,9 +1,9 @@
 /*******************************************************************************
-  *  Fichier:  MyApp.h
-  *  Projet:   Chaîne d'anodisation - Gestion du PC responsable de production
-  *  Crée le:  29/04/2018
-  *  Utilité:  Lancement de l'application
-  *  Auteur:   Florian Provost
+ *  Fichier:  MyApp.h
+ *  Projet:   Chaîne d'anodisation - Gestion du PC responsable de production
+ *  Crée le:  29/04/2018
+ *  Utilité:  Lancement de l'application
+ *  Auteur:   Florian Provost
 *******************************************************************************/
 #ifndef MYAPP_H
 #define MYAPP_H

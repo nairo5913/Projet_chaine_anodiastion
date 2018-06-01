@@ -1,9 +1,9 @@
 /*******************************************************************************
-  *  Fichier:  Protocoles.h
-  *  Projet:   Chaîne d'anodisation - Gestion du PC responsable de production
-  *  Crée le:  29/04/2018
-  *  Utilité:  Défini le protocole utilisé entre le client et le serveur
-  *  Auteur:   Florian Provost
+ *  Fichier:  Protocoles.h
+ *  Projet:   Chaîne d'anodisation - Gestion du PC responsable de production
+ *  Crée le:  29/04/2018
+ *  Utilité:  Défini le protocole utilisé entre le client et le serveur
+ *  Auteur:   Florian Provost
 *******************************************************************************/
 
 ////////////////////////////////////////////////////////////////////////////////

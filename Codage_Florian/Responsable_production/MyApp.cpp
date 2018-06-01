@@ -1,9 +1,9 @@
 /*******************************************************************************
-  *  Fichier:  MyApp.cpp
-  *  Projet:   Chaîne d'anodisation - Gestion du PC responsable de production
-  *  Crée le:  29/04/2018
-  *  Utilité:  Lancement de l'application
-  *  Auteur:   Florian Provost
+ *  Fichier:  MyApp.cpp
+ *  Projet:   Chaîne d'anodisation - Gestion du PC responsable de production
+ *  Crée le:  29/04/2018
+ *  Utilité:  Lancement de l'application
+ *  Auteur:   Florian Provost
 *******************************************************************************/
 #ifdef WX_PRECOMP
 #include "wx_pch.h"

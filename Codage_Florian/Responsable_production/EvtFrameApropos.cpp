@@ -1,9 +1,9 @@
 /*******************************************************************************
-  *  Fichier:  EvtFrameApropos.cpp
-  *  Projet:   Chaîne d'anodisation - Gestion du PC responsable de production
-  *  Crée le:  15/05/2018
-  *  Utilité:  Gestion des événements du frame à propos
-  *  Auteur:   Florian Provost
+ *  Fichier:  EvtFrameApropos.cpp
+ *  Projet:   Chaîne d'anodisation - Gestion du PC responsable de production
+ *  Crée le:  15/05/2018
+ *  Utilité:  Gestion des événements du frame à propos
+ *  Auteur:   Florian Provost
 *******************************************************************************/
 #include "EvtFrameApropos.h"
 
