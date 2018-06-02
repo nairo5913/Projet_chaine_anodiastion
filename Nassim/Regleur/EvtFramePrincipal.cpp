@@ -70,7 +70,7 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
                 erreur = true;
             }
 
-            m_client = new Client("localhost", 30000, this);
+            m_client = new Client("192.168.1.16", 30000, this);
             // m_client_connecte = m_client->IsOK();
 
             // Tester la connection du client de communication
@@ -115,8 +115,7 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
             VideListBoxTrajectoires();
             RempliListBoxMouvements();
             RempliListBoxTrajectoires();
-            //RempliListBoxMouvementsModifierTrajectoires();
-            
+            // RempliListBoxMouvementsModifierTrajectoires();
         }
         else
         {
@@ -329,7 +328,7 @@ void EvtFramePrincipal::OnListBoxModifierSelectionMouvements(wxCommandEvent& eve
     }
 }
 
-void EvtFramePrincipal::OnApplyButtonModifierMouvementClick(wxCommandEvent& event) // a coder
+void EvtFramePrincipal::OnApplyButtonModifierMouvementClick(wxCommandEvent& event)  // a coder
 {
     // TODO: Implement OnApplyButtonModifierMouvementClick
 }
@@ -409,27 +408,71 @@ void EvtFramePrincipal::OnCancelButtonModifierMouvementClick(wxCommandEvent& eve
     }
 }
 
-void EvtFramePrincipal::OnSaveButtonCreerMouvementClick(wxCommandEvent& event) // a coder
+void EvtFramePrincipal::OnSaveButtonCreerMouvementClick(wxCommandEvent& event)  // a coder
 {
     // TODO: Implement OnSaveButtonCreerMouvementClick
 }
 
-void EvtFramePrincipal::OnListBoxDetruireSelectionMouvements(wxCommandEvent& event) // a coder
+void EvtFramePrincipal::OnListBoxDetruireSelectionMouvements(wxCommandEvent& event)  // a coder
 {
     // TODO: Implement OnListBoxDetruireSelectionMouvements
 }
 
-void EvtFramePrincipal::OnYesButtonDetruireMouvementClick(wxCommandEvent& event) // a coder
+void EvtFramePrincipal::OnYesButtonDetruireMouvementClick(wxCommandEvent& event)  // a coder
 {
-    // TODO: Implement OnYesButtonDetruireMouvementClick
+    wxString selection = m_listBoxDetruireMouvements->GetStringSelection();
+    string id_selection = ConversionEnString(GardeIdSelection(selection));
+    string requete = "SELECT id_t FROM intermediaire_mouvements_trajectoires WHERE id_m=" + id_selection;
+    bool signal = false;
+
+    if(m_bdd_anodisation->ExecuteSelect(requete))
+    {
+        vector<string> resultat = m_bdd_anodisation->GetLastResult();
+        requete = "DELETE FROM intermediaire_mouvements_trajectoires WHERE id_m=" + id_selection;
+
+        if(m_bdd_anodisation->ExecuteDelete(requete))
+        {
+            requete = "DELETE FROM mouvements WHERE id_mouvement=" + id_selection;
+            
+            if(!m_bdd_anodisation->ExecuteDelete(requete))
+            {
+                m_textCtrlAffichage->AppendText(m_bdd_anodisation->GetLastError());
+            }
+
+            for(unsigned int i; i < resultat.size(); i++)
+            {
+                requete = "DELETE FROM trajectoires WHERE id_trajectoire=" + resultat[i];
+
+                if(m_bdd_anodisation->ExecuteDelete(requete))
+                {
+                    signal = true;
+                }
+                else
+                {
+                    m_textCtrlAffichage->AppendText(m_bdd_anodisation->GetLastError());
+                }
+            }
+        }
+        else
+        {
+            m_textCtrlAffichage->AppendText(m_bdd_anodisation->GetLastError());
+        }
+    }
+    else
+    {
+        m_textCtrlAffichage->AppendText(m_bdd_anodisation->GetLastError());
+    }
+
+    VideListBoxMouvements();
+    RempliListBoxMouvements();
 }
 
-void EvtFramePrincipal::OnListBoxTesterSelectionMouvements(wxCommandEvent& event) // a coder
+void EvtFramePrincipal::OnListBoxTesterSelectionMouvements(wxCommandEvent& event)  // a coder
 {
     // TODO: Implement OnListBoxTesterSelectionMouvements
 }
 
-void EvtFramePrincipal::OnYesButtonTesterMouvementClick(wxCommandEvent& event) // a coder
+void EvtFramePrincipal::OnYesButtonTesterMouvementClick(wxCommandEvent& event)  // a coder
 {
     // TODO: Implement OnYesButtonTesterMouvementClick
 }
@@ -590,7 +633,7 @@ void EvtFramePrincipal::OnListBoxModifierSelectionTrajectoires(wxCommandEvent& e
     }
 }
 
-void EvtFramePrincipal::OnApplyButtonModifierTrajectoiresClick(wxCommandEvent& event) // a coder
+void EvtFramePrincipal::OnApplyButtonModifierTrajectoiresClick(wxCommandEvent& event)  // a coder
 {
     // TODO: Implement OnApplyButtonModifierTrajectoiresClick
 }
@@ -669,32 +712,84 @@ void EvtFramePrincipal::OnCancelButtonModifierTrajectoiresClick(wxCommandEvent& 
     }
 }
 
-void EvtFramePrincipal::OnListBoxSelectionMouvementsCreationTrajectoire(wxCommandEvent& event) // a coder
+void EvtFramePrincipal::OnListBoxSelectionMouvementsCreationTrajectoire(wxCommandEvent& event)  // a coder
 {
-    
 }
 
-void EvtFramePrincipal::OnSaveButtonCreerTrajectoiresClick(wxCommandEvent& event) // a coder
+void EvtFramePrincipal::OnSaveButtonCreerTrajectoiresClick(wxCommandEvent& event)  // a coder
 {
     // TODO: Implement OnSaveButtonCreerTrajectoiresClick
 }
 
-void EvtFramePrincipal::OnListBoxDetruireSelectionTrajectoires(wxCommandEvent& event) // a coder
+void EvtFramePrincipal::OnListBoxDetruireSelectionTrajectoires(wxCommandEvent& event)  // a coder
 {
     // TODO: Implement OnListBoxDetruireSelectionTrajectoires
 }
 
-void EvtFramePrincipal::OnYesButtonDetruireTrajectoiresClick(wxCommandEvent& event) // a coder
+void EvtFramePrincipal::OnYesButtonDetruireTrajectoiresClick(wxCommandEvent& event)  // a coder
 {
-    // TODO: Implement OnYesButtonDetruireTrajectoiresClick
+    wxString selection = m_listBoxDetruireMouvements->GetStringSelection();
+    string id_selection = ConversionEnString(GardeIdSelection(selection));
+    string requete = "SELECT id_p FROM intermediaire_processus_trajectoires WHERE id_t=" + id_selection; 
+    bool signal = false;
+    
+    //suppresion hyerarchique des id ( on select pour pouvoir supprimé les id des tables intermidiaire sans risque de segfault
+    if(m_bdd_anodisation->ExecuteSelect(requete))
+    {
+        vector<string> resultat = m_bdd_anodisation->GetLastResult();
+        requete = "DELETE FROM intermediaire_processus_trajectoires WHERE id_t=" + id_selection;
+
+        if(m_bdd_anodisation->ExecuteDelete(requete))
+        {
+            requete = "DELETE FROM intermediaire_mouvements_trajectoires WHERE id_t=" + id_selection;
+            
+            if(!m_bdd_anodisation->ExecuteDelete(requete))
+            {
+                m_textCtrlAffichage->AppendText(m_bdd_anodisation->GetLastError());
+            }
+            
+            requete = "DELETE FROM trajectoires WHERE id_trajectoire=" +id_selection;
+            
+            if(!m_bdd_anodisation->ExecuteDelete(requete))
+            {
+                m_textCtrlAffichage->AppendText(m_bdd_anodisation->GetLastError());
+            }
+        
+
+            for(unsigned int i; i < resultat.size(); i++)
+            {
+                requete = "DELETE FROM processus WHERE id_processus=" + resultat[i];
+
+                if(m_bdd_anodisation->ExecuteDelete(requete))
+                {
+                    signal = true;
+                }
+                else
+                {
+                    m_textCtrlAffichage->AppendText(m_bdd_anodisation->GetLastError());
+                }
+            }
+        }
+        else
+        {
+            m_textCtrlAffichage->AppendText(m_bdd_anodisation->GetLastError());
+        }
+    }
+    else
+    {
+        m_textCtrlAffichage->AppendText(m_bdd_anodisation->GetLastError());
+    }
+
+    VideListBoxTrajectoires();
+    RempliListBoxTrajectoires();
 }
 
-void EvtFramePrincipal::OnListBoxTesterSelectionTrajectoires(wxCommandEvent& event) // a coder
+void EvtFramePrincipal::OnListBoxTesterSelectionTrajectoires(wxCommandEvent& event)  // a coder
 {
     // TODO: Implement OnListBoxTesterSelectionTrajectoires
 }
 
-void EvtFramePrincipal::OnYesButtonTesterTrajectoiresClick(wxCommandEvent& event) // a coder
+void EvtFramePrincipal::OnYesButtonTesterTrajectoiresClick(wxCommandEvent& event)  // a coder
 {
     // TODO: Implement OnYesButtonTesterTrajectoiresClick
 }
@@ -773,7 +868,6 @@ void EvtFramePrincipal::RempliListBoxTrajectoires()
 
                 m_listBoxModifierCompositionTrajectoire->Append(rempli);
                 m_listBoxCreerTrajectoires->Append(rempli);
-                
             }
         }
     }
@@ -781,7 +875,6 @@ void EvtFramePrincipal::RempliListBoxTrajectoires()
 
 void EvtFramePrincipal::RempliListBoxMouvements()
 {
-    
     if(m_bdd_anodisation->RecupereListeToutMouvements())
     {
         vector<string> liste_mouvement = m_bdd_anodisation->GetListeToutMouvements();
@@ -808,7 +901,6 @@ void EvtFramePrincipal::RempliListBoxMouvements()
                 m_listBoxDetruireMouvements->Append(rempli);
                 m_listBoxTesterMouvements->Append(rempli);
                 m_listBoxModifierMouvements->Append(rempli);
-                
             }
         }
     }
@@ -871,7 +963,6 @@ wxString EvtFramePrincipal::DecouperTexteFin(wxString texte, int position)
 
     return fin;
 }
-
 
 void EvtFramePrincipal::AgitServeurPerdu(wxCommandEvent& event)
 {

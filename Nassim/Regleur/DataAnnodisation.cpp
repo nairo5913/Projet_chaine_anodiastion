@@ -27,9 +27,32 @@ DataAnodisation::~DataAnodisation()
 
 bool DataAnodisation::ExecuteDelete(string requete)  //À coder
 {
-    bool retour = false;
+    bool retour = true;
+    
+    if(m_session != NULL)
+    {
+        Statement* supression;
 
-    return retour;
+        try
+        {
+            supression = new Statement(*m_session);
+            *supression << requete;
+            
+            supression->execute();
+        }
+        catch(ODBC::StatementException& se)
+        {
+            m_last_error = se.toString();
+            retour = false;
+        }
+    }
+    else
+    {
+        m_last_error = "Non connecté à la BdD";
+        retour = false;
+    }
+    
+return retour;
 }
 
 bool DataAnodisation::ExecuteInsert(string requete)  //À coder
@@ -87,9 +110,30 @@ bool DataAnodisation::ExecuteSelect(string requete)
 
 bool DataAnodisation::ExecuteUpdate(string requete)  //À coder
 {
-    bool retour = false;
+    bool retour = true;
+    
+    if(m_session != NULL)
+    {
+        Statement* update;
 
-    return retour;
+        try
+        {
+            update = new Statement(*m_session);
+            *update << requete;
+            
+            update->execute();
+        }
+        catch(ODBC::StatementException& se)
+        {
+            m_last_error = se.toString();
+            retour = false;
+        }
+    }
+    else
+    {
+        m_last_error = "Non connecté à la BdD";
+        retour = false;
+    }
 }
 
 bool DataAnodisation::RecupereDureeTotalMouvement(string id_mouvement)

@@ -20,82 +20,85 @@
     <TabInfo>
       <wxString Value="/home/nboubziz/Documents/Projet_chaine_anodiastion/Nassim/Regleur/DataAnnodisation.h" Name="FileName"/>
       <int Value="45" Name="FirstVisibleLine"/>
-      <int Value="55" Name="CurrentLine"/>
+      <int Value="7" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
     <TabInfo>
       <wxString Value="/home/nboubziz/Documents/Projet_chaine_anodiastion/Nassim/Regleur/DataAnnodisation.cpp" Name="FileName"/>
-      <int Value="12" Name="FirstVisibleLine"/>
-      <int Value="139" Name="CurrentLine"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="116" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds">
         <IntVectorItem Value="3"/>
         <IntVectorItem Value="23"/>
-        <IntVectorItem Value="28"/>
-        <IntVectorItem Value="35"/>
-        <IntVectorItem Value="42"/>
-        <IntVectorItem Value="88"/>
-        <IntVectorItem Value="95"/>
-        <IntVectorItem Value="117"/>
-        <IntVectorItem Value="163"/>
-        <IntVectorItem Value="188"/>
-        <IntVectorItem Value="194"/>
-        <IntVectorItem Value="216"/>
-        <IntVectorItem Value="255"/>
-        <IntVectorItem Value="273"/>
-        <IntVectorItem Value="291"/>
-        <IntVectorItem Value="309"/>
-        <IntVectorItem Value="330"/>
+        <IntVectorItem Value="58"/>
+        <IntVectorItem Value="65"/>
+        <IntVectorItem Value="139"/>
+        <IntVectorItem Value="161"/>
+        <IntVectorItem Value="183"/>
+        <IntVectorItem Value="207"/>
+        <IntVectorItem Value="232"/>
+        <IntVectorItem Value="257"/>
+        <IntVectorItem Value="279"/>
+        <IntVectorItem Value="301"/>
+        <IntVectorItem Value="318"/>
+        <IntVectorItem Value="336"/>
+        <IntVectorItem Value="354"/>
+        <IntVectorItem Value="372"/>
+        <IntVectorItem Value="393"/>
       </IntVector>
     </TabInfo>
     <TabInfo>
       <wxString Value="/home/nboubziz/Documents/Projet_chaine_anodiastion/Nassim/Regleur/EvtFramePrincipal.h" Name="FileName"/>
-      <int Value="33" Name="FirstVisibleLine"/>
-      <int Value="54" Name="CurrentLine"/>
+      <int Value="56" Name="FirstVisibleLine"/>
+      <int Value="78" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
     <TabInfo>
       <wxString Value="/home/nboubziz/Documents/Projet_chaine_anodiastion/Nassim/Regleur/EvtFramePrincipal.cpp" Name="FileName"/>
-      <int Value="367" Name="FirstVisibleLine"/>
-      <int Value="673" Name="CurrentLine"/>
+      <int Value="98" Name="FirstVisibleLine"/>
+      <int Value="742" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds">
         <IntVectorItem Value="3"/>
         <IntVectorItem Value="21"/>
         <IntVectorItem Value="26"/>
-        <IntVectorItem Value="166"/>
-        <IntVectorItem Value="173"/>
-        <IntVectorItem Value="330"/>
-        <IntVectorItem Value="410"/>
-        <IntVectorItem Value="415"/>
-        <IntVectorItem Value="420"/>
-        <IntVectorItem Value="425"/>
-        <IntVectorItem Value="430"/>
-        <IntVectorItem Value="435"/>
-        <IntVectorItem Value="505"/>
-        <IntVectorItem Value="591"/>
-        <IntVectorItem Value="689"/>
-        <IntVectorItem Value="694"/>
-        <IntVectorItem Value="699"/>
-        <IntVectorItem Value="704"/>
-        <IntVectorItem Value="709"/>
-        <IntVectorItem Value="714"/>
+        <IntVectorItem Value="167"/>
+        <IntVectorItem Value="174"/>
+        <IntVectorItem Value="181"/>
+        <IntVectorItem Value="256"/>
+        <IntVectorItem Value="331"/>
+        <IntVectorItem Value="336"/>
+        <IntVectorItem Value="411"/>
+        <IntVectorItem Value="470"/>
+        <IntVectorItem Value="475"/>
+        <IntVectorItem Value="480"/>
+        <IntVectorItem Value="550"/>
+        <IntVectorItem Value="636"/>
+        <IntVectorItem Value="641"/>
+        <IntVectorItem Value="715"/>
         <IntVectorItem Value="719"/>
-        <IntVectorItem Value="727"/>
-        <IntVectorItem Value="766"/>
-        <IntVectorItem Value="799"/>
-        <IntVectorItem Value="805"/>
-        <IntVectorItem Value="835"/>
-        <IntVectorItem Value="842"/>
-        <IntVectorItem Value="850"/>
-        <IntVectorItem Value="858"/>
-        <IntVectorItem Value="863"/>
-        <IntVectorItem Value="868"/>
-        <IntVectorItem Value="878"/>
-        <IntVectorItem Value="892"/>
-        <IntVectorItem Value="899"/>
+        <IntVectorItem Value="724"/>
+        <IntVectorItem Value="787"/>
+        <IntVectorItem Value="792"/>
+        <IntVectorItem Value="797"/>
+        <IntVectorItem Value="802"/>
+        <IntVectorItem Value="810"/>
+        <IntVectorItem Value="816"/>
+        <IntVectorItem Value="876"/>
+        <IntVectorItem Value="909"/>
+        <IntVectorItem Value="915"/>
+        <IntVectorItem Value="945"/>
+        <IntVectorItem Value="952"/>
+        <IntVectorItem Value="960"/>
+        <IntVectorItem Value="967"/>
+        <IntVectorItem Value="972"/>
+        <IntVectorItem Value="977"/>
+        <IntVectorItem Value="987"/>
+        <IntVectorItem Value="1001"/>
+        <IntVectorItem Value="1008"/>
       </IntVector>
     </TabInfo>
   </TabInfoArray>
