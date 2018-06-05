@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Workspace Name="Serveur" Database="" Version="10.0.0">
-  <Project Name="Test_serveur" Path="Test_serveur/Test_serveur.project" Active="Yes"/>
+  <Project Name="Serveur_de_communication" Path="Test_serveur/Test_serveur.project" Active="Yes"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="no">
       <Environment/>
-      <Project Name="Test_serveur" ConfigName="Debug"/>
+      <Project Name="Serveur_de_communication" ConfigName="Debug"/>
     </WorkspaceConfiguration>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Environment/>
-      <Project Name="Test_serveur" ConfigName="Release"/>
+      <Project Name="Serveur_de_communication" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
 </CodeLite_Workspace>

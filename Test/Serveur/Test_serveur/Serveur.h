@@ -1,10 +1,10 @@
 /*******************************************************************************
-  *  Fichier:  Serveur.h
-  *  Projet:   Chaîne d'anodisation - Test du client pour le PC responsable 
-               de production avec un serveur
-  *  Crée le:  14/04/2018
-  *  Utilité:  Gestion de la partie serveur réseau
-  *  Auteur:   Florian Provost
+ *  Fichier:  Serveur.h
+ *  Projet:   Chaîne d'anodisation - Test du client pour le PC responsable 
+              de production avec un serveur
+ *  Crée le:  14/04/2018
+ *  Utilité:  Gestion de la partie serveur réseau
+ *  Auteur:   Florian Provost
 *******************************************************************************/
 #ifndef SERVEUR_H
 #define SERVEUR_H

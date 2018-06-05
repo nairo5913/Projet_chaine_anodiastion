@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Dec 21 2016)
+// C++ code generated with wxFormBuilder (version Feb 16 2016)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO "NOT" EDIT THIS FILE!
@@ -39,7 +39,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	
 	bSizerTacheEnCours->Add( m_staticTextTacheEnCours, 0, wxALIGN_CENTER_VERTICAL|wxLEFT, 5 );
 	
-	wxString m_choiceTacheEnCoursChoices[] = { wxT("Mouvement"), wxT("Processsus"), wxT("Trajectoire") };
+	wxString m_choiceTacheEnCoursChoices[] = { wxT("Mouvement"), wxT("Processus"), wxT("Trajectoire") };
 	int m_choiceTacheEnCoursNChoices = sizeof( m_choiceTacheEnCoursChoices ) / sizeof( wxString );
 	m_choiceTacheEnCours = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choiceTacheEnCoursNChoices, m_choiceTacheEnCoursChoices, wxCB_SORT );
 	m_choiceTacheEnCours->SetSelection( 0 );
@@ -75,7 +75,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	this->SetSizer( bSizerPrincipal );
 	this->Layout();
 	m_statusBar = this->CreateStatusBar( 2, wxST_SIZEGRIP, wxID_ANY );
-	m_statusBar->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), wxFONTFAMILY_ROMAN, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, wxEmptyString ) );
+	m_statusBar->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), 72, 90, 92, false, wxEmptyString ) );
 	
 	m_menubar = new wxMenuBar( 0 );
 	m_menuFichier = new wxMenu();
@@ -86,20 +86,20 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_menubar->Append( m_menuFichier, wxT("Fichier") ); 
 	
 	m_menuEdition = new wxMenu();
-	m_menuItemChangerDisponibiliteBras = new wxMenuItem( m_menuEdition, wxID_ANY, wxString( wxT("Changer la disponibilité du bras") ) , wxEmptyString, wxITEM_NORMAL );
+	m_menuItemChangerDisponibiliteBras = new wxMenuItem( m_menuEdition, wxID_ANY, wxString( wxT("Changer la disponibilité du bras") ) + wxT('\t') + wxT("F4"), wxEmptyString, wxITEM_NORMAL );
 	m_menuEdition->Append( m_menuItemChangerDisponibiliteBras );
 	
 	m_menuEdition->AppendSeparator();
 	
 	m_menuTypeMouvement = new wxMenu();
 	wxMenuItem* m_menuTypeMouvementItem = new wxMenuItem( m_menuEdition, wxID_ANY, wxT("Changer le type de tâche en cours"), wxEmptyString, wxITEM_NORMAL, m_menuTypeMouvement );
-	m_menuItemMouvement = new wxMenuItem( m_menuTypeMouvement, wxID_ANY, wxString( wxT("Mouvement") ) , wxEmptyString, wxITEM_NORMAL );
+	m_menuItemMouvement = new wxMenuItem( m_menuTypeMouvement, wxID_ANY, wxString( wxT("Mouvement") ) + wxT('\t') + wxT("F6"), wxEmptyString, wxITEM_NORMAL );
 	m_menuTypeMouvement->Append( m_menuItemMouvement );
 	
-	m_menuItemProcessus = new wxMenuItem( m_menuTypeMouvement, wxID_ANY, wxString( wxT("Processus") ) , wxEmptyString, wxITEM_NORMAL );
+	m_menuItemProcessus = new wxMenuItem( m_menuTypeMouvement, wxID_ANY, wxString( wxT("Processus") ) + wxT('\t') + wxT("F7"), wxEmptyString, wxITEM_NORMAL );
 	m_menuTypeMouvement->Append( m_menuItemProcessus );
 	
-	m_menuItemTrajectoire = new wxMenuItem( m_menuTypeMouvement, wxID_ANY, wxString( wxT("Trajectoire") ) , wxEmptyString, wxITEM_NORMAL );
+	m_menuItemTrajectoire = new wxMenuItem( m_menuTypeMouvement, wxID_ANY, wxString( wxT("Trajectoire") ) + wxT('\t') + wxT("F8"), wxEmptyString, wxITEM_NORMAL );
 	m_menuTypeMouvement->Append( m_menuItemTrajectoire );
 	
 	m_menuEdition->Append( m_menuTypeMouvementItem );

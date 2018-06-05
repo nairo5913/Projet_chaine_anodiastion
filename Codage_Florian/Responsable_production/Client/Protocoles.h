@@ -1,9 +1,8 @@
 /*******************************************************************************
  *  Fichier:  Protocoles.h
- *  Projet:   Chaîne d'anodisation - Test du client pour le PC responsable 
-              de production avec un serveur
- *  Crée le:  15/04/2018
- *  Utilité:  Gestion de la partie serveur réseau
+ *  Projet:   Chaîne d'anodisation - Gestion du PC responsable de production
+ *  Crée le:  29/04/2018
+ *  Utilité:  Défini le protocole utilisé entre le client et le serveur
  *  Auteur:   Florian Provost
 *******************************************************************************/
 
@@ -24,6 +23,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Partie 200, Exécution
 ////////////////////////////////////////////////////////////////////////////////
+//
 // Exécution
 #define DEMANDE_TEST_PROCESSUS "200-"
 #define DEMANDE_TEST_TRAJECTOIRE "201-"
@@ -35,6 +35,7 @@
 #define STOP_TEST_PROCESSUS "210"
 #define STOP_TEST_TRAJECTOIRE "211"
 #define STOP_TEST_MOUVEMENT "212"
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // Partie 300, Informations

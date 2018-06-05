@@ -3,7 +3,7 @@
 ## any manual changes will be erased      
 ##
 ## Release
-ProjectName            :=Test_serveur
+ProjectName            :=Serveur
 ConfigurationName      :=Release
 WorkspacePath          :=/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/Serveur
 ProjectPath            :=/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/Serveur/Test_serveur
@@ -32,7 +32,7 @@ Preprocessors          :=$(PreprocessorSwitch)__WX__ $(PreprocessorSwitch)NDEBUG
 ObjectSwitch           :=-o 
 ArchiveOutputSwitch    := 
 PreprocessOnlySwitch   :=-E
-ObjectsFileList        :="Test_serveur.txt"
+ObjectsFileList        :="Serveur.txt"
 PCHCompileFlags        :=
 MakeDirCommand         :=mkdir -p
 LinkOptions            :=  -s $(shell wx-config --debug=no --libs --unicode=yes)

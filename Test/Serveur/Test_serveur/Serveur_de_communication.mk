@@ -3,7 +3,7 @@
 ## any manual changes will be erased      
 ##
 ## Release
-ProjectName            :=Test_serveur
+ProjectName            :=Serveur_de_communication
 ConfigurationName      :=Release
 WorkspacePath          :=/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/Serveur
 ProjectPath            :=/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/Serveur/Test_serveur
@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=nairo5913
-Date                   :=04/06/2018
+Date                   :=06/06/2018
 CodeLitePath           :=/home/nairo5913/.codelite
 LinkerName             :=/usr/bin/g++
 SharedObjectLinkerName :=/usr/bin/g++ -shared -fPIC
@@ -32,7 +32,7 @@ Preprocessors          :=$(PreprocessorSwitch)__WX__ $(PreprocessorSwitch)NDEBUG
 ObjectSwitch           :=-o 
 ArchiveOutputSwitch    := 
 PreprocessOnlySwitch   :=-E
-ObjectsFileList        :="Test_serveur.txt"
+ObjectsFileList        :="Serveur_de_communication.txt"
 PCHCompileFlags        :=
 MakeDirCommand         :=mkdir -p
 LinkOptions            :=  -s $(shell wx-config --debug=no --libs --unicode=yes)

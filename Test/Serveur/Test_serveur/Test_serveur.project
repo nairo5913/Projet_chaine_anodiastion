@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CodeLite_Project Name="Test_serveur" Version="10.0.0" InternalType="User templates">
+<CodeLite_Project Name="Serveur_de_communication" Version="10.0.0" InternalType="User templates">
   <Plugins>
     <Plugin Name="qmake">
       <![CDATA[00020001N0005Debug0000000000000001N0007Release000000000000]]>
@@ -18,9 +18,9 @@
     <File Name="EvtFramePrincipal.h"/>
     <File Name="FramePrincipal.h"/>
     <File Name="MyApp.h"/>
-    <File Name="Serveur.h"/>
     <File Name="Protocoles.h"/>
     <File Name="DonneesClient.h"/>
+    <File Name="Serveur.h"/>
   </VirtualDirectory>
   <VirtualDirectory Name="resources">
     <File Name="FramePrincipal.fbp"/>

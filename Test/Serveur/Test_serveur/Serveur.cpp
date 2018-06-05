@@ -1,10 +1,10 @@
 /*******************************************************************************
-  *  Fichier:  Serveur.cpp
-  *  Projet:   Chaîne d'anodisation - Test du client pour le PC responsable
-               de production avec un serveur
-  *  Crée le:  14/04/2018
-  *  Utilité:  Gestion de la partie serveur réseau
-  *  Auteur:   Florian Provost
+ *  Fichier:  Serveur.cpp
+ *  Projet:   Chaîne d'anodisation - Test du client pour le PC responsable
+              de production avec un serveur
+ *  Crée le:  14/04/2018
+ *  Utilité:  Gestion de la partie serveur réseau
+ *  Auteur:   Florian Provost
 *******************************************************************************/
 #include "Serveur.h"
 
@@ -232,7 +232,7 @@ void Serveur::DecodeMessage(wxString message, wxSocketBase *sock, DonneesClient 
                 wxString reponse(IDENTIFICATION_OK);
                 EcritReponse(sock, reponse.ToStdString());
             }
-            else if(message.StartsWith(DEMANDE_EXECUTION_PROCESSUS, &texte))
+            else if(message.StartsWith(DEMANDE_TEST_PROCESSUS, &texte))
             {
                 bool test = true;
 
@@ -282,6 +282,56 @@ void Serveur::DecodeMessage(wxString message, wxSocketBase *sock, DonneesClient 
                     wxString reponse(EXECUTION_IMPOSSIBLE);
                     EcritReponse(sock, reponse.ToStdString());
                 }
+            }
+            else if(message.StartsWith(DEMANDE_EXECUTION_PROCESSUS, &texte))
+            {
+                bool test = true;
+
+                wxString message;
+                message << "Le texte reçu est : " << texte << wxT("\n");
+
+                wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_SERVEUR + 1);
+                MyEvent.SetString(message);
+                wxPostEvent(m_frame, MyEvent);
+
+                if(!test)
+                {
+                    wxString reponse(EXECUTION_IMPOSSIBLE);
+                    EcritReponse(sock, reponse.ToStdString());
+                }
+            }
+            else if(message.IsSameAs(STOP_TEST_PROCESSUS))
+            {
+                bool test = true;
+
+                wxString message;
+                message << "Le texte reçu est : " << wxT("\n");
+
+                wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_SERVEUR + 1);
+                MyEvent.SetString(message);
+                wxPostEvent(m_frame, MyEvent);
+            }
+            else if(message.IsSameAs(STOP_TEST_TRAJECTOIRE))
+            {
+                bool test = true;
+
+                wxString message;
+                message << "Le texte reçu est : " << wxT("\n");
+
+                wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_SERVEUR + 1);
+                MyEvent.SetString(message);
+                wxPostEvent(m_frame, MyEvent);
+            }
+            else if(message.IsSameAs(STOP_TEST_MOUVEMENT))
+            {
+                bool test = true;
+
+                wxString message;
+                message << "Le texte reçu est : " << wxT("\n");
+
+                wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_SERVEUR + 1);
+                MyEvent.SetString(message);
+                wxPostEvent(m_frame, MyEvent);
             }
             else if(message.IsSameAs(DISPONIBILITE_BRAS))
             {

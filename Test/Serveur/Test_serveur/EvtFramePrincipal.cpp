@@ -1,8 +1,14 @@
+/*******************************************************************************
+ *  Fichier:  EvtFramePrincipal.h
+ *  Projet:   Chaîne d'anodisation - Test du client pour le PC responsable
+              de production avec un serveur
+ *  Crée le:  11/04/2018
+ *  Utilité:  Gestion des événements du frame principal
+ *  Auteur:   Florian Provost
+*******************************************************************************/
 #include "EvtFramePrincipal.h"
 
-EvtFramePrincipal::EvtFramePrincipal(wxWindow* parent)
-    :
-    FramePrincipal(parent)
+EvtFramePrincipal::EvtFramePrincipal(wxWindow* parent) : FramePrincipal(parent)
 {
     m_connecte = false;
 
@@ -18,7 +24,7 @@ EvtFramePrincipal::EvtFramePrincipal(wxWindow* parent)
 
 void EvtFramePrincipal::OnCharEntered(wxKeyEvent& event)
 {
-// TODO: Implement OnCharEntered
+    // TODO: Implement OnCharEntered
 }
 
 void EvtFramePrincipal::OnFrameClose(wxCloseEvent& event)
@@ -28,7 +34,7 @@ void EvtFramePrincipal::OnFrameClose(wxCloseEvent& event)
         m_serveur->Close();
         delete m_serveur;
     }
-
+    
     Destroy();
 }
 
@@ -43,10 +49,13 @@ void EvtFramePrincipal::OnButtonDemarrerServeurToggle(wxCommandEvent& event)
 
         if(m_connecte)
         {
-// on connecte les événements venant du serveur
-            Connect(ID_SERVEUR, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(EvtFramePrincipal::MAJnombreClients), NULL, this);
-            Connect(ID_SERVEUR + 1, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(EvtFramePrincipal::AfficheMessageServeur), NULL, this);
-            Connect(ID_SERVEUR + 2, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(EvtFramePrincipal::AfficheReponseServeur), NULL, this);
+            // on connecte les événements venant du serveur
+            Connect(ID_SERVEUR, wxEVT_COMMAND_BUTTON_CLICKED,
+                    wxCommandEventHandler(EvtFramePrincipal::MAJnombreClients), NULL, this);
+            Connect(ID_SERVEUR + 1, wxEVT_COMMAND_BUTTON_CLICKED,
+                    wxCommandEventHandler(EvtFramePrincipal::AfficheMessageServeur), NULL, this);
+            Connect(ID_SERVEUR + 2, wxEVT_COMMAND_BUTTON_CLICKED,
+                    wxCommandEventHandler(EvtFramePrincipal::AfficheReponseServeur), NULL, this);
 
             m_statusBar->SetStatusText(wxT("Serveur connecté"), 1);
             m_toggleBtnDisponibilite->Show();
@@ -92,10 +101,10 @@ void EvtFramePrincipal::OnToggleButtonDisponibiliteClick(wxCommandEvent& event)
     {
         m_textCtrlAffichage->AppendText(wxT("Bras disponible\n"));
         m_serveur->SetBrasDispo(true);
-        
+
         m_toggleBtnDisponibilite->SetValue(false);
         m_toggleBtnDisponibilite->SetLabel(wxT("Bras disponible"));
-        
+
         m_staticTextTacheEnCours->Hide();
         m_choiceTacheEnCours->Hide();
         Layout();
@@ -134,26 +143,26 @@ void EvtFramePrincipal::OnMenuSelectionChangerDisponibiliteBras(wxCommandEvent& 
         {
             m_textCtrlAffichage->AppendText(wxT("Bras non disponible\n"));
             m_serveur->SetBrasDispo(false);
-            
+
             m_toggleBtnDisponibilite->SetLabel(wxT("Bras non disponible"));
-            
+
             m_staticTextTacheEnCours->Show();
             m_choiceTacheEnCours->Show();
             Layout();
-    
+
             wxString selection = m_choiceTacheEnCours->GetStringSelection();
             m_textCtrlAffichage->AppendText(wxT("Type de tache selectionné : ") + selection + wxT(" d'id 1\n"));
-            
+
             m_serveur->SetTache(selection);
         }
         else
         {
             m_textCtrlAffichage->AppendText(wxT("Bras disponible\n"));
             m_serveur->SetBrasDispo(true);
-            
+
             m_toggleBtnDisponibilite->SetValue(false);
             m_toggleBtnDisponibilite->SetLabel(wxT("Bras disponible"));
-            
+
             m_staticTextTacheEnCours->Hide();
             m_choiceTacheEnCours->Hide();
             Layout();
@@ -170,10 +179,10 @@ void EvtFramePrincipal::OnMenuSelectionMouvement(wxCommandEvent& event)
     if(m_connecte)
     {
         m_choiceTacheEnCours->SetSelection(0);
-        
+
         wxString selection = m_choiceTacheEnCours->GetStringSelection();
         m_textCtrlAffichage->AppendText(wxT("Type de tache selectionné : ") + selection + wxT(" d'id 1\n"));
-        
+
         m_serveur->SetTache(selection);
     }
     else
@@ -184,14 +193,14 @@ void EvtFramePrincipal::OnMenuSelectionMouvement(wxCommandEvent& event)
 
 void EvtFramePrincipal::OnMenuSelectionProcessus(wxCommandEvent& event)
 {
-// TODO: Implement OnMenuSelectionProcessus
+    // TODO: Implement OnMenuSelectionProcessus
     if(m_connecte)
     {
         m_choiceTacheEnCours->SetSelection(1);
-        
+
         wxString selection = m_choiceTacheEnCours->GetStringSelection();
         m_textCtrlAffichage->AppendText(wxT("Type de tache selectionné : ") + selection + wxT(" d'id 1\n"));
-        
+
         m_serveur->SetTache(selection);
     }
     else
@@ -205,10 +214,10 @@ void EvtFramePrincipal::OnMenuSelectionTrajectoire(wxCommandEvent& event)
     if(m_connecte)
     {
         m_choiceTacheEnCours->SetSelection(2);
-        
+
         wxString selection = m_choiceTacheEnCours->GetStringSelection();
         m_textCtrlAffichage->AppendText(wxT("Type de tache selectionné : ") + selection + wxT(" d'id 1\n"));
-        
+
         m_serveur->SetTache(selection);
     }
     else
@@ -222,7 +231,6 @@ void EvtFramePrincipal::OnMenuSelectionViderAffichage(wxCommandEvent& event)
     m_textCtrlAffichage->Clear();
 }
 
-
 void EvtFramePrincipal::AfficheMessageServeur(wxCommandEvent& event)
 {
     // affiche dans le log sur événement du serveur
@@ -230,7 +238,7 @@ void EvtFramePrincipal::AfficheMessageServeur(wxCommandEvent& event)
 
     if(message.StartsWith("message du client"))
     {
-        //m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(*wxLIGHT_GREY));
+        // m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(*wxLIGHT_GREY));
         m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(wxColour("GOLDENROD")));
         m_textCtrlAffichage->AppendText(message);
         m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(wxNullColour));

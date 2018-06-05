@@ -47,7 +47,7 @@
             <property name="size">700,550</property>
             <property name="style">wxCAPTION|wxCLOSE_BOX|wxDEFAULT_FRAME_STYLE|wxMAXIMIZE_BOX|wxMINIMIZE_BOX|wxRESIZE_BORDER|wxSYSTEM_MENU</property>
             <property name="subclass"></property>
-            <property name="title">Serveur -&gt; Client</property>
+            <property name="title">Serveur de communication</property>
             <property name="tooltip"></property>
             <property name="window_extra_style"></property>
             <property name="window_name"></property>
@@ -395,7 +395,7 @@
                                                 <property name="caption"></property>
                                                 <property name="caption_visible">1</property>
                                                 <property name="center_pane">0</property>
-                                                <property name="choices">&quot;Mouvement&quot; &quot;Processsus&quot; &quot;Trajectoire&quot;</property>
+                                                <property name="choices">&quot;Mouvement&quot; &quot;Processus&quot; &quot;Trajectoire&quot;</property>
                                                 <property name="close_button">1</property>
                                                 <property name="context_help"></property>
                                                 <property name="context_menu">1</property>
@@ -471,11 +471,11 @@
                         </object>
                     </object>
                 </object>
-                <object class="sizeritem" expanded="1">
+                <object class="sizeritem" expanded="0">
                     <property name="border">5</property>
                     <property name="flag">wxEXPAND | wxALL</property>
                     <property name="proportion">0</property>
-                    <object class="wxStaticLine" expanded="1">
+                    <object class="wxStaticLine" expanded="0">
                         <property name="BottomDockable">1</property>
                         <property name="LeftDockable">1</property>
                         <property name="RightDockable">1</property>
@@ -556,7 +556,7 @@
                     <property name="border">5</property>
                     <property name="flag">wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL</property>
                     <property name="proportion">1</property>
-                    <object class="wxStaticBoxSizer" expanded="1">
+                    <object class="wxStaticBoxSizer" expanded="0">
                         <property name="id">wxID_ANY</property>
                         <property name="label">Affichage</property>
                         <property name="minimum_size"></property>
@@ -872,7 +872,7 @@
                         <property name="label">Changer la disponibilité du bras</property>
                         <property name="name">m_menuItemChangerDisponibiliteBras</property>
                         <property name="permission">protected</property>
-                        <property name="shortcut"></property>
+                        <property name="shortcut">F4</property>
                         <property name="unchecked_bitmap"></property>
                         <event name="OnMenuSelection">OnMenuSelectionChangerDisponibiliteBras</event>
                         <event name="OnUpdateUI"></event>
@@ -896,7 +896,7 @@
                             <property name="label">Mouvement</property>
                             <property name="name">m_menuItemMouvement</property>
                             <property name="permission">protected</property>
-                            <property name="shortcut"></property>
+                            <property name="shortcut">F6</property>
                             <property name="unchecked_bitmap"></property>
                             <event name="OnMenuSelection">OnMenuSelectionMouvement</event>
                             <event name="OnUpdateUI"></event>
@@ -911,7 +911,7 @@
                             <property name="label">Processus</property>
                             <property name="name">m_menuItemProcessus</property>
                             <property name="permission">protected</property>
-                            <property name="shortcut"></property>
+                            <property name="shortcut">F7</property>
                             <property name="unchecked_bitmap"></property>
                             <event name="OnMenuSelection">OnMenuSelectionProcessus</event>
                             <event name="OnUpdateUI"></event>
@@ -926,7 +926,7 @@
                             <property name="label">Trajectoire</property>
                             <property name="name">m_menuItemTrajectoire</property>
                             <property name="permission">protected</property>
-                            <property name="shortcut"></property>
+                            <property name="shortcut">F8</property>
                             <property name="unchecked_bitmap"></property>
                             <event name="OnMenuSelection">OnMenuSelectionTrajectoire</event>
                             <event name="OnUpdateUI"></event>

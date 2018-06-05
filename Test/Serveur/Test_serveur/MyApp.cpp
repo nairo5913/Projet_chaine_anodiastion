@@ -1,10 +1,10 @@
 /*******************************************************************************
-  *  Fichier:  MyApp.cpp
-  *  Projet:   Chaîne d'anodisation - Test du client pour le PC responsable 
-               de production avec un serveur
-  *  Crée le:  11/04/2018
-  *  Utilité:  Lancement de l'application
-  *  Auteur:   Florian Provost
+ *  Fichier:  MyApp.cpp
+ *  Projet:   Chaîne d'anodisation - Test du client pour le PC responsable 
+              de production avec un serveur
+ *  Crée le:  11/04/2018
+ *  Utilité:  Lancement de l'application
+ *  Auteur:   Florian Provost
 *******************************************************************************/
 #ifdef WX_PRECOMP
 #include "wx_pch.h"
