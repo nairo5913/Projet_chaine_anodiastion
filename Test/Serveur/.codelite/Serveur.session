@@ -1,73 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Session Name="/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Test/Serveur/Serveur.workspace">
-  <int Value="4" Name="m_selectedTab"/>
-  <wxString Value="/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Test/Serveur/Serveur.workspace" Name="m_workspaceName"/>
+<Session Name="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/Serveur/Serveur.workspace">
+  <int Value="3" Name="m_selectedTab"/>
+  <wxString Value="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/Serveur/Serveur.workspace" Name="m_workspaceName"/>
   <TabInfoArray Name="TabInfoArray">
     <TabInfo>
-      <wxString Value="/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Test/Serveur/Test_serveur/DonneesClient.h" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="8" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Test/Serveur/Test_serveur/EvtFramePrincipal.h" Name="FileName"/>
-      <int Value="39" Name="FirstVisibleLine"/>
-      <int Value="0" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Test/Serveur/Test_serveur/Serveur.h" Name="FileName"/>
-      <int Value="39" Name="FirstVisibleLine"/>
-      <int Value="48" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Test/Serveur/Test_serveur/DonneesClient.cpp" Name="FileName"/>
+      <wxString Value="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/Serveur/Test_serveur/EvtFramePrincipal.h" Name="FileName"/>
       <int Value="0" Name="FirstVisibleLine"/>
       <int Value="0" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
     <TabInfo>
-      <wxString Value="/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Test/Serveur/Test_serveur/EvtFramePrincipal.cpp" Name="FileName"/>
-      <int Value="21" Name="FirstVisibleLine"/>
-      <int Value="54" Name="CurrentLine"/>
+      <wxString Value="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/Serveur/Test_serveur/EvtFramePrincipal.cpp" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="0" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds">
-        <IntVectorItem Value="5"/>
-        <IntVectorItem Value="19"/>
-        <IntVectorItem Value="24"/>
-        <IntVectorItem Value="113"/>
-        <IntVectorItem Value="220"/>
-        <IntVectorItem Value="226"/>
-        <IntVectorItem Value="245"/>
-        <IntVectorItem Value="251"/>
-      </IntVector>
+      <IntVector Name="CollapsedFolds"/>
     </TabInfo>
     <TabInfo>
-      <wxString Value="/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Test/Serveur/Test_serveur/Serveur.cpp" Name="FileName"/>
+      <wxString Value="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/Serveur/Test_serveur/Serveur.h" Name="FileName"/>
       <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="170" Name="CurrentLine"/>
+      <int Value="0" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds">
-        <IntVectorItem Value="0"/>
-        <IntVectorItem Value="11"/>
-        <IntVectorItem Value="59"/>
-        <IntVectorItem Value="64"/>
-        <IntVectorItem Value="70"/>
-        <IntVectorItem Value="91"/>
-        <IntVectorItem Value="104"/>
-        <IntVectorItem Value="171"/>
-        <IntVectorItem Value="223"/>
-        <IntVectorItem Value="350"/>
-        <IntVectorItem Value="371"/>
-        <IntVectorItem Value="389"/>
-        <IntVectorItem Value="396"/>
-        <IntVectorItem Value="403"/>
-      </IntVector>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Test/Serveur/Test_serveur/Serveur.cpp" Name="FileName"/>
+      <int Value="292" Name="FirstVisibleLine"/>
+      <int Value="315" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
     </TabInfo>
   </TabInfoArray>
   <SerializedObject Name="m_breakpoints">
