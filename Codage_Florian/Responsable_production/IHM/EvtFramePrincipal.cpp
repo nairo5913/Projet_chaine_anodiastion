@@ -94,9 +94,15 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
 
             m_identifie = true;
 
-            // Désactivation des textCtrl de connexion
+            // Désactivation des textCtrl et des staticText de connexion
             m_textCtrlLogin->Disable();
             m_textCtrlPass->Disable();
+            m_staticTextLogin->Disable();
+            m_staticTextPass->Disable();
+
+            // Désactiver le logo Ozanam
+            // m_bitmapLogoOzanam->Disable();
+
             // Affichage des onglets de gestion des processus
             m_notebookProcessus->Show();
             // Changement du label du toggle button
@@ -136,7 +142,8 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
             }
             else
             {
-                message << wxT("\t Erreur lors de la connection au client de communication.\n");
+                message << wxT(
+                    "Erreur lors de la connection du client de communication au serveur de la Raspberry Pi.\n");
 
                 erreur = true;
             }
@@ -169,6 +176,57 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
 
             // Remplir la liste des processus
             RempliListBox();
+
+            // Cacher les réglages des bains 2 et 3 pour la création
+            m_staticCreerDureeTotalBain2->Hide();
+            m_textCtrlCreerHeureBain2->Hide();
+            m_staticTextCreerDureeBain2->Hide();
+            m_textCtrlCreerMinuteBain2->Hide();
+            m_staticTextCreerDureeFinBain2->Hide();
+            m_textCtrlCreerSecondeBain2->Hide();
+            bSizerCreerDureeBain2->Hide(this);
+
+            m_staticCreerDureeTotalBain3->Hide();
+            m_textCtrlCreerHeureBain3->Hide();
+            m_staticTextCreerDureeBain3->Hide();
+            m_textCtrlCreerMinuteBain3->Hide();
+            m_staticTextCreerDureeFinBain3->Hide();
+            m_textCtrlCreerSecondeBain3->Hide();
+            bSizerCreerDureeBain3->Hide(this);
+
+            bSizerCreerDureeBain2->Layout();
+            bSizerCreerDureeBain3->Layout();
+            bSizerBainCreerDuree->Layout();
+            bSizerCreerDureeBain1->Layout();
+            bSizerCreerBain->Layout();
+
+            sbSizerGestionBainCreer->Layout();
+
+            // Cacher les réglages des bains 2 et 3 pour l'affichage
+            m_staticAfficherDureeTotalBain2->Hide();
+            m_textCtrlAfficherHeureBain2->Hide();
+            m_staticTextAfficherDureeBain2->Hide();
+            m_textCtrlAfficherMinuteBain2->Hide();
+            m_staticTextAfficherDureeFinBain2->Hide();
+            m_textCtrlAfficherSecondeBain2->Hide();
+            bSizerAfficherDureeBain2->Hide(this);
+
+            m_staticAfficherDureeTotalBain3->Hide();
+            m_textCtrlAfficherHeureBain3->Hide();
+            m_staticTextAfficherDureeBain3->Hide();
+            m_textCtrlAfficherMinuteBain3->Hide();
+            m_staticTextAfficherDureeFinBain3->Hide();
+            m_textCtrlAfficherSecondeBain3->Hide();
+            bSizerAfficherDureeBain3->Hide(this);
+
+            bSizerAfficherDureeBain2->Layout();
+            bSizerAfficherDureeBain3->Layout();
+            bSizerBainAfficherDuree->Layout();
+            bSizerAfficherDureeBain1->Layout();
+            bSizerAfficherBain->Layout();
+
+            sbSizerGestionBainAfficher->Layout();
+            Layout();
         }
         else
         {
@@ -200,6 +258,11 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
         // Activation des textCtrl de connexion
         m_textCtrlLogin->Enable();
         m_textCtrlPass->Enable();
+        m_staticTextLogin->Enable();
+        m_staticTextPass->Enable();
+
+        // Résactiver le logo Ozanam
+        // m_bitmapLogoOzanam->Enable();
 
         // Vider les listBox pour éviter les problème si on se reconnecte sans fermer l'application
         VideListBox();
@@ -250,7 +313,7 @@ void EvtFramePrincipal::OnListBoxAffichageSelection(wxCommandEvent& event)
 
         wxString temp = DecouperTexteDebut(duree, 5);
         m_textCtrlDureeTotalMinuteAfficher->AppendText(DecouperTexteFin(temp, 3));
-        
+
         m_textCtrlDureeTotalSecondeAfficher->AppendText(DecouperTexteFin(duree, 6));
     }
     else
@@ -330,10 +393,16 @@ void EvtFramePrincipal::OnListBoxAffichageSelection(wxCommandEvent& event)
 //
 // Saisie au clavier
 //
+void EvtFramePrincipal::OnTextMaxLength(wxCommandEvent& event)
+{
+    m_textCtrlAffichage->AppendText(wxT("Nombre maximun de caractères entré dans ce champ.\n"));
+}
+
 void EvtFramePrincipal::OnCharEntered(wxKeyEvent& event)
 {
     // TODO: Implement OnCharEntered
-    switch(event.GetKeyCode())
+    event.Skip();
+    /*switch(event.GetKeyCode())
     {
         case WXK_F1:
             // m_textCtrlAffichage->AppendText(wxT("Touche F1.\n"));
@@ -357,7 +426,7 @@ void EvtFramePrincipal::OnCharEntered(wxKeyEvent& event)
 
             event.Skip();
             break;
-    }
+    }*/
 }
 
 void EvtFramePrincipal::OnCharEnteredNum(wxKeyEvent& event)
@@ -453,12 +522,6 @@ void EvtFramePrincipal::OnCharEnteredNum(wxKeyEvent& event)
             // On ne fait rien
             break;
     }
-}
-
-void EvtFramePrincipal::OnSpinCtrlModifierBain(wxSpinEvent& event)
-{
-    // TODO: Implement OnSpinCtrlModifierBain
-    m_textCtrlAffichage->AppendText(wxT("Test modif\n"));
 }
 
 void EvtFramePrincipal::OnCharEnteredOrdre(wxKeyEvent& event)
@@ -802,7 +865,107 @@ void EvtFramePrincipal::OnListBoxModifierSelection(wxCommandEvent& event)
     // Nombre de bain du processus
     if(m_donnees_IHM->RecupereNombreBain(ConversionEnString(id_selection)))
     {
-        m_spinCtrlNombreBainModifier->SetValue(m_donnees_IHM->GetNombreBain());
+        wxString nombre_bain = m_donnees_IHM->GetNombreBain();
+
+        double temp;
+        nombre_bain.ToDouble(&temp);
+        int nb_bain = temp;
+
+        m_spinCtrlNombreBainModifier->SetValue(nb_bain);
+
+        switch(nb_bain)
+        {
+            case 1:
+
+                m_staticModifierDureeTotalBain2->Hide();
+                m_textCtrlModifierHeureBain2->Hide();
+                m_staticTextModifierDureeBain2->Hide();
+                m_textCtrlModifierMinuteBain2->Hide();
+                m_staticTextModifierDureeFinBain2->Hide();
+                m_textCtrlModifierSecondeBain2->Hide();
+                bSizerModifierDureeBain2->Hide(this);
+
+                m_staticModifierDureeTotalBain3->Hide();
+                m_textCtrlModifierHeureBain3->Hide();
+                m_staticTextModifierDureeBain3->Hide();
+                m_textCtrlModifierMinuteBain3->Hide();
+                m_staticTextModifierDureeFinBain3->Hide();
+                m_textCtrlModifierSecondeBain3->Hide();
+                bSizerModifierDureeBain3->Hide(this);
+
+                bSizerModifierDureeBain2->Layout();
+                bSizerModifierDureeBain3->Layout();
+                bSizerBainModifierDuree->Layout();
+                bSizerModifierDureeBain1->Layout();
+                bSizerModifierBain->Layout();
+
+                sbSizerGestionBainModifier->Layout();
+                Layout();
+
+                break;
+
+            case 2:
+
+                m_staticModifierDureeTotalBain2->Show();
+                m_textCtrlModifierHeureBain2->Show();
+                m_staticTextModifierDureeBain2->Show();
+                m_textCtrlModifierMinuteBain2->Show();
+                m_staticTextModifierDureeFinBain2->Show();
+                m_textCtrlModifierSecondeBain2->Show();
+                bSizerModifierDureeBain2->Show(this);
+
+                m_staticModifierDureeTotalBain3->Hide();
+                m_textCtrlModifierHeureBain3->Hide();
+                m_staticTextModifierDureeBain3->Hide();
+                m_textCtrlModifierMinuteBain3->Hide();
+                m_staticTextModifierDureeFinBain3->Hide();
+                m_textCtrlModifierSecondeBain3->Hide();
+                bSizerModifierDureeBain3->Hide(this);
+
+                bSizerModifierDureeBain2->Layout();
+                bSizerModifierDureeBain3->Layout();
+                bSizerBainModifierDuree->Layout();
+                bSizerModifierDureeBain1->Layout();
+                bSizerModifierBain->Layout();
+
+                sbSizerGestionBainModifier->Layout();
+                Layout();
+
+                break;
+
+            case 3:
+
+                m_staticModifierDureeTotalBain2->Show();
+                m_textCtrlModifierHeureBain2->Show();
+                m_staticTextModifierDureeBain2->Show();
+                m_textCtrlModifierMinuteBain2->Show();
+                m_staticTextModifierDureeFinBain2->Show();
+                m_textCtrlModifierSecondeBain2->Show();
+                bSizerModifierDureeBain2->Show(this);
+
+                m_staticModifierDureeTotalBain3->Show();
+                m_textCtrlModifierHeureBain3->Show();
+                m_staticTextModifierDureeBain3->Show();
+                m_textCtrlModifierMinuteBain3->Show();
+                m_staticTextModifierDureeFinBain3->Show();
+                m_textCtrlModifierSecondeBain3->Show();
+                bSizerModifierDureeBain3->Show(this);
+
+                bSizerModifierDureeBain2->Layout();
+                bSizerModifierDureeBain3->Layout();
+                bSizerBainModifierDuree->Layout();
+                bSizerModifierDureeBain1->Layout();
+                bSizerModifierBain->Layout();
+
+                sbSizerGestionBainModifier->Layout();
+                Layout();
+
+                break;
+
+            default:
+
+                break;
+        }
     }
     else
     {
@@ -820,9 +983,353 @@ void EvtFramePrincipal::OnListBoxModifierSelection(wxCommandEvent& event)
     }
 }
 
+void EvtFramePrincipal::OnSpinCtrlModifierBain(wxSpinEvent& event)
+{
+    int nombre_bain = m_spinCtrlNombreBainModifier->GetValue();
+    // cout << "Nombre de bain : " << nombre_bain << endl;
+
+    switch(nombre_bain)
+    {
+        case 1:
+
+            m_staticModifierDureeTotalBain2->Hide();
+            m_textCtrlModifierHeureBain2->Hide();
+            m_staticTextModifierDureeBain2->Hide();
+            m_textCtrlModifierMinuteBain2->Hide();
+            m_staticTextModifierDureeFinBain2->Hide();
+            m_textCtrlModifierSecondeBain2->Hide();
+            bSizerModifierDureeBain2->Hide(this);
+
+            m_staticModifierDureeTotalBain3->Hide();
+            m_textCtrlModifierHeureBain3->Hide();
+            m_staticTextModifierDureeBain3->Hide();
+            m_textCtrlModifierMinuteBain3->Hide();
+            m_staticTextModifierDureeFinBain3->Hide();
+            m_textCtrlModifierSecondeBain3->Hide();
+            bSizerModifierDureeBain3->Hide(this);
+
+            bSizerModifierDureeBain2->Layout();
+            bSizerModifierDureeBain3->Layout();
+            bSizerBainModifierDuree->Layout();
+            bSizerModifierDureeBain1->Layout();
+            bSizerModifierBain->Layout();
+
+            sbSizerGestionBainModifier->Layout();
+            Layout();
+
+            break;
+
+        case 2:
+
+            m_staticModifierDureeTotalBain2->Show();
+            m_textCtrlModifierHeureBain2->Show();
+            m_staticTextModifierDureeBain2->Show();
+            m_textCtrlModifierMinuteBain2->Show();
+            m_staticTextModifierDureeFinBain2->Show();
+            m_textCtrlModifierSecondeBain2->Show();
+            bSizerModifierDureeBain2->Show(this);
+
+            m_staticModifierDureeTotalBain3->Hide();
+            m_textCtrlModifierHeureBain3->Hide();
+            m_staticTextModifierDureeBain3->Hide();
+            m_textCtrlModifierMinuteBain3->Hide();
+            m_staticTextModifierDureeFinBain3->Hide();
+            m_textCtrlModifierSecondeBain3->Hide();
+            bSizerModifierDureeBain3->Hide(this);
+
+            bSizerModifierDureeBain2->Layout();
+            bSizerModifierDureeBain3->Layout();
+            bSizerBainModifierDuree->Layout();
+            bSizerModifierDureeBain1->Layout();
+            bSizerModifierBain->Layout();
+
+            sbSizerGestionBainModifier->Layout();
+            Layout();
+
+            break;
+
+        case 3:
+
+            m_staticModifierDureeTotalBain2->Show();
+            m_textCtrlModifierHeureBain2->Show();
+            m_staticTextModifierDureeBain2->Show();
+            m_textCtrlModifierMinuteBain2->Show();
+            m_staticTextModifierDureeFinBain2->Show();
+            m_textCtrlModifierSecondeBain2->Show();
+            bSizerModifierDureeBain2->Show(this);
+
+            m_staticModifierDureeTotalBain3->Show();
+            m_textCtrlModifierHeureBain3->Show();
+            m_staticTextModifierDureeBain3->Show();
+            m_textCtrlModifierMinuteBain3->Show();
+            m_staticTextModifierDureeFinBain3->Show();
+            m_textCtrlModifierSecondeBain3->Show();
+            bSizerModifierDureeBain3->Show(this);
+
+            bSizerModifierDureeBain2->Layout();
+            bSizerModifierDureeBain3->Layout();
+            bSizerBainModifierDuree->Layout();
+            bSizerModifierDureeBain1->Layout();
+            bSizerModifierBain->Layout();
+
+            sbSizerGestionBainModifier->Layout();
+            Layout();
+
+            break;
+
+        default:
+
+            break;
+    }
+}
+
 void EvtFramePrincipal::OnApplyButtonModifierClick(wxCommandEvent& event)
 {
-    // TODO: Implement OnApplyButtonModifierClick
+    bool erreur = false;
+    char* car = ";";
+    string nom_processus;
+    string duree_total;
+    string ordre;
+    string duree_bain1, duree_bain2 = "", duree_bain3 = "";
+    unsigned int nombre_bain = m_spinCtrlNombreBainModifier->GetValue();
+    vector<string> ordre_separe;
+    wxString id_selection = GardeIdSelection(m_listBoxModifierProcessus->GetStringSelection());
+    wxString message;
+    wxUniChar caractere(*car);
+    
+    // Vérification du champ nom du processus s'il il est rempli
+    if(!m_textCtrlNomModifier->IsEmpty())
+    {
+        nom_processus = ConversionEnString(m_textCtrlNomModifier->GetValue());
+    }
+    else
+    {
+        erreur = true;
+        message << wxT("Le champ nom du processus est vide.\n");
+    }
+
+    // Vérification du champ ordre des trajectoires s'il il est rempli
+    if(!m_textCtrlDureeTotalHeureModifier->IsEmpty() && !m_textCtrlDureeTotalMinuteModifier->IsEmpty() && !m_textCtrlDureeTotalSecondeModifier->IsEmpty())
+    {
+        duree_total = ConversionEnString(m_textCtrlDureeTotalHeureModifier->GetValue()) + ":"
+                    + ConversionEnString(m_textCtrlDureeTotalMinuteModifier->GetValue()) + ":"
+                    + ConversionEnString(m_textCtrlDureeTotalSecondeModifier->GetValue());
+    }
+    else
+    {
+        erreur = true;
+        message << wxT("L'un ou des champs de la durée total est/sont vide.\n");
+    }
+
+    // Vérification du champ ordre trajectoire s'il il est rempli
+    if(!m_textCtrlOrdreTrajectoiresModifier->IsEmpty())
+    {
+        wxString ordrewx = m_textCtrlOrdreTrajectoiresModifier->GetValue();
+        
+        if(ordrewx.EndsWith(wxT(";")))
+        {
+            ordrewx.RemoveLast();
+        }
+        ordre = ConversionEnString(ordrewx);
+        
+        unsigned int nb_point_virgule = ordrewx.Freq(caractere);
+        unsigned int position;
+        wxString temp;
+        
+        for(unsigned int i = 0; i < nb_point_virgule+1; i++)
+        {
+            if(i == 0)
+            {
+                position = ordrewx.find(";");
+                ordre_separe.push_back(ConversionEnString(DecouperTexteDebut(ordrewx, position)));
+            }
+            else
+            {
+                if(i == nb_point_virgule)
+                {
+                    position = ordrewx.find(";");
+                    ordre_separe.push_back(ConversionEnString(DecouperTexteFin(ordrewx, position+1)));
+                }
+                else
+                {
+                    position = ordrewx.find(";");
+                    temp.clear();
+                    temp = DecouperTexteFin(ordrewx, position+1);
+                    position = temp.find(";");
+                    ordre_separe.push_back(ConversionEnString(DecouperTexteDebut(temp, position)));
+                    ordrewx.clear();
+                    ordrewx = (DecouperTexteFin(temp, position));
+                }
+                
+            }
+        }
+    }
+    else
+    {
+        message << wxT("Le champ de la trajectoire est vide.\n");
+    }
+
+    // Vérification en fonction du nombre de bain
+    switch(nombre_bain)
+    {
+        case 1:
+            // Vérification des champs du bain 1 qu'il ont bien été rempli
+            if(!m_textCtrlModifierHeureBain1->IsEmpty() && !m_textCtrlModifierMinuteBain1->IsEmpty()
+               && !m_textCtrlModifierSecondeBain1->IsEmpty())
+            {
+                duree_bain1 = ConversionEnString(m_textCtrlModifierHeureBain1->GetValue()) + ":"
+                            + ConversionEnString(m_textCtrlModifierMinuteBain1->GetValue()) + ":"
+                            + ConversionEnString(m_textCtrlModifierSecondeBain1->GetValue());
+            }
+            else
+            {
+                erreur = true;
+                message << wxT("L'un ou des champs de la durée du bain 1 est/sont vide.\n");
+            }
+
+            break;
+
+        case 2:
+            // Vérification des champs du bain 1 qu'ils ont bien été rempli
+            if(!m_textCtrlModifierHeureBain1->IsEmpty() && !m_textCtrlModifierMinuteBain1->IsEmpty()
+               && !m_textCtrlModifierSecondeBain1->IsEmpty())
+            {
+                duree_bain1 = ConversionEnString(m_textCtrlModifierHeureBain1->GetValue()) + ":"
+                            + ConversionEnString(m_textCtrlModifierMinuteBain1->GetValue()) + ":"
+                            + ConversionEnString(m_textCtrlModifierSecondeBain1->GetValue());
+            }
+            else
+            {
+                erreur = true;
+                message << wxT("L'un ou des champs de la durée du bain 1 est/sont vide.\n");
+            }
+
+            // Vérification des champs du bain 2 qu'ils ont bien été rempli
+            if(!m_textCtrlModifierHeureBain2->IsEmpty() && !m_textCtrlModifierMinuteBain2->IsEmpty()
+               && !m_textCtrlModifierSecondeBain2->IsEmpty())
+            {
+                duree_bain2 = ConversionEnString(m_textCtrlModifierHeureBain2->GetValue()) + ":"
+                            + ConversionEnString(m_textCtrlModifierMinuteBain2->GetValue()) + ":"
+                            + ConversionEnString(m_textCtrlModifierSecondeBain2->GetValue());
+            }
+            else
+            {
+                erreur = true;
+                message << wxT("L'un ou des champs de la durée du bain 2 est/sont vide.\n");
+            }
+
+            break;
+
+        case 3:
+            // Vérification des champs du bain 1 qu'ils ont bien été rempli
+            if(!m_textCtrlModifierHeureBain1->IsEmpty() && !m_textCtrlModifierMinuteBain1->IsEmpty()
+               && !m_textCtrlModifierSecondeBain1->IsEmpty())
+            {
+                duree_bain1 = ConversionEnString(m_textCtrlModifierHeureBain1->GetValue()) + ":"
+                            + ConversionEnString(m_textCtrlModifierMinuteBain1->GetValue()) + ":"
+                            + ConversionEnString(m_textCtrlModifierSecondeBain1->GetValue());
+            }
+            else
+            {
+                erreur = true;
+                message << wxT("L'un ou des champs de la durée du bain 1 est/sont vide.\n");
+            }
+
+            // Vérification des champs du bain 2 qu'ils ont bien été rempli
+            if(!m_textCtrlModifierHeureBain2->IsEmpty() && !m_textCtrlModifierMinuteBain2->IsEmpty()
+               && !m_textCtrlModifierSecondeBain2->IsEmpty())
+            {
+                duree_bain2 = ConversionEnString(m_textCtrlModifierHeureBain2->GetValue()) + ":"
+                            + ConversionEnString(m_textCtrlModifierMinuteBain2->GetValue()) + ":"
+                            + ConversionEnString(m_textCtrlModifierSecondeBain2->GetValue());
+            }
+            else
+            {
+                erreur = true;
+                message << wxT("L'un ou des champs de la durée du bain 2 est/sont vide.\n");
+            }
+
+            // Vérification des champs du bain 3 qu'ils ont bien été rempli
+            if(!m_textCtrlModifierHeureBain3->IsEmpty() && !m_textCtrlModifierMinuteBain3->IsEmpty()
+               && !m_textCtrlModifierSecondeBain3->IsEmpty())
+            {
+                duree_bain3 = ConversionEnString(m_textCtrlModifierHeureBain3->GetValue()) + ":"
+                            + ConversionEnString(m_textCtrlModifierMinuteBain3->GetValue()) + ":"
+                            + ConversionEnString(m_textCtrlModifierSecondeBain3->GetValue());
+            }
+            else
+            {
+                erreur = true;
+                message << wxT("L'un ou des champs de la durée du bain 3 est/sont vide.\n");
+            }
+
+            break;
+
+        default:
+
+            break;
+    }
+    
+    if(erreur)
+    {
+        string id_p = m_bdd_anodisation->DernierIdProcessus();
+        cout << "id_p : " << id_p << endl;
+        wxMessageBox(message, "Responsable de production - Champs vide !",
+                     wxOK_DEFAULT | wxICON_EXCLAMATION | wxCENTRE | wxSTAY_ON_TOP, this);
+    }
+    else
+    {
+        string requete = "UPDATE processus SET nom_processus='" + nom_processus
+                       + "', duree_processus='" + duree_total
+                       + "', nombre_bain=" +  IntEnString(nombre_bain)
+                       + "WHERE id_processus=" + ConversionEnString(id_selection);
+        
+        if(m_bdd_anodisation->ExecuteUpdate(requete))
+        {
+            switch(nombre_bain)
+            {
+                case 1:
+                    for(unsigned int i =0; i < ordre_separe.size(); i++)
+                    {
+                        requete = "UPDATE intermediaire_processus_trajectoires SET id_p=" + ConversionEnString(id_selection)
+                                + ", id_t=" + ordre_separe[i]
+                                + ", ordre_trajectoires='" + ordre
+                                + "', numero_bain=1"
+                                + ", duree_bain='" + duree_bain1
+                                + "' WHERE id_p=" + ConversionEnString(id_selection);
+                                
+                        cout << requete << endl;
+                        if(!m_bdd_anodisation->ExecuteInsert(requete))
+                        {
+                            AfficheErreurRemplisage(ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+                        }
+                        
+                        VideListBox();
+                        RempliListBox();
+                    }
+                    break;
+                
+                case 2:
+                    
+                    break;
+                
+                case 3:
+                    
+                    break;
+                
+                default:
+                    
+                    break;
+                
+            }
+        }
+        else
+        {
+            AfficheErreurRemplisage(ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+        }
+    }
+    VideListBox();
+    RempliListBox();
 }
 
 void EvtFramePrincipal::OnCancelButtonModiffierClick(wxCommandEvent& event)
@@ -891,7 +1398,107 @@ void EvtFramePrincipal::OnCancelButtonModiffierClick(wxCommandEvent& event)
     // Nombre de bain du processus
     if(m_donnees_IHM->RecupereNombreBain(ConversionEnString(id_selection)))
     {
-        m_spinCtrlNombreBainModifier->SetValue(m_donnees_IHM->GetNombreBain());
+        wxString nombre_bain = m_donnees_IHM->GetNombreBain();
+
+        double temp;
+        nombre_bain.ToDouble(&temp);
+        int nb_bain = temp;
+
+        m_spinCtrlNombreBainModifier->SetValue(nb_bain);
+
+        switch(nb_bain)
+        {
+            case 1:
+
+                m_staticModifierDureeTotalBain2->Hide();
+                m_textCtrlModifierHeureBain2->Hide();
+                m_staticTextModifierDureeBain2->Hide();
+                m_textCtrlModifierMinuteBain2->Hide();
+                m_staticTextModifierDureeFinBain2->Hide();
+                m_textCtrlModifierSecondeBain2->Hide();
+                bSizerModifierDureeBain2->Hide(this);
+
+                m_staticModifierDureeTotalBain3->Hide();
+                m_textCtrlModifierHeureBain3->Hide();
+                m_staticTextModifierDureeBain3->Hide();
+                m_textCtrlModifierMinuteBain3->Hide();
+                m_staticTextModifierDureeFinBain3->Hide();
+                m_textCtrlModifierSecondeBain3->Hide();
+                bSizerModifierDureeBain3->Hide(this);
+
+                bSizerModifierDureeBain2->Layout();
+                bSizerModifierDureeBain3->Layout();
+                bSizerBainModifierDuree->Layout();
+                bSizerModifierDureeBain1->Layout();
+                bSizerModifierBain->Layout();
+
+                sbSizerGestionBainModifier->Layout();
+                Layout();
+
+                break;
+
+            case 2:
+
+                m_staticModifierDureeTotalBain2->Show();
+                m_textCtrlModifierHeureBain2->Show();
+                m_staticTextModifierDureeBain2->Show();
+                m_textCtrlModifierMinuteBain2->Show();
+                m_staticTextModifierDureeFinBain2->Show();
+                m_textCtrlModifierSecondeBain2->Show();
+                bSizerModifierDureeBain2->Show(this);
+
+                m_staticModifierDureeTotalBain3->Hide();
+                m_textCtrlModifierHeureBain3->Hide();
+                m_staticTextModifierDureeBain3->Hide();
+                m_textCtrlModifierMinuteBain3->Hide();
+                m_staticTextModifierDureeFinBain3->Hide();
+                m_textCtrlModifierSecondeBain3->Hide();
+                bSizerModifierDureeBain3->Hide(this);
+
+                bSizerModifierDureeBain2->Layout();
+                bSizerModifierDureeBain3->Layout();
+                bSizerBainModifierDuree->Layout();
+                bSizerModifierDureeBain1->Layout();
+                bSizerModifierBain->Layout();
+
+                sbSizerGestionBainModifier->Layout();
+                Layout();
+
+                break;
+
+            case 3:
+
+                m_staticModifierDureeTotalBain2->Show();
+                m_textCtrlModifierHeureBain2->Show();
+                m_staticTextModifierDureeBain2->Show();
+                m_textCtrlModifierMinuteBain2->Show();
+                m_staticTextModifierDureeFinBain2->Show();
+                m_textCtrlModifierSecondeBain2->Show();
+                bSizerModifierDureeBain2->Show(this);
+
+                m_staticModifierDureeTotalBain3->Show();
+                m_textCtrlModifierHeureBain3->Show();
+                m_staticTextModifierDureeBain3->Show();
+                m_textCtrlModifierMinuteBain3->Show();
+                m_staticTextModifierDureeFinBain3->Show();
+                m_textCtrlModifierSecondeBain3->Show();
+                bSizerModifierDureeBain3->Show(this);
+
+                bSizerModifierDureeBain2->Layout();
+                bSizerModifierDureeBain3->Layout();
+                bSizerBainModifierDuree->Layout();
+                bSizerModifierDureeBain1->Layout();
+                bSizerModifierBain->Layout();
+
+                sbSizerGestionBainModifier->Layout();
+                Layout();
+
+                break;
+
+            default:
+
+                break;
+        }
     }
     else
     {
@@ -919,34 +1526,396 @@ void EvtFramePrincipal::OnCancelButtonModiffierClick(wxCommandEvent& event)
 //
 void EvtFramePrincipal::OnCancelButtonCreerClick(wxCommandEvent& event)
 {
+    // Vider les champs
     m_textCtrlDureeTotalHeureCreer->Clear();
     m_textCtrlDureeTotalMinuteCreer->Clear();
     m_textCtrlDureeTotalSecondeCreer->Clear();
     m_textCtrlNomCreer->Clear();
     m_textCtrlOrdreTrajectoiresCreer->Clear();
     m_spinCtrlNombreBainCreer->SetValue(1);
+    m_textCtrlCreerHeureBain1->Clear();
+    m_textCtrlCreerMinuteBain1->Clear();
+    m_textCtrlCreerSecondeBain1->Clear();
+    m_textCtrlCreerHeureBain2->Clear();
+    m_textCtrlCreerMinuteBain2->Clear();
+    m_textCtrlCreerSecondeBain2->Clear();
+    m_textCtrlCreerHeureBain3->Clear();
+    m_textCtrlCreerMinuteBain3->Clear();
+    m_textCtrlCreerSecondeBain3->Clear();
+
+    // Cacher les réglage des bain 2 et 3
+    m_staticCreerDureeTotalBain2->Hide();
+    m_textCtrlCreerHeureBain2->Hide();
+    m_staticTextCreerDureeBain2->Hide();
+    m_textCtrlCreerMinuteBain2->Hide();
+    m_staticTextCreerDureeFinBain2->Hide();
+    m_textCtrlCreerSecondeBain2->Hide();
+    bSizerCreerDureeBain2->Hide(this);
+
+    m_staticCreerDureeTotalBain3->Hide();
+    m_textCtrlCreerHeureBain3->Hide();
+    m_staticTextCreerDureeBain3->Hide();
+    m_textCtrlCreerMinuteBain3->Hide();
+    m_staticTextCreerDureeFinBain3->Hide();
+    m_textCtrlCreerSecondeBain3->Hide();
+    bSizerCreerDureeBain3->Hide(this);
+
+    bSizerCreerDureeBain2->Layout();
+    bSizerCreerDureeBain3->Layout();
+    bSizerBainCreerDuree->Layout();
+    bSizerCreerDureeBain1->Layout();
+    bSizerCreerBain->Layout();
+
+    sbSizerGestionBainCreer->Layout();
+    Layout();
 }
 
 void EvtFramePrincipal::OnSaveButtonCreerClick(wxCommandEvent& event)
 {
-    vector<string> donnees;
-    donnees.push_back("Test Processus");
-    donnees.push_back("00:01:02");
-
-    if(m_bdd_anodisation->ExecuteInsert(donnees))
+    bool erreur = false;
+    char* car = ";";
+    string nom_processus;
+    string duree_total;
+    string ordre;
+    string duree_bain1, duree_bain2 = "", duree_bain3 = "";
+    unsigned int nombre_bain = m_spinCtrlNombreBainCreer->GetValue();
+    vector<string> ordre_separe;
+    wxString message;
+    wxUniChar caractere(*car);
+    
+    // Vérification du champ nom du processus s'il il est rempli
+    if(!m_textCtrlNomCreer->IsEmpty())
     {
-        m_textCtrlAffichage->AppendText(wxT("OK\n"));
+        nom_processus = ConversionEnString(m_textCtrlNomCreer->GetValue());
     }
     else
     {
-        AfficheErreurRemplisage(ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+        erreur = true;
+        message << wxT("Le champ nom du processus est vide.\n");
     }
+
+    // Vérification du champ ordre des trajectoires s'il il est rempli
+    if(!m_textCtrlDureeTotalHeureCreer->IsEmpty() && !m_textCtrlDureeTotalMinuteCreer->IsEmpty() && !m_textCtrlDureeTotalSecondeCreer->IsEmpty())
+    {
+        duree_total = ConversionEnString(m_textCtrlDureeTotalHeureCreer->GetValue()) + ":"
+                    + ConversionEnString(m_textCtrlDureeTotalMinuteCreer->GetValue()) + ":"
+                    + ConversionEnString(m_textCtrlDureeTotalSecondeCreer->GetValue());
+    }
+    else
+    {
+        erreur = true;
+        message << wxT("L'un ou des champs de la durée total est/sont vide.\n");
+    }
+
+    // Vérification du champ ordre trajectoire s'il il est rempli
+    if(!m_textCtrlOrdreTrajectoiresCreer->IsEmpty())
+    {
+        wxString ordrewx = m_textCtrlOrdreTrajectoiresCreer->GetValue();
+        
+        if(ordrewx.EndsWith(wxT(";")))
+        {
+            ordrewx.RemoveLast();
+        }
+        ordre = ConversionEnString(ordrewx);
+        
+        unsigned int nb_point_virgule = ordrewx.Freq(caractere);
+        unsigned int position;
+        wxString temp;
+        
+        for(unsigned int i = 0; i < nb_point_virgule+1; i++)
+        {
+            if(i == 0)
+            {
+                position = ordrewx.find(";");
+                ordre_separe.push_back(ConversionEnString(DecouperTexteDebut(ordrewx, position)));
+            }
+            else
+            {
+                if(i == nb_point_virgule)
+                {
+                    position = ordrewx.find(";");
+                    ordre_separe.push_back(ConversionEnString(DecouperTexteFin(ordrewx, position+1)));
+                }
+                else
+                {
+                    position = ordrewx.find(";");
+                    temp.clear();
+                    temp = DecouperTexteFin(ordrewx, position+1);
+                    position = temp.find(";");
+                    ordre_separe.push_back(ConversionEnString(DecouperTexteDebut(temp, position)));
+                    ordrewx.clear();
+                    ordrewx = (DecouperTexteFin(temp, position));
+                }
+                
+            }
+        }
+    }
+    else
+    {
+        message << wxT("Le champ de la trajectoire est vide.\n");
+    }
+
+    // Vérification en fonction du nombre de bain
+    switch(nombre_bain)
+    {
+        case 1:
+            // Vérification des champs du bain 1 qu'il ont bien été rempli
+            if(!m_textCtrlCreerHeureBain1->IsEmpty() && !m_textCtrlCreerMinuteBain1->IsEmpty()
+               && !m_textCtrlCreerSecondeBain1->IsEmpty())
+            {
+                duree_bain1 = ConversionEnString(m_textCtrlCreerHeureBain1->GetValue()) + ":"
+                            + ConversionEnString(m_textCtrlCreerMinuteBain1->GetValue()) + ":"
+                            + ConversionEnString(m_textCtrlCreerSecondeBain1->GetValue());
+            }
+            else
+            {
+                erreur = true;
+                message << wxT("L'un ou des champs de la durée du bain 1 est/sont vide.\n");
+            }
+
+            break;
+
+        case 2:
+            // Vérification des champs du bain 1 qu'ils ont bien été rempli
+            if(!m_textCtrlCreerHeureBain1->IsEmpty() && !m_textCtrlCreerMinuteBain1->IsEmpty()
+               && !m_textCtrlCreerSecondeBain1->IsEmpty())
+            {
+                duree_bain1 = ConversionEnString(m_textCtrlCreerHeureBain1->GetValue()) + ":"
+                            + ConversionEnString(m_textCtrlCreerMinuteBain1->GetValue()) + ":"
+                            + ConversionEnString(m_textCtrlCreerSecondeBain1->GetValue());
+            }
+            else
+            {
+                erreur = true;
+                message << wxT("L'un ou des champs de la durée du bain 1 est/sont vide.\n");
+            }
+
+            // Vérification des champs du bain 2 qu'ils ont bien été rempli
+            if(!m_textCtrlCreerHeureBain2->IsEmpty() && !m_textCtrlCreerMinuteBain2->IsEmpty()
+               && !m_textCtrlCreerSecondeBain2->IsEmpty())
+            {
+                duree_bain2 = ConversionEnString(m_textCtrlCreerHeureBain2->GetValue()) + ":"
+                            + ConversionEnString(m_textCtrlCreerMinuteBain2->GetValue()) + ":"
+                            + ConversionEnString(m_textCtrlCreerSecondeBain2->GetValue());
+            }
+            else
+            {
+                erreur = true;
+                message << wxT("L'un ou des champs de la durée du bain 2 est/sont vide.\n");
+            }
+
+            break;
+
+        case 3:
+            // Vérification des champs du bain 1 qu'ils ont bien été rempli
+            if(!m_textCtrlCreerHeureBain1->IsEmpty() && !m_textCtrlCreerMinuteBain1->IsEmpty()
+               && !m_textCtrlCreerSecondeBain1->IsEmpty())
+            {
+                duree_bain1 = ConversionEnString(m_textCtrlCreerHeureBain1->GetValue()) + ":"
+                            + ConversionEnString(m_textCtrlCreerMinuteBain1->GetValue()) + ":"
+                            + ConversionEnString(m_textCtrlCreerSecondeBain1->GetValue());
+            }
+            else
+            {
+                erreur = true;
+                message << wxT("L'un ou des champs de la durée du bain 1 est/sont vide.\n");
+            }
+
+            // Vérification des champs du bain 2 qu'ils ont bien été rempli
+            if(!m_textCtrlCreerHeureBain2->IsEmpty() && !m_textCtrlCreerMinuteBain2->IsEmpty()
+               && !m_textCtrlCreerSecondeBain2->IsEmpty())
+            {
+                duree_bain2 = ConversionEnString(m_textCtrlCreerHeureBain2->GetValue()) + ":"
+                            + ConversionEnString(m_textCtrlCreerMinuteBain2->GetValue()) + ":"
+                            + ConversionEnString(m_textCtrlCreerSecondeBain2->GetValue());
+            }
+            else
+            {
+                erreur = true;
+                message << wxT("L'un ou des champs de la durée du bain 2 est/sont vide.\n");
+            }
+
+            // Vérification des champs du bain 3 qu'ils ont bien été rempli
+            if(!m_textCtrlCreerHeureBain3->IsEmpty() && !m_textCtrlCreerMinuteBain3->IsEmpty()
+               && !m_textCtrlCreerSecondeBain3->IsEmpty())
+            {
+                duree_bain3 = ConversionEnString(m_textCtrlCreerHeureBain3->GetValue()) + ":"
+                            + ConversionEnString(m_textCtrlCreerMinuteBain3->GetValue()) + ":"
+                            + ConversionEnString(m_textCtrlCreerSecondeBain3->GetValue());
+            }
+            else
+            {
+                erreur = true;
+                message << wxT("L'un ou des champs de la durée du bain 3 est/sont vide.\n");
+            }
+
+            break;
+
+        default:
+
+            break;
+    }
+    
+    if(erreur)
+    {
+        string id_p = m_bdd_anodisation->DernierIdProcessus();
+        cout << "id_p : " << id_p << endl;
+        wxMessageBox(message, "Responsable de production - Champs vide !",
+                     wxOK_DEFAULT | wxICON_EXCLAMATION | wxCENTRE | wxSTAY_ON_TOP, this);
+    }
+    else
+    {
+        string requete = "INSERT INTO processus (nom_processus, duree_processus, nombre_bain) VALUES('" 
+                        + nom_processus + "', '"
+                        + duree_total + "', "
+                        + IntEnString(nombre_bain) + ")";
+        
+        if(m_bdd_anodisation->ExecuteInsert(requete))
+        {
+            
+            string id_p = m_bdd_anodisation->DernierIdProcessus();
+            
+            switch(nombre_bain)
+            {
+                case 1:
+                    for(unsigned int i =0; i < ordre_separe.size(); i++)
+                    {
+                        requete = "INSERT INTO intermediaire_processus_trajectoires (id_p, id_t, ordre_trajectoires, numero_bain, duree_bain) VALUES ("
+                                + id_p + ", "
+                                + ordre_separe[i] + ", '"
+                                + ordre + "', "
+                                + "1, '"
+                                + duree_bain1 + "')";
+                                
+                        cout << requete << endl;
+                        if(!m_bdd_anodisation->ExecuteInsert(requete))
+                        {
+                            AfficheErreurRemplisage(ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+                        }
+                    }
+                    break;
+                
+                case 2:
+                    
+                    break;
+                
+                case 3:
+                    
+                    break;
+                
+                default:
+                    
+                    break;
+                
+            }
+        }
+        else
+        {
+            AfficheErreurRemplisage(ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+        }
+    }
+    VideListBox();
+    RempliListBox();
 }
 
 void EvtFramePrincipal::OnSpinCtrlCreerBain(wxSpinEvent& event)
 {
-    // TODO: Implement OnSpinCtrlCreerBain
-    m_textCtrlAffichage->AppendText(wxT("Test"));
+    int nombre_bain = m_spinCtrlNombreBainCreer->GetValue();
+    // cout << "Nombre de bain : " << nombre_bain << endl;
+
+    switch(nombre_bain)
+    {
+        case 1:
+
+            m_staticCreerDureeTotalBain2->Hide();
+            m_textCtrlCreerHeureBain2->Hide();
+            m_staticTextCreerDureeBain2->Hide();
+            m_textCtrlCreerMinuteBain2->Hide();
+            m_staticTextCreerDureeFinBain2->Hide();
+            m_textCtrlCreerSecondeBain2->Hide();
+            bSizerCreerDureeBain2->Hide(this);
+
+            m_staticCreerDureeTotalBain3->Hide();
+            m_textCtrlCreerHeureBain3->Hide();
+            m_staticTextCreerDureeBain3->Hide();
+            m_textCtrlCreerMinuteBain3->Hide();
+            m_staticTextCreerDureeFinBain3->Hide();
+            m_textCtrlCreerSecondeBain3->Hide();
+            bSizerCreerDureeBain3->Hide(this);
+
+            bSizerCreerDureeBain2->Layout();
+            bSizerCreerDureeBain3->Layout();
+            bSizerBainCreerDuree->Layout();
+            bSizerCreerDureeBain1->Layout();
+            bSizerCreerBain->Layout();
+
+            sbSizerGestionBainCreer->Layout();
+            Layout();
+
+            break;
+
+        case 2:
+
+            m_staticCreerDureeTotalBain2->Show();
+            m_textCtrlCreerHeureBain2->Show();
+            m_staticTextCreerDureeBain2->Show();
+            m_textCtrlCreerMinuteBain2->Show();
+            m_staticTextCreerDureeFinBain2->Show();
+            m_textCtrlCreerSecondeBain2->Show();
+            bSizerCreerDureeBain2->Show(this);
+
+            m_staticCreerDureeTotalBain3->Hide();
+            m_textCtrlCreerHeureBain3->Hide();
+            m_staticTextCreerDureeBain3->Hide();
+            m_textCtrlCreerMinuteBain3->Hide();
+            m_staticTextCreerDureeFinBain3->Hide();
+            m_textCtrlCreerSecondeBain3->Hide();
+            bSizerCreerDureeBain3->Hide(this);
+
+            bSizerCreerDureeBain2->Layout();
+            bSizerCreerDureeBain3->Layout();
+            bSizerBainCreerDuree->Layout();
+            bSizerCreerDureeBain1->Layout();
+            bSizerCreerBain->Layout();
+
+            sbSizerGestionBainCreer->Layout();
+            Layout();
+
+            break;
+
+        case 3:
+
+            m_staticCreerDureeTotalBain2->Show();
+            m_textCtrlCreerHeureBain2->Show();
+            m_staticTextCreerDureeBain2->Show();
+            m_textCtrlCreerMinuteBain2->Show();
+            m_staticTextCreerDureeFinBain2->Show();
+            m_textCtrlCreerSecondeBain2->Show();
+            bSizerCreerDureeBain2->Show(this);
+
+            m_staticCreerDureeTotalBain3->Show();
+            m_textCtrlCreerHeureBain3->Show();
+            m_staticTextCreerDureeBain3->Show();
+            m_textCtrlCreerMinuteBain3->Show();
+            m_staticTextCreerDureeFinBain3->Show();
+            m_textCtrlCreerSecondeBain3->Show();
+            bSizerCreerDureeBain3->Show(this);
+
+            bSizerCreerDureeBain2->Layout();
+            bSizerCreerDureeBain3->Layout();
+            bSizerBainCreerDuree->Layout();
+            bSizerCreerDureeBain1->Layout();
+            bSizerCreerBain->Layout();
+
+            sbSizerGestionBainCreer->Layout();
+            Layout();
+
+            break;
+
+        default:
+
+            break;
+    }
 }
 //
 // Détruire un processus
@@ -973,7 +1942,7 @@ void EvtFramePrincipal::OnListBoxDetruireSelection(wxCommandEvent& event)
     {
         AfficheErreurRemplisage(ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
     }
-    
+
     // Nombre de bain du processus
     if(m_donnees_IHM->RecupereNombreBain(ConversionEnString(id_selection)))
     {
@@ -983,7 +1952,7 @@ void EvtFramePrincipal::OnListBoxDetruireSelection(wxCommandEvent& event)
     {
         AfficheErreurRemplisage(ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
     }
-    
+
     // Ordre des trajectoires
     if(m_donnees_IHM->RecupereOrdreTrajectoires(ConversionEnString(id_selection)))
     {
@@ -1009,18 +1978,17 @@ void EvtFramePrincipal::OnApplyButtonDetruireClick(wxCommandEvent& event)
     if(m_bdd_anodisation->ExecuteDelete(requete))
     {
         requete = "DELETE FROM processus WHERE id_processus=" + id_selection;
-        
+
         if(m_bdd_anodisation->ExecuteDelete(requete))
         {
             int separateur = selection.find(" - ");
             wxString message;
-            message << wxT("Supression du processus : ")
-                    << DecouperTexteFin(selection, separateur + 3)
+            message << wxT("Supression du processus : ") << DecouperTexteFin(selection, separateur + 3)
                     << wxT(" réussi !\n");
-            
+
             m_textCtrlAffichage->AppendText(message);
             wxLogMessage(message);
-            
+
             VideListBox();
             RempliListBox();
         }
@@ -1059,7 +2027,7 @@ void EvtFramePrincipal::OnListBoxLancerSelection(wxCommandEvent& event)
     {
         AfficheErreurRemplisage(ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
     }
-    
+
     // Nombre de bain du processus
     if(m_donnees_IHM->RecupereNombreBain(ConversionEnString(id_selection)))
     {
@@ -1121,7 +2089,7 @@ void EvtFramePrincipal::OnListBoxTesterSelection(wxCommandEvent& event)
     {
         AfficheErreurRemplisage(ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
     }
-    
+
     // Nombre de bain du processus
     if(m_donnees_IHM->RecupereNombreBain(ConversionEnString(id_selection)))
     {
@@ -1131,7 +2099,7 @@ void EvtFramePrincipal::OnListBoxTesterSelection(wxCommandEvent& event)
     {
         AfficheErreurRemplisage(ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
     }
-    
+
     // Ordre des trajectoires
     if(m_donnees_IHM->RecupereOrdreTrajectoires(ConversionEnString(id_selection)))
     {
@@ -1152,12 +2120,18 @@ void EvtFramePrincipal::OnListBoxTesterSelection(wxCommandEvent& event)
 
 void EvtFramePrincipal::OnStopButtonTesterClick(wxCommandEvent& event)
 {
-    // TODO: Implement OnStopButtonTesterClick
+    if(m_client_connecte)
+    {
+        //
+    }
 }
 
 void EvtFramePrincipal::OnOkButtonTesterClick(wxCommandEvent& event)
 {
-    // TODO: Implement OnOkButtonTesterClick
+    if(m_client_connecte)
+    {
+        m_client->TestProcessus(GardeIdSelection(m_listBoxTesterProcessus->GetStringSelection()));
+    }
 }
 //
 // Disponibilité bras et détail de la tache en cours
@@ -1168,23 +2142,37 @@ void EvtFramePrincipal::OnButtonDisponibiliteBrasClick(wxCommandEvent& event)
     {
         if(m_client->DemandeDisponibiliteBras())
         {
-            m_panelPasTache->Show();
-            m_panelTacheEnCours->Hide();
+            // Cacher les StaticText et TextCtrl
+            m_staticTextTypeTache->Hide();
+            m_textCtrlTypeTache->Hide();
+            m_staticTextNomTache->SetLabel(wxT("Il n’y a pas de tâche en cours."));
+            m_textCtrlNomTache->Hide();
+            m_staticDureeRestant->Hide();
+            m_textCtrlDureeRestantHeure->Hide();
+            m_staticTextDureeRestantMinute->Hide();
+            m_textCtrlDureeRestantMinute->Hide();
+            m_staticTextDureeRestantSeconde->Hide();
+            m_textCtrlDureeRestantSeconde->Hide();
 
             m_staticTextDisponibiliteBras->SetLabel(wxT("Le bras est disponible"));
             m_bitmapDisponibiliteBras->SetBitmap(BmpVert);
 
             // Désactiver le bouton pour demander la tâche en cours
             m_buttonTacheEnCours->Disable();
-
-            // Réorganiser l'intérieur des sbSizer
-            sbSizerTacheEnCours->Layout();
-            sbSizerDisponibiliteBras->Layout();
         }
         else
         {
-            m_panelPasTache->Hide();
-            m_panelTacheEnCours->Show();
+            // Montrer les StaticText et TextCtrl
+            m_staticTextTypeTache->Show();
+            m_textCtrlTypeTache->Show();
+            m_staticTextNomTache->SetLabel(wxT("Nom de la tâche : "));
+            m_textCtrlNomTache->Show();
+            m_staticDureeRestant->Show();
+            m_textCtrlDureeRestantHeure->Show();
+            m_staticTextDureeRestantMinute->Show();
+            m_textCtrlDureeRestantMinute->Show();
+            m_staticTextDureeRestantSeconde->Show();
+            m_textCtrlDureeRestantSeconde->Show();
 
             m_staticTextDisponibiliteBras->SetLabel(wxT("Le bras n'est pas disponible"));
             m_bitmapDisponibiliteBras->SetBitmap(BmpRouge);
@@ -1192,6 +2180,11 @@ void EvtFramePrincipal::OnButtonDisponibiliteBrasClick(wxCommandEvent& event)
             // Réactiver le bouton pour demander la tâche en cours
             m_buttonTacheEnCours->Enable();
         }
+
+        // Réorganiser l'intérieur des sbSizer
+        sbSizerTache->Layout();
+        sbSizerDisponibiliteBras->Layout();
+        Layout();
     }
     else
     {
@@ -1207,58 +2200,131 @@ void EvtFramePrincipal::OnButtonTacheEnCoursClick(wxCommandEvent& event)
 
         if(tache[0] == "0")
         {
-            m_panelPasTache->Show();
-            m_panelTacheEnCours->Hide();
+            // Cacher les StaticText et TextCtrl
+            m_staticTextTypeTache->Hide();
+            m_textCtrlTypeTache->Hide();
+            m_staticTextNomTache->SetLabel(wxT("Il n’y a pas de tâche en cours."));
+            m_textCtrlNomTache->Hide();
+            m_staticDureeRestant->Hide();
+            m_textCtrlDureeRestantHeure->Hide();
+            m_staticTextDureeRestantMinute->Hide();
+            m_textCtrlDureeRestantMinute->Hide();
+            m_staticTextDureeRestantSeconde->Hide();
+            m_textCtrlDureeRestantSeconde->Hide();
 
             m_staticTextDisponibiliteBras->SetLabel(wxT("Le bras est disponible"));
             m_bitmapDisponibiliteBras->SetBitmap(BmpVert);
 
             // Désactiver le bouton pour demander la tâche en cours
             m_buttonTacheEnCours->Disable();
-
-            // Réorganiser l'intérieur des sbSizer
-            sbSizerTacheEnCours->Layout();
-            sbSizerDisponibiliteBras->Layout();
         }
         else
         {
-            m_panelPasTache->Hide();
-            m_panelTacheEnCours->Show();
-
             m_staticTextDisponibiliteBras->SetLabel(wxT("Le bras n'est pas disponible"));
             m_bitmapDisponibiliteBras->SetBitmap(BmpRouge);
-            bSizerTacheEnCoursPrincipal->Layout();
 
             // Réactiver le bouton pour demander la tâche en cours
             m_buttonTacheEnCours->Enable();
 
+            // Montrer les StaticText et TextCtrl
+            m_staticTextTypeTache->Show();
+            m_textCtrlTypeTache->Show();
+            m_staticTextNomTache->SetLabel(wxT("Nom de la tâche : "));
+            m_textCtrlNomTache->Show();
+            m_staticDureeRestant->Show();
+            m_textCtrlDureeRestantHeure->Show();
+            m_staticTextDureeRestantMinute->Show();
+            m_textCtrlDureeRestantMinute->Show();
+            m_staticTextDureeRestantSeconde->Show();
+            m_textCtrlDureeRestantSeconde->Show();
+
+            // Vider les TextCtrl
+            m_textCtrlTypeTache->Clear();
+            m_textCtrlNomTache->Clear();
+            m_textCtrlDureeRestantHeure->Clear();
+            m_textCtrlDureeRestantMinute->Clear();
+            m_textCtrlDureeRestantSeconde->Clear();
+
             // Récupération des valeurs
             wxString type = tache[0];
             wxString id_tache = tache[1];
+
             wxString message;
+            string requete;
 
             if(type == "Processus")
             {
-                // Requete pour avoir les détails grace à l'id
-                message << wxT("La tache est un processus d'id : ") << id_tache << wxT("\n");
+                m_textCtrlTypeTache->AppendText(wxT("Processus"));
 
-                m_textCtrlAffichage->AppendText(message);
+                // Nom du processus
+                requete = "SELECT nom_processus FROM processus WHERE id_processus=" + id_tache;
+
+                if(m_bdd_anodisation->ExecuteSelect(requete))
+                {
+                    vector<string> nom = m_bdd_anodisation->GetLastResult();
+                    wxString temp = ConversionEnWxString(nom[0]);
+
+                    int separateur = temp.find("   ");
+                    wxString nomwx = DecouperTexteDebut(temp, separateur);
+                    m_textCtrlNomTache->AppendText(nomwx);
+                }
+                else
+                {
+                    AfficheErreurRemplisage(ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+                }
             }
             else if(type == "Trajectoire")
             {
-                // Requete pour avoir les détails grace à l'id
-                message << wxT("La tache est une trajectoire d'id : ") << id_tache << wxT("\n");
+                m_textCtrlTypeTache->AppendText(wxT("Trajectoire"));
 
-                m_textCtrlAffichage->AppendText(message);
+                // Nom de la trajectoire
+                requete = "SELECT nom_trajectoire FROM trajectoires WHERE id_trajectoire=" + id_tache;
+
+                if(m_bdd_anodisation->ExecuteSelect(requete))
+                {
+                    vector<string> nom = m_bdd_anodisation->GetLastResult();
+                    wxString temp = ConversionEnWxString(nom[0]);
+
+                    int separateur = temp.find("   ");
+                    wxString nomwx = DecouperTexteDebut(temp, separateur);
+                    m_textCtrlNomTache->AppendText(nomwx);
+                }
+                else
+                {
+                    AfficheErreurRemplisage(ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+                }
             }
-            else
+            else if(type == "Mouvement")
             {
-                // Requete pour avoir les détails grace à l'id
-                message << wxT("La tache est un mouvement d'id : ") << id_tache << wxT("\n");
+                m_textCtrlTypeTache->AppendText(wxT("Mouvement"));
 
-                m_textCtrlAffichage->AppendText(message);
+                // Nom du mouvement
+                requete = "SELECT nom_mouvement FROM mouvements WHERE id_mouvement=" + id_tache;
+
+                if(m_bdd_anodisation->ExecuteSelect(requete))
+                {
+                    vector<string> nom = m_bdd_anodisation->GetLastResult();
+                    wxString temp = ConversionEnWxString(nom[0]);
+
+                    int separateur = temp.find("   ");
+                    wxString nomwx = DecouperTexteDebut(temp, separateur);
+                    m_textCtrlNomTache->AppendText(nomwx);
+                }
+                else
+                {
+                    AfficheErreurRemplisage(ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+                }
+            }
+            else  // Ne devrais pas arriver
+            {
+                wxString message = wxT("Une erreur est survenue.\t\t");
+                wxLogError(message);
             }
         }
+
+        // Réorganiser l'intérieur des sbSizer
+        sbSizerTache->Layout();
+        sbSizerDisponibiliteBras->Layout();
         Layout();
     }
     else
@@ -1532,6 +2598,13 @@ string EvtFramePrincipal::ConversionEnString(wxString texte)
     return temp_string;
 }
 
+string EvtFramePrincipal::IntEnString(int nombre)
+{
+    ostringstream temp;
+    temp << nombre;
+
+    return temp.str();
+}
 wxString EvtFramePrincipal::ConversionEnWxString(string texte)
 {
     wxString temp_wxstring(texte.c_str(), wxConvUTF8);

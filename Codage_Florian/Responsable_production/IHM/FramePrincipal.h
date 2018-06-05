@@ -20,21 +20,19 @@
 #include <wx/valgen.h>
 #include <wx/sizer.h>
 #include <wx/tglbtn.h>
-#include <wx/statbox.h>
-#include <wx/panel.h>
-#include <wx/listbox.h>
-#include <wx/statline.h>
-#include <wx/scrolwin.h>
 #include <wx/bitmap.h>
 #include <wx/image.h>
 #include <wx/icon.h>
-#include <wx/spinctrl.h>
-#include "EvtPannelBainModifier.h"
-#include <wx/button.h>
-#include "EvtPannelBainCreer.h"
-#include <wx/bmpbuttn.h>
 #include <wx/statbmp.h>
+#include <wx/statbox.h>
+#include <wx/listbox.h>
+#include <wx/statline.h>
+#include <wx/scrolwin.h>
+#include <wx/spinctrl.h>
+#include <wx/button.h>
+#include <wx/bmpbuttn.h>
 #include <wx/notebook.h>
+#include <wx/panel.h>
 #include <wx/menu.h>
 #include <wx/statusbr.h>
 #include <wx/frame.h>
@@ -52,12 +50,13 @@ class FramePrincipal : public wxFrame
 	private:
 	
 	protected:
-		wxPanel* m_panelConnexion;
+		wxStaticBoxSizer* sbSizerConnexion;
 		wxStaticText* m_staticTextLogin;
 		wxTextCtrl* m_textCtrlLogin;
 		wxStaticText* m_staticTextPass;
 		wxTextCtrl* m_textCtrlPass;
 		wxToggleButton* m_toggleBtnConnexion;
+		wxStaticBitmap* m_bitmapLogoOzanam;
 		wxNotebook* m_notebookProcessus;
 		wxScrolledWindow* m_scrolledWindowAffichageProcessus;
 		wxListBox* m_listBoxAffichageProcessus;
@@ -73,10 +72,34 @@ class FramePrincipal : public wxFrame
 		wxStaticLine* m_staticlineAfficher;
 		wxStaticText* m_staticTextNomAfficher;
 		wxTextCtrl* m_textCtrlNomAfficher;
-		wxStaticText* m_staticTextNombreBainAfficher;
-		wxTextCtrl* m_textCtrlNombreBainAfficher;
 		wxStaticText* m_staticTextOrdreTrajectoiresAfficher;
 		wxTextCtrl* m_textCtrlOrdreTrajectoiresAfficher;
+		wxStaticBoxSizer* sbSizerGestionBainAfficher;
+		wxStaticText* m_staticTextNombreBainAfficher;
+		wxTextCtrl* m_textCtrlNombreBainAfficher;
+		wxBoxSizer* bSizerAfficherBain;
+		wxBoxSizer* bSizerBainAfficherDuree;
+		wxBoxSizer* bSizerAfficherDureeBain1;
+		wxStaticText* m_staticAfficherDureeTotalBain1;
+		wxTextCtrl* m_textCtrlAfficherHeureBain1;
+		wxStaticText* m_staticTextAfficherDureeBain1;
+		wxTextCtrl* m_textCtrlAfficherMinuteBain1;
+		wxStaticText* m_staticTextAfficherDureeFinBain1;
+		wxTextCtrl* m_textCtrlAfficherSecondeBain1;
+		wxBoxSizer* bSizerAfficherDureeBain2;
+		wxStaticText* m_staticAfficherDureeTotalBain2;
+		wxTextCtrl* m_textCtrlAfficherHeureBain2;
+		wxStaticText* m_staticTextAfficherDureeBain2;
+		wxTextCtrl* m_textCtrlAfficherMinuteBain2;
+		wxStaticText* m_staticTextAfficherDureeFinBain2;
+		wxTextCtrl* m_textCtrlAfficherSecondeBain2;
+		wxBoxSizer* bSizerAfficherDureeBain3;
+		wxStaticText* m_staticAfficherDureeTotalBain3;
+		wxTextCtrl* m_textCtrlAfficherHeureBain3;
+		wxStaticText* m_staticTextAfficherDureeBain3;
+		wxTextCtrl* m_textCtrlAfficherMinuteBain3;
+		wxStaticText* m_staticTextAfficherDureeFinBain3;
+		wxTextCtrl* m_textCtrlAfficherSecondeBain3;
 		wxScrolledWindow* m_scrolledWindowModifierProcessus;
 		wxListBox* m_listBoxModifierProcessus;
 		wxStaticText* m_staticTextIdModifier;
@@ -91,11 +114,35 @@ class FramePrincipal : public wxFrame
 		wxStaticLine* m_staticlineModification;
 		wxStaticText* m_staticTextNomModifier;
 		wxTextCtrl* m_textCtrlNomModifier;
-		wxStaticText* m_staticTextNombreBainModifier;
-		wxSpinCtrl* m_spinCtrlNombreBainModifier;
-		EvtPannelBainModifier *m_evt_panel_bain_modifier;
 		wxStaticText* m_staticTextOrdreTrajectoiresModifier;
 		wxTextCtrl* m_textCtrlOrdreTrajectoiresModifier;
+		wxStaticBoxSizer* sbSizerGestionBainModifier;
+		wxBoxSizer* bSizerNombreBainModifier;
+		wxStaticText* m_staticTextNombreBainModifier;
+		wxSpinCtrl* m_spinCtrlNombreBainModifier;
+		wxBoxSizer* bSizerModifierBain;
+		wxBoxSizer* bSizerBainModifierDuree;
+		wxBoxSizer* bSizerModifierDureeBain1;
+		wxStaticText* m_staticModifierDureeTotalBain1;
+		wxTextCtrl* m_textCtrlModifierHeureBain1;
+		wxStaticText* m_staticTextModifierDureeBain1;
+		wxTextCtrl* m_textCtrlModifierMinuteBain1;
+		wxStaticText* m_staticTextModifierDureeFinBain1;
+		wxTextCtrl* m_textCtrlModifierSecondeBain1;
+		wxBoxSizer* bSizerModifierDureeBain2;
+		wxStaticText* m_staticModifierDureeTotalBain2;
+		wxTextCtrl* m_textCtrlModifierHeureBain2;
+		wxStaticText* m_staticTextModifierDureeBain2;
+		wxTextCtrl* m_textCtrlModifierMinuteBain2;
+		wxStaticText* m_staticTextModifierDureeFinBain2;
+		wxTextCtrl* m_textCtrlModifierSecondeBain2;
+		wxBoxSizer* bSizerModifierDureeBain3;
+		wxStaticText* m_staticModifierDureeTotalBain3;
+		wxTextCtrl* m_textCtrlModifierHeureBain3;
+		wxStaticText* m_staticTextModifierDureeBain3;
+		wxTextCtrl* m_textCtrlModifierMinuteBain3;
+		wxStaticText* m_staticTextModifierDureeFinBain3;
+		wxTextCtrl* m_textCtrlModifierSecondeBain3;
 		wxStaticLine* m_staticline10;
 		wxStdDialogButtonSizer* m_sdbSizerModifier;
 		wxButton* m_sdbSizerModifierApply;
@@ -107,15 +154,39 @@ class FramePrincipal : public wxFrame
 		wxTextCtrl* m_textCtrlDureeTotalMinuteCreer;
 		wxStaticText* m_staticTextDureeTotalSecondeCreer;
 		wxTextCtrl* m_textCtrlDureeTotalSecondeCreer;
+		wxStaticText* m_staticTextOrdreTrajectoiresCreer;
+		wxTextCtrl* m_textCtrlOrdreTrajectoiresCreer;
 		wxListBox* m_listBoxListeTrajectoiresCreer;
 		wxStaticLine* m_staticlineCreer;
 		wxStaticText* m_staticTextNomCreer;
 		wxTextCtrl* m_textCtrlNomCreer;
+		wxStaticBoxSizer* sbSizerGestionBainCreer;
+		wxBoxSizer* bSizerNombreBainCreer;
 		wxStaticText* m_staticTextNombreBainCreer;
 		wxSpinCtrl* m_spinCtrlNombreBainCreer;
-		EvtPannelBainCreer *m_evt_panel_bain_creer;
-		wxStaticText* m_staticTextOrdreTrajectoiresCreer;
-		wxTextCtrl* m_textCtrlOrdreTrajectoiresCreer;
+		wxBoxSizer* bSizerCreerBain;
+		wxBoxSizer* bSizerBainCreerDuree;
+		wxBoxSizer* bSizerCreerDureeBain1;
+		wxStaticText* m_staticCreerDureeTotalBain1;
+		wxTextCtrl* m_textCtrlCreerHeureBain1;
+		wxStaticText* m_staticTextCreerDureeBain1;
+		wxTextCtrl* m_textCtrlCreerMinuteBain1;
+		wxStaticText* m_staticTextcreerDureeFinBain1;
+		wxTextCtrl* m_textCtrlCreerSecondeBain1;
+		wxBoxSizer* bSizerCreerDureeBain2;
+		wxStaticText* m_staticCreerDureeTotalBain2;
+		wxTextCtrl* m_textCtrlCreerHeureBain2;
+		wxStaticText* m_staticTextCreerDureeBain2;
+		wxTextCtrl* m_textCtrlCreerMinuteBain2;
+		wxStaticText* m_staticTextCreerDureeFinBain2;
+		wxTextCtrl* m_textCtrlCreerSecondeBain2;
+		wxBoxSizer* bSizerCreerDureeBain3;
+		wxStaticText* m_staticCreerDureeTotalBain3;
+		wxTextCtrl* m_textCtrlCreerHeureBain3;
+		wxStaticText* m_staticTextCreerDureeBain3;
+		wxTextCtrl* m_textCtrlCreerMinuteBain3;
+		wxStaticText* m_staticTextCreerDureeFinBain3;
+		wxTextCtrl* m_textCtrlCreerSecondeBain3;
 		wxStdDialogButtonSizer* m_sdbSizerCreer;
 		wxButton* m_sdbSizerCreerSave;
 		wxButton* m_sdbSizerCreerCancel;
@@ -180,21 +251,20 @@ class FramePrincipal : public wxFrame
 		wxStaticBoxSizer* sbSizerDisponibiliteBras;
 		wxStaticBitmap* m_bitmapDisponibiliteBras;
 		wxStaticText* m_staticTextDisponibiliteBras;
-		wxStaticBoxSizer* sbSizerTacheEnCours;
-		wxPanel* m_panelTacheEnCours;
-		wxBoxSizer* bSizerTacheEnCoursPrincipal;
+		wxStaticBoxSizer* sbSizerTache;
+		wxBoxSizer* bSizerTypeTache;
 		wxStaticText* m_staticTextTypeTache;
 		wxTextCtrl* m_textCtrlTypeTache;
+		wxBoxSizer* bSizerNomTache;
 		wxStaticText* m_staticTextNomTache;
 		wxTextCtrl* m_textCtrlNomTache;
+		wxBoxSizer* bSizerDureeRestant;
 		wxStaticText* m_staticDureeRestant;
 		wxTextCtrl* m_textCtrlDureeRestantHeure;
 		wxStaticText* m_staticTextDureeRestantMinute;
-		wxTextCtrl* textCtrlDureeRestantMinute;
+		wxTextCtrl* m_textCtrlDureeRestantMinute;
 		wxStaticText* m_staticTextDureeRestantSeconde;
-		wxTextCtrl* textCtrlDureeRestantSeconde;
-		wxPanel* m_panelPasTache;
-		wxStaticText* m_staticTextPasTache;
+		wxTextCtrl* m_textCtrlDureeRestantSeconde;
 		wxButton* m_buttonDisponibiliteBras;
 		wxButton* m_buttonTacheEnCours;
 		wxPanel* m_panelAffichage;
@@ -210,16 +280,17 @@ class FramePrincipal : public wxFrame
 		virtual void OnCharEntered( wxKeyEvent& event ) { event.Skip(); }
 		virtual void OnFrameClose( wxCloseEvent& event ) { event.Skip(); }
 		virtual void OnButtonConnexionToggle( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnTextMaxLength( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnListBoxAffichageSelection( wxCommandEvent& event ) { event.Skip(); }
-		virtual void OnListBoxModifierSelection( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnCharEnteredNum( wxKeyEvent& event ) { event.Skip(); }
-		virtual void OnSpinCtrlModifierBain( wxSpinEvent& event ) { event.Skip(); }
-		virtual void OnCharEnteredOrdre( wxKeyEvent& event ) { event.Skip(); }
+		virtual void OnListBoxModifierSelection( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnApplyButtonModifierClick( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnCharEnteredOrdre( wxKeyEvent& event ) { event.Skip(); }
+		virtual void OnSpinCtrlModifierBain( wxSpinEvent& event ) { event.Skip(); }
 		virtual void OnCancelButtonModiffierClick( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnSaveButtonCreerClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnSpinCtrlCreerBain( wxSpinEvent& event ) { event.Skip(); }
 		virtual void OnCancelButtonCreerClick( wxCommandEvent& event ) { event.Skip(); }
-		virtual void OnSaveButtonCreerClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnListBoxDetruireSelection( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnApplyButtonDetruireClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnListBoxLancerSelection( wxCommandEvent& event ) { event.Skip(); }

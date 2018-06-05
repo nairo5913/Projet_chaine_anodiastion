@@ -20,7 +20,7 @@ using std::cout;
 using std::endl;
 using std::cerr;
 
-#include "DataAnodisation.h"
+#include "../BdD/DataAnodisation.h"
 
 class DonneesIHM
 {

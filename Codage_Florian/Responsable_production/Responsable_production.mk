@@ -5,16 +5,16 @@
 ## Debug
 ProjectName            :=Responsable_production
 ConfigurationName      :=Debug
-WorkspacePath          :=/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Codage_Florian
-ProjectPath            :=/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Codage_Florian/Responsable_production
+WorkspacePath          :=/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Codage_Florian
+ProjectPath            :=/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Codage_Florian/Responsable_production
 IntermediateDirectory  :=./Debug
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
-User                   :=Florian PROVOST
-Date                   :=01/06/2018
-CodeLitePath           :=/home/ir2/fprovost/.codelite
+User                   :=nairo5913
+Date                   :=06/06/2018
+CodeLitePath           :=/home/nairo5913/.codelite
 LinkerName             :=/usr/bin/g++
 SharedObjectLinkerName :=/usr/bin/g++ -shared -fPIC
 ObjectSuffix           :=.o
@@ -60,7 +60,7 @@ AS       := /usr/bin/as
 ## User defined environment variables
 ##
 CodeLiteDir:=/usr/share/codelite
-Objects0=$(IntermediateDirectory)/EvtFramePrincipal.cpp$(ObjectSuffix) $(IntermediateDirectory)/FramePrincipal.cpp$(ObjectSuffix) $(IntermediateDirectory)/MyApp.cpp$(ObjectSuffix) $(IntermediateDirectory)/Client.cpp$(ObjectSuffix) $(IntermediateDirectory)/DataAnodisation.cpp$(ObjectSuffix) $(IntermediateDirectory)/EvtFrameApropos.cpp$(ObjectSuffix) $(IntermediateDirectory)/EvtFrameAide.cpp$(ObjectSuffix) $(IntermediateDirectory)/DonneesIHM.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/BdD_DataAnodisation.cpp$(ObjectSuffix) $(IntermediateDirectory)/BdD_DonneesIHM.cpp$(ObjectSuffix) $(IntermediateDirectory)/Client_Client.cpp$(ObjectSuffix) $(IntermediateDirectory)/IHM_EvtFramePrincipal.cpp$(ObjectSuffix) $(IntermediateDirectory)/IHM_FramePrincipal.cpp$(ObjectSuffix) $(IntermediateDirectory)/MyApp.cpp$(ObjectSuffix) $(IntermediateDirectory)/IHM_EvtFrameAide.cpp$(ObjectSuffix) $(IntermediateDirectory)/IHM_EvtFrameApropos.cpp$(ObjectSuffix) 
 
 
 
@@ -91,69 +91,69 @@ PreBuild:
 ##
 ## Objects
 ##
-$(IntermediateDirectory)/EvtFramePrincipal.cpp$(ObjectSuffix): EvtFramePrincipal.cpp $(IntermediateDirectory)/EvtFramePrincipal.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Codage_Florian/Responsable_production/EvtFramePrincipal.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/EvtFramePrincipal.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/EvtFramePrincipal.cpp$(DependSuffix): EvtFramePrincipal.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/EvtFramePrincipal.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/EvtFramePrincipal.cpp$(DependSuffix) -MM EvtFramePrincipal.cpp
+$(IntermediateDirectory)/BdD_DataAnodisation.cpp$(ObjectSuffix): BdD/DataAnodisation.cpp $(IntermediateDirectory)/BdD_DataAnodisation.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Codage_Florian/Responsable_production/BdD/DataAnodisation.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/BdD_DataAnodisation.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/BdD_DataAnodisation.cpp$(DependSuffix): BdD/DataAnodisation.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/BdD_DataAnodisation.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/BdD_DataAnodisation.cpp$(DependSuffix) -MM BdD/DataAnodisation.cpp
 
-$(IntermediateDirectory)/EvtFramePrincipal.cpp$(PreprocessSuffix): EvtFramePrincipal.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/EvtFramePrincipal.cpp$(PreprocessSuffix) EvtFramePrincipal.cpp
+$(IntermediateDirectory)/BdD_DataAnodisation.cpp$(PreprocessSuffix): BdD/DataAnodisation.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/BdD_DataAnodisation.cpp$(PreprocessSuffix) BdD/DataAnodisation.cpp
 
-$(IntermediateDirectory)/FramePrincipal.cpp$(ObjectSuffix): FramePrincipal.cpp $(IntermediateDirectory)/FramePrincipal.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Codage_Florian/Responsable_production/FramePrincipal.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/FramePrincipal.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/FramePrincipal.cpp$(DependSuffix): FramePrincipal.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/FramePrincipal.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/FramePrincipal.cpp$(DependSuffix) -MM FramePrincipal.cpp
+$(IntermediateDirectory)/BdD_DonneesIHM.cpp$(ObjectSuffix): BdD/DonneesIHM.cpp $(IntermediateDirectory)/BdD_DonneesIHM.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Codage_Florian/Responsable_production/BdD/DonneesIHM.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/BdD_DonneesIHM.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/BdD_DonneesIHM.cpp$(DependSuffix): BdD/DonneesIHM.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/BdD_DonneesIHM.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/BdD_DonneesIHM.cpp$(DependSuffix) -MM BdD/DonneesIHM.cpp
 
-$(IntermediateDirectory)/FramePrincipal.cpp$(PreprocessSuffix): FramePrincipal.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/FramePrincipal.cpp$(PreprocessSuffix) FramePrincipal.cpp
+$(IntermediateDirectory)/BdD_DonneesIHM.cpp$(PreprocessSuffix): BdD/DonneesIHM.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/BdD_DonneesIHM.cpp$(PreprocessSuffix) BdD/DonneesIHM.cpp
+
+$(IntermediateDirectory)/Client_Client.cpp$(ObjectSuffix): Client/Client.cpp $(IntermediateDirectory)/Client_Client.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Codage_Florian/Responsable_production/Client/Client.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Client_Client.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Client_Client.cpp$(DependSuffix): Client/Client.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Client_Client.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Client_Client.cpp$(DependSuffix) -MM Client/Client.cpp
+
+$(IntermediateDirectory)/Client_Client.cpp$(PreprocessSuffix): Client/Client.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Client_Client.cpp$(PreprocessSuffix) Client/Client.cpp
+
+$(IntermediateDirectory)/IHM_EvtFramePrincipal.cpp$(ObjectSuffix): IHM/EvtFramePrincipal.cpp $(IntermediateDirectory)/IHM_EvtFramePrincipal.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Codage_Florian/Responsable_production/IHM/EvtFramePrincipal.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/IHM_EvtFramePrincipal.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/IHM_EvtFramePrincipal.cpp$(DependSuffix): IHM/EvtFramePrincipal.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/IHM_EvtFramePrincipal.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/IHM_EvtFramePrincipal.cpp$(DependSuffix) -MM IHM/EvtFramePrincipal.cpp
+
+$(IntermediateDirectory)/IHM_EvtFramePrincipal.cpp$(PreprocessSuffix): IHM/EvtFramePrincipal.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/IHM_EvtFramePrincipal.cpp$(PreprocessSuffix) IHM/EvtFramePrincipal.cpp
+
+$(IntermediateDirectory)/IHM_FramePrincipal.cpp$(ObjectSuffix): IHM/FramePrincipal.cpp $(IntermediateDirectory)/IHM_FramePrincipal.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Codage_Florian/Responsable_production/IHM/FramePrincipal.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/IHM_FramePrincipal.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/IHM_FramePrincipal.cpp$(DependSuffix): IHM/FramePrincipal.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/IHM_FramePrincipal.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/IHM_FramePrincipal.cpp$(DependSuffix) -MM IHM/FramePrincipal.cpp
+
+$(IntermediateDirectory)/IHM_FramePrincipal.cpp$(PreprocessSuffix): IHM/FramePrincipal.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/IHM_FramePrincipal.cpp$(PreprocessSuffix) IHM/FramePrincipal.cpp
 
 $(IntermediateDirectory)/MyApp.cpp$(ObjectSuffix): MyApp.cpp $(IntermediateDirectory)/MyApp.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Codage_Florian/Responsable_production/MyApp.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/MyApp.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Codage_Florian/Responsable_production/MyApp.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/MyApp.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/MyApp.cpp$(DependSuffix): MyApp.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/MyApp.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/MyApp.cpp$(DependSuffix) -MM MyApp.cpp
 
 $(IntermediateDirectory)/MyApp.cpp$(PreprocessSuffix): MyApp.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/MyApp.cpp$(PreprocessSuffix) MyApp.cpp
 
-$(IntermediateDirectory)/Client.cpp$(ObjectSuffix): Client.cpp $(IntermediateDirectory)/Client.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Codage_Florian/Responsable_production/Client.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Client.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/Client.cpp$(DependSuffix): Client.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Client.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Client.cpp$(DependSuffix) -MM Client.cpp
+$(IntermediateDirectory)/IHM_EvtFrameAide.cpp$(ObjectSuffix): IHM/EvtFrameAide.cpp $(IntermediateDirectory)/IHM_EvtFrameAide.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Codage_Florian/Responsable_production/IHM/EvtFrameAide.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/IHM_EvtFrameAide.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/IHM_EvtFrameAide.cpp$(DependSuffix): IHM/EvtFrameAide.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/IHM_EvtFrameAide.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/IHM_EvtFrameAide.cpp$(DependSuffix) -MM IHM/EvtFrameAide.cpp
 
-$(IntermediateDirectory)/Client.cpp$(PreprocessSuffix): Client.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Client.cpp$(PreprocessSuffix) Client.cpp
+$(IntermediateDirectory)/IHM_EvtFrameAide.cpp$(PreprocessSuffix): IHM/EvtFrameAide.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/IHM_EvtFrameAide.cpp$(PreprocessSuffix) IHM/EvtFrameAide.cpp
 
-$(IntermediateDirectory)/DataAnodisation.cpp$(ObjectSuffix): DataAnodisation.cpp $(IntermediateDirectory)/DataAnodisation.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Codage_Florian/Responsable_production/DataAnodisation.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/DataAnodisation.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/DataAnodisation.cpp$(DependSuffix): DataAnodisation.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/DataAnodisation.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/DataAnodisation.cpp$(DependSuffix) -MM DataAnodisation.cpp
+$(IntermediateDirectory)/IHM_EvtFrameApropos.cpp$(ObjectSuffix): IHM/EvtFrameApropos.cpp $(IntermediateDirectory)/IHM_EvtFrameApropos.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Codage_Florian/Responsable_production/IHM/EvtFrameApropos.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/IHM_EvtFrameApropos.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/IHM_EvtFrameApropos.cpp$(DependSuffix): IHM/EvtFrameApropos.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/IHM_EvtFrameApropos.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/IHM_EvtFrameApropos.cpp$(DependSuffix) -MM IHM/EvtFrameApropos.cpp
 
-$(IntermediateDirectory)/DataAnodisation.cpp$(PreprocessSuffix): DataAnodisation.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/DataAnodisation.cpp$(PreprocessSuffix) DataAnodisation.cpp
-
-$(IntermediateDirectory)/EvtFrameApropos.cpp$(ObjectSuffix): EvtFrameApropos.cpp $(IntermediateDirectory)/EvtFrameApropos.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Codage_Florian/Responsable_production/EvtFrameApropos.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/EvtFrameApropos.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/EvtFrameApropos.cpp$(DependSuffix): EvtFrameApropos.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/EvtFrameApropos.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/EvtFrameApropos.cpp$(DependSuffix) -MM EvtFrameApropos.cpp
-
-$(IntermediateDirectory)/EvtFrameApropos.cpp$(PreprocessSuffix): EvtFrameApropos.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/EvtFrameApropos.cpp$(PreprocessSuffix) EvtFrameApropos.cpp
-
-$(IntermediateDirectory)/EvtFrameAide.cpp$(ObjectSuffix): EvtFrameAide.cpp $(IntermediateDirectory)/EvtFrameAide.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Codage_Florian/Responsable_production/EvtFrameAide.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/EvtFrameAide.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/EvtFrameAide.cpp$(DependSuffix): EvtFrameAide.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/EvtFrameAide.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/EvtFrameAide.cpp$(DependSuffix) -MM EvtFrameAide.cpp
-
-$(IntermediateDirectory)/EvtFrameAide.cpp$(PreprocessSuffix): EvtFrameAide.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/EvtFrameAide.cpp$(PreprocessSuffix) EvtFrameAide.cpp
-
-$(IntermediateDirectory)/DonneesIHM.cpp$(ObjectSuffix): DonneesIHM.cpp $(IntermediateDirectory)/DonneesIHM.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Codage_Florian/Responsable_production/DonneesIHM.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/DonneesIHM.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/DonneesIHM.cpp$(DependSuffix): DonneesIHM.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/DonneesIHM.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/DonneesIHM.cpp$(DependSuffix) -MM DonneesIHM.cpp
-
-$(IntermediateDirectory)/DonneesIHM.cpp$(PreprocessSuffix): DonneesIHM.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/DonneesIHM.cpp$(PreprocessSuffix) DonneesIHM.cpp
+$(IntermediateDirectory)/IHM_EvtFrameApropos.cpp$(PreprocessSuffix): IHM/EvtFrameApropos.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/IHM_EvtFrameApropos.cpp$(PreprocessSuffix) IHM/EvtFrameApropos.cpp
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

@@ -10,7 +10,7 @@
 
 #define SOCKET_ID 110
 
-#include "IHM/EvtFramePrincipal.h"
+#include "../IHM/EvtFramePrincipal.h"
 class EvtFramePrincipal;
 
 #include <wx/socket.h>
@@ -29,9 +29,11 @@ class Client : public wxEvtHandler
         bool DemandeDisponibiliteBras();
         vector<string> DemandeTacheEnCours();
         string EcritMessage(wxString message);
-        void AnalyseReponseServeur(string reponse);
+        //void AnalyseReponseServeur(string reponse);
         void Close();
         void ExecutionProcessus(wxString num_id);
+        void StopProcessus(wxString num_id);
+        void TestProcessus(wxString num_id);
     
     protected:
     private:

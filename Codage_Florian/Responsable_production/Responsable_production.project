@@ -7,29 +7,9 @@
   </Plugins>
   <Description/>
   <Dependencies/>
-  <VirtualDirectory Name="src">
-    <File Name="EvtFramePrincipal.cpp"/>
-    <File Name="FramePrincipal.cpp"/>
-    <File Name="MyApp.cpp"/>
-    <File Name="Client.cpp"/>
-    <File Name="DataAnodisation.cpp"/>
-    <File Name="EvtFrameApropos.cpp"/>
-    <File Name="EvtFrameAide.cpp"/>
-    <File Name="DonneesIHM.cpp"/>
-  </VirtualDirectory>
+  <VirtualDirectory Name="src"/>
   <VirtualDirectory Name="include">
-    <File Name="EvtFramePrincipal.h"/>
-    <File Name="FramePrincipal.h"/>
     <File Name="MyApp.h"/>
-    <File Name="Client.h"/>
-    <File Name="Protocoles.h"/>
-    <File Name="DataAnodisation.h"/>
-    <File Name="EvtFrameApropos.h"/>
-    <File Name="EvtFrameAide.h"/>
-    <File Name="DonneesIHM.h"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="resources">
-    <File Name="FramePrincipal.fbp"/>
   </VirtualDirectory>
   <Dependencies Name="Debug"/>
   <Dependencies Name="Release"/>
@@ -130,4 +110,31 @@
       </Completion>
     </Configuration>
   </Settings>
+  <VirtualDirectory Name="IHM">
+    <VirtualDirectory Name="Principale">
+      <File Name="IHM/EvtFramePrincipal.h"/>
+      <File Name="IHM/FramePrincipal.h"/>
+      <File Name="IHM/EvtFramePrincipal.cpp"/>
+      <File Name="IHM/FramePrincipal.cpp"/>
+      <File Name="MyApp.cpp"/>
+      <File Name="IHM/FramePrincipal.fbp"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="Dialogue">
+      <File Name="IHM/EvtFrameAide.cpp"/>
+      <File Name="IHM/EvtFrameAide.h"/>
+      <File Name="IHM/EvtFrameApropos.cpp"/>
+      <File Name="IHM/EvtFrameApropos.h"/>
+    </VirtualDirectory>
+  </VirtualDirectory>
+  <VirtualDirectory Name="BdD">
+    <File Name="BdD/DataAnodisation.cpp"/>
+    <File Name="BdD/DataAnodisation.h"/>
+    <File Name="BdD/DonneesIHM.cpp"/>
+    <File Name="BdD/DonneesIHM.h"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="Client">
+    <File Name="Client/Client.cpp"/>
+    <File Name="Client/Client.h"/>
+    <File Name="Client/Protocoles.h"/>
+  </VirtualDirectory>
 </CodeLite_Project>

@@ -154,11 +154,7 @@ vector<string> Client::DemandeTacheEnCours()
     if(DemandeDisponibiliteBras() == false)
     {
         wxString requete(wxT(DEMANDE_TACHE_EN_COURS));
-        
         wxString reponse = EcritMessage(requete);
-        
-        cout << reponse.ToStdString() << endl;
-        //wxString reponse = "304-processus-20";
         wxString texte="";
         
         if(reponse.StartsWith(TACHE_EN_COURS, &texte))
@@ -250,6 +246,41 @@ void Client::ExecutionProcessus(wxString num_id)
     {
         wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
         MyEvent.SetString(wxT("Imposible de lancer l'éxecution du processus car le bras n'est pas disponible.\n"));
+        wxPostEvent(m_frame, MyEvent);
+    }
+}
+
+void Client::StopProcessus(wxString num_id)
+{
+    
+}
+
+void Client::TestProcessus(wxString num_id)
+{
+    if(DemandeDisponibiliteBras())
+    {
+        wxString requete;
+        requete << wxT(DEMANDE_TEST_PROCESSUS) << num_id;
+        
+        wxString reponse = EcritMessage(requete);
+        
+        if(reponse == EXECUTION_IMPOSSIBLE)
+        {
+            wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
+            MyEvent.SetString(wxT("Erreur de lancement du test"));
+            wxPostEvent(m_frame, MyEvent);
+        }
+        else
+        {
+            wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
+            MyEvent.SetString(wxT("Lancement du test réussi."));
+            wxPostEvent(m_frame, MyEvent);
+        }
+    }
+    else
+    {
+        wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
+        MyEvent.SetString(wxT("Imposible de lancer le test du processus car le bras n'est pas disponible.\n"));
         wxPostEvent(m_frame, MyEvent);
     }
 }

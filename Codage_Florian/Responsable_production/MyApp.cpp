@@ -78,7 +78,7 @@ bool MyApp::OnInit()
     if(bitmap.LoadFile("../Images/logo_ozanam.png", wxBITMAP_TYPE_PNG))
     {
         wxSplashScreen* splash =
-            new wxSplashScreen(bitmap, wxSPLASH_CENTRE_ON_SCREEN | wxSPLASH_TIMEOUT, 1500, NULL, -1, wxDefaultPosition, wxDefaultSize, wxBORDER_SIMPLE | wxSTAY_ON_TOP);
+            new wxSplashScreen(bitmap, wxSPLASH_CENTRE_ON_SCREEN | wxSPLASH_TIMEOUT, 2000, NULL, -1, wxDefaultPosition, wxDefaultSize, wxBORDER_SIMPLE | wxSTAY_ON_TOP);
     }
     
     // Mise en place de l'icone

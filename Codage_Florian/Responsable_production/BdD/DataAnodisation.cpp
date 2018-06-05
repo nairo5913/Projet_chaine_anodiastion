@@ -34,7 +34,7 @@ DataAnodisation::~DataAnodisation()
 bool DataAnodisation::ExecuteDelete(string requete)  //À coder
 {
     bool retour = true;
-    
+
     if(m_session != NULL)
     {
         Statement* supression;
@@ -43,7 +43,7 @@ bool DataAnodisation::ExecuteDelete(string requete)  //À coder
         {
             supression = new Statement(*m_session);
             *supression << requete;
-            
+
             supression->execute();
         }
         catch(ODBC::StatementException& se)
@@ -57,24 +57,23 @@ bool DataAnodisation::ExecuteDelete(string requete)  //À coder
         m_last_error = "Non connecté à la BdD";
         retour = false;
     }
-    
+
     return retour;
 }
 
-bool DataAnodisation::ExecuteInsert(vector<string> donnees)  //À coder
+bool DataAnodisation::ExecuteInsert(string requete)  //À coder
 {
     bool retour = true;
-    
+
     if(m_session != NULL)
     {
-        Statement *insert;
-        
+        Statement* insert;
+
         try
         {
             insert = new Statement(*m_session);
-            *insert << "INSERT INTO processus (nom_processus, duree_processus) VALUES(:np, :dp)", use(donnees);
+            *insert << requete;
             insert->execute();
-            
         }
         catch(ODBC::StatementException& se)
         {
@@ -82,7 +81,12 @@ bool DataAnodisation::ExecuteInsert(vector<string> donnees)  //À coder
             retour = false;
         }
     }
-    
+    else
+    {
+        m_last_error = "Non connecté à la BdD";
+        retour = false;
+    }
+
     return retour;
 }
 
@@ -108,7 +112,6 @@ bool DataAnodisation::ExecuteSelect(string requete)
                 m_last_result.clear();
 
                 // m_nb_colones = rs->columnCount();
-
                 // std::cout << "Nombre de colonnes : " << m_nb_colones << std::endl;
 
                 while(more)
@@ -137,9 +140,49 @@ bool DataAnodisation::ExecuteSelect(string requete)
     return retour;
 }
 
-bool DataAnodisation::ExecuteUpdate(string requete)  //À coder
+bool DataAnodisation::ExecuteUpdate(string requete)
 {
-    bool retour = false;
+    bool retour = true;
 
+    if(m_session != NULL)
+    {
+        Statement* update;
+
+        try
+        {
+            update = new Statement(*m_session);
+            *update << requete;
+            update->execute();
+        }
+        catch(ODBC::StatementException& se)
+        {
+            m_last_error = se.toString();
+            retour = false;
+        }
+    }
+    else
+    {
+        m_last_error = "Non connecté à la BdD";
+        retour = false;
+    }
+
+    return retour;
+}
+
+string DataAnodisation::DernierIdProcessus()
+{
+    string requete = "SELECT id_processus FROM processus ORDER BY id_processus DESC LIMIT 1 OFFSET 0";
+    string retour = "";
+    
+    if(ExecuteSelect(requete))
+    {
+        cout << "dernier id : " << m_last_result[0] << endl;
+        retour = m_last_result[0];
+    }
+    else
+    {
+        cout << "erreur requete" << endl;
+    }
+    
     return retour;
 }

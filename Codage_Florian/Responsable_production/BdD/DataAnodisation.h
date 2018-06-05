@@ -29,7 +29,7 @@ using std::cerr;
 //#include "Poco/DateTimeFormat.h"
 using namespace Poco::Data::ODBC;
 using namespace Poco::Data;
-using Poco::Data::Keywords::use;
+//using Poco::Data::Keywords::use;
 
 class DataAnodisation
 {
@@ -39,9 +39,10 @@ class DataAnodisation
 
     // Éxecution des différentes requêtes
     bool ExecuteDelete(string requete);
-    bool ExecuteInsert(vector<string> donnees);
+    bool ExecuteInsert(string donnees);
     bool ExecuteSelect(string requete);
     bool ExecuteUpdate(string requete);
+    string DernierIdProcessus();
 
     // Assesseur
     bool IsConnexionOK(){return m_connexionOK;};
