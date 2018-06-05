@@ -119,6 +119,7 @@ class FramePrincipal : public wxFrame
 		wxStaticText* m_staticTextTesterMouvement;
 		wxStdDialogButtonSizer* m_sdbSizerTesterMouvement;
 		wxButton* m_sdbSizerTesterMouvementYes;
+		wxButton* m_sdbSizerTesterMouvementCancel;
 		wxNotebook* m_notebookTrajectoires;
 		wxScrolledWindow* m_scrolledWindowAffichageTrajectoires;
 		wxListBox* m_listBoxAffichageTrajectoires;
@@ -171,7 +172,7 @@ class FramePrincipal : public wxFrame
 		wxStaticText* m_staticText471;
 		wxTextCtrl* m_textCtrlAriveeTrajectoireCreation;
 		wxStaticText* m_staticTextOrganisationMouvements;
-		wxTextCtrl* m_textCtrlOrganisationMouvements;
+		wxTextCtrl* m_textCtrlOrganisationTrajectoires;
 		wxStaticLine* m_staticlineCreerTrajectoires;
 		wxListBox* m_listBoxCreerTrajectoires;
 		wxStdDialogButtonSizer* m_sdbSizerCreerTrajectoires;
@@ -186,6 +187,7 @@ class FramePrincipal : public wxFrame
 		wxStaticText* m_staticTextTesterTrajectoires;
 		wxStdDialogButtonSizer* m_sdbSizerTesterTrajectoires;
 		wxButton* m_sdbSizerTesterTrajectoiresYes;
+		wxButton* m_sdbSizerTesterTrajectoiresCancel;
 		wxPanel* m_panelAffichage;
 		wxTextCtrl* m_textCtrlAffichage;
 		wxButton* m_buttonViderAffichage;
@@ -204,6 +206,7 @@ class FramePrincipal : public wxFrame
 		virtual void OnListBoxDetruireSelectionMouvements( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnYesButtonDetruireMouvementClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnListBoxTesterSelectionMouvements( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnCancelButtonTestMouvementClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnYesButtonTesterMouvementClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnListBoxAffichageSelectionTrajectoires( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnListBoxModifierSelectionTrajectoires( wxCommandEvent& event ) { event.Skip(); }
@@ -214,6 +217,7 @@ class FramePrincipal : public wxFrame
 		virtual void OnListBoxDetruireSelectionTrajectoires( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnYesButtonDetruireTrajectoiresClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnListBoxTesterSelectionTrajectoires( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnCancelButtonTestTrajectoireClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnYesButtonTesterTrajectoiresClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnButtonViderAffichageClick( wxCommandEvent& event ) { event.Skip(); }
 		

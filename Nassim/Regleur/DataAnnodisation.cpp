@@ -57,9 +57,27 @@ return retour;
 
 bool DataAnodisation::ExecuteInsert(string requete)  //À coder
 {
-    bool retour = false;
-
-    return retour;
+    bool retour = true;
+    
+    if(m_session != NULL)
+    {
+        Statement *insert;
+        
+        try
+        {
+           insert = new Statement(*m_session);
+           *insert << requete;
+            insert->execute();
+            
+        }
+        catch(ODBC::StatementException& se)
+        {
+            m_last_error = se.toString();
+            retour = false;
+        }
+    }
+    
+return retour;
 }
 
 bool DataAnodisation::ExecuteSelect(string requete)

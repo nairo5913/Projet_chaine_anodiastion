@@ -3,7 +3,7 @@
   *  Projet:   
   *  Crée le:  //2018
   *  Utilité:  Lancement de l'application
-  *  Auteur:   Florian Provost
+  *  Auteur:   Boubziz Nassim
 *******************************************************************************/
 #ifdef WX_PRECOMP
 #include "wx_pch.h"

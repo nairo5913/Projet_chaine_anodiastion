@@ -3,7 +3,7 @@
   *  Projet:   
   *  Crée le:  //2018
   *  Utilité:  Lancement de l'application
-  *  Auteur:   Florian Provost
+  *  Auteur:   Boubziz Nassim
 *******************************************************************************/
 #ifndef MYAPP_H
 #define MYAPP_H

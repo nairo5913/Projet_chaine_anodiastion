@@ -469,7 +469,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextNomCreerMouvements->Wrap( -1 );
 	bSizerNomCreerMouvements1->Add( m_staticTextNomCreerMouvements, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
-	m_textCtrlNomCreerMouvements = new wxTextCtrl( sbSizerCreer->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 130,-1 ), wxTE_CENTRE|wxTE_READONLY );
+	m_textCtrlNomCreerMouvements = new wxTextCtrl( sbSizerCreer->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 130,-1 ), wxTE_CENTRE );
 	bSizerNomCreerMouvements1->Add( m_textCtrlNomCreerMouvements, 0, wxALIGN_CENTER_VERTICAL, 5 );
 	
 	
@@ -539,7 +539,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextCreerMouvements->Wrap( -1 );
 	sbSizerCoordonneesCreerMouvements->Add( m_staticTextCreerMouvements, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
-	m_textCtrlxCreerMouvements = new wxTextCtrl( sbSizerCoordonneesCreerMouvements->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
+	m_textCtrlxCreerMouvements = new wxTextCtrl( sbSizerCoordonneesCreerMouvements->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
 	#ifdef __WXGTK__
 	if ( !m_textCtrlxCreerMouvements->HasFlag( wxTE_MULTILINE ) )
 	{
@@ -557,7 +557,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextyCreerMouvements->Wrap( -1 );
 	sbSizerCoordonneesCreerMouvements->Add( m_staticTextyCreerMouvements, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
-	m_textCtrlyCreerMouvements = new wxTextCtrl( sbSizerCoordonneesCreerMouvements->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
+	m_textCtrlyCreerMouvements = new wxTextCtrl( sbSizerCoordonneesCreerMouvements->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
 	#ifdef __WXGTK__
 	if ( !m_textCtrlyCreerMouvements->HasFlag( wxTE_MULTILINE ) )
 	{
@@ -575,7 +575,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextzCreerMouvements->Wrap( -1 );
 	sbSizerCoordonneesCreerMouvements->Add( m_staticTextzCreerMouvements, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
-	m_textCtrlzCreerMouvements = new wxTextCtrl( sbSizerCoordonneesCreerMouvements->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_READONLY );
+	m_textCtrlzCreerMouvements = new wxTextCtrl( sbSizerCoordonneesCreerMouvements->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
 	#ifdef __WXGTK__
 	if ( !m_textCtrlzCreerMouvements->HasFlag( wxTE_MULTILINE ) )
 	{
@@ -684,6 +684,8 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_sdbSizerTesterMouvement = new wxStdDialogButtonSizer();
 	m_sdbSizerTesterMouvementYes = new wxButton( sbSizerTester->GetStaticBox(), wxID_YES );
 	m_sdbSizerTesterMouvement->AddButton( m_sdbSizerTesterMouvementYes );
+	m_sdbSizerTesterMouvementCancel = new wxButton( sbSizerTester->GetStaticBox(), wxID_CANCEL );
+	m_sdbSizerTesterMouvement->AddButton( m_sdbSizerTesterMouvementCancel );
 	m_sdbSizerTesterMouvement->Realize();
 	
 	sbSizerTester->Add( m_sdbSizerTesterMouvement, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
@@ -997,7 +999,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_scrolledWindowModifierTrajectoires->SetSizer( bSizerModifierTrajectoires );
 	m_scrolledWindowModifierTrajectoires->Layout();
 	bSizerModifierTrajectoires->Fit( m_scrolledWindowModifierTrajectoires );
-	m_notebookTrajectoires->AddPage( m_scrolledWindowModifierTrajectoires, wxT("Modifier les trajectoires"), true );
+	m_notebookTrajectoires->AddPage( m_scrolledWindowModifierTrajectoires, wxT("Modifier les trajectoires"), false );
 	m_scrolledWindowCreerTrajectoires = new wxScrolledWindow( m_notebookTrajectoires, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxHSCROLL|wxVSCROLL, wxT("i") );
 	m_scrolledWindowCreerTrajectoires->SetScrollRate( 5, 5 );
 	wxBoxSizer* bSizerCreerTrajectoires;
@@ -1022,7 +1024,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextNomCreerTrajectoires->Wrap( -1 );
 	bSizerNomCreerTrajectoires->Add( m_staticTextNomCreerTrajectoires, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
-	m_textCtrlNomCreerTrajectoires = new wxTextCtrl( sbSizerCreerTrajectoires->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 130,-1 ), wxTE_CENTRE|wxTE_READONLY );
+	m_textCtrlNomCreerTrajectoires = new wxTextCtrl( sbSizerCreerTrajectoires->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 130,-1 ), wxTE_CENTRE );
 	bSizerNomCreerTrajectoires->Add( m_textCtrlNomCreerTrajectoires, 0, wxALIGN_CENTER_VERTICAL, 5 );
 	
 	
@@ -1109,8 +1111,8 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextOrganisationMouvements->Wrap( -1 );
 	bSizerOrganisationMouvements->Add( m_staticTextOrganisationMouvements, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
-	m_textCtrlOrganisationMouvements = new wxTextCtrl( sbSizerCreerTrajectoires->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	bSizerOrganisationMouvements->Add( m_textCtrlOrganisationMouvements, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	m_textCtrlOrganisationTrajectoires = new wxTextCtrl( sbSizerCreerTrajectoires->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizerOrganisationMouvements->Add( m_textCtrlOrganisationTrajectoires, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
 	
 	bSizerOrganisationMouvements->Add( 0, 0, 1, wxEXPAND, 5 );
@@ -1156,7 +1158,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_scrolledWindowCreerTrajectoires->SetSizer( bSizerCreerTrajectoires );
 	m_scrolledWindowCreerTrajectoires->Layout();
 	bSizerCreerTrajectoires->Fit( m_scrolledWindowCreerTrajectoires );
-	m_notebookTrajectoires->AddPage( m_scrolledWindowCreerTrajectoires, wxT("Création de trajectoires"), false );
+	m_notebookTrajectoires->AddPage( m_scrolledWindowCreerTrajectoires, wxT("Création de trajectoires"), true );
 	m_scrolledWindowDetruireTrajectoires = new wxScrolledWindow( m_notebookTrajectoires, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxHSCROLL|wxVSCROLL, wxT("i") );
 	m_scrolledWindowDetruireTrajectoires->SetScrollRate( 5, 5 );
 	wxBoxSizer* bSizerDetruireTrajectoires;
@@ -1225,6 +1227,8 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_sdbSizerTesterTrajectoires = new wxStdDialogButtonSizer();
 	m_sdbSizerTesterTrajectoiresYes = new wxButton( sbSizerTesterTrajectoires->GetStaticBox(), wxID_YES );
 	m_sdbSizerTesterTrajectoires->AddButton( m_sdbSizerTesterTrajectoiresYes );
+	m_sdbSizerTesterTrajectoiresCancel = new wxButton( sbSizerTesterTrajectoires->GetStaticBox(), wxID_CANCEL );
+	m_sdbSizerTesterTrajectoires->AddButton( m_sdbSizerTesterTrajectoiresCancel );
 	m_sdbSizerTesterTrajectoires->Realize();
 	
 	sbSizerTesterTrajectoires->Add( m_sdbSizerTesterTrajectoires, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
@@ -1288,6 +1292,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_sdbSizerDetruireMouvementYes->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnYesButtonDetruireMouvementClick ), NULL, this );
 	m_listBoxTesterMouvements->Connect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( FramePrincipal::OnListBoxTesterSelectionMouvements ), NULL, this );
 	m_listBoxTesterMouvements->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( FramePrincipal::OnListBoxTesterSelectionMouvements ), NULL, this );
+	m_sdbSizerTesterMouvementCancel->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnCancelButtonTestMouvementClick ), NULL, this );
 	m_sdbSizerTesterMouvementYes->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnYesButtonTesterMouvementClick ), NULL, this );
 	m_listBoxAffichageTrajectoires->Connect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( FramePrincipal::OnListBoxAffichageSelectionTrajectoires ), NULL, this );
 	m_listBoxAffichageTrajectoires->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( FramePrincipal::OnListBoxAffichageSelectionTrajectoires ), NULL, this );
@@ -1302,6 +1307,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_sdbSizerDetruireTrajectoiresYes->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnYesButtonDetruireTrajectoiresClick ), NULL, this );
 	m_listBoxTesterTrajectoires->Connect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( FramePrincipal::OnListBoxTesterSelectionTrajectoires ), NULL, this );
 	m_listBoxTesterTrajectoires->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( FramePrincipal::OnListBoxTesterSelectionTrajectoires ), NULL, this );
+	m_sdbSizerTesterTrajectoiresCancel->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnCancelButtonTestTrajectoireClick ), NULL, this );
 	m_sdbSizerTesterTrajectoiresYes->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnYesButtonTesterTrajectoiresClick ), NULL, this );
 	m_buttonViderAffichage->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnButtonViderAffichageClick ), NULL, this );
 }
@@ -1327,6 +1333,7 @@ FramePrincipal::~FramePrincipal()
 	m_sdbSizerDetruireMouvementYes->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnYesButtonDetruireMouvementClick ), NULL, this );
 	m_listBoxTesterMouvements->Disconnect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( FramePrincipal::OnListBoxTesterSelectionMouvements ), NULL, this );
 	m_listBoxTesterMouvements->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( FramePrincipal::OnListBoxTesterSelectionMouvements ), NULL, this );
+	m_sdbSizerTesterMouvementCancel->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnCancelButtonTestMouvementClick ), NULL, this );
 	m_sdbSizerTesterMouvementYes->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnYesButtonTesterMouvementClick ), NULL, this );
 	m_listBoxAffichageTrajectoires->Disconnect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( FramePrincipal::OnListBoxAffichageSelectionTrajectoires ), NULL, this );
 	m_listBoxAffichageTrajectoires->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( FramePrincipal::OnListBoxAffichageSelectionTrajectoires ), NULL, this );
@@ -1341,6 +1348,7 @@ FramePrincipal::~FramePrincipal()
 	m_sdbSizerDetruireTrajectoiresYes->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnYesButtonDetruireTrajectoiresClick ), NULL, this );
 	m_listBoxTesterTrajectoires->Disconnect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( FramePrincipal::OnListBoxTesterSelectionTrajectoires ), NULL, this );
 	m_listBoxTesterTrajectoires->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( FramePrincipal::OnListBoxTesterSelectionTrajectoires ), NULL, this );
+	m_sdbSizerTesterTrajectoiresCancel->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnCancelButtonTestTrajectoireClick ), NULL, this );
 	m_sdbSizerTesterTrajectoiresYes->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnYesButtonTesterTrajectoiresClick ), NULL, this );
 	m_buttonViderAffichage->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnButtonViderAffichageClick ), NULL, this );
 	

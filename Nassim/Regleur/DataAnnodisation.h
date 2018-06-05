@@ -1,9 +1,9 @@
 /*******************************************************************************
   *  Fichier:  DataAnnodiastion.h
-  *  Projet:   Chaîne d'anodisation - Gestion du PC responsable de production
+  *  Projet:   Chaîne d'anodisation - Gestion du PC régleur
   *  Crée le:  29/04/2018
   *  Utilité:  Permet l'accès à la BdD Anodisation_test
-  *  Auteur:   Florian Provost
+  *  Auteur:   Nassim Boubziz
 *******************************************************************************/
 #ifndef DATAANODISATION_H
 #define DATAANODISATION_H

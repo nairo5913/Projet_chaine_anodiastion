@@ -328,9 +328,94 @@ void EvtFramePrincipal::OnListBoxModifierSelectionMouvements(wxCommandEvent& eve
     }
 }
 
-void EvtFramePrincipal::OnApplyButtonModifierMouvementClick(wxCommandEvent& event)  // a coder
+void EvtFramePrincipal::OnApplyButtonModifierMouvementClick(wxCommandEvent& event)
 {
-    // TODO: Implement OnApplyButtonModifierMouvementClick
+    bool ereur = false;
+    string donnee_x;
+    string donnee_y;
+    string donnee_z;
+    string nom_mouvement;
+    string duree_total;
+    wxString message;
+    wxString id_selectionwx = m_listBoxModifierMouvements->GetStringSelection();
+
+    if(!m_textCtrlNomModifierMouvements->IsEmpty())
+    {
+        nom_mouvement = ConversionEnString(m_textCtrlNomModifierMouvements->GetValue());
+    }
+    else
+    {
+        ereur = true;
+        message << "le champs \"Nom du Mouvement\" est vide.\n";
+    }
+
+    if(!m_textCtrlxModifierMouvements->IsEmpty())
+    {
+        donnee_x = ConversionEnString(m_textCtrlxModifierMouvements->GetValue());
+    }
+    else
+    {
+        ereur = true;
+        message << "Le champs de la donnée X est vide.\n";
+    }
+
+    if(!m_textCtrlyModifierMouvements->IsEmpty())
+    {
+        donnee_y = ConversionEnString(m_textCtrlyModifierMouvements->GetValue());
+    }
+    else
+    {
+        ereur = true;
+        message << "Le champs de donnee Y est vide .\n";
+    }
+
+    if(!m_textCtrlzModifierMouvements->IsEmpty())
+    {
+        donnee_z = ConversionEnString(m_textCtrlzModifierMouvements->GetValue());
+    }
+    else
+    {
+        ereur = true;
+        message << "Le champs de donnee Z est vide.\n";
+    }
+
+    if(!m_textCtrlDureeHeureModifierMouvements->IsEmpty() && !m_textCtrlDureeMinutesModifierMouvements->IsEmpty() &&
+       !m_textCtrlDureeSecondeModifierMouvements->IsEmpty())
+    {
+        duree_total = ConversionEnString(m_textCtrlDureeHeureModifierMouvements->GetValue()) + ":" +
+                      ConversionEnString(m_textCtrlDureeMinutesModifierMouvements->GetValue()) + ":" +
+                      ConversionEnString(m_textCtrlDureeSecondeModifierMouvements->GetValue());
+    }
+    else
+    {
+        ereur = true;
+        message << "Les champs concernant la durée d'éxcution du mouvements ne sont pas tous remplis.\n";
+    }
+
+    if(!ereur)
+    {
+        string id_selection = ConversionEnString(GardeIdSelection(id_selectionwx));
+        string requete = "UPDATE mouvements SET nom_mouvement ='" + nom_mouvement +
+        "', axe_x =" + donnee_x +
+        ", axe_y = " + donnee_y +
+        ", axe_z=" + donnee_z +
+        ", duree_mouvement='" + duree_total +
+        "' WHERE id_mouvement=" + id_selection;
+        cout << requete << endl;
+
+        if(!m_bdd_anodisation->ExecuteInsert(requete))
+            ;
+        {
+            m_textCtrlAffichage->AppendText(m_bdd_anodisation->GetLastError());
+        }
+    }
+    else
+    {
+        wxLogError(message);
+    }
+
+    VideListBoxMouvements();
+    RempliListBoxMouvements();
 }
 
 void EvtFramePrincipal::OnCancelButtonModifierMouvementClick(wxCommandEvent& event)
@@ -408,17 +493,95 @@ void EvtFramePrincipal::OnCancelButtonModifierMouvementClick(wxCommandEvent& eve
     }
 }
 
-void EvtFramePrincipal::OnSaveButtonCreerMouvementClick(wxCommandEvent& event)  // a coder
+void EvtFramePrincipal::OnSaveButtonCreerMouvementClick(wxCommandEvent& event)
 {
-    // TODO: Implement OnSaveButtonCreerMouvementClick
+    bool erreur = false;
+    string donnee_x;
+    string donnee_y;
+    string donnee_z;
+    string nom_mouvement;
+    string duree_total;
+    wxString message;
+
+    if(!m_textCtrlNomCreerMouvements->IsEmpty())
+    {
+        nom_mouvement = ConversionEnString(m_textCtrlNomCreerMouvements->GetValue());
+    }
+    else
+    {
+        erreur = true;
+        message << "le champs \"Nom du Mouvement\" est vide.\n";
+    }
+
+    if(!m_textCtrlxCreerMouvements->IsEmpty())
+    {
+        donnee_x = ConversionEnString(m_textCtrlxCreerMouvements->GetValue());
+    }
+    else
+    {
+        erreur = true;
+        message << "Le champs de la donnée X est vide.\n";
+    }
+
+    if(!m_textCtrlyCreerMouvements->IsEmpty())
+    {
+        donnee_y = ConversionEnString(m_textCtrlyCreerMouvements->GetValue());
+    }
+    else
+    {
+        erreur = true;
+        message << "Le champs de donnee Y est vide .\n";
+    }
+
+    if(!m_textCtrlzCreerMouvements->IsEmpty())
+    {
+        donnee_z = ConversionEnString(m_textCtrlzCreerMouvements->GetValue());
+    }
+    else
+    {
+        erreur = true;
+        message << "Le champs de donnee Z est vide.\n";
+    }
+
+    if(!m_textCtrlDureeHeureCreerMouvements->IsEmpty() && !m_textCtrlDureeMinutesCreerMouvements->IsEmpty() &&
+       !m_textCtrlDureeSecondeCreerMouvements->IsEmpty())
+    {
+        duree_total = ConversionEnString(m_textCtrlDureeHeureCreerMouvements->GetValue()) + ":" +
+                      ConversionEnString(m_textCtrlDureeMinutesCreerMouvements->GetValue()) + ":" +
+                      ConversionEnString(m_textCtrlDureeSecondeCreerMouvements->GetValue());
+    }
+    else
+    {
+        erreur = true;
+        message << "Les champs concernant la durée d'éxcution du mouvements ne sont pas tous rempli.\n";
+    }
+
+    if(!erreur)
+    {
+        string requete = "INSERT INTO mouvements (nom_mouvement, axe_x, axe_y, axe_z, duree_mouvement) VALUES('" +
+                         nom_mouvement + "','" + donnee_x + "','" + donnee_y + "','" + donnee_z + "','" + duree_total +
+                         "')";
+        if(!m_bdd_anodisation->ExecuteInsert(requete))
+            ;
+        {
+            m_textCtrlAffichage->AppendText(m_bdd_anodisation->GetLastError());
+        }
+    }
+    else
+    {
+        wxLogError(message);
+    }
+
+    VideListBoxMouvements();
+    RempliListBoxMouvements();
 }
 
-void EvtFramePrincipal::OnListBoxDetruireSelectionMouvements(wxCommandEvent& event)  // a coder
+void EvtFramePrincipal::OnListBoxDetruireSelectionMouvements(wxCommandEvent& event)
 {
     // TODO: Implement OnListBoxDetruireSelectionMouvements
 }
 
-void EvtFramePrincipal::OnYesButtonDetruireMouvementClick(wxCommandEvent& event)  // a coder
+void EvtFramePrincipal::OnYesButtonDetruireMouvementClick(wxCommandEvent& event)
 {
     wxString selection = m_listBoxDetruireMouvements->GetStringSelection();
     string id_selection = ConversionEnString(GardeIdSelection(selection));
@@ -433,7 +596,7 @@ void EvtFramePrincipal::OnYesButtonDetruireMouvementClick(wxCommandEvent& event)
         if(m_bdd_anodisation->ExecuteDelete(requete))
         {
             requete = "DELETE FROM mouvements WHERE id_mouvement=" + id_selection;
-            
+
             if(!m_bdd_anodisation->ExecuteDelete(requete))
             {
                 m_textCtrlAffichage->AppendText(m_bdd_anodisation->GetLastError());
@@ -467,12 +630,17 @@ void EvtFramePrincipal::OnYesButtonDetruireMouvementClick(wxCommandEvent& event)
     RempliListBoxMouvements();
 }
 
-void EvtFramePrincipal::OnListBoxTesterSelectionMouvements(wxCommandEvent& event)  // a coder
+void EvtFramePrincipal::OnListBoxTesterSelectionMouvements(wxCommandEvent& event)
 {
     // TODO: Implement OnListBoxTesterSelectionMouvements
 }
 
-void EvtFramePrincipal::OnYesButtonTesterMouvementClick(wxCommandEvent& event)  // a coder
+void EvtFramePrincipal::OnCancelButtonTestMouvementClick(wxCommandEvent& event)
+{
+    // TODO: Implement OnCancelButtonTestMouvementClick
+}
+
+void EvtFramePrincipal::OnYesButtonTesterMouvementClick(wxCommandEvent& event)
 {
     // TODO: Implement OnYesButtonTesterMouvementClick
 }
@@ -633,9 +801,163 @@ void EvtFramePrincipal::OnListBoxModifierSelectionTrajectoires(wxCommandEvent& e
     }
 }
 
-void EvtFramePrincipal::OnApplyButtonModifierTrajectoiresClick(wxCommandEvent& event)  // a coder
+void EvtFramePrincipal::OnApplyButtonModifierTrajectoiresClick(wxCommandEvent& event)
 {
-    // TODO: Implement OnApplyButtonModifierTrajectoiresClick
+   bool erreur = false;
+    char* car = ";";
+    string donnee_depart;
+    string donnee_arrive;
+    vector<string> ordre_separe;
+    string donnee_ordre;
+    string nom_trajectoire;
+    string duree_total;
+    wxUniChar caractere(*car);
+    wxString message;
+    wxString id_selectionwx = m_listBoxModifierTrajectoires->GetStringSelection();
+
+    if(!m_textCtrlNomModifierTrajectoires->IsEmpty())
+    {
+        nom_trajectoire = ConversionEnString(m_textCtrlNomModifierTrajectoires->GetValue());
+    }
+    else
+    {
+        erreur = true;
+        message << "le champs \"Nom de la trajectoire\" est vide.\n";
+    }
+
+    if(!m_textCtrlBainDeDepartModifier->IsEmpty())
+    {
+        donnee_depart = ConversionEnString(m_textCtrlBainDeDepartModifier->GetValue());
+    }
+    else
+    {
+        erreur = true;
+        message << "Le bain de départ n'est pas donné.\n";
+    }
+
+    if(!m_textCtrlBainDarriveeModifier->IsEmpty())
+    {
+        donnee_arrive = ConversionEnString(m_textCtrlBainDarriveeModifier->GetValue());
+    }
+    else
+    {
+        erreur = true;
+        message << "Le bain de d'arrivé n'est pas donné .\n";
+    }
+
+    if(!m_textCtrlOrdreMouvements->IsEmpty())
+    {
+        wxString ordrewx = m_textCtrlOrdreMouvements->GetValue();
+
+        if(ordrewx.EndsWith(";"))
+        {
+            ordrewx.RemoveLast();
+        }
+
+        donnee_ordre = ConversionEnString(ordrewx);
+
+        unsigned int nb_point_virgule = ordrewx.Freq(caractere);
+        unsigned int position;
+        wxString temp;
+
+        for(unsigned int i = 0; i < nb_point_virgule + 1; i++)
+        {
+            if(i == 0)
+            {
+                position = ordrewx.find(";");
+                ordre_separe.push_back(ConversionEnString(DecouperTexteDebut(ordrewx, position)));
+            }
+            else
+            {
+                if(i == nb_point_virgule)
+                {
+                    position = ordrewx.find(";");
+                    ordre_separe.push_back(ConversionEnString(DecouperTexteFin(ordrewx, position + 1)));
+                }
+                else
+                {
+                    position = ordrewx.find(";");
+                    temp.clear();
+                    temp = DecouperTexteFin(ordrewx, position + 1);
+                    position = temp.find(";");
+                    ordre_separe.push_back(ConversionEnString(DecouperTexteDebut(temp, position)));
+                    ordrewx.clear();
+                    ordrewx = (DecouperTexteFin(temp, position));
+                }
+            }
+        }
+
+        for(unsigned int i = 0; i < ordre_separe.size(); i++)
+        {
+            cout << ordre_separe[i] << endl;
+        }
+    }
+    else
+    {
+        erreur = true;
+        message << "L'organisation des mouvements n'est pas donné.\n";
+    }
+
+    if(!m_textCtrlDureeHeureModifierTrajectoires->IsEmpty() && !m_textCtrlDureeMinutesModifierTrajectoires->IsEmpty() &&
+       !m_textCtrlDureeSecondeModifierTrajectoires->IsEmpty())
+    {
+        duree_total = ConversionEnString(m_textCtrlDureeHeureModifierTrajectoires->GetValue()) + ":" +
+                      ConversionEnString(m_textCtrlDureeMinutesModifierTrajectoires->GetValue()) + ":" +
+                      ConversionEnString(m_textCtrlDureeSecondeModifierTrajectoires->GetValue());
+    }
+    else
+    {
+        erreur = true;
+        message << "Les champs concernant la durée d'éxcution de la trajectoire ne sont pas tous remplis.\n";
+    }
+
+    if(!erreur)
+    {
+        string id_selection = ConversionEnString(GardeIdSelection(id_selectionwx));
+        string requete = "UPDATE trajectoires SET nom_trajectoire='" 
+        + nom_trajectoire+ "', duree_trajectoire ='" 
+        + duree_total + "' WHERE id_trajectoire=" 
+        + id_selection;
+        
+        
+        if(!m_bdd_anodisation->ExecuteUpdate(requete))
+        {
+            m_textCtrlAffichage->AppendText(m_bdd_anodisation->GetLastError());
+        }
+        else
+        {
+            requete = "UPDATE intermediaire_mouvements_trajectoires SET id_t = FROM trajectoires ";
+
+            if(m_bdd_anodisation->ExecuteUpdate(requete))
+            {
+                vector<string> resultat = m_bdd_anodisation->GetLastResult();
+                string id_trajectoire = resultat[0];
+
+                for(unsigned int i = 0; i < ordre_separe.size(); i++)
+                {
+                    requete ="UPDATE intermediaire_mouvements_trajectoires SET id_m='"
+                    + ordre_separe[i] + "', point_depart='"
+                    + donnee_depart + "', point_arrive='"
+                    + donnee_arrive +"' WHERE id_t=" 
+                    +id_selection;
+
+                    if(!m_bdd_anodisation->ExecuteInsert(requete))
+                    {
+                        m_textCtrlAffichage->AppendText(m_bdd_anodisation->GetLastError());
+                    }
+                }
+            }
+        }
+    }
+    else
+    {
+        wxLogError(message);
+    }
+
+    VideListBoxTrajectoires();
+    RempliListBoxTrajectoires();
+    
+    
 }
 
 void EvtFramePrincipal::OnCancelButtonModifierTrajectoiresClick(wxCommandEvent& event)
@@ -712,28 +1034,180 @@ void EvtFramePrincipal::OnCancelButtonModifierTrajectoiresClick(wxCommandEvent& 
     }
 }
 
-void EvtFramePrincipal::OnListBoxSelectionMouvementsCreationTrajectoire(wxCommandEvent& event)  // a coder
+void EvtFramePrincipal::OnListBoxSelectionMouvementsCreationTrajectoire(wxCommandEvent& event)
 {
+    // TODO: Implement OnListBoxSelectionMouvementsCreationTrajectoire
 }
 
-void EvtFramePrincipal::OnSaveButtonCreerTrajectoiresClick(wxCommandEvent& event)  // a coder
+void EvtFramePrincipal::OnSaveButtonCreerTrajectoiresClick(wxCommandEvent& event)
 {
-    // TODO: Implement OnSaveButtonCreerTrajectoiresClick
+    bool erreur = false;
+    char* car = ";";
+    string donnee_depart;
+    string donnee_arrive;
+    vector<string> ordre_separe;
+    string donnee_ordre;
+    string nom_trajectoire;
+    string duree_total;
+    wxUniChar caractere(*car);
+    wxString message;
+
+    if(!m_textCtrlNomCreerTrajectoires->IsEmpty())
+    {
+        nom_trajectoire = ConversionEnString(m_textCtrlNomCreerTrajectoires->GetValue());
+    }
+    else
+    {
+        erreur = true;
+        message << "le champs \"Nom de la trajectoire\" est vide.\n";
+    }
+
+    if(!m_textCtrlDepartTrajectoireCreation->IsEmpty())
+    {
+        donnee_depart = ConversionEnString(m_textCtrlDepartTrajectoireCreation->GetValue());
+    }
+    else
+    {
+        erreur = true;
+        message << "Le bain de départ n'est pas donné.\n";
+    }
+
+    if(!m_textCtrlAriveeTrajectoireCreation->IsEmpty())
+    {
+        donnee_arrive = ConversionEnString(m_textCtrlAriveeTrajectoireCreation->GetValue());
+    }
+    else
+    {
+        erreur = true;
+        message << "Le bain de d'arrivé n'est pas donné .\n";
+    }
+
+    if(!m_textCtrlOrganisationTrajectoires->IsEmpty())
+    {
+        wxString ordrewx = m_textCtrlOrganisationTrajectoires->GetValue();
+
+        if(ordrewx.EndsWith(";"))
+        {
+            ordrewx.RemoveLast();
+        }
+
+        donnee_ordre = ConversionEnString(ordrewx);
+
+        unsigned int nb_point_virgule = ordrewx.Freq(caractere);
+        unsigned int position;
+        wxString temp;
+
+        for(unsigned int i = 0; i < nb_point_virgule + 1; i++)
+        {
+            if(i == 0)
+            {
+                position = ordrewx.find(";");
+                ordre_separe.push_back(ConversionEnString(DecouperTexteDebut(ordrewx, position)));
+            }
+            else
+            {
+                if(i == nb_point_virgule)
+                {
+                    position = ordrewx.find(";");
+                    ordre_separe.push_back(ConversionEnString(DecouperTexteFin(ordrewx, position + 1)));
+                }
+                else
+                {
+                    position = ordrewx.find(";");
+                    temp.clear();
+                    temp = DecouperTexteFin(ordrewx, position + 1);
+                    position = temp.find(";");
+                    ordre_separe.push_back(ConversionEnString(DecouperTexteDebut(temp, position)));
+                    ordrewx.clear();
+                    ordrewx = (DecouperTexteFin(temp, position));
+                }
+            }
+        }
+
+        for(unsigned int i = 0; i < ordre_separe.size(); i++)
+        {
+            cout << ordre_separe[i] << endl;
+        }
+    }
+    else
+    {
+        erreur = true;
+        message << "L'organisation des mouvements n'est pas donné.\n";
+    }
+
+    if(!m_textCtrlDureeHeureCreerTrajectoires->IsEmpty() && !m_textCtrlDureeMinutesCreerTrajectoires->IsEmpty() &&
+       !m_textCtrlDureeSecondeCreerTrajectoires->IsEmpty())
+    {
+        duree_total = ConversionEnString(m_textCtrlDureeHeureCreerTrajectoires->GetValue()) + ":" +
+                      ConversionEnString(m_textCtrlDureeMinutesCreerTrajectoires->GetValue()) + ":" +
+                      ConversionEnString(m_textCtrlDureeSecondeCreerTrajectoires->GetValue());
+    }
+    else
+    {
+        erreur = true;
+        message << "Les champs concernant la durée d'éxcution dde la trajectoire ne sont pas tous remplis.\n";
+    }
+
+    if(!erreur)
+    {
+        string requete = "INSERT INTO trajectoires (nom_trajectoire, duree_trajectoire) VALUES('" + nom_trajectoire +
+                         "','" + duree_total + "')";
+        if(!m_bdd_anodisation->ExecuteInsert(requete))
+        {
+            m_textCtrlAffichage->AppendText(m_bdd_anodisation->GetLastError());
+        }
+        else
+        {
+            requete = "SELECT id_trajectoire FROM trajectoires ORDER BY id_trajectoire DESC LIMIT 1 OFFSET 0";
+
+            if(m_bdd_anodisation->ExecuteSelect(requete))
+            {
+                vector<string> resultat = m_bdd_anodisation->GetLastResult();
+                string id_trajectoire = resultat[0];
+
+                for(unsigned int i = 0; i < ordre_separe.size(); i++)
+                {
+                    requete =
+                        "INSERT INTO intermediaire_mouvements_trajectoires (id_t, id_m, point_depart,point_arrive, "
+                        "ordre_mouvements) VALUES (" 
+                        +resultat[0] + "," 
+                        + ordre_separe[i] + ",'" 
+                        + donnee_depart + "','" 
+                        + donnee_arrive + "','" +
+                        donnee_ordre + "')";
+                    cout << requete << endl;
+
+                    if(!m_bdd_anodisation->ExecuteInsert(requete))
+                    {
+                        m_textCtrlAffichage->AppendText(m_bdd_anodisation->GetLastError());
+                    }
+                }
+            }
+        }
+    }
+    else
+    {
+        wxLogError(message);
+    }
+
+    VideListBoxTrajectoires();
+    RempliListBoxTrajectoires();
 }
 
-void EvtFramePrincipal::OnListBoxDetruireSelectionTrajectoires(wxCommandEvent& event)  // a coder
+void EvtFramePrincipal::OnListBoxDetruireSelectionTrajectoires(wxCommandEvent& event)
 {
     // TODO: Implement OnListBoxDetruireSelectionTrajectoires
 }
 
-void EvtFramePrincipal::OnYesButtonDetruireTrajectoiresClick(wxCommandEvent& event)  // a coder
+void EvtFramePrincipal::OnYesButtonDetruireTrajectoiresClick(wxCommandEvent& event)
 {
-    wxString selection = m_listBoxDetruireMouvements->GetStringSelection();
+    wxString selection = m_listBoxDetruireTrajectoires->GetStringSelection();
     string id_selection = ConversionEnString(GardeIdSelection(selection));
-    string requete = "SELECT id_p FROM intermediaire_processus_trajectoires WHERE id_t=" + id_selection; 
+    string requete = "SELECT id_p FROM intermediaire_processus_trajectoires WHERE id_t=" + id_selection;
     bool signal = false;
-    
-    //suppresion hyerarchique des id ( on select pour pouvoir supprimé les id des tables intermidiaire sans risque de segfault
+
+    // suppresion hyerarchique des id ( on select pour pouvoir supprimé les id des tables intermidiaire sans risque de
+    // segfault
     if(m_bdd_anodisation->ExecuteSelect(requete))
     {
         vector<string> resultat = m_bdd_anodisation->GetLastResult();
@@ -742,19 +1216,18 @@ void EvtFramePrincipal::OnYesButtonDetruireTrajectoiresClick(wxCommandEvent& eve
         if(m_bdd_anodisation->ExecuteDelete(requete))
         {
             requete = "DELETE FROM intermediaire_mouvements_trajectoires WHERE id_t=" + id_selection;
-            
+
             if(!m_bdd_anodisation->ExecuteDelete(requete))
             {
                 m_textCtrlAffichage->AppendText(m_bdd_anodisation->GetLastError());
             }
-            
-            requete = "DELETE FROM trajectoires WHERE id_trajectoire=" +id_selection;
-            
+
+            requete = "DELETE FROM trajectoires WHERE id_trajectoire=" + id_selection;
+
             if(!m_bdd_anodisation->ExecuteDelete(requete))
             {
                 m_textCtrlAffichage->AppendText(m_bdd_anodisation->GetLastError());
             }
-        
 
             for(unsigned int i; i < resultat.size(); i++)
             {
@@ -784,12 +1257,17 @@ void EvtFramePrincipal::OnYesButtonDetruireTrajectoiresClick(wxCommandEvent& eve
     RempliListBoxTrajectoires();
 }
 
-void EvtFramePrincipal::OnListBoxTesterSelectionTrajectoires(wxCommandEvent& event)  // a coder
+void EvtFramePrincipal::OnListBoxTesterSelectionTrajectoires(wxCommandEvent& event)
 {
     // TODO: Implement OnListBoxTesterSelectionTrajectoires
 }
 
-void EvtFramePrincipal::OnYesButtonTesterTrajectoiresClick(wxCommandEvent& event)  // a coder
+void EvtFramePrincipal::OnCancelButtonTestTrajectoireClick(wxCommandEvent& event)
+{
+    // TODO: Implement OnCancelButtonTestTrajectoireClick
+}
+
+void EvtFramePrincipal::OnYesButtonTesterTrajectoiresClick(wxCommandEvent& event)
 {
     // TODO: Implement OnYesButtonTesterTrajectoiresClick
 }

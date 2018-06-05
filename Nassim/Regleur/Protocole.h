@@ -16,10 +16,16 @@
 // Partie 200, Exécution
 ////////////////////////////////////////////////////////////////////////////////
 //
-#define DEMANDE_EXECUTION_PROCESSUS "200-"
+#define DEMANDE_TEST_PROCESSUS "200-"
 #define DEMANDE_TEST_TRAJECTOIRE "201-"
 #define DEMANDE_TEST_MOUVEMENT "202-"
-#define EXECUTION_IMPOSSIBLE "203-"
+#define DEMANDE_EXECUTION_PROCESSUS "203-"
+#define EXECUTION_IMPOSSIBLE "204-"
+
+//interuption
+#define STOP_TEST_PROCESSUS "210-"
+#define STOP_TEST_TRAJECTOIRE "211-"
+#define STOP_TEST_MOUVEMENT "212-"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Partie 300, Informations
