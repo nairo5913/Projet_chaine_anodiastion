@@ -120,6 +120,7 @@ class FramePrincipal : public wxFrame
 		wxStdDialogButtonSizer* m_sdbSizerTesterMouvement;
 		wxButton* m_sdbSizerTesterMouvementYes;
 		wxButton* m_sdbSizerTesterMouvementCancel;
+		wxButton* m_sdbSizerTesterMouvementHelp;
 		wxNotebook* m_notebookTrajectoires;
 		wxScrolledWindow* m_scrolledWindowAffichageTrajectoires;
 		wxListBox* m_listBoxAffichageTrajectoires;
@@ -188,6 +189,7 @@ class FramePrincipal : public wxFrame
 		wxStdDialogButtonSizer* m_sdbSizerTesterTrajectoires;
 		wxButton* m_sdbSizerTesterTrajectoiresYes;
 		wxButton* m_sdbSizerTesterTrajectoiresCancel;
+		wxButton* m_sdbSizerTesterTrajectoiresHelp;
 		wxPanel* m_panelAffichage;
 		wxTextCtrl* m_textCtrlAffichage;
 		wxButton* m_buttonViderAffichage;
@@ -207,6 +209,7 @@ class FramePrincipal : public wxFrame
 		virtual void OnYesButtonDetruireMouvementClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnListBoxTesterSelectionMouvements( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnCancelButtonTestMouvementClick( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnInfoBrasTestMouvementClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnYesButtonTesterMouvementClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnListBoxAffichageSelectionTrajectoires( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnListBoxModifierSelectionTrajectoires( wxCommandEvent& event ) { event.Skip(); }
@@ -218,6 +221,7 @@ class FramePrincipal : public wxFrame
 		virtual void OnYesButtonDetruireTrajectoiresClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnListBoxTesterSelectionTrajectoires( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnCancelButtonTestTrajectoireClick( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnInfoBrasTestTrajectoireClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnYesButtonTesterTrajectoiresClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnButtonViderAffichageClick( wxCommandEvent& event ) { event.Skip(); }
 		

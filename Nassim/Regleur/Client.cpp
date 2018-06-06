@@ -122,7 +122,7 @@ bool Client::DemandeDisponibiliteBras()
     if(reponse == BRAS_DISPONIBLE)
     {
         wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT + 1);
-        MyEvent.SetString(wxT("Le bras est disponible"));
+        MyEvent.SetString(wxT("Le bras est disponible\n"));
         wxPostEvent(m_frame, MyEvent);
 
         retour = true;
@@ -130,13 +130,13 @@ bool Client::DemandeDisponibiliteBras()
     else if(reponse == BRAS_INDISPONIBLE)
     {
         wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT + 1);
-        MyEvent.SetString(wxT("Le bras n'est pas disponible"));
+        MyEvent.SetString(wxT("Le bras n'est pas disponible\n"));
         wxPostEvent(m_frame, MyEvent);
     }
     else
     {
         wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT + 1);
-        MyEvent.SetString(wxT("Une erreur est survenue"));
+        MyEvent.SetString(wxT("Une erreur est survenue\n"));
         wxPostEvent(m_frame, MyEvent);
     }
 
@@ -220,34 +220,43 @@ string Client::EcritMessage(wxString message)
     return reponse;
 }
 
-void Client::TestMouvement(int num_id) // À coder
+void Client::TestMouvement(wxString num_id)
 {
     if(DemandeDisponibiliteBras())
     {
         wxString requete;
         requete<<DEMANDE_TEST_MOUVEMENT<<num_id;
         string reponse = EcritMessage(requete);
+        wxString message =wxT("Le mouvement est en train d'être tester\n");
+        wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT + 1);
+        MyEvent.SetString(message);
+        wxPostEvent(m_frame, MyEvent);
+        
     }
     else
     {
-        wxString message = wxT("Impossible d'éxecuter le test.");
+        wxString message = wxT("Impossible d'éxecuter le test.\n");
         wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT + 1);
         MyEvent.SetString(message);
         wxPostEvent(m_frame, MyEvent);
     }
 }
 
-void Client::TestTrajectoire(int num_id) // À coder
+void Client::TestTrajectoire(wxString num_id)
 {
    if(DemandeDisponibiliteBras())
     {
         wxString requete;
         requete<<DEMANDE_TEST_TRAJECTOIRE<<num_id;
         string reponse = EcritMessage(requete);
+        wxString message =wxT("La trajectoire est en train d'être tester\n");
+        wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT + 1);
+        MyEvent.SetString(message);
+        wxPostEvent(m_frame, MyEvent);
     }
     else
     {
-        wxString message = wxT("Impossible d'éxécuter le test.");
+        wxString message = wxT("Impossible d'éxécuter le test.\n");
         wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT + 1);
         MyEvent.SetString(message);
         wxPostEvent(m_frame, MyEvent);

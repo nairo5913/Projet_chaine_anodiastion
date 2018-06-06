@@ -49,6 +49,7 @@ class EvtFramePrincipal : public FramePrincipal
 		void OnYesButtonDetruireMouvementClick( wxCommandEvent& event );
 		void OnListBoxTesterSelectionMouvements( wxCommandEvent& event );
 		void OnCancelButtonTestMouvementClick( wxCommandEvent& event );
+		void OnInfoBrasTestMouvementClick( wxCommandEvent& event );
 		void OnYesButtonTesterMouvementClick( wxCommandEvent& event );
 		void OnListBoxAffichageSelectionTrajectoires( wxCommandEvent& event );
 		void OnListBoxModifierSelectionTrajectoires( wxCommandEvent& event );
@@ -60,6 +61,7 @@ class EvtFramePrincipal : public FramePrincipal
 		void OnYesButtonDetruireTrajectoiresClick( wxCommandEvent& event );
 		void OnListBoxTesterSelectionTrajectoires( wxCommandEvent& event );
 		void OnCancelButtonTestTrajectoireClick( wxCommandEvent& event );
+		void OnInfoBrasTestTrajectoireClick( wxCommandEvent& event );
 		void OnYesButtonTesterTrajectoiresClick( wxCommandEvent& event );
 		void OnButtonViderAffichageClick( wxCommandEvent& event );
 	public:
@@ -91,6 +93,7 @@ class EvtFramePrincipal : public FramePrincipal
         wxString ConversionEnWxString(string texte);
         wxString DecouperTexteDebut(wxString texte, int position);
         wxString DecouperTexteFin(wxString texte, int position);
+
 
 
 

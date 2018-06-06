@@ -93,7 +93,7 @@
                 <property name="name">bSizerPrincipal</property>
                 <property name="orient">wxVERTICAL</property>
                 <property name="permission">none</property>
-                <object class="sizeritem" expanded="0">
+                <object class="sizeritem" expanded="1">
                     <property name="border">5</property>
                     <property name="flag">wxEXPAND|wxALL|wxALIGN_CENTER_HORIZONTAL</property>
                     <property name="proportion">0</property>
@@ -6496,7 +6496,7 @@
                                                     <property name="Apply">0</property>
                                                     <property name="Cancel">1</property>
                                                     <property name="ContextHelp">0</property>
-                                                    <property name="Help">0</property>
+                                                    <property name="Help">1</property>
                                                     <property name="No">0</property>
                                                     <property name="OK">0</property>
                                                     <property name="Save">0</property>
@@ -6507,7 +6507,7 @@
                                                     <event name="OnApplyButtonClick"></event>
                                                     <event name="OnCancelButtonClick">OnCancelButtonTestMouvementClick</event>
                                                     <event name="OnContextHelpButtonClick"></event>
-                                                    <event name="OnHelpButtonClick"></event>
+                                                    <event name="OnHelpButtonClick">OnInfoBrasTestMouvementClick</event>
                                                     <event name="OnNoButtonClick"></event>
                                                     <event name="OnOKButtonClick"></event>
                                                     <event name="OnSaveButtonClick"></event>
@@ -6552,7 +6552,7 @@
                         <property name="floatable">1</property>
                         <property name="font"></property>
                         <property name="gripper">0</property>
-                        <property name="hidden">0</property>
+                        <property name="hidden">1</property>
                         <property name="id">wxID_ANY</property>
                         <property name="max_size"></property>
                         <property name="maximize_button">0</property>
@@ -8155,7 +8155,7 @@
                         <object class="notebookpage" expanded="0">
                             <property name="bitmap"></property>
                             <property name="label">Modifier les trajectoires</property>
-                            <property name="select">1</property>
+                            <property name="select">0</property>
                             <object class="wxScrolledWindow" expanded="0">
                                 <property name="BottomDockable">1</property>
                                 <property name="LeftDockable">1</property>
@@ -11928,7 +11928,7 @@
                         <object class="notebookpage" expanded="0">
                             <property name="bitmap"></property>
                             <property name="label">TEST</property>
-                            <property name="select">0</property>
+                            <property name="select">1</property>
                             <object class="wxScrolledWindow" expanded="0">
                                 <property name="BottomDockable">1</property>
                                 <property name="LeftDockable">1</property>
@@ -12227,7 +12227,7 @@
                                                     <property name="Apply">0</property>
                                                     <property name="Cancel">1</property>
                                                     <property name="ContextHelp">0</property>
-                                                    <property name="Help">0</property>
+                                                    <property name="Help">1</property>
                                                     <property name="No">0</property>
                                                     <property name="OK">0</property>
                                                     <property name="Save">0</property>
@@ -12238,7 +12238,7 @@
                                                     <event name="OnApplyButtonClick"></event>
                                                     <event name="OnCancelButtonClick">OnCancelButtonTestTrajectoireClick</event>
                                                     <event name="OnContextHelpButtonClick"></event>
-                                                    <event name="OnHelpButtonClick"></event>
+                                                    <event name="OnHelpButtonClick">OnInfoBrasTestTrajectoireClick</event>
                                                     <event name="OnNoButtonClick"></event>
                                                     <event name="OnOKButtonClick"></event>
                                                     <event name="OnSaveButtonClick"></event>

@@ -1,6 +1,8 @@
 #include "EvtFramePrincipal.h"
 
-EvtFramePrincipal::EvtFramePrincipal(wxWindow* parent) : FramePrincipal(parent)
+EvtFramePrincipal::EvtFramePrincipal(wxWindow* parent)
+    :
+    FramePrincipal(parent)
 {
     m_client_connecte = false;
     m_bdd_connecte = false;
@@ -42,12 +44,12 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
 
             m_identifie = true;
 
-            // Désactivation des textCtrl de connexion
+// Désactivation des textCtrl de connexion
             m_textCtrlLogin->Disable();
             m_textCtrlPass->Disable();
-            // Affichage des onglets de gestion des processus
-            // PREVOIR AFFICHAGE DES DEUX BOUTTON POUR LE NOTEBOOK
-            // Changement du label du toggle button
+// Affichage des onglets de gestion des processus
+// PREVOIR AFFICHAGE DES DEUX BOUTTON POUR LE NOTEBOOK
+// Changement du label du toggle button
             m_toggleBtnConnexion->SetLabel(wxT("Déconnexion"));
             m_panelChoix->Show();
             Layout();
@@ -55,7 +57,7 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
             wxString message;
             bool erreur = false;
 
-            // Tester connexion à la BdD
+// Tester connexion à la BdD
             if(m_bdd_anodisation->IsConnexionOK())
             {
                 m_bdd_connecte = true;
@@ -70,10 +72,10 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
                 erreur = true;
             }
 
-            m_client = new Client("192.168.1.16", 30000, this);
-            // m_client_connecte = m_client->IsOK();
+            m_client = new Client("localhost", 30000, this);
+// m_client_connecte = m_client->IsOK();
 
-            // Tester la connection du client de communication
+// Tester la connection du client de communication
             if(m_client->IsOK())
             {
                 m_client_connecte = true;
@@ -86,7 +88,7 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
                 erreur = true;
             }
 
-            // Mise à jour de la barre de statu en fonction de la connexion
+// Mise à jour de la barre de statu en fonction de la connexion
             if(m_bdd_connecte && !m_client_connecte)
             {
                 AfficheStatus(wxT("Connecté à la bdd"), 1);
@@ -105,7 +107,7 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
                 AfficheStatus(wxT("Non connecté"), 1);
             }
 
-            // Si il y a une erreur de connection l'afficher
+// Si il y a une erreur de connection l'afficher
             if(erreur)
             {
                 m_textCtrlAffichage->AppendText(message);
@@ -115,7 +117,7 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
             VideListBoxTrajectoires();
             RempliListBoxMouvements();
             RempliListBoxTrajectoires();
-            // RempliListBoxMouvementsModifierTrajectoires();
+// RempliListBoxMouvementsModifierTrajectoires();
         }
         else
         {
@@ -128,36 +130,36 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
     }
     else
     {
-        // Vérifier conection client (m_connecte)
+// Vérifier conection client (m_connecte)
         if(m_client_connecte)
         {
             DeconnexionClient(wxT("Déconnexion du régleur"));
         }
-        // Gérer déconnection du client
-        // verifier que l'on a pas lancé de fabrication
+// Gérer déconnection du client
+// verifier que l'on a pas lancé de fabrication
 
         m_identifie = false;
 
-        // Activation des textCtrl de connexion
+// Activation des textCtrl de connexion
         m_textCtrlLogin->Enable();
         m_textCtrlPass->Enable();
 
-        // Vider les listBox pour éviter les problème si on se reconnecte sans fermer l'application
+// Vider les listBox pour éviter les problème si on se reconnecte sans fermer l'application
         void VideListBoxMouvements();
         void VideListBoxTrajectoires();
 
-        // Masquage des onglets de gestion des processus
+// Masquage des onglets de gestion des processus
         m_notebookMouvements->Hide();
         m_notebookTrajectoires->Hide();
 
-        // Changement du label du toggle button
+// Changement du label du toggle button
         m_toggleBtnConnexion->SetValue(false);
         m_toggleBtnConnexion->SetLabel(wxT("Connexion"));
 
-        // Mise à jour de la statue bar
+// Mise à jour de la statue bar
         AfficheStatus(wxT("Déconnecté"), 1);
 
-        // Vidange de l'affichage
+// Vidange de l'affichage
         m_textCtrlAffichage->Clear();
 
         Layout();
@@ -182,7 +184,7 @@ void EvtFramePrincipal::OnListBoxAffichageSelectionMouvements(wxCommandEvent& ev
 {
     wxString selection = m_listBoxAffichageMouvements->GetStringSelection();
 
-    // Récupération de l'id du mouvement
+// Récupération de l'id du mouvement
     wxString id_selection = GardeIdSelection(selection);
 
     m_textCtrlAffichage->AppendText(selection + wxT("\nid selection :") + id_selection + wxT("\n"));
@@ -257,7 +259,7 @@ void EvtFramePrincipal::OnListBoxModifierSelectionMouvements(wxCommandEvent& eve
 {
     wxString selection = m_listBoxModifierMouvements->GetStringSelection();
 
-    // Récupération de l'id du mouvement
+// Récupération de l'id du mouvement
     wxString id_selection = GardeIdSelection(selection);
 
     m_textCtrlAffichage->AppendText(selection + wxT("\nid selection :") + id_selection + wxT("\n"));
@@ -380,7 +382,7 @@ void EvtFramePrincipal::OnApplyButtonModifierMouvementClick(wxCommandEvent& even
     }
 
     if(!m_textCtrlDureeHeureModifierMouvements->IsEmpty() && !m_textCtrlDureeMinutesModifierMouvements->IsEmpty() &&
-       !m_textCtrlDureeSecondeModifierMouvements->IsEmpty())
+            !m_textCtrlDureeSecondeModifierMouvements->IsEmpty())
     {
         duree_total = ConversionEnString(m_textCtrlDureeHeureModifierMouvements->GetValue()) + ":" +
                       ConversionEnString(m_textCtrlDureeMinutesModifierMouvements->GetValue()) + ":" +
@@ -396,11 +398,11 @@ void EvtFramePrincipal::OnApplyButtonModifierMouvementClick(wxCommandEvent& even
     {
         string id_selection = ConversionEnString(GardeIdSelection(id_selectionwx));
         string requete = "UPDATE mouvements SET nom_mouvement ='" + nom_mouvement +
-        "', axe_x =" + donnee_x +
-        ", axe_y = " + donnee_y +
-        ", axe_z=" + donnee_z +
-        ", duree_mouvement='" + duree_total +
-        "' WHERE id_mouvement=" + id_selection;
+                         "', axe_x =" + donnee_x +
+                         ", axe_y = " + donnee_y +
+                         ", axe_z=" + donnee_z +
+                         ", duree_mouvement='" + duree_total +
+                         "' WHERE id_mouvement=" + id_selection;
         cout << requete << endl;
 
         if(!m_bdd_anodisation->ExecuteInsert(requete))
@@ -422,7 +424,7 @@ void EvtFramePrincipal::OnCancelButtonModifierMouvementClick(wxCommandEvent& eve
 {
     wxString selection = m_listBoxModifierMouvements->GetStringSelection();
 
-    // Récupération de l'id du mouvement
+// Récupération de l'id du mouvement
     wxString id_selection = GardeIdSelection(selection);
 
     m_textCtrlAffichage->AppendText(selection + wxT("\nid selection :") + id_selection + wxT("\n"));
@@ -544,7 +546,7 @@ void EvtFramePrincipal::OnSaveButtonCreerMouvementClick(wxCommandEvent& event)
     }
 
     if(!m_textCtrlDureeHeureCreerMouvements->IsEmpty() && !m_textCtrlDureeMinutesCreerMouvements->IsEmpty() &&
-       !m_textCtrlDureeSecondeCreerMouvements->IsEmpty())
+            !m_textCtrlDureeSecondeCreerMouvements->IsEmpty())
     {
         duree_total = ConversionEnString(m_textCtrlDureeHeureCreerMouvements->GetValue()) + ":" +
                       ConversionEnString(m_textCtrlDureeMinutesCreerMouvements->GetValue()) + ":" +
@@ -640,22 +642,52 @@ void EvtFramePrincipal::OnCancelButtonTestMouvementClick(wxCommandEvent& event)
     // TODO: Implement OnCancelButtonTestMouvementClick
 }
 
+void EvtFramePrincipal::OnInfoBrasTestMouvementClick(wxCommandEvent& event)
+{
+    
+    if(m_client_connecte)
+    {
+        bool reponse;
+        reponse = m_client->DemandeDisponibiliteBras();
+
+        if(reponse)
+        {
+            
+        }
+       
+    }
+    else
+    {
+        m_textCtrlAffichage->AppendText(wxT("Le serveur n'est pas connecté\n"));
+    }
+}
+
 void EvtFramePrincipal::OnYesButtonTesterMouvementClick(wxCommandEvent& event)
 {
-    // TODO: Implement OnYesButtonTesterMouvementClick
+    wxString selection = m_listBoxTesterMouvements->GetStringSelection();
+    wxString id_selection = GardeIdSelection(selection);
+    if(m_client_connecte)
+    {
+        
+        m_client->TestMouvement(id_selection);
+    }
+    else
+    {
+        m_textCtrlAffichage->AppendText(wxT("Le serveur n'est pas connecté\n"));
+    }
 }
 
 void EvtFramePrincipal::OnListBoxAffichageSelectionTrajectoires(wxCommandEvent& event)
 {
     wxString selection = m_listBoxAffichageTrajectoires->GetStringSelection();
 
-    // Récupération de l'id du processus
+// Récupération de l'id du processus
     wxString id_selection = GardeIdSelection(selection);
 
-    // m_textCtrlAffichage->AppendText(selection + wxT("\nid selection :") + id_selection + wxT("\n"));
+// m_textCtrlAffichage->AppendText(selection + wxT("\nid selection :") + id_selection + wxT("\n"));
 
-    // Vider les text control
-    // du coté droit
+// Vider les text control
+// du coté droit
 
     m_textCtrlDureeHeureAfficherTrajectoires->Clear();
     m_textCtrlDureeMinutesAfficherTrajectoires->Clear();
@@ -665,7 +697,7 @@ void EvtFramePrincipal::OnListBoxAffichageSelectionTrajectoires(wxCommandEvent& 
     m_textCtrlBaindedepartAfficher->Clear();
     m_textCtrlBainDarriveeAfficher->Clear();
 
-    // Remplisage
+// Remplisage
 
     if(m_bdd_anodisation->RecupereNomTrajectoire(ConversionEnString(id_selection)))
     {
@@ -689,7 +721,7 @@ void EvtFramePrincipal::OnListBoxAffichageSelectionTrajectoires(wxCommandEvent& 
         wxString seconde = DecouperTexteFin(duree, 6);
         m_textCtrlDureeSecondesAfficherTrajectoires->AppendText(seconde);
 
-        // m_textCtrlAffichage->AppendText(duree + wxT("\n"));
+// m_textCtrlAffichage->AppendText(duree + wxT("\n"));
     }
 
     if(m_bdd_anodisation->RecupereDepartTrajectoire(ConversionEnString(id_selection)))
@@ -719,13 +751,13 @@ void EvtFramePrincipal::OnListBoxModifierSelectionTrajectoires(wxCommandEvent& e
 {
     wxString selection = m_listBoxModifierTrajectoires->GetStringSelection();
 
-    // Récupération de l'id du processus
+// Récupération de l'id du processus
     wxString id_selection = GardeIdSelection(selection);
 
-    // m_textCtrlAffichage->AppendText(selection + wxT("\nid selection :") + id_selection + wxT("\n"));
+// m_textCtrlAffichage->AppendText(selection + wxT("\nid selection :") + id_selection + wxT("\n"));
 
-    // Vider les text control
-    // du coté droit
+// Vider les text control
+// du coté droit
 
     m_textCtrlDureeHeureModifierTrajectoires->Clear();
     m_textCtrlDureeMinutesModifierTrajectoires->Clear();
@@ -736,7 +768,7 @@ void EvtFramePrincipal::OnListBoxModifierSelectionTrajectoires(wxCommandEvent& e
     m_textCtrlBainDeDepartModifier->Clear();
     m_textCtrlBainDarriveeModifier->Clear();
 
-    // Remplisage
+// Remplisage
 
     if(m_bdd_anodisation->RecupereNomTrajectoire(ConversionEnString(id_selection)))
     {
@@ -803,7 +835,7 @@ void EvtFramePrincipal::OnListBoxModifierSelectionTrajectoires(wxCommandEvent& e
 
 void EvtFramePrincipal::OnApplyButtonModifierTrajectoiresClick(wxCommandEvent& event)
 {
-   bool erreur = false;
+    bool erreur = false;
     char* car = ";";
     string donnee_depart;
     string donnee_arrive;
@@ -899,7 +931,7 @@ void EvtFramePrincipal::OnApplyButtonModifierTrajectoiresClick(wxCommandEvent& e
     }
 
     if(!m_textCtrlDureeHeureModifierTrajectoires->IsEmpty() && !m_textCtrlDureeMinutesModifierTrajectoires->IsEmpty() &&
-       !m_textCtrlDureeSecondeModifierTrajectoires->IsEmpty())
+            !m_textCtrlDureeSecondeModifierTrajectoires->IsEmpty())
     {
         duree_total = ConversionEnString(m_textCtrlDureeHeureModifierTrajectoires->GetValue()) + ":" +
                       ConversionEnString(m_textCtrlDureeMinutesModifierTrajectoires->GetValue()) + ":" +
@@ -914,39 +946,35 @@ void EvtFramePrincipal::OnApplyButtonModifierTrajectoiresClick(wxCommandEvent& e
     if(!erreur)
     {
         string id_selection = ConversionEnString(GardeIdSelection(id_selectionwx));
-        string requete = "UPDATE trajectoires SET nom_trajectoire='" 
-        + nom_trajectoire+ "', duree_trajectoire ='" 
-        + duree_total + "' WHERE id_trajectoire=" 
-        + id_selection;
-        
-        
+        string requete = "UPDATE trajectoires SET nom_trajectoire='"
+                         + nom_trajectoire+ "', duree_trajectoire ='"
+                         + duree_total + "' WHERE id_trajectoire="
+                         + id_selection;
+
+
         if(!m_bdd_anodisation->ExecuteUpdate(requete))
         {
             m_textCtrlAffichage->AppendText(m_bdd_anodisation->GetLastError());
         }
         else
         {
-            requete = "UPDATE intermediaire_mouvements_trajectoires SET id_t = FROM trajectoires ";
+            vector<string> resultat = m_bdd_anodisation->GetLastResult();
+            string id_trajectoire = resultat[0];
 
-            if(m_bdd_anodisation->ExecuteUpdate(requete))
+            for(unsigned int i = 0; i < ordre_separe.size(); i++)
             {
-                vector<string> resultat = m_bdd_anodisation->GetLastResult();
-                string id_trajectoire = resultat[0];
+                requete ="UPDATE intermediaire_mouvements_trajectoires SET id_m='"
+                         + ordre_separe[i] + "', point_depart='"
+                         + donnee_depart + "', point_arrive='"
+                         + donnee_arrive +"' WHERE id_t="
+                         +id_selection;
 
-                for(unsigned int i = 0; i < ordre_separe.size(); i++)
+                if(!m_bdd_anodisation->ExecuteInsert(requete))
                 {
-                    requete ="UPDATE intermediaire_mouvements_trajectoires SET id_m='"
-                    + ordre_separe[i] + "', point_depart='"
-                    + donnee_depart + "', point_arrive='"
-                    + donnee_arrive +"' WHERE id_t=" 
-                    +id_selection;
-
-                    if(!m_bdd_anodisation->ExecuteInsert(requete))
-                    {
-                        m_textCtrlAffichage->AppendText(m_bdd_anodisation->GetLastError());
-                    }
+                    m_textCtrlAffichage->AppendText(m_bdd_anodisation->GetLastError());
                 }
             }
+
         }
     }
     else
@@ -956,21 +984,21 @@ void EvtFramePrincipal::OnApplyButtonModifierTrajectoiresClick(wxCommandEvent& e
 
     VideListBoxTrajectoires();
     RempliListBoxTrajectoires();
-    
-    
+
+
 }
 
 void EvtFramePrincipal::OnCancelButtonModifierTrajectoiresClick(wxCommandEvent& event)
 {
     wxString selection = m_listBoxModifierTrajectoires->GetStringSelection();
 
-    // Récupération de l'id du processus
+// Récupération de l'id du processus
     wxString id_selection = GardeIdSelection(selection);
 
-    // m_textCtrlAffichage->AppendText(selection + wxT("\nid selection :") + id_selection + wxT("\n"));
+// m_textCtrlAffichage->AppendText(selection + wxT("\nid selection :") + id_selection + wxT("\n"));
 
-    // Vider les text control
-    // du coté droit
+// Vider les text control
+// du coté droit
 
     m_textCtrlDureeHeureModifierTrajectoires->Clear();
     m_textCtrlDureeMinutesModifierTrajectoires->Clear();
@@ -980,7 +1008,7 @@ void EvtFramePrincipal::OnCancelButtonModifierTrajectoiresClick(wxCommandEvent& 
     m_textCtrlBainDeDepartModifier->Clear();
     m_textCtrlBainDarriveeModifier->Clear();
 
-    // Remplisage
+// Remplisage
 
     if(m_bdd_anodisation->RecupereNomTrajectoire(ConversionEnString(id_selection)))
     {
@@ -1136,7 +1164,7 @@ void EvtFramePrincipal::OnSaveButtonCreerTrajectoiresClick(wxCommandEvent& event
     }
 
     if(!m_textCtrlDureeHeureCreerTrajectoires->IsEmpty() && !m_textCtrlDureeMinutesCreerTrajectoires->IsEmpty() &&
-       !m_textCtrlDureeSecondeCreerTrajectoires->IsEmpty())
+            !m_textCtrlDureeSecondeCreerTrajectoires->IsEmpty())
     {
         duree_total = ConversionEnString(m_textCtrlDureeHeureCreerTrajectoires->GetValue()) + ":" +
                       ConversionEnString(m_textCtrlDureeMinutesCreerTrajectoires->GetValue()) + ":" +
@@ -1169,10 +1197,10 @@ void EvtFramePrincipal::OnSaveButtonCreerTrajectoiresClick(wxCommandEvent& event
                 {
                     requete =
                         "INSERT INTO intermediaire_mouvements_trajectoires (id_t, id_m, point_depart,point_arrive, "
-                        "ordre_mouvements) VALUES (" 
-                        +resultat[0] + "," 
-                        + ordre_separe[i] + ",'" 
-                        + donnee_depart + "','" 
+                        "ordre_mouvements) VALUES ("
+                        +resultat[0] + ","
+                        + ordre_separe[i] + ",'"
+                        + donnee_depart + "','"
                         + donnee_arrive + "','" +
                         donnee_ordre + "')";
                     cout << requete << endl;
@@ -1206,8 +1234,8 @@ void EvtFramePrincipal::OnYesButtonDetruireTrajectoiresClick(wxCommandEvent& eve
     string requete = "SELECT id_p FROM intermediaire_processus_trajectoires WHERE id_t=" + id_selection;
     bool signal = false;
 
-    // suppresion hyerarchique des id ( on select pour pouvoir supprimé les id des tables intermidiaire sans risque de
-    // segfault
+// suppresion hyerarchique des id ( on select pour pouvoir supprimé les id des tables intermidiaire sans risque de
+// segfault
     if(m_bdd_anodisation->ExecuteSelect(requete))
     {
         vector<string> resultat = m_bdd_anodisation->GetLastResult();
@@ -1259,7 +1287,7 @@ void EvtFramePrincipal::OnYesButtonDetruireTrajectoiresClick(wxCommandEvent& eve
 
 void EvtFramePrincipal::OnListBoxTesterSelectionTrajectoires(wxCommandEvent& event)
 {
-    // TODO: Implement OnListBoxTesterSelectionTrajectoires
+   
 }
 
 void EvtFramePrincipal::OnCancelButtonTestTrajectoireClick(wxCommandEvent& event)
@@ -1267,9 +1295,38 @@ void EvtFramePrincipal::OnCancelButtonTestTrajectoireClick(wxCommandEvent& event
     // TODO: Implement OnCancelButtonTestTrajectoireClick
 }
 
+void EvtFramePrincipal::OnInfoBrasTestTrajectoireClick(wxCommandEvent& event)
+{
+    if(m_client_connecte)
+    {
+        bool reponse;
+        reponse = m_client->DemandeDisponibiliteBras();
+
+        if(reponse)
+        {
+            
+        }
+    }
+    else
+    {
+        m_textCtrlAffichage->AppendText(wxT("Le serveur n'est pas connecté\n"));
+    }
+}
+
 void EvtFramePrincipal::OnYesButtonTesterTrajectoiresClick(wxCommandEvent& event)
 {
-    // TODO: Implement OnYesButtonTesterTrajectoiresClick
+    wxString selection = m_listBoxTesterTrajectoires->GetStringSelection();
+    wxString id_selection = GardeIdSelection(selection);
+    if(m_client_connecte)
+    {
+        
+        m_client->TestTrajectoire(id_selection);
+
+    }
+    else
+    {
+        m_textCtrlAffichage->AppendText(wxT("Le serveur n'est pas connecté\n"));
+    }
 }
 
 void EvtFramePrincipal::OnButtonViderAffichageClick(wxCommandEvent& event)

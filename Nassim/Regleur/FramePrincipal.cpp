@@ -444,7 +444,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_scrolledWindowModifierMouvements->SetSizer( bSizerModifierMouvements );
 	m_scrolledWindowModifierMouvements->Layout();
 	bSizerModifierMouvements->Fit( m_scrolledWindowModifierMouvements );
-	m_notebookMouvements->AddPage( m_scrolledWindowModifierMouvements, wxT("Modifier les mouvements"), false );
+	m_notebookMouvements->AddPage( m_scrolledWindowModifierMouvements, wxT("Modifier les mouvements"), true );
 	m_scrolledWindowCreerMouvements = new wxScrolledWindow( m_notebookMouvements, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxHSCROLL|wxVSCROLL, wxT("i") );
 	m_scrolledWindowCreerMouvements->SetScrollRate( 5, 5 );
 	wxBoxSizer* bSizerCreerMouvements;
@@ -686,6 +686,8 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_sdbSizerTesterMouvement->AddButton( m_sdbSizerTesterMouvementYes );
 	m_sdbSizerTesterMouvementCancel = new wxButton( sbSizerTester->GetStaticBox(), wxID_CANCEL );
 	m_sdbSizerTesterMouvement->AddButton( m_sdbSizerTesterMouvementCancel );
+	m_sdbSizerTesterMouvementHelp = new wxButton( sbSizerTester->GetStaticBox(), wxID_HELP );
+	m_sdbSizerTesterMouvement->AddButton( m_sdbSizerTesterMouvementHelp );
 	m_sdbSizerTesterMouvement->Realize();
 	
 	sbSizerTester->Add( m_sdbSizerTesterMouvement, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
@@ -697,7 +699,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_scrolledWindowDetruireMouvements11->SetSizer( bSizerTesterMouvements );
 	m_scrolledWindowDetruireMouvements11->Layout();
 	bSizerTesterMouvements->Fit( m_scrolledWindowDetruireMouvements11 );
-	m_notebookMouvements->AddPage( m_scrolledWindowDetruireMouvements11, wxT("TEST"), true );
+	m_notebookMouvements->AddPage( m_scrolledWindowDetruireMouvements11, wxT("TEST"), false );
 	
 	bSizerPrincipal->Add( m_notebookMouvements, 1, wxEXPAND|wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
 	
@@ -1158,7 +1160,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_scrolledWindowCreerTrajectoires->SetSizer( bSizerCreerTrajectoires );
 	m_scrolledWindowCreerTrajectoires->Layout();
 	bSizerCreerTrajectoires->Fit( m_scrolledWindowCreerTrajectoires );
-	m_notebookTrajectoires->AddPage( m_scrolledWindowCreerTrajectoires, wxT("Création de trajectoires"), true );
+	m_notebookTrajectoires->AddPage( m_scrolledWindowCreerTrajectoires, wxT("Création de trajectoires"), false );
 	m_scrolledWindowDetruireTrajectoires = new wxScrolledWindow( m_notebookTrajectoires, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxHSCROLL|wxVSCROLL, wxT("i") );
 	m_scrolledWindowDetruireTrajectoires->SetScrollRate( 5, 5 );
 	wxBoxSizer* bSizerDetruireTrajectoires;
@@ -1229,6 +1231,8 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_sdbSizerTesterTrajectoires->AddButton( m_sdbSizerTesterTrajectoiresYes );
 	m_sdbSizerTesterTrajectoiresCancel = new wxButton( sbSizerTesterTrajectoires->GetStaticBox(), wxID_CANCEL );
 	m_sdbSizerTesterTrajectoires->AddButton( m_sdbSizerTesterTrajectoiresCancel );
+	m_sdbSizerTesterTrajectoiresHelp = new wxButton( sbSizerTesterTrajectoires->GetStaticBox(), wxID_HELP );
+	m_sdbSizerTesterTrajectoires->AddButton( m_sdbSizerTesterTrajectoiresHelp );
 	m_sdbSizerTesterTrajectoires->Realize();
 	
 	sbSizerTesterTrajectoires->Add( m_sdbSizerTesterTrajectoires, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
@@ -1240,7 +1244,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_scrolledWindowTestTrajectoires->SetSizer( bSizerTesterTrajectoires );
 	m_scrolledWindowTestTrajectoires->Layout();
 	bSizerTesterTrajectoires->Fit( m_scrolledWindowTestTrajectoires );
-	m_notebookTrajectoires->AddPage( m_scrolledWindowTestTrajectoires, wxT("TEST"), false );
+	m_notebookTrajectoires->AddPage( m_scrolledWindowTestTrajectoires, wxT("TEST"), true );
 	
 	bSizerPrincipal->Add( m_notebookTrajectoires, 1, wxEXPAND | wxALL, 5 );
 	
@@ -1293,6 +1297,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_listBoxTesterMouvements->Connect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( FramePrincipal::OnListBoxTesterSelectionMouvements ), NULL, this );
 	m_listBoxTesterMouvements->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( FramePrincipal::OnListBoxTesterSelectionMouvements ), NULL, this );
 	m_sdbSizerTesterMouvementCancel->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnCancelButtonTestMouvementClick ), NULL, this );
+	m_sdbSizerTesterMouvementHelp->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnInfoBrasTestMouvementClick ), NULL, this );
 	m_sdbSizerTesterMouvementYes->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnYesButtonTesterMouvementClick ), NULL, this );
 	m_listBoxAffichageTrajectoires->Connect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( FramePrincipal::OnListBoxAffichageSelectionTrajectoires ), NULL, this );
 	m_listBoxAffichageTrajectoires->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( FramePrincipal::OnListBoxAffichageSelectionTrajectoires ), NULL, this );
@@ -1308,6 +1313,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_listBoxTesterTrajectoires->Connect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( FramePrincipal::OnListBoxTesterSelectionTrajectoires ), NULL, this );
 	m_listBoxTesterTrajectoires->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( FramePrincipal::OnListBoxTesterSelectionTrajectoires ), NULL, this );
 	m_sdbSizerTesterTrajectoiresCancel->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnCancelButtonTestTrajectoireClick ), NULL, this );
+	m_sdbSizerTesterTrajectoiresHelp->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnInfoBrasTestTrajectoireClick ), NULL, this );
 	m_sdbSizerTesterTrajectoiresYes->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnYesButtonTesterTrajectoiresClick ), NULL, this );
 	m_buttonViderAffichage->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnButtonViderAffichageClick ), NULL, this );
 }
@@ -1334,6 +1340,7 @@ FramePrincipal::~FramePrincipal()
 	m_listBoxTesterMouvements->Disconnect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( FramePrincipal::OnListBoxTesterSelectionMouvements ), NULL, this );
 	m_listBoxTesterMouvements->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( FramePrincipal::OnListBoxTesterSelectionMouvements ), NULL, this );
 	m_sdbSizerTesterMouvementCancel->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnCancelButtonTestMouvementClick ), NULL, this );
+	m_sdbSizerTesterMouvementHelp->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnInfoBrasTestMouvementClick ), NULL, this );
 	m_sdbSizerTesterMouvementYes->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnYesButtonTesterMouvementClick ), NULL, this );
 	m_listBoxAffichageTrajectoires->Disconnect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( FramePrincipal::OnListBoxAffichageSelectionTrajectoires ), NULL, this );
 	m_listBoxAffichageTrajectoires->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( FramePrincipal::OnListBoxAffichageSelectionTrajectoires ), NULL, this );
@@ -1349,6 +1356,7 @@ FramePrincipal::~FramePrincipal()
 	m_listBoxTesterTrajectoires->Disconnect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( FramePrincipal::OnListBoxTesterSelectionTrajectoires ), NULL, this );
 	m_listBoxTesterTrajectoires->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( FramePrincipal::OnListBoxTesterSelectionTrajectoires ), NULL, this );
 	m_sdbSizerTesterTrajectoiresCancel->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnCancelButtonTestTrajectoireClick ), NULL, this );
+	m_sdbSizerTesterTrajectoiresHelp->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnInfoBrasTestTrajectoireClick ), NULL, this );
 	m_sdbSizerTesterTrajectoiresYes->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnYesButtonTesterTrajectoiresClick ), NULL, this );
 	m_buttonViderAffichage->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FramePrincipal::OnButtonViderAffichageClick ), NULL, this );
 	
