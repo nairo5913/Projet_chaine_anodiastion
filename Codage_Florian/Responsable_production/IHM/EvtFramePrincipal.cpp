@@ -2122,7 +2122,7 @@ void EvtFramePrincipal::OnStopButtonTesterClick(wxCommandEvent& event)
 {
     if(m_client_connecte)
     {
-        //
+        m_client->StopProcessus();
     }
 }
 

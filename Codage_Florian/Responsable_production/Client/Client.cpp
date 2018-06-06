@@ -250,9 +250,16 @@ void Client::ExecutionProcessus(wxString num_id)
     }
 }
 
-void Client::StopProcessus(wxString num_id)
+void Client::StopProcessus()
 {
+    wxString requete;
+    requete << wxT(STOP_TEST_PROCESSUS);
     
+    wxString reponse = EcritMessage(requete);
+    
+    wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
+    MyEvent.SetString(wxT("Processus stopper."));
+    wxPostEvent(m_frame, MyEvent);
 }
 
 void Client::TestProcessus(wxString num_id)

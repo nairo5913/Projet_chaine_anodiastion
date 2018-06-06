@@ -278,6 +278,16 @@ void Client::ExecutionProcessus(wxString num_id)
     }
 }
 
+void Client::TestProcessus(wxString num_id)
+{
+    
+}
+
+void Client::StopProcessus(wxString num_id)
+{
+    
+}
+
 bool Client::Identification(wxString utilisateur)
 {
     bool retour = false;

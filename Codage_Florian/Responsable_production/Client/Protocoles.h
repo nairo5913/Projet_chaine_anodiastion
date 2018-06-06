@@ -44,7 +44,7 @@
 #define BRAS_DISPONIBLE "301-"
 #define BRAS_INDISPONIBLE "302-"
 #define DEMANDE_TACHE_EN_COURS "303-"
-#define TACHE_EN_COURS "304-" // Reception de la taches en cours 
+#define TACHE_EN_COURS "304-"
 #define PAS_TACHE_EN_COURS "305-"
 
 ////////////////////////////////////////////////////////////////////////////////

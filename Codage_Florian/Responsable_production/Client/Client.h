@@ -32,7 +32,7 @@ class Client : public wxEvtHandler
         //void AnalyseReponseServeur(string reponse);
         void Close();
         void ExecutionProcessus(wxString num_id);
-        void StopProcessus(wxString num_id);
+        void StopProcessus();
         void TestProcessus(wxString num_id);
     
     protected:
