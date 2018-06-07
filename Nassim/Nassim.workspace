@@ -12,7 +12,7 @@
       <Project Name="Anodisation" ConfigName="Debug"/>
       <Project Name="Regleur" ConfigName="Debug"/>
     </WorkspaceConfiguration>
-    <WorkspaceConfiguration Name="Release" Selected="yes">
+    <WorkspaceConfiguration Name="Release" Selected="no">
       <Environment/>
       <Project Name="Anodisation" ConfigName="Release"/>
       <Project Name="Client" ConfigName="Release"/>

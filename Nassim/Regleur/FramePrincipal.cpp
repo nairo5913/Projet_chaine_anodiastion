@@ -261,7 +261,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_scrolledWindowAffichageMouvements->SetSizer( bSizerAfficherMouvements );
 	m_scrolledWindowAffichageMouvements->Layout();
 	bSizerAfficherMouvements->Fit( m_scrolledWindowAffichageMouvements );
-	m_notebookMouvements->AddPage( m_scrolledWindowAffichageMouvements, wxT("Afficher les mouvements"), false );
+	m_notebookMouvements->AddPage( m_scrolledWindowAffichageMouvements, wxT("Afficher les mouvements"), true );
 	m_scrolledWindowModifierMouvements = new wxScrolledWindow( m_notebookMouvements, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxHSCROLL|wxVSCROLL, wxT("i") );
 	m_scrolledWindowModifierMouvements->SetScrollRate( 5, 5 );
 	wxBoxSizer* bSizerModifierMouvements;
@@ -444,7 +444,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_scrolledWindowModifierMouvements->SetSizer( bSizerModifierMouvements );
 	m_scrolledWindowModifierMouvements->Layout();
 	bSizerModifierMouvements->Fit( m_scrolledWindowModifierMouvements );
-	m_notebookMouvements->AddPage( m_scrolledWindowModifierMouvements, wxT("Modifier les mouvements"), true );
+	m_notebookMouvements->AddPage( m_scrolledWindowModifierMouvements, wxT("Modifier les mouvements"), false );
 	m_scrolledWindowCreerMouvements = new wxScrolledWindow( m_notebookMouvements, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxHSCROLL|wxVSCROLL, wxT("i") );
 	m_scrolledWindowCreerMouvements->SetScrollRate( 5, 5 );
 	wxBoxSizer* bSizerCreerMouvements;
@@ -842,7 +842,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_scrolledWindowAffichageTrajectoires->SetSizer( bSizerAfficherTrajectoires );
 	m_scrolledWindowAffichageTrajectoires->Layout();
 	bSizerAfficherTrajectoires->Fit( m_scrolledWindowAffichageTrajectoires );
-	m_notebookTrajectoires->AddPage( m_scrolledWindowAffichageTrajectoires, wxT("Afficher les trajectoires"), false );
+	m_notebookTrajectoires->AddPage( m_scrolledWindowAffichageTrajectoires, wxT("Afficher les trajectoires"), true );
 	m_scrolledWindowModifierTrajectoires = new wxScrolledWindow( m_notebookTrajectoires, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxHSCROLL|wxVSCROLL, wxT("i") );
 	m_scrolledWindowModifierTrajectoires->SetScrollRate( 5, 5 );
 	wxBoxSizer* bSizerModifierTrajectoires;
@@ -1244,7 +1244,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_scrolledWindowTestTrajectoires->SetSizer( bSizerTesterTrajectoires );
 	m_scrolledWindowTestTrajectoires->Layout();
 	bSizerTesterTrajectoires->Fit( m_scrolledWindowTestTrajectoires );
-	m_notebookTrajectoires->AddPage( m_scrolledWindowTestTrajectoires, wxT("TEST"), true );
+	m_notebookTrajectoires->AddPage( m_scrolledWindowTestTrajectoires, wxT("TEST"), false );
 	
 	bSizerPrincipal->Add( m_notebookTrajectoires, 1, wxEXPAND | wxALL, 5 );
 	

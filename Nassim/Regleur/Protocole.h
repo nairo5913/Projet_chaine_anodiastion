@@ -26,6 +26,7 @@
 #define STOP_TEST_PROCESSUS "210-"
 #define STOP_TEST_TRAJECTOIRE "211-"
 #define STOP_TEST_MOUVEMENT "212-"
+#define STOP_OK "213-"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Partie 300, Informations

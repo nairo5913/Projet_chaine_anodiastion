@@ -227,6 +227,7 @@ void Client::TestMouvement(wxString num_id)
         wxString requete;
         requete<<DEMANDE_TEST_MOUVEMENT<<num_id;
         string reponse = EcritMessage(requete);
+        
         wxString message =wxT("Le mouvement est en train d'être tester\n");
         wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT + 1);
         MyEvent.SetString(message);
@@ -249,7 +250,8 @@ void Client::TestTrajectoire(wxString num_id)
         wxString requete;
         requete<<DEMANDE_TEST_TRAJECTOIRE<<num_id;
         string reponse = EcritMessage(requete);
-        wxString message =wxT("La trajectoire est en train d'être tester\n");
+        
+        wxString message =wxT("La trajectoire est en train d'être testé\n");
         wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT + 1);
         MyEvent.SetString(message);
         wxPostEvent(m_frame, MyEvent);
@@ -262,6 +264,28 @@ void Client::TestTrajectoire(wxString num_id)
         wxPostEvent(m_frame, MyEvent);
     }
 }
+
+void Client::StopTestMouvement(wxString num_id)
+{
+    wxString requete(wxT(STOP_TEST_MOUVEMENT));
+    string reponse = EcritMessage(requete);
+    
+    wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT + 1);
+    MyEvent.SetString(wxT("Le test est stopé.\n"));
+    wxPostEvent(m_frame, MyEvent);
+}
+
+void Client::StopTestTrajectoire(wxString num_id)
+{
+    wxString requete(wxT(STOP_TEST_TRAJECTOIRE));
+    string reponse = EcritMessage(requete);
+    
+    wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT + 1);
+    MyEvent.SetString(wxT("Le test est stopé.\n"));
+    wxPostEvent(m_frame, MyEvent);
+
+}
+
 // gestionnaire d'évenement pour le socket
 void Client::OnSocketEvent(wxSocketEvent &event)
 {

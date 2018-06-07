@@ -72,7 +72,7 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
                 erreur = true;
             }
 
-            m_client = new Client("localhost", 30000, this);
+            m_client = new Client("192.168.1.16", 30000, this);
 // m_client_connecte = m_client->IsOK();
 
 // Tester la connection du client de communication
@@ -639,7 +639,17 @@ void EvtFramePrincipal::OnListBoxTesterSelectionMouvements(wxCommandEvent& event
 
 void EvtFramePrincipal::OnCancelButtonTestMouvementClick(wxCommandEvent& event)
 {
-    // TODO: Implement OnCancelButtonTestMouvementClick
+    wxString selection = m_listBoxTesterMouvements->GetStringSelection();
+    wxString id_selection = GardeIdSelection(selection);
+    if(m_client_connecte)
+    {
+        
+        m_client->StopTestMouvement(id_selection);
+    }
+    else
+    {
+        m_textCtrlAffichage->AppendText(wxT("Le serveur n'est pas connecté\n"));
+    }
 }
 
 void EvtFramePrincipal::OnInfoBrasTestMouvementClick(wxCommandEvent& event)
@@ -1292,8 +1302,20 @@ void EvtFramePrincipal::OnListBoxTesterSelectionTrajectoires(wxCommandEvent& eve
 
 void EvtFramePrincipal::OnCancelButtonTestTrajectoireClick(wxCommandEvent& event)
 {
-    // TODO: Implement OnCancelButtonTestTrajectoireClick
+    wxString selection = m_listBoxTesterTrajectoires->GetStringSelection();
+    wxString id_selection = GardeIdSelection(selection);
+    if(m_client_connecte)
+    {
+        
+        m_client->StopTestTrajectoire(id_selection);
+
+    }
+    else
+    {
+        m_textCtrlAffichage->AppendText(wxT("Le serveur n'est pas connecté\n"));
+    }
 }
+
 
 void EvtFramePrincipal::OnInfoBrasTestTrajectoireClick(wxCommandEvent& event)
 {

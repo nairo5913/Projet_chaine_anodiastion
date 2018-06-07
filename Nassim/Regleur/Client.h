@@ -22,8 +22,10 @@ public:
     void Close();
     bool DemandeDisponibiliteBras();
     vector<string> DemandeTacheEnCours();
-    void TestMouvement(wxString num_id); // À coder
-    void TestTrajectoire(wxString num_id); // À coder
+    void TestMouvement(wxString num_id); 
+    void TestTrajectoire(wxString num_id);
+    void StopTestMouvement(wxString num_id);
+    void StopTestTrajectoire(wxString num_id);
     
     protected:
     
