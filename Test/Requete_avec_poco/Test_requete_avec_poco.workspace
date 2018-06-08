@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeLite_Workspace Name="Test_requete_avec_poco" Database="" Version="10.0.0">
+  <Project Name="Test_requete_avec_affichage_et_saisie" Path="Test_requete_avec_affichage_et_saisie/Test_requete_avec_affichage_et_saisie.project" Active="Yes"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Debug" Selected="no">
+      <Environment/>
+      <Project Name="Test_requete_avec_affichage_et_saisie" ConfigName="Debug"/>
+    </WorkspaceConfiguration>
+    <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Environment/>
+      <Project Name="Test_requete_avec_affichage_et_saisie" ConfigName="Release"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
+</CodeLite_Workspace>

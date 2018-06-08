@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeLite_Workspace Name="TestIHM" Database="TestIHM.tags" Version="10.0.0">
+  <Project Name="Executable_wxwidgets_enable" Path="Executable_wxwidgets_enable/Executable_wxwidgets_enable.project" Active="No"/>
+  <Project Name="Executable_wxwidgets_frame" Path="Executable_wxwidgets_frame/Executable_wxwidgets_frame.project" Active="No"/>
+  <Project Name="Executable_wxwidgets_dialog" Path="Executable_wxwidgets_dialog/Executable_wxwidgets_dialog.project" Active="No"/>
+  <Project Name="Dynamic_library_wxwidget_enabled_Linux" Path="Dynamic_library_wxwidget_enabled_Linux/Dynamic_library_wxwidget_enabled_Linux.project" Active="No"/>
+  <Project Name="Multi_fenetre" Path="Multi_fenetre/Multi_fenetre.project" Active="Yes"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Debug" Selected="yes">
+      <Environment/>
+      <Project Name="Executable_wxwidgets_enable" ConfigName="Debug"/>
+      <Project Name="Executable_wxwidgets_frame" ConfigName="Debug"/>
+      <Project Name="Executable_wxwidgets_dialog" ConfigName="Debug"/>
+      <Project Name="Multi_fenetre" ConfigName="Debug"/>
+    </WorkspaceConfiguration>
+    <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Environment/>
+      <Project Name="Executable_wxwidgets_enable" ConfigName="Release"/>
+      <Project Name="Executable_wxwidgets_frame" ConfigName="Release"/>
+      <Project Name="Executable_wxwidgets_dialog" ConfigName="Release"/>
+      <Project Name="Multi_fenetre" ConfigName="Release"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
+</CodeLite_Workspace>
