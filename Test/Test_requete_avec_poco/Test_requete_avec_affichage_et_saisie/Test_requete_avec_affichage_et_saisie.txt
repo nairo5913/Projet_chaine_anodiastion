@@ -1,1 +1,0 @@
-./Release/EvtFramePrincipal.cpp.o ./Release/FramePrincipal.cpp.o ./Release/MyApp.cpp.o ./Release/DataAnnodiastion.cpp.o
