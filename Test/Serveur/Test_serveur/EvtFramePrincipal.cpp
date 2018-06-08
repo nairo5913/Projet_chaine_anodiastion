@@ -50,12 +50,10 @@ void EvtFramePrincipal::OnButtonDemarrerServeurToggle(wxCommandEvent& event)
         if(m_connecte)
         {
             // on connecte les événements venant du serveur
-            Connect(ID_SERVEUR, wxEVT_COMMAND_BUTTON_CLICKED,
-                    wxCommandEventHandler(EvtFramePrincipal::MAJnombreClients), NULL, this);
-            Connect(ID_SERVEUR + 1, wxEVT_COMMAND_BUTTON_CLICKED,
-                    wxCommandEventHandler(EvtFramePrincipal::AfficheMessageServeur), NULL, this);
-            Connect(ID_SERVEUR + 2, wxEVT_COMMAND_BUTTON_CLICKED,
-                    wxCommandEventHandler(EvtFramePrincipal::AfficheReponseServeur), NULL, this);
+            Connect(ID_SERVEUR, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(EvtFramePrincipal::MAJnombreClients), NULL, this);
+            Connect(ID_SERVEUR + 1, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(EvtFramePrincipal::AfficheMessageServeur), NULL, this);
+            Connect(ID_SERVEUR + 2, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(EvtFramePrincipal::AfficheReponseServeur), NULL, this);
+            Connect(ID_SERVEUR + 3, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(EvtFramePrincipal::MAJetatBras), NULL, this);
 
             m_statusBar->SetStatusText(wxT("Serveur connecté"), 1);
             m_toggleBtnDisponibilite->Show();
@@ -96,6 +94,7 @@ void EvtFramePrincipal::OnToggleButtonDisponibiliteClick(wxCommandEvent& event)
         m_textCtrlAffichage->AppendText(wxT("Type de tache selectionné : ") + selection + wxT(" d'id 1\n"));
 
         m_serveur->SetTache(selection);
+        m_serveur->SetIdTache(wxT("1"));
     }
     else
     {
@@ -139,32 +138,37 @@ void EvtFramePrincipal::OnMenuSelectionChangerDisponibiliteBras(wxCommandEvent& 
 {
     if(m_connecte)
     {
-        if(m_toggleBtnDisponibilite->GetValue())
-        {
-            m_textCtrlAffichage->AppendText(wxT("Bras non disponible\n"));
-            m_serveur->SetBrasDispo(false);
-
-            m_toggleBtnDisponibilite->SetLabel(wxT("Bras non disponible"));
-
-            m_staticTextTacheEnCours->Show();
-            m_choiceTacheEnCours->Show();
-            Layout();
-
-            wxString selection = m_choiceTacheEnCours->GetStringSelection();
-            m_textCtrlAffichage->AppendText(wxT("Type de tache selectionné : ") + selection + wxT(" d'id 1\n"));
-
-            m_serveur->SetTache(selection);
-        }
-        else
+        if(!m_serveur->GetBrasDispo())
         {
             m_textCtrlAffichage->AppendText(wxT("Bras disponible\n"));
             m_serveur->SetBrasDispo(true);
-
+    
             m_toggleBtnDisponibilite->SetValue(false);
             m_toggleBtnDisponibilite->SetLabel(wxT("Bras disponible"));
-
+    
             m_staticTextTacheEnCours->Hide();
             m_choiceTacheEnCours->Hide();
+            
+            Layout();
+        
+        }
+        else
+        {
+            m_textCtrlAffichage->AppendText(wxT("Bras non disponible\n"));
+            m_serveur->SetBrasDispo(false);
+    
+            m_toggleBtnDisponibilite->SetLabel(wxT("Bras non disponible"));
+            m_toggleBtnDisponibilite->SetValue(true);
+            
+            m_staticTextTacheEnCours->Show();
+            m_choiceTacheEnCours->Show();
+            
+            m_choiceTacheEnCours->SetSelection(0);
+            
+            wxString selection = m_choiceTacheEnCours->GetStringSelection();
+            m_textCtrlAffichage->AppendText(wxT("Type de tache selectionné : ") + selection + wxT(" d'id 1.\n"));
+            m_serveur->SetTache(selection);
+            
             Layout();
         }
     }
@@ -181,9 +185,18 @@ void EvtFramePrincipal::OnMenuSelectionMouvement(wxCommandEvent& event)
         m_choiceTacheEnCours->SetSelection(0);
 
         wxString selection = m_choiceTacheEnCours->GetStringSelection();
-        m_textCtrlAffichage->AppendText(wxT("Type de tache selectionné : ") + selection + wxT(" d'id 1\n"));
-
+        m_textCtrlAffichage->AppendText(wxT("Type de tache selectionné : ") + selection + wxT(" d'id 1.\n"));
         m_serveur->SetTache(selection);
+        
+        m_textCtrlAffichage->AppendText(wxT("Bras non disponible\n"));
+        m_serveur->SetBrasDispo(false);
+
+        m_toggleBtnDisponibilite->SetLabel(wxT("Bras non disponible"));
+
+        m_staticTextTacheEnCours->Show();
+        m_choiceTacheEnCours->Show();
+        
+        Layout();
     }
     else
     {
@@ -199,9 +212,19 @@ void EvtFramePrincipal::OnMenuSelectionProcessus(wxCommandEvent& event)
         m_choiceTacheEnCours->SetSelection(1);
 
         wxString selection = m_choiceTacheEnCours->GetStringSelection();
-        m_textCtrlAffichage->AppendText(wxT("Type de tache selectionné : ") + selection + wxT(" d'id 1\n"));
+        m_textCtrlAffichage->AppendText(wxT("Type de tache selectionné : ") + selection + wxT(" d'id 1.\n"));
 
         m_serveur->SetTache(selection);
+        
+        m_textCtrlAffichage->AppendText(wxT("Bras non disponible\n"));
+        m_serveur->SetBrasDispo(false);
+
+        m_toggleBtnDisponibilite->SetLabel(wxT("Bras non disponible"));
+
+        m_staticTextTacheEnCours->Show();
+        m_choiceTacheEnCours->Show();
+        
+        Layout();
     }
     else
     {
@@ -219,6 +242,16 @@ void EvtFramePrincipal::OnMenuSelectionTrajectoire(wxCommandEvent& event)
         m_textCtrlAffichage->AppendText(wxT("Type de tache selectionné : ") + selection + wxT(" d'id 1\n"));
 
         m_serveur->SetTache(selection);
+        
+        m_textCtrlAffichage->AppendText(wxT("Bras non disponible\n"));
+        m_serveur->SetBrasDispo(false);
+
+        m_toggleBtnDisponibilite->SetLabel(wxT("Bras non disponible"));
+
+        m_staticTextTacheEnCours->Show();
+        m_choiceTacheEnCours->Show();
+        
+        Layout();
     }
     else
     {
@@ -261,4 +294,68 @@ void EvtFramePrincipal::AfficheReponseServeur(wxCommandEvent& event)
     m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(*wxCYAN));
     m_textCtrlAffichage->AppendText(event.GetString());
     m_textCtrlAffichage->SetDefaultStyle(wxTextAttr(wxNullColour));
+}
+
+void EvtFramePrincipal::MAJetatBras(wxCommandEvent& event)
+{
+    wxString texte = event.GetString();
+    unsigned int position = texte.find(wxT("-"));
+    wxString id_tache = texte.substr(position);
+    wxString tache = "";
+    texte.EndsWith(id_tache, &tache);
+    wxString temp = id_tache;
+    id_tache.clear();
+    position = temp.find(wxT("-"));
+    id_tache << temp.substr(position+1);
+    
+    if(m_serveur->GetBrasDispo())
+    {
+        m_textCtrlAffichage->AppendText(wxT("Bras disponible\n"));
+        m_serveur->SetBrasDispo(true);
+
+        m_toggleBtnDisponibilite->SetValue(false);
+        m_toggleBtnDisponibilite->SetLabel(wxT("Bras disponible"));
+
+        m_staticTextTacheEnCours->Hide();
+        m_choiceTacheEnCours->Hide();
+        Layout();
+    
+    }
+    else
+    {
+        m_textCtrlAffichage->AppendText(wxT("Bras non disponible\n"));
+        m_serveur->SetBrasDispo(false);
+
+        m_toggleBtnDisponibilite->SetLabel(wxT("Bras non disponible"));
+        m_toggleBtnDisponibilite->SetValue(true);
+
+        m_staticTextTacheEnCours->Show();
+        m_choiceTacheEnCours->Show();
+        
+        m_textCtrlAffichage->AppendText(wxT("Tache : ") + tache + wxT(" id tache : ") + id_tache + wxT("\n"));
+        
+        if(tache.IsSameAs("Mouvement"))
+        {
+            m_choiceTacheEnCours->SetSelection(0);
+        }
+        else if(tache.IsSameAs("Processus"))
+        {
+            m_choiceTacheEnCours->SetSelection(1);
+        }
+        else if(tache.IsSameAs("Trajectoire"))
+        {
+            m_choiceTacheEnCours->SetSelection(2);
+        }
+        else if(tache.IsSameAs("Fabrication"))
+        {
+            m_choiceTacheEnCours->SetSelection(3);
+        }
+        else
+        {
+            
+        }
+        
+        Layout();
+    }
+    
 }

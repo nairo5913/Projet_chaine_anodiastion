@@ -39,9 +39,9 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	
 	bSizerTacheEnCours->Add( m_staticTextTacheEnCours, 0, wxALIGN_CENTER_VERTICAL|wxLEFT, 5 );
 	
-	wxString m_choiceTacheEnCoursChoices[] = { wxT("Mouvement"), wxT("Processus"), wxT("Trajectoire") };
+	wxString m_choiceTacheEnCoursChoices[] = { wxT("Mouvement"), wxT("Processus"), wxT("Trajectoire"), wxT("Fabrication") };
 	int m_choiceTacheEnCoursNChoices = sizeof( m_choiceTacheEnCoursChoices ) / sizeof( wxString );
-	m_choiceTacheEnCours = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choiceTacheEnCoursNChoices, m_choiceTacheEnCoursChoices, wxCB_SORT );
+	m_choiceTacheEnCours = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choiceTacheEnCoursNChoices, m_choiceTacheEnCoursChoices, 0 );
 	m_choiceTacheEnCours->SetSelection( 0 );
 	m_choiceTacheEnCours->Hide();
 	

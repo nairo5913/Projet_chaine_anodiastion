@@ -57,6 +57,7 @@ class EvtFramePrincipal : public FramePrincipal
         void MAJnombreClients(wxCommandEvent& event);
         void AfficheMessageServeur(wxCommandEvent& event);
         void AfficheReponseServeur(wxCommandEvent& event);
+        void MAJetatBras(wxCommandEvent& event);
 
 
 

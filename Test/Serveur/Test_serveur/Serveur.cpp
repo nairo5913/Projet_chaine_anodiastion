@@ -234,150 +234,174 @@ void Serveur::DecodeMessage(wxString message, wxSocketBase *sock, DonneesClient 
             }
             else if(message.StartsWith(DEMANDE_TEST_PROCESSUS, &texte))
             {
-                wxString message;
-                message << "Le texte reçu est : " << texte << wxT("\n");
-
-                wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_SERVEUR + 1);
-                MyEvent.SetString(message);
-                wxPostEvent(m_frame, MyEvent);
+                AfficheMessage(wxT("Demande de test de processus.\n"));
                 
-                if(!m_bras_dispo)
+                if(m_bras_dispo)
                 {
-                    wxString reponse(EXECUTION_IMPOSSIBLE);
+                    m_bras_dispo = false;
+                    m_tache = "Processus";
+                    m_id_tache = texte;
+                    
+                    wxString reponse(EXECUTION_OK);
                     EcritReponse(sock, reponse.ToStdString());
+                    
+                    wxString details = m_tache + wxT("-") + m_id_tache;
+                    
+                    wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_SERVEUR + 3);
+                    MyEvent.SetString(details);
+                    wxPostEvent(m_frame, MyEvent);
                 }
                 else
                 {
-                    wxCommandEvent MyEvent1(wxEVT_COMMAND_BUTTON_CLICKED, ID_SERVEUR + 1);
-                    MyEvent1.SetString(wxT("Test processus lancer\n"));
-                    wxPostEvent(m_frame, MyEvent1);
-                    
-                    m_tache.clear();
-                    m_tache = "Processus";
-                    m_bras_dispo = false;
+                    wxString reponse(EXECUTION_IMPOSSIBLE);
+                    EcritReponse(sock, reponse.ToStdString());
                 }
             }
             else if(message.StartsWith(DEMANDE_TEST_TRAJECTOIRE, &texte))
             {
-                wxString message;
-                message << "Le texte reçu est : " << texte << wxT("\n");
-
-                wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_SERVEUR + 1);
-                MyEvent.SetString(message);
-                wxPostEvent(m_frame, MyEvent);
+                AfficheMessage(wxT("Demande de test de trajectoire.\n"));
                 
-                if(!m_bras_dispo)
+                if(m_bras_dispo)
                 {
-                    wxString reponse(EXECUTION_IMPOSSIBLE);
+                    m_bras_dispo = false;
+                    m_tache = "Trajectoire";
+                    m_id_tache = texte;
+                    
+                    wxString reponse(EXECUTION_OK);
                     EcritReponse(sock, reponse.ToStdString());
+                    
+                    wxString details = m_tache + wxT("-") + m_id_tache;
+                    
+                    wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_SERVEUR + 3);
+                    MyEvent.SetString(details);
+                    wxPostEvent(m_frame, MyEvent);
                 }
                 else
                 {
-                    wxCommandEvent MyEvent1(wxEVT_COMMAND_BUTTON_CLICKED, ID_SERVEUR + 1);
-                    MyEvent1.SetString(wxT("Test trajectoire lancer\n"));
-                    wxPostEvent(m_frame, MyEvent1);
-                    
-                    m_tache.clear();
-                    m_tache = "Trajectoire";
-                    m_bras_dispo = false;
+                    wxString reponse(EXECUTION_IMPOSSIBLE);
+                    EcritReponse(sock, reponse.ToStdString());
                 }
             }
             else if(message.StartsWith(DEMANDE_TEST_MOUVEMENT, &texte))
             {
-                wxString message;
-                message << "Le texte reçu est : " << texte << wxT("\n");
-
-                wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_SERVEUR + 1);
-                MyEvent.SetString(message);
-                wxPostEvent(m_frame, MyEvent);
+                AfficheMessage(wxT("Demande de test de mouvement.\n"));
                 
-                if(!m_bras_dispo)
+                if(m_bras_dispo)
                 {
-                    wxString reponse(EXECUTION_IMPOSSIBLE);
+                    m_bras_dispo = false;
+                    m_tache = "Mouvement";
+                    m_id_tache = texte;
+                    
+                    wxString reponse(EXECUTION_OK);
                     EcritReponse(sock, reponse.ToStdString());
+                    
+                    wxString details = m_tache + wxT("-") + m_id_tache;
+                    
+                    wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_SERVEUR + 3);
+                    MyEvent.SetString(details);
+                    wxPostEvent(m_frame, MyEvent);
                 }
                 else
                 {
-                    wxCommandEvent MyEvent1(wxEVT_COMMAND_BUTTON_CLICKED, ID_SERVEUR + 1);
-                    MyEvent1.SetString(wxT("Test mouvement lancer\n"));
-                    wxPostEvent(m_frame, MyEvent1);
-                    
-                    m_tache.clear();
-                    m_tache = "Mouvement";
-                    m_bras_dispo = false;
+                    wxString reponse(EXECUTION_IMPOSSIBLE);
+                    EcritReponse(sock, reponse.ToStdString());
                 }
             }
             else if(message.StartsWith(DEMANDE_EXECUTION_PROCESSUS, &texte))
             {
-                wxString message;
-                message << "Le texte reçu est : " << texte << wxT("\n");
-
-                wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_SERVEUR + 1);
-                MyEvent.SetString(message);
-                wxPostEvent(m_frame, MyEvent);
+                AfficheMessage(wxT("Demande de test de fabrication.\n"));
                 
-                if(!m_bras_dispo)
+                if(m_bras_dispo)
+                {
+                    m_bras_dispo = false;
+                    m_tache = "Fabrication";
+                    m_id_tache = texte;
+                    
+                    wxString reponse(EXECUTION_OK);
+                    EcritReponse(sock, reponse.ToStdString());
+                    
+                    wxString details = m_tache + wxT("-") + m_id_tache;
+                    
+                    wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_SERVEUR + 3);
+                    MyEvent.SetString(details);
+                    wxPostEvent(m_frame, MyEvent);
+                }
+                else
                 {
                     wxString reponse(EXECUTION_IMPOSSIBLE);
                     EcritReponse(sock, reponse.ToStdString());
                 }
-                else
-                {
-                    wxCommandEvent MyEvent1(wxEVT_COMMAND_BUTTON_CLICKED, ID_SERVEUR + 1);
-                    MyEvent1.SetString(wxT("Execution processus lancer\n"));
-                    wxPostEvent(m_frame, MyEvent1);
-                    
-                    m_tache.clear();
-                    m_tache = "Fabrication";
-                    m_bras_dispo = false;
-                }
             }
             else if(message.IsSameAs(STOP_TEST_PROCESSUS))
             {
-                if(m_tache.IsSameAs("Processus"))
+                AfficheMessage(wxT("Stop test processus.\n"));
+                
+                if(!m_bras_dispo && m_tache.IsSameAs("Processus"))
                 {
-                    wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_SERVEUR + 1);
-                    MyEvent.SetString("Test processus stopper\n");
-                    wxPostEvent(m_frame, MyEvent);
+                    wxString reponse(STOP_OK);
+                    EcritReponse(sock, reponse.ToStdString());
                     m_bras_dispo = true;
+                    
+                    wxString details = m_tache + wxT("-") + m_id_tache;
+                    
+                    wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_SERVEUR + 3);
+                    MyEvent.SetString(details);
+                    wxPostEvent(m_frame, MyEvent);
                 }
                 else
                 {
-                    wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_SERVEUR + 1);
-                    MyEvent.SetString("La tache en cours n'est pas un test de processus.\n");
-                    wxPostEvent(m_frame, MyEvent);
+                    wxString reponse(PAS_PROPRIETAIRE);
+                    EcritReponse(sock, reponse.ToStdString());
+                    
+                    AfficheMessage(wxT("La tache en cours n'est pas un test de processus.\n"));
                 }
             }
             else if(message.IsSameAs(STOP_TEST_TRAJECTOIRE))
             {
-                if(m_tache.IsSameAs("Trajectoire"))
+                AfficheMessage(wxT("Stop test trajectoire.\n"));
+                
+                if(!m_bras_dispo && m_tache.IsSameAs("Processus"))
                 {
-                    wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_SERVEUR + 1);
-                    MyEvent.SetString("Test processus stopper\n");
-                    wxPostEvent(m_frame, MyEvent);
+                    wxString reponse(STOP_OK);
+                    EcritReponse(sock, reponse.ToStdString());
                     m_bras_dispo = true;
+                    
+                    wxString details = m_tache + wxT("-") + m_id_tache;
+                    
+                    wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_SERVEUR + 3);
+                    MyEvent.SetString(details);
+                    wxPostEvent(m_frame, MyEvent);
                 }
                 else
                 {
-                    wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_SERVEUR + 1);
-                    MyEvent.SetString("La tache en cours n'est pas un test de trajectoire.\n");
-                    wxPostEvent(m_frame, MyEvent);
+                    wxString reponse(PAS_PROPRIETAIRE);
+                    EcritReponse(sock, reponse.ToStdString());
+                    
+                    AfficheMessage(wxT("La tache en cours n'est pas un test de processus.\n"));
                 }
             }
             else if(message.IsSameAs(STOP_TEST_MOUVEMENT))
             {
-                if(m_tache.IsSameAs("Mouvement"))
+                AfficheMessage(wxT("Stop test mouvement.\n"));
+                
+                if(!m_bras_dispo && m_tache.IsSameAs("Processus"))
                 {
-                    wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_SERVEUR + 1);
-                    MyEvent.SetString("Test mouvement stopper\n");
-                    wxPostEvent(m_frame, MyEvent);
+                    wxString reponse(STOP_OK);
+                    EcritReponse(sock, reponse.ToStdString());
                     m_bras_dispo = true;
+                    
+                    wxString details = m_tache + wxT("-") + m_id_tache;
+                    
+                    wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_SERVEUR + 3);
+                    MyEvent.SetString(details);
+                    wxPostEvent(m_frame, MyEvent);
                 }
                 else
                 {
-                    wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_SERVEUR + 1);
-                    MyEvent.SetString("La tache en cours n'est pas un test de mouvement.\n");
-                    wxPostEvent(m_frame, MyEvent);
+                    wxString reponse(PAS_PROPRIETAIRE);
+                    EcritReponse(sock, reponse.ToStdString());
+                    
+                    AfficheMessage(wxT("La tache en cours n'est pas un test de processus.\n"));
                 }
             }
             else if(message.IsSameAs(DISPONIBILITE_BRAS))
@@ -395,21 +419,12 @@ void Serveur::DecodeMessage(wxString message, wxSocketBase *sock, DonneesClient 
             }
             else if(message.IsSameAs(DEMANDE_TACHE_EN_COURS))
             {
-                bool tache_cours = true;
-
                 if(!m_bras_dispo)
                 {
-                    if(tache_cours)
-                    {
-                        wxString reponse;
-                        reponse << wxT(TACHE_EN_COURS) << m_tache << "-1";
-                        EcritReponse(sock, reponse.ToStdString());
-                    }
-                    else
-                    {
-                        wxString reponse(PAS_TACHE_EN_COURS);
-                        EcritReponse(sock, reponse.ToStdString());
-                    }
+                    wxString reponse;
+                    reponse << wxT(TACHE_EN_COURS)
+                            << m_tache << wxT("-") << m_id_tache;
+                    EcritReponse(sock, reponse.ToStdString());
                 }
                 else
                 {
@@ -417,8 +432,7 @@ void Serveur::DecodeMessage(wxString message, wxSocketBase *sock, DonneesClient 
                     EcritReponse(sock, reponse.ToStdString());
                 }
             }
-            else if(message.IsSameAs(DEMANDE_CONNEXION))
-            // le client demande à se déconnecter
+            else if(message.IsSameAs(DEMANDE_CONNEXION)) // le client demande à se déconnecter
             {
                 int num_client = RetireClient(sock);
                 wxString message("Déconnexion du client numéro ");

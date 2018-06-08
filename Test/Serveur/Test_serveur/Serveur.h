@@ -33,7 +33,9 @@ class Serveur : public wxEvtHandler
         ~Serveur();
         bool IsOK(){return m_serveur_running;};
         void SetBrasDispo(bool etat){m_bras_dispo = etat;};
+        bool GetBrasDispo(){return m_bras_dispo;};
         void SetTache(wxString tache){m_tache = tache;};
+        void SetIdTache(wxString id_tache){m_id_tache = id_tache;};
         void Close();
     protected:
     private:
@@ -47,6 +49,7 @@ class Serveur : public wxEvtHandler
         typedef map <int,DonneesClient*> DONNEES_CLIENT_MAP;
         DONNEES_CLIENT_MAP m_donnees_client_map;
         wxString m_tache;
+        wxString m_id_tache;
         
         int RetireClient(wxSocketBase *sock);
         int TrouveNumeroClientLibre();
