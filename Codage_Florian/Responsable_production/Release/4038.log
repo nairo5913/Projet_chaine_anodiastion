@@ -1,0 +1,32 @@
+conn=0x559adc54a010, PGAPI_DriverConnect( in)='DSN=Anodisation', fDriverCompletion=0
+DSN info: DSN='Anodisation',server='serveursn',port='5432',dbase='Anodisation_test',user='fprovost',passwd='xxxxx'
+          onlyread='',showoid='',fakeoidindex='',showsystable=''
+          conn_settings='(null)', conn_encoding='(null)'
+          translation_dll='',translation_option=''
+Driver Version='09.05.0400,'
+Global Options: fetch=100, unknown_sizes=0, max_varchar_size=255, max_longvarchar_size=8190
+                unique_index=1, use_declarefetch=0
+                text_as_longvarchar=1, unknowns_as_longvarchar=0, bools_as_char=1 NAMEDATALEN=64
+                extra_systable_prefixes='dd_', conn_settings='(null)' conn_encoding=''
+conn=0x559adc54a010, query='SET DateStyle = 'ISO''
+conn=0x559adc54a010, query='SET extra_float_digits = 2'
+conn=0x559adc54a010, query='select oid, typbasetype from pg_type where typname = 'lo''
+    [ Large Object oid = -999 ]
+    [ Client encoding = 'UTF8' (code = 6) ]
+conn=0x559adc54a010, PGAPI_DriverConnect(out)='DSN=Anodisation;DATABASE=Anodisation_test;SERVER=serveursn;PORT=5432;UID=fprovost;PWD=afulot39;CA=d;A6=;A7=100;B0=255;B1=8190;BI=0;C2=dd_;CX=1c205048a;A1=7.4'
+ParseAndDescribeWithLibpq: plan_name=_PLAN0x559adc5a7b80 query=SELECT id_processus, nom_processus FROM processus ORDER BY id_processus
+ParseWithLibpq: plan_name=_PLAN0x559adc5a7b80 query=SELECT id_processus, nom_processus FROM processus ORDER BY id_processus
+conn=0x559adc54a010, query='select n.nspname, c.relname, a.attname, a.atttypid, t.typname, a.attnum, a.attlen, a.atttypmod, a.attnotnull, c.relhasrules, c.relkind, c.oid, pg_get_expr(d.adbin, d.adrelid), case t.typtype when 'd' then t.typbasetype else 0 end, t.typtypmod, c.relhasoids from (((pg_catalog.pg_class c inner join pg_catalog.pg_namespace n on n.oid = c.relnamespace and c.oid = 28079) inner join pg_catalog.pg_attribute a on (not a.attisdropped) and a.attnum > 0 and a.attrelid = c.oid) inner join pg_catalog.pg_type t on t.oid = a.atttypid) left outer join pg_attrdef d on a.atthasdef and d.adrelid = a.attrelid and d.adnum = a.attnum order by n.nspname, c.relname, attnum'
+PGAPI_Columns: table='processus',field_name='id_processus',type=23,name='int4'
+PGAPI_Columns: table='processus',field_name='nom_processus',type=1042,name='bpchar'
+PGAPI_Columns: table='processus',field_name='processus_valide',type=16,name='bool'
+PGAPI_Columns: table='processus',field_name='duree_processus',type=1083,name='time'
+PGAPI_Columns: table='processus',field_name='nombre_bain',type=23,name='int4'
+ParseAndDescribeWithLibpq: plan_name=_PLAN0x559adc52c400 query=SELECT id_trajectoire, nom_trajectoire, contenu_trajectoire, duree_trajectoire FROM trajectoires ORDER BY id_trajectoire
+ParseWithLibpq: plan_name=_PLAN0x559adc52c400 query=SELECT id_trajectoire, nom_trajectoire, contenu_trajectoire, duree_trajectoire FROM trajectoires ORDER BY id_trajectoire
+conn=0x559adc54a010, query='select n.nspname, c.relname, a.attname, a.atttypid, t.typname, a.attnum, a.attlen, a.atttypmod, a.attnotnull, c.relhasrules, c.relkind, c.oid, pg_get_expr(d.adbin, d.adrelid), case t.typtype when 'd' then t.typbasetype else 0 end, t.typtypmod, c.relhasoids from (((pg_catalog.pg_class c inner join pg_catalog.pg_namespace n on n.oid = c.relnamespace and c.oid = 28088) inner join pg_catalog.pg_attribute a on (not a.attisdropped) and a.attnum > 0 and a.attrelid = c.oid) inner join pg_catalog.pg_type t on t.oid = a.atttypid) left outer join pg_attrdef d on a.atthasdef and d.adrelid = a.attrelid and d.adnum = a.attnum order by n.nspname, c.relname, attnum'
+PGAPI_Columns: table='trajectoires',field_name='id_trajectoire',type=23,name='int4'
+PGAPI_Columns: table='trajectoires',field_name='nom_trajectoire',type=1042,name='bpchar'
+PGAPI_Columns: table='trajectoires',field_name='trajectoire_valide',type=16,name='bool'
+PGAPI_Columns: table='trajectoires',field_name='contenu_trajectoire',type=25,name='text'
+PGAPI_Columns: table='trajectoires',field_name='duree_trajectoire',type=1083,name='time'

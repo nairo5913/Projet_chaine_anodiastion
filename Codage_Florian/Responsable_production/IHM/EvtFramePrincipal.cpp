@@ -1297,6 +1297,7 @@ void EvtFramePrincipal::OnApplyButtonModifierClick(wxCommandEvent& event)
     string duree_total;
     string ordre;
     string duree_bain1, duree_bain2 = "", duree_bain3 = "";
+    string num_bain1, num_bain2, num_bain3;
     unsigned int nombre_bain = m_spinCtrlNombreBainModifier->GetValue();
     vector<string> ordre_separe;
     wxString id_selection = GardeIdSelection(m_listBoxModifierProcessus->GetStringSelection());
@@ -1332,10 +1333,22 @@ void EvtFramePrincipal::OnApplyButtonModifierClick(wxCommandEvent& event)
     {
         wxString ordrewx = m_textCtrlOrdreTrajectoiresModifier->GetValue();
         
+        if(ordrewx.length() == 1)
+        {
+            ordrewx << wxT(";") << ordrewx;
+            wxLogDebug(ordrewx);
+        }
+        else if(ordrewx.length() == 2)
+        {
+            ordrewx << ordrewx;
+            wxLogDebug(ordrewx);
+        }
+        
         if(ordrewx.EndsWith(wxT(";")))
         {
             ordrewx.RemoveLast();
         }
+        
         ordre = ConversionEnString(ordrewx);
         
         unsigned int nb_point_virgule = ordrewx.Freq(caractere);
@@ -1396,6 +1409,15 @@ void EvtFramePrincipal::OnApplyButtonModifierClick(wxCommandEvent& event)
             break;
 
         case 2:
+            num_bain1 = m_choiceCreerBain1->GetStringSelection();
+            num_bain2 = m_choiceCreerBain2->GetStringSelection();
+            
+            if(num_bain1 == num_bain2)
+            {
+                erreur = true;
+                message << wxT("Les deux numéros de bain sont identique.\n");
+            }
+            
             // Vérification des champs du bain 1 qu'ils ont bien été rempli
             if(!m_textCtrlModifierHeureBain1->IsEmpty() && !m_textCtrlModifierMinuteBain1->IsEmpty()
                && !m_textCtrlModifierSecondeBain1->IsEmpty())
@@ -1427,6 +1449,16 @@ void EvtFramePrincipal::OnApplyButtonModifierClick(wxCommandEvent& event)
             break;
 
         case 3:
+            num_bain1 = m_choiceCreerBain1->GetStringSelection();
+            num_bain2 = m_choiceCreerBain2->GetStringSelection();
+            num_bain3 = m_choiceCreerBain2->GetStringSelection();
+            
+            if(num_bain1 == num_bain2 && num_bain1 == num_bain3 && num_bain2 == num_bain3)
+            {
+                erreur = true;
+                message << wxT("Des numéros de bain sont identique.\n");
+            }
+            
             // Vérification des champs du bain 1 qu'ils ont bien été rempli
             if(!m_textCtrlModifierHeureBain1->IsEmpty() && !m_textCtrlModifierMinuteBain1->IsEmpty()
                && !m_textCtrlModifierSecondeBain1->IsEmpty())
@@ -1500,7 +1532,7 @@ void EvtFramePrincipal::OnApplyButtonModifierClick(wxCommandEvent& event)
                         requete = "UPDATE intermediaire_processus_trajectoires SET id_p=" + ConversionEnString(id_selection)
                                 + ", id_t=" + ordre_separe[i]
                                 + ", ordre_trajectoires='" + ordre
-                                + "', numero_bain=1"
+                                + "', numero_bain=" + num_bain1
                                 + ", duree_bain='" + duree_bain1
                                 + "' WHERE id_p=" + ConversionEnString(id_selection);
                                 
@@ -1748,9 +1780,14 @@ void EvtFramePrincipal::OnCancelButtonCreerClick(wxCommandEvent& event)
     m_textCtrlCreerHeureBain3->Clear();
     m_textCtrlCreerMinuteBain3->Clear();
     m_textCtrlCreerSecondeBain3->Clear();
-
+    
+    m_choiceCreerBain1->SetSelection(0);
+    
     // Cacher les réglage des bain 2 et 3
     m_staticCreerDureeTotalBain2->Hide();
+    m_choiceCreerBain2->Hide();
+    m_choiceCreerBain2->SetSelection(1);
+    m_staticCreerBain2->Hide();
     m_textCtrlCreerHeureBain2->Hide();
     m_staticTextCreerDureeBain2->Hide();
     m_textCtrlCreerMinuteBain2->Hide();
@@ -1759,6 +1796,9 @@ void EvtFramePrincipal::OnCancelButtonCreerClick(wxCommandEvent& event)
     bSizerCreerDureeBain2->Hide(this);
 
     m_staticCreerDureeTotalBain3->Hide();
+    m_choiceCreerBain3->Hide();
+    m_choiceCreerBain3->SetSelection(2);
+    m_staticCreerBain3->Hide();
     m_textCtrlCreerHeureBain3->Hide();
     m_staticTextCreerDureeBain3->Hide();
     m_textCtrlCreerMinuteBain3->Hide();
@@ -1784,6 +1824,7 @@ void EvtFramePrincipal::OnSaveButtonCreerClick(wxCommandEvent& event)
     string duree_total;
     string ordre;
     string duree_bain1, duree_bain2 = "", duree_bain3 = "";
+    string num_bain1, num_bain2, num_bain3;
     unsigned int nombre_bain = m_spinCtrlNombreBainCreer->GetValue();
     vector<string> ordre_separe;
     wxString message;
@@ -1818,10 +1859,22 @@ void EvtFramePrincipal::OnSaveButtonCreerClick(wxCommandEvent& event)
     {
         wxString ordrewx = m_textCtrlOrdreTrajectoiresCreer->GetValue();
         
+        if(ordrewx.length() == 1)
+        {
+            ordrewx << wxT(";") << ordrewx;
+            wxLogDebug(ordrewx);
+        }
+        else if(ordrewx.length() == 2)
+        {
+            ordrewx << ordrewx;
+            wxLogDebug(ordrewx);
+        }
+        
         if(ordrewx.EndsWith(wxT(";")))
         {
             ordrewx.RemoveLast();
         }
+        
         ordre = ConversionEnString(ordrewx);
         
         unsigned int nb_point_virgule = ordrewx.Freq(caractere);
@@ -1858,6 +1911,7 @@ void EvtFramePrincipal::OnSaveButtonCreerClick(wxCommandEvent& event)
     }
     else
     {
+        erreur = true;
         message << wxT("Le champ de la trajectoire est vide.\n");
     }
 
@@ -1882,6 +1936,15 @@ void EvtFramePrincipal::OnSaveButtonCreerClick(wxCommandEvent& event)
             break;
 
         case 2:
+            num_bain1 = m_choiceCreerBain1->GetStringSelection();
+            num_bain2 = m_choiceCreerBain2->GetStringSelection();
+            
+            if(num_bain1 == num_bain2)
+            {
+                erreur = true;
+                message << wxT("Les deux numéros de bain sont identique.\n");
+            }
+            
             // Vérification des champs du bain 1 qu'ils ont bien été rempli
             if(!m_textCtrlCreerHeureBain1->IsEmpty() && !m_textCtrlCreerMinuteBain1->IsEmpty()
                && !m_textCtrlCreerSecondeBain1->IsEmpty())
@@ -1895,7 +1958,7 @@ void EvtFramePrincipal::OnSaveButtonCreerClick(wxCommandEvent& event)
                 erreur = true;
                 message << wxT("L'un ou des champs de la durée du bain 1 est/sont vide.\n");
             }
-
+            
             // Vérification des champs du bain 2 qu'ils ont bien été rempli
             if(!m_textCtrlCreerHeureBain2->IsEmpty() && !m_textCtrlCreerMinuteBain2->IsEmpty()
                && !m_textCtrlCreerSecondeBain2->IsEmpty())
@@ -1913,6 +1976,16 @@ void EvtFramePrincipal::OnSaveButtonCreerClick(wxCommandEvent& event)
             break;
 
         case 3:
+            num_bain1 = m_choiceCreerBain1->GetStringSelection();
+            num_bain2 = m_choiceCreerBain2->GetStringSelection();
+            num_bain3 = m_choiceCreerBain2->GetStringSelection();
+            
+            if(num_bain1 == num_bain2 && num_bain1 == num_bain3 && num_bain2 == num_bain3)
+            {
+                erreur = true;
+                message << wxT("Des numéros de bain sont identique.\n");
+            }
+            
             // Vérification des champs du bain 1 qu'ils ont bien été rempli
             if(!m_textCtrlCreerHeureBain1->IsEmpty() && !m_textCtrlCreerMinuteBain1->IsEmpty()
                && !m_textCtrlCreerSecondeBain1->IsEmpty())
@@ -1964,10 +2037,9 @@ void EvtFramePrincipal::OnSaveButtonCreerClick(wxCommandEvent& event)
     
     if(erreur)
     {
-        string id_p = m_bdd_anodisation->DernierIdProcessus();
-        cout << "id_p : " << id_p << endl;
-        wxMessageBox(message, "Responsable de production - Champs vide !",
-                     wxOK_DEFAULT | wxICON_EXCLAMATION | wxCENTRE | wxSTAY_ON_TOP, this);
+        //string id_p = m_bdd_anodisation->DernierIdProcessus();
+        //cout << "id_p : " << id_p << endl;
+        wxMessageBox(message, "Responsable de production - Champs vide !", wxOK_DEFAULT | wxICON_EXCLAMATION | wxCENTRE | wxSTAY_ON_TOP, this);
     }
     else
     {
@@ -1990,7 +2062,7 @@ void EvtFramePrincipal::OnSaveButtonCreerClick(wxCommandEvent& event)
                                 + id_p + ", "
                                 + ordre_separe[i] + ", '"
                                 + ordre + "', "
-                                + "1, '"
+                                + num_bain1 + ", '"
                                 + duree_bain1 + "')";
                                 
                         cout << requete << endl;
@@ -2020,6 +2092,7 @@ void EvtFramePrincipal::OnSaveButtonCreerClick(wxCommandEvent& event)
             AfficheErreurRemplisage(ConversionEnWxString(m_bdd_anodisation->GetLastError()));
         }
     }
+    
     VideListBox();
     RempliListBox();
 }

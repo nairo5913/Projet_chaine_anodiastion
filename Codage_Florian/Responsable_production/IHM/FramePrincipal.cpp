@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Feb 16 2016)
+// C++ code generated with wxFormBuilder (version Dec 21 2016)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO "NOT" EDIT THIS FILE!
@@ -778,7 +778,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	int m_choiceModifierBain1NChoices = sizeof( m_choiceModifierBain1Choices ) / sizeof( wxString );
 	m_choiceModifierBain1 = new wxChoice( sbSizerGestionBainModifier->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choiceModifierBain1NChoices, m_choiceModifierBain1Choices, wxCB_SORT );
 	m_choiceModifierBain1->SetSelection( 0 );
-	m_choiceModifierBain1->SetMaxSize( wxSize( 40,-1 ) );
+	m_choiceModifierBain1->SetMaxSize( wxSize( 50,-1 ) );
 	
 	bSizerModifierDureeBain1->Add( m_choiceModifierBain1, 0, wxALIGN_CENTER_VERTICAL|wxTOP|wxBOTTOM, 5 );
 	
@@ -855,7 +855,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_choiceModifierBain2 = new wxChoice( sbSizerGestionBainModifier->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choiceModifierBain2NChoices, m_choiceModifierBain2Choices, wxCB_SORT );
 	m_choiceModifierBain2->SetSelection( 1 );
 	m_choiceModifierBain2->Hide();
-	m_choiceModifierBain2->SetMaxSize( wxSize( 40,-1 ) );
+	m_choiceModifierBain2->SetMaxSize( wxSize( 50,-1 ) );
 	
 	bSizerModifierDureeBain2->Add( m_choiceModifierBain2, 0, wxALIGN_CENTER_VERTICAL|wxBOTTOM|wxTOP, 5 );
 	
@@ -947,7 +947,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_choiceModifierBain3 = new wxChoice( sbSizerGestionBainModifier->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choiceModifierBain3NChoices, m_choiceModifierBain3Choices, wxCB_SORT );
 	m_choiceModifierBain3->SetSelection( 2 );
 	m_choiceModifierBain3->Hide();
-	m_choiceModifierBain3->SetMaxSize( wxSize( 40,-1 ) );
+	m_choiceModifierBain3->SetMaxSize( wxSize( 50,-1 ) );
 	
 	bSizerModifierDureeBain3->Add( m_choiceModifierBain3, 0, wxALIGN_TOP, 5 );
 	
@@ -1234,7 +1234,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	int m_choiceCreerBain1NChoices = sizeof( m_choiceCreerBain1Choices ) / sizeof( wxString );
 	m_choiceCreerBain1 = new wxChoice( sbSizerGestionBainCreer->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choiceCreerBain1NChoices, m_choiceCreerBain1Choices, wxCB_SORT );
 	m_choiceCreerBain1->SetSelection( 0 );
-	m_choiceCreerBain1->SetMaxSize( wxSize( 40,-1 ) );
+	m_choiceCreerBain1->SetMaxSize( wxSize( 50,-1 ) );
 	
 	bSizerCreerDureeBain1->Add( m_choiceCreerBain1, 0, wxTOP|wxBOTTOM|wxALIGN_CENTER_VERTICAL, 5 );
 	
@@ -1311,7 +1311,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_choiceCreerBain2 = new wxChoice( sbSizerGestionBainCreer->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choiceCreerBain2NChoices, m_choiceCreerBain2Choices, wxCB_SORT );
 	m_choiceCreerBain2->SetSelection( 1 );
 	m_choiceCreerBain2->Hide();
-	m_choiceCreerBain2->SetMaxSize( wxSize( 40,-1 ) );
+	m_choiceCreerBain2->SetMaxSize( wxSize( 50,-1 ) );
 	
 	bSizerCreerDureeBain2->Add( m_choiceCreerBain2, 0, wxTOP|wxBOTTOM|wxALIGN_CENTER_VERTICAL, 5 );
 	
@@ -1403,7 +1403,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_choiceCreerBain3 = new wxChoice( sbSizerGestionBainCreer->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choiceCreerBain3NChoices, m_choiceCreerBain3Choices, wxCB_SORT );
 	m_choiceCreerBain3->SetSelection( 2 );
 	m_choiceCreerBain3->Hide();
-	m_choiceCreerBain3->SetMaxSize( wxSize( 40,-1 ) );
+	m_choiceCreerBain3->SetMaxSize( wxSize( 50,-1 ) );
 	
 	bSizerCreerDureeBain3->Add( m_choiceCreerBain3, 0, wxALIGN_TOP, 5 );
 	
@@ -1524,13 +1524,13 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	
 	m_staticTextDetruire = new wxStaticText( sbSizerDetruire->GetStaticBox(), wxID_ANY, wxT("Vous allez détruire le processus : "), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextDetruire->Wrap( -1 );
-	m_staticTextDetruire->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), 70, 90, 92, false, wxEmptyString ) );
+	m_staticTextDetruire->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, wxEmptyString ) );
 	
 	bSizerTitreDetruire->Add( m_staticTextDetruire, 0, wxTOP|wxBOTTOM|wxLEFT, 5 );
 	
 	m_staticTextDetuireTitre = new wxStaticText( sbSizerDetruire->GetStaticBox(), wxID_ANY, wxT("Processus 1"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextDetuireTitre->Wrap( -1 );
-	m_staticTextDetuireTitre->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), 70, 90, 92, false, wxEmptyString ) );
+	m_staticTextDetuireTitre->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, wxEmptyString ) );
 	
 	bSizerTitreDetruire->Add( m_staticTextDetuireTitre, 0, wxTOP|wxBOTTOM|wxRIGHT, 5 );
 	
@@ -1656,13 +1656,13 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	
 	m_staticTextLancer = new wxStaticText( sbSizerLancement->GetStaticBox(), wxID_ANY, wxT("Vous allez lancer la fabrication du processus : "), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextLancer->Wrap( -1 );
-	m_staticTextLancer->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), 70, 90, 92, false, wxEmptyString ) );
+	m_staticTextLancer->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, wxEmptyString ) );
 	
 	bSizerTitreLancer->Add( m_staticTextLancer, 0, wxTOP|wxBOTTOM|wxLEFT, 5 );
 	
 	m_staticTextLancerTitre = new wxStaticText( sbSizerLancement->GetStaticBox(), wxID_ANY, wxT("Processus 1"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextLancerTitre->Wrap( -1 );
-	m_staticTextLancerTitre->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), 70, 90, 92, false, wxEmptyString ) );
+	m_staticTextLancerTitre->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, wxEmptyString ) );
 	
 	bSizerTitreLancer->Add( m_staticTextLancerTitre, 0, wxTOP|wxBOTTOM|wxRIGHT, 5 );
 	
@@ -1785,13 +1785,13 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	
 	m_staticTextTester = new wxStaticText( sbSizerTester->GetStaticBox(), wxID_ANY, wxT("Vous allez lancer le test du processus : "), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextTester->Wrap( -1 );
-	m_staticTextTester->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), 70, 90, 92, false, wxEmptyString ) );
+	m_staticTextTester->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, wxEmptyString ) );
 	
 	bSizerTitreTester->Add( m_staticTextTester, 0, wxTOP|wxBOTTOM|wxLEFT, 5 );
 	
 	m_staticTextTesterTitre = new wxStaticText( sbSizerTester->GetStaticBox(), wxID_ANY, wxT("Processus 1"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextTesterTitre->Wrap( -1 );
-	m_staticTextTesterTitre->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), 70, 90, 92, false, wxEmptyString ) );
+	m_staticTextTesterTitre->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, wxEmptyString ) );
 	
 	bSizerTitreTester->Add( m_staticTextTesterTitre, 0, wxTOP|wxBOTTOM|wxRIGHT, 5 );
 	
@@ -2538,7 +2538,7 @@ FrameApropos::FrameApropos( wxWindow* parent, wxWindowID id, const wxString& tit
 	
 	m_staticTextTitre = new wxStaticText( m_panelApropos, wxID_ANY, wxT("À propos du projet"), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTRE );
 	m_staticTextTitre->Wrap( -1 );
-	m_staticTextTitre->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), 70, 90, 92, false, wxEmptyString ) );
+	m_staticTextTitre->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, wxEmptyString ) );
 	
 	bSizerApropos->Add( m_staticTextTitre, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 20 );
 	
@@ -2612,7 +2612,7 @@ FrameAide::FrameAide( wxWindow* parent, wxWindowID id, const wxString& title, co
 	
 	m_staticTextTitre = new wxStaticText( m_panelAide, wxID_ANY, wxT("Aide"), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTRE );
 	m_staticTextTitre->Wrap( -1 );
-	m_staticTextTitre->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), 70, 90, 92, false, wxEmptyString ) );
+	m_staticTextTitre->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, wxEmptyString ) );
 	
 	bSizerAide->Add( m_staticTextTitre, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 20 );
 	
