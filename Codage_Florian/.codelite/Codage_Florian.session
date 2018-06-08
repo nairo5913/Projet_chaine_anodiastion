@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Session Name="/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Codage_Florian/Codage_Florian.workspace">
+  <int Value="1" Name="m_selectedTab"/>
+  <wxString Value="/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Codage_Florian/Codage_Florian.workspace" Name="m_workspaceName"/>
+  <TabInfoArray Name="TabInfoArray">
+    <TabInfo>
+      <wxString Value="/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Codage_Florian/Responsable_production/IHM/EvtFramePrincipal.h" Name="FileName"/>
+      <int Value="60" Name="FirstVisibleLine"/>
+      <int Value="0" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Codage_Florian/Responsable_production/IHM/EvtFramePrincipal.cpp" Name="FileName"/>
+      <int Value="492" Name="FirstVisibleLine"/>
+      <int Value="2094" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds">
+        <IntVectorItem Value="0"/>
+        <IntVectorItem Value="10"/>
+        <IntVectorItem Value="42"/>
+        <IntVectorItem Value="74"/>
+        <IntVectorItem Value="284"/>
+        <IntVectorItem Value="566"/>
+        <IntVectorItem Value="571"/>
+        <IntVectorItem Value="602"/>
+        <IntVectorItem Value="697"/>
+        <IntVectorItem Value="985"/>
+        <IntVectorItem Value="1174"/>
+        <IntVectorItem Value="1573"/>
+        <IntVectorItem Value="1765"/>
+        <IntVectorItem Value="1834"/>
+        <IntVectorItem Value="1838"/>
+        <IntVectorItem Value="1845"/>
+        <IntVectorItem Value="1851"/>
+        <IntVectorItem Value="1858"/>
+        <IntVectorItem Value="1912"/>
+        <IntVectorItem Value="2214"/>
+        <IntVectorItem Value="2262"/>
+        <IntVectorItem Value="2299"/>
+        <IntVectorItem Value="2350"/>
+        <IntVectorItem Value="2360"/>
+        <IntVectorItem Value="2415"/>
+        <IntVectorItem Value="2423"/>
+        <IntVectorItem Value="2433"/>
+        <IntVectorItem Value="2489"/>
+        <IntVectorItem Value="2630"/>
+        <IntVectorItem Value="2637"/>
+        <IntVectorItem Value="2669"/>
+        <IntVectorItem Value="2674"/>
+        <IntVectorItem Value="2680"/>
+        <IntVectorItem Value="2690"/>
+        <IntVectorItem Value="2699"/>
+        <IntVectorItem Value="2716"/>
+        <IntVectorItem Value="2722"/>
+        <IntVectorItem Value="2728"/>
+        <IntVectorItem Value="2732"/>
+        <IntVectorItem Value="2764"/>
+        <IntVectorItem Value="2769"/>
+        <IntVectorItem Value="2789"/>
+        <IntVectorItem Value="2874"/>
+        <IntVectorItem Value="2888"/>
+        <IntVectorItem Value="2895"/>
+        <IntVectorItem Value="2902"/>
+        <IntVectorItem Value="2909"/>
+        <IntVectorItem Value="2917"/>
+        <IntVectorItem Value="2927"/>
+      </IntVector>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Codage_Florian/Responsable_production/BdD/DataAnodisation.h" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="0" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Codage_Florian/Responsable_production/BdD/DataAnodisation.cpp" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="0" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Codage_Florian/Responsable_production/BdD/DonneesIHM.h" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="0" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Codage_Florian/Responsable_production/BdD/DonneesIHM.cpp" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="0" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Codage_Florian/Responsable_production/Client/Client.h" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="0" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Codage_Florian/Responsable_production/Client/Client.cpp" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="250" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds">
+        <IntVectorItem Value="0"/>
+        <IntVectorItem Value="10"/>
+        <IntVectorItem Value="111"/>
+        <IntVectorItem Value="119"/>
+        <IntVectorItem Value="147"/>
+        <IntVectorItem Value="185"/>
+        <IntVectorItem Value="206"/>
+        <IntVectorItem Value="212"/>
+        <IntVectorItem Value="221"/>
+        <IntVectorItem Value="251"/>
+        <IntVectorItem Value="281"/>
+        <IntVectorItem Value="311"/>
+        <IntVectorItem Value="336"/>
+        <IntVectorItem Value="363"/>
+        <IntVectorItem Value="370"/>
+        <IntVectorItem Value="386"/>
+      </IntVector>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Codage_Florian/Responsable_production/Client/Protocoles.h" Name="FileName"/>
+      <int Value="9" Name="FirstVisibleLine"/>
+      <int Value="31" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+  </TabInfoArray>
+  <SerializedObject Name="m_breakpoints">
+    <long Value="0" Name="Count"/>
+  </SerializedObject>
+</Session>

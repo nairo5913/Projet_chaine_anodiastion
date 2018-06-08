@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeLite_Workspace Name="Test" Database="Test.tags" Version="10.0.0">
+  <Project Name="Test_requete_avec_affichage_et_saisie" Path="Test_requete_avec_poco/Test_requete_avec_affichage_et_saisie/Test_requete_avec_affichage_et_saisie.project" Active="No"/>
+  <Project Name="Test_serveur" Path="Serveur/Test_serveur/Test_serveur.project" Active="No"/>
+  <VirtualDirectory Name="IHM">
+    <Project Name="Executable_wxwidgets_dialog" Path="TestIHM/Executable_wxwidgets_dialog/Executable_wxwidgets_dialog.project" Active="No"/>
+    <Project Name="Executable_wxwidgets_enable" Path="TestIHM/Executable_wxwidgets_enable/Executable_wxwidgets_enable.project" Active="No"/>
+    <Project Name="Executable_wxwidgets_frame" Path="TestIHM/Executable_wxwidgets_frame/Executable_wxwidgets_frame.project" Active="No"/>
+    <Project Name="Multi_fenetre" Path="TestIHM/Multi_fenetre/Multi_fenetre.project" Active="No"/>
+    <Project Name="Test_IHM_Responsable_production" Path="Test_IHM_Responsable_production/Test_IHM_Responsable_production.project" Active="No"/>
+  </VirtualDirectory>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Debug" Selected="no">
+      <Environment/>
+      <Project Name="Test_requete_avec_affichage_et_saisie" ConfigName="Debug"/>
+      <Project Name="Test_serveur" ConfigName="Debug"/>
+      <Project Name="Executable_wxwidgets_dialog" ConfigName="Debug"/>
+      <Project Name="Executable_wxwidgets_enable" ConfigName="Debug"/>
+      <Project Name="Executable_wxwidgets_frame" ConfigName="Debug"/>
+      <Project Name="Multi_fenetre" ConfigName="Debug"/>
+      <Project Name="Test_IHM_Responsable_production" ConfigName="Debug"/>
+    </WorkspaceConfiguration>
+    <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Environment/>
+      <Project Name="Test_serveur" ConfigName="Release"/>
+      <Project Name="Test_requete_avec_affichage_et_saisie" ConfigName="Release"/>
+      <Project Name="Test_IHM_Responsable_production" ConfigName="Release"/>
+      <Project Name="Multi_fenetre" ConfigName="Release"/>
+      <Project Name="Executable_wxwidgets_frame" ConfigName="Release"/>
+      <Project Name="Executable_wxwidgets_enable" ConfigName="Release"/>
+      <Project Name="Executable_wxwidgets_dialog" ConfigName="Release"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
+</CodeLite_Workspace>
