@@ -72,7 +72,7 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
                 erreur = true;
             }
 
-            m_client = new Client("192.168.1.16", 30000, this);
+            m_client = new Client("localhost", 30000, this);
 // m_client_connecte = m_client->IsOK();
 
 // Tester la connection du client de communication

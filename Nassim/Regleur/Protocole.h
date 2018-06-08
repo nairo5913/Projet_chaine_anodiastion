@@ -20,13 +20,15 @@
 #define DEMANDE_TEST_TRAJECTOIRE "201-"
 #define DEMANDE_TEST_MOUVEMENT "202-"
 #define DEMANDE_EXECUTION_PROCESSUS "203-"
-#define EXECUTION_IMPOSSIBLE "204-"
+#define EXECUTION_OK "204-"
+#define EXECUTION_IMPOSSIBLE "205-"
 
 //interuption
 #define STOP_TEST_PROCESSUS "210-"
 #define STOP_TEST_TRAJECTOIRE "211-"
 #define STOP_TEST_MOUVEMENT "212-"
 #define STOP_OK "213-"
+#define PAS_PROPRIETAIRE "214-"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Partie 300, Informations

@@ -1,1 +1,1 @@
-./Release/EvtFramePrincipal.cpp.o ./Release/FramePrincipal.cpp.o ./Release/MyApp.cpp.o ./Release/DataAnnodisation.cpp.o ./Release/Client.cpp.o
+./Debug/EvtFramePrincipal.cpp.o ./Debug/FramePrincipal.cpp.o ./Debug/MyApp.cpp.o ./Debug/DataAnnodisation.cpp.o ./Debug/Client.cpp.o

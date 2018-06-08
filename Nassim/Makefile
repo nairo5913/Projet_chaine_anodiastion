@@ -1,8 +1,8 @@
 .PHONY: clean All
 
 All:
-	@echo "----------Building project:[ Regleur - Release ]----------"
+	@echo "----------Building project:[ Regleur - Debug ]----------"
 	@cd "Regleur" && "$(MAKE)" -f  "Regleur.mk"
 clean:
-	@echo "----------Cleaning project:[ Regleur - Release ]----------"
+	@echo "----------Cleaning project:[ Regleur - Debug ]----------"
 	@cd "Regleur" && "$(MAKE)" -f  "Regleur.mk" clean
