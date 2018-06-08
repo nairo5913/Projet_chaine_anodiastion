@@ -360,7 +360,7 @@ void Serveur::DecodeMessage(wxString message, wxSocketBase *sock, DonneesClient 
             {
                 AfficheMessage(wxT("Stop test trajectoire.\n"));
                 
-                if(!m_bras_dispo && m_tache.IsSameAs("Processus"))
+                if(!m_bras_dispo && m_tache.IsSameAs("Trajectoire"))
                 {
                     wxString reponse(STOP_OK);
                     EcritReponse(sock, reponse.ToStdString());
@@ -377,14 +377,14 @@ void Serveur::DecodeMessage(wxString message, wxSocketBase *sock, DonneesClient 
                     wxString reponse(PAS_PROPRIETAIRE);
                     EcritReponse(sock, reponse.ToStdString());
                     
-                    AfficheMessage(wxT("La tache en cours n'est pas un test de processus.\n"));
+                    AfficheMessage(wxT("La tache en cours n'est pas un test de trajectoire.\n"));
                 }
             }
             else if(message.IsSameAs(STOP_TEST_MOUVEMENT))
             {
                 AfficheMessage(wxT("Stop test mouvement.\n"));
                 
-                if(!m_bras_dispo && m_tache.IsSameAs("Processus"))
+                if(!m_bras_dispo && m_tache.IsSameAs("Mouvement"))
                 {
                     wxString reponse(STOP_OK);
                     EcritReponse(sock, reponse.ToStdString());
@@ -401,7 +401,7 @@ void Serveur::DecodeMessage(wxString message, wxSocketBase *sock, DonneesClient 
                     wxString reponse(PAS_PROPRIETAIRE);
                     EcritReponse(sock, reponse.ToStdString());
                     
-                    AfficheMessage(wxT("La tache en cours n'est pas un test de processus.\n"));
+                    AfficheMessage(wxT("La tache en cours n'est pas un test de mouvement.\n"));
                 }
             }
             else if(message.IsSameAs(DISPONIBILITE_BRAS))
