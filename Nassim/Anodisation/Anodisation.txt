@@ -1,0 +1,1 @@
+./Debug/EvtFramePrincipal.cpp.o ./Debug/FramePrincipal.cpp.o ./Debug/MyApp.cpp.o ./Debug/BDD.cpp.o ./Debug/Mouvement.cpp.o ./Debug/Trajectoire.cpp.o

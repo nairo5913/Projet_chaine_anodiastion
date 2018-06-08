@@ -1,1 +1,1 @@
-./Debug/EvtFramePrincipal.cpp.o ./Debug/FramePrincipal.cpp.o ./Debug/MyApp.cpp.o ./Debug/DataAnnodiastion.cpp.o
+./Release/EvtFramePrincipal.cpp.o ./Release/FramePrincipal.cpp.o ./Release/MyApp.cpp.o ./Release/DataAnnodiastion.cpp.o
