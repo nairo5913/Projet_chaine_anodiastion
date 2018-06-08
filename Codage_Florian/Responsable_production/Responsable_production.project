@@ -7,7 +7,9 @@
   </Plugins>
   <Description/>
   <Dependencies/>
-  <VirtualDirectory Name="src"/>
+  <VirtualDirectory Name="src">
+    <File Name="MyApp.cpp"/>
+  </VirtualDirectory>
   <VirtualDirectory Name="include">
     <File Name="MyApp.h"/>
   </VirtualDirectory>
@@ -116,7 +118,6 @@
       <File Name="IHM/FramePrincipal.h"/>
       <File Name="IHM/EvtFramePrincipal.cpp"/>
       <File Name="IHM/FramePrincipal.cpp"/>
-      <File Name="MyApp.cpp"/>
       <File Name="IHM/FramePrincipal.fbp"/>
     </VirtualDirectory>
     <VirtualDirectory Name="Dialogue">

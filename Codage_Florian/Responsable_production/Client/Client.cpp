@@ -65,7 +65,7 @@ Client::Client(wxString ip, long port, EvtFramePrincipal *frame)
             if(Identification(utilisateur))
             {
                 message.clear();
-                message << wxT("Identification OK \n");
+                message << wxT("Identification auprès du serveur réussie.\n");
                 MyEventMsg.SetString(message);
                 wxPostEvent(m_frame, MyEventMsg);
             }
@@ -118,30 +118,27 @@ Client::~Client()
 
 bool Client::DemandeDisponibiliteBras()
 {
-    wxString requete(wxT(DISPONIBILITE_BRAS));
-    
-    wxString reponse = EcritMessage(requete);
     bool retour = false;
+    wxString requete(wxT(DISPONIBILITE_BRAS));
+    wxString reponse = EcritMessage(requete);
+    wxString message;
     
     if(reponse == BRAS_DISPONIBLE)
     {
-        wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
-        MyEvent.SetString(wxT("Le bras est disponible.\n"));
-        wxPostEvent(m_frame, MyEvent);
+        message << wxT("Le bras est disponible.\n");
+        AfficheMessage(message);
         
         retour = true;
     }
     else if(reponse == BRAS_INDISPONIBLE)
     {
-        wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
-        MyEvent.SetString(wxT("Le bras n'est pas disponible.\n"));
-        wxPostEvent(m_frame, MyEvent);
+        message << wxT("Le bras n’est pas disponible.\n");
+        AfficheMessage(message);
     }
     else
     {
-        wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
-        MyEvent.SetString(wxT("Une erreur est survenue.\n"));
-        wxPostEvent(m_frame, MyEvent);
+        message << wxT("Une erreur est survenue.\n");
+        AfficheMessage(message);
     }
     
     return retour;
@@ -201,7 +198,8 @@ string Client::EcritMessage(wxString message)
     delete cstring;
 
     //wxString reponse(LitReponse().c_str(), wxConvUTF8);
-    string reponse = LitReponse();
+    string reponse ="";
+    reponse = LitReponse();
     
     return reponse;
 }
@@ -231,22 +229,22 @@ void Client::ExecutionProcessus(wxString num_id)
         
         if(reponse == EXECUTION_IMPOSSIBLE)
         {
-            wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
-            MyEvent.SetString(wxT("Erreur d'éxecution"));
-            wxPostEvent(m_frame, MyEvent);
+            wxString message;
+            message << wxT("Erreur lors du lancement de la fabrication.\n");
+            AfficheMessage(message);
         }
         else
         {
-            wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
-            MyEvent.SetString(wxT("Éxecution réussie."));
-            wxPostEvent(m_frame, MyEvent);
+            wxString message;
+            message << wxT("Lancement de la fabrication réussie.\n");
+            AfficheMessage(message);
         }
     }
     else
     {
-        wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
-        MyEvent.SetString(wxT("Imposible de lancer l'éxecution du processus car le bras n'est pas disponible.\n"));
-        wxPostEvent(m_frame, MyEvent);
+        wxString message;
+        message << wxT("Impossible de lancer l’exécution du processus, car le bras n’est pas disponible.\n");
+        AfficheMessage(message);
     }
 }
 
@@ -257,9 +255,27 @@ void Client::StopProcessus()
     
     wxString reponse = EcritMessage(requete);
     
-    wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
-    MyEvent.SetString(wxT("Processus stopper."));
-    wxPostEvent(m_frame, MyEvent);
+    if(reponse.IsSameAs(PAS_PROPRIETAIRE))
+    {
+        wxString message;
+        
+        if(DemandeDisponibiliteBras())
+        {
+            message << wxT("Impossible de stopper le test, car le bras est disponible, il n’y a donc pas de tâche en cours.\n");
+            AfficheMessage(message);
+        }
+        else
+        {
+            message << wxT("Impossible de stopper le test, car la tache en cours n’est pas un test de processus.\n");
+            AfficheMessage(message);
+        }
+    }
+    else
+    {
+        wxString message;
+        message << wxT("Processus stopper.\n");
+        AfficheMessage(message);
+    }
 }
 
 void Client::TestProcessus(wxString num_id)
@@ -273,26 +289,26 @@ void Client::TestProcessus(wxString num_id)
         
         if(reponse == EXECUTION_IMPOSSIBLE)
         {
-            wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
-            MyEvent.SetString(wxT("Erreur de lancement du test"));
-            wxPostEvent(m_frame, MyEvent);
+            wxString message;
+            message << wxT("Erreur de lancement du test.\n");
+            AfficheMessage(message);
         }
         else
         {
-            wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
-            MyEvent.SetString(wxT("Lancement du test réussi."));
-            wxPostEvent(m_frame, MyEvent);
+            wxString message;
+            message << wxT("Lancement du test réussi.\n");
+            AfficheMessage(message);
         }
     }
     else
     {
-        wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
-        MyEvent.SetString(wxT("Imposible de lancer le test du processus car le bras n'est pas disponible.\n"));
-        wxPostEvent(m_frame, MyEvent);
+        wxString message;
+        message << wxT("Impossible de lancer le test du processus, car le bras n’est pas disponible.\n");
+        AfficheMessage(message);
     }
 }
 
-bool Client::Identification(wxString utilisateur)
+bool Client::Identification(wxString utilisateur) 
 {
     bool retour = false;
     
@@ -344,6 +360,13 @@ string Client::LitReponse()
     return reponse;
 }
 
+void Client::AfficheMessage(wxString message)
+{
+    wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
+    MyEvent.SetString(message);
+    wxPostEvent(m_frame, MyEvent);
+}
+
 void Client::Deconnexion(wxString raison)
 {
     wxString message(wxT(DEMANDE_DECONNEXION));
@@ -353,16 +376,14 @@ void Client::Deconnexion(wxString raison)
     m_client->Destroy();
     
     // on demande à l'IHM d'afficher le message
-    wxCommandEvent MyEvent(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+2);
-    MyEvent.SetString(raison);
-    wxPostEvent(m_frame, MyEvent);
+    wxCommandEvent Affichage(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+2);
+    Affichage.SetString(raison);
+    wxPostEvent(m_frame, Affichage);
     
-    wxCommandEvent MyEvent1(wxEVT_COMMAND_BUTTON_CLICKED, ID_CLIENT+1);
-    MyEvent.SetString(reponse);
-    wxPostEvent(m_frame, MyEvent1);
+    //AfficheMessage(reponse);
 }
 
-void Client::OnSocketEvent(wxSocketEvent& event)
+void Client::OnSocketEvent(wxSocketEvent& event) // ok
 {
     //on peut récupérer le socket:
     //wxSocketBase *sock=event.GetSocket();
@@ -372,7 +393,7 @@ void Client::OnSocketEvent(wxSocketEvent& event)
         case wxSOCKET_LOST:
         {
             wxString message(wxT(""));
-            message <<  wxT("Déconnexion du serveur situé sur ") <<  m_hote << wxT(": il a disparu\n");
+            message <<  wxT("Déconnexion du serveur situé sur ") <<  m_hote << wxT(": il a disparu.\n");
             Deconnexion(message);
             break;
         }

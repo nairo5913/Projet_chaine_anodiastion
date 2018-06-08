@@ -46,8 +46,8 @@ class Client : public wxEvtHandler
         
         bool Identification(wxString utilisateur);
         string LitReponse();
+        void AfficheMessage(wxString message);
         void Deconnexion(wxString message);
-        void EnvoiProcessus(wxString id_processus /*int num_id, wxString utilisateur*/);
         void OnSocketEvent(wxSocketEvent& event);
 };
 

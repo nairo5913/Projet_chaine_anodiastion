@@ -25,12 +25,9 @@ EvtFramePrincipal::EvtFramePrincipal(wxWindow* parent) : FramePrincipal(parent)
     AfficheStatus(wxT("Déconnecté"), 1);
 
     // Connexion des événements du client
-    Connect(ID_CLIENT, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(EvtFramePrincipal::AfficheInfoClient), NULL,
-            this);
-    Connect(ID_CLIENT + 1, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(EvtFramePrincipal::AfficheMessageClient),
-            NULL, this);
-    Connect(ID_CLIENT + 2, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(EvtFramePrincipal::AgitServeurPerdu),
-            NULL, this);
+    Connect(ID_CLIENT, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(EvtFramePrincipal::AfficheInfoClient), NULL, this);
+    Connect(ID_CLIENT + 1, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(EvtFramePrincipal::AfficheMessageClient), NULL, this);
+    Connect(ID_CLIENT + 2, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(EvtFramePrincipal::AgitServeurPerdu), NULL, this);
 
     // Charger les bitmap pour la disponibilité du bras
     BmpRouge.LoadFile(wxT("../Images/RougeAllume.bmp"), wxBITMAP_TYPE_BMP);
@@ -240,6 +237,9 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
     }
     else
     {
+        // Vidange de l'affichage
+        m_textCtrlAffichage->Clear();
+        
         // Vérifier conection client (m_connecte)
         if(m_client_connecte)
         {
@@ -277,9 +277,6 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
         // Mise à jour de la statue bar
         AfficheStatus(wxT("Déconnecté"), 1);
 
-        // Vidange de l'affichage
-        m_textCtrlAffichage->Clear();
-
         Layout();
     }
 }
@@ -296,11 +293,51 @@ void EvtFramePrincipal::OnListBoxAffichageSelection(wxCommandEvent& event)
     m_textCtrlDureeTotalMinuteAfficher->Clear();
     m_textCtrlDureeTotalSecondeAfficher->Clear();
     m_listBoxListeTrajectoiresAfficher->Clear();
+    
+    m_textCtrlAfficherHeureBain1->Clear();
+    m_textCtrlAfficherMinuteBain1->Clear();
+    m_textCtrlAfficherSecondeBain1->Clear();
+    
+    m_textCtrlAfficherHeureBain2->Clear();
+    m_textCtrlAfficherMinuteBain2->Clear();
+    m_textCtrlAfficherSecondeBain2->Clear();
+    
+    m_textCtrlAfficherHeureBain3->Clear();
+    m_textCtrlAfficherMinuteBain3->Clear();
+    m_textCtrlAfficherSecondeBain3->Clear();
 
     // Du coté gauche
     m_textCtrlNomAfficher->Clear();
     m_textCtrlNombreBainAfficher->Clear();
     m_textCtrlOrdreTrajectoiresAfficher->Clear();
+    
+    // Masquage
+    m_staticAfficherDureeTotalBain2->Hide();
+    m_textCtrlAfficherHeureBain2->Hide();
+    m_staticTextAfficherDureeBain2->Hide();
+    m_textCtrlAfficherMinuteBain2->Hide();
+    m_staticTextAfficherDureeFinBain2->Hide();
+    m_textCtrlAfficherSecondeBain2->Hide();
+    m_staticTextAfficherNumBain2->Hide();
+    bSizerAfficherDureeBain2->Hide(this);
+    
+    m_staticAfficherDureeTotalBain3->Hide();
+    m_textCtrlAfficherHeureBain3->Hide();
+    m_staticTextAfficherDureeBain3->Hide();
+    m_textCtrlAfficherMinuteBain3->Hide();
+    m_staticTextAfficherDureeFinBain3->Hide();
+    m_textCtrlAfficherSecondeBain3->Hide();
+    m_staticTextAfficherNumBain3->Hide();
+    bSizerAfficherDureeBain3->Hide(this);
+    
+    bSizerAfficherDureeBain3->Layout();
+    bSizerAfficherDureeBain2->Layout();
+    bSizerBainAfficherDuree->Layout();
+    bSizerAfficherDureeBain1->Layout();
+    bSizerAfficherBain->Layout();
+
+    sbSizerGestionBainAfficher->Layout();
+    Layout();
 
     // Remplisage
     m_textCtrlIdAfficher->AppendText(id_selection);
@@ -374,6 +411,139 @@ void EvtFramePrincipal::OnListBoxAffichageSelection(wxCommandEvent& event)
     if(m_donnees_IHM->RecupereNombreBain(ConversionEnString(id_selection)))
     {
         m_textCtrlNombreBainAfficher->AppendText(ConversionEnWxString(m_donnees_IHM->GetNombreBain()));
+        string requete;
+        requete = "SELECT numero_bain FROM intermediaire_processus_trajectoires WHERE id_p="
+                + ConversionEnString(id_selection);
+        vector<string> numero_bain;
+        
+        if(m_bdd_anodisation->ExecuteSelect(requete))
+        {
+            numero_bain = m_bdd_anodisation->GetLastResult();
+        }
+        else
+        {
+            AfficheErreurRemplisage(ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+        }
+        
+        
+        
+        if(m_donnees_IHM->GetNombreBain() == "1")
+        {
+            requete = "SELECT duree_bain FROM intermediaire_processus_trajectoires WHERE id_p="
+                    + ConversionEnString(id_selection) + " AND numero_bain=" + numero_bain[1];
+            
+            if(m_bdd_anodisation->ExecuteSelect(requete))
+            {
+                vector<string> duree_bain1 = m_bdd_anodisation->GetLastResult();
+                
+                m_staticTextAfficherNumBain1->SetLabel(ConversionEnWxString(numero_bain[1]) + wxT(" :"));
+                
+                if(!duree_bain1.empty())
+                {
+                    m_textCtrlAfficherHeureBain1->AppendText(DecouperTexteDebut(duree_bain1[0], 2));
+                    
+                    wxString temp = DecouperTexteDebut(duree_bain1[0], 5);
+                    m_textCtrlAfficherMinuteBain1->AppendText(DecouperTexteFin(temp, 3));
+                    
+                    m_textCtrlAfficherSecondeBain1->AppendText(DecouperTexteFin(duree_bain1[0], 6));
+                }
+                else
+                {
+                    m_textCtrlAffichage->AppendText(wxT("Il n'y a pas de durée pour le bain 1 de ce processus.\n"));
+                }
+            }
+            else
+            {
+                AfficheErreurRemplisage(ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+            }
+        }
+        else if(m_donnees_IHM->GetNombreBain() == "2")
+        {
+            // Bain 1
+            requete = "SELECT duree_bain FROM intermediaire_processus_trajectoires WHERE id_p="
+                    + ConversionEnString(id_selection) + " AND numero_bain=" + numero_bain[1];
+            
+            m_staticTextAfficherNumBain1->SetLabel(ConversionEnWxString(numero_bain[1]) + wxT(" :"));
+            
+            if(m_bdd_anodisation->ExecuteSelect(requete))
+            {
+                vector<string> duree_bain1 = m_bdd_anodisation->GetLastResult();
+                
+                if(!duree_bain1.empty())
+                {
+                    m_textCtrlAfficherHeureBain1->AppendText(DecouperTexteDebut(duree_bain1[0], 2));
+                    
+                    wxString temp = DecouperTexteDebut(duree_bain1[0], 5);
+                    m_textCtrlAfficherMinuteBain1->AppendText(DecouperTexteFin(temp, 3));
+                    
+                    m_textCtrlAfficherSecondeBain1->AppendText(DecouperTexteFin(duree_bain1[0], 6));
+                }
+                else
+                {
+                    m_textCtrlAffichage->AppendText(wxT("Il n'y a pas de durée pour le premier bain de ce processus.\n"));
+                }
+            }
+            else
+            {
+                AfficheErreurRemplisage(ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+            }
+            
+            
+            
+            // Bain 2
+            m_staticAfficherDureeTotalBain2->Show();
+            m_textCtrlAfficherHeureBain2->Show();
+            m_staticTextAfficherDureeBain2->Show();
+            m_textCtrlAfficherMinuteBain2->Show();
+            m_staticTextAfficherDureeFinBain2->Show();
+            m_textCtrlAfficherSecondeBain2->Show();
+            m_staticTextAfficherNumBain2->Show();
+            bSizerAfficherDureeBain2->Show(this);
+            
+            bSizerAfficherDureeBain2->Layout();
+            bSizerBainAfficherDuree->Layout();
+            bSizerAfficherDureeBain1->Layout();
+            bSizerAfficherBain->Layout();
+
+            sbSizerGestionBainAfficher->Layout();
+            Layout();
+            
+            requete = "SELECT duree_bain FROM intermediaire_processus_trajectoires WHERE id_p="
+                    + ConversionEnString(id_selection) + " AND numero_bain=" + numero_bain[2];
+                    
+            m_staticTextAfficherNumBain2->SetLabel(ConversionEnWxString(numero_bain[2]) + wxT(" :"));
+            
+            if(m_bdd_anodisation->ExecuteSelect(requete))
+            {
+                vector<string> duree_bain2 = m_bdd_anodisation->GetLastResult();
+                
+                if(!duree_bain2.empty())
+                {
+                    m_textCtrlAfficherHeureBain2->AppendText(DecouperTexteDebut(duree_bain2[0], 2));
+                    
+                    wxString temp = DecouperTexteDebut(duree_bain2[0], 5);
+                    m_textCtrlAfficherMinuteBain2->AppendText(DecouperTexteFin(temp, 3));
+                    
+                    m_textCtrlAfficherSecondeBain2->AppendText(DecouperTexteFin(duree_bain2[0], 6));
+                }
+                else
+                {
+                    m_textCtrlAffichage->AppendText(wxT("Il n'y a pas de durée pour le deuxième bain de ce processus.\n"));
+                }
+            }
+            else
+            {
+                AfficheErreurRemplisage(ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+            }
+        }
+        else if(m_donnees_IHM->GetNombreBain() == "3")
+        {
+            
+        }
+        else
+        {
+            m_textCtrlAffichage->AppendText(wxT("Pas de nombre de bain pour le remplissage.\n"));
+        }
     }
     else
     {
@@ -877,90 +1047,108 @@ void EvtFramePrincipal::OnListBoxModifierSelection(wxCommandEvent& event)
         {
             case 1:
 
-                m_staticModifierDureeTotalBain2->Hide();
-                m_textCtrlModifierHeureBain2->Hide();
-                m_staticTextModifierDureeBain2->Hide();
-                m_textCtrlModifierMinuteBain2->Hide();
-                m_staticTextModifierDureeFinBain2->Hide();
-                m_textCtrlModifierSecondeBain2->Hide();
-                bSizerModifierDureeBain2->Hide(this);
+            m_staticModifierDureeTotalBain2->Hide();
+            m_choiceModifierBain2->Hide();
+            m_staticModifierBain2->Hide();
+            m_staticModifierDureeTotalBain2->Hide();
+            m_textCtrlModifierHeureBain2->Hide();
+            m_staticTextModifierDureeBain2->Hide();
+            m_textCtrlModifierMinuteBain2->Hide();
+            m_staticTextModifierDureeFinBain2->Hide();
+            m_textCtrlModifierSecondeBain2->Hide();
+            bSizerModifierDureeBain2->Hide(this);
 
-                m_staticModifierDureeTotalBain3->Hide();
-                m_textCtrlModifierHeureBain3->Hide();
-                m_staticTextModifierDureeBain3->Hide();
-                m_textCtrlModifierMinuteBain3->Hide();
-                m_staticTextModifierDureeFinBain3->Hide();
-                m_textCtrlModifierSecondeBain3->Hide();
-                bSizerModifierDureeBain3->Hide(this);
+            m_staticModifierDureeTotalBain3->Hide();
+            m_choiceModifierBain3->Hide();
+            m_staticModifierBain3->Hide();
+            m_staticModifierDureeTotalBain3->Hide();
+            m_textCtrlModifierHeureBain3->Hide();
+            m_staticTextModifierDureeBain3->Hide();
+            m_textCtrlModifierMinuteBain3->Hide();
+            m_staticTextModifierDureeFinBain3->Hide();
+            m_textCtrlModifierSecondeBain3->Hide();
+            bSizerModifierDureeBain3->Hide(this);
 
-                bSizerModifierDureeBain2->Layout();
-                bSizerModifierDureeBain3->Layout();
-                bSizerBainModifierDuree->Layout();
-                bSizerModifierDureeBain1->Layout();
-                bSizerModifierBain->Layout();
+            bSizerModifierDureeBain2->Layout();
+            bSizerModifierDureeBain3->Layout();
+            bSizerBainModifierDuree->Layout();
+            bSizerModifierDureeBain1->Layout();
+            bSizerModifierBain->Layout();
 
-                sbSizerGestionBainModifier->Layout();
-                Layout();
+            sbSizerGestionBainModifier->Layout();
+            Layout();
 
-                break;
+            break;
 
-            case 2:
+        case 2:
 
-                m_staticModifierDureeTotalBain2->Show();
-                m_textCtrlModifierHeureBain2->Show();
-                m_staticTextModifierDureeBain2->Show();
-                m_textCtrlModifierMinuteBain2->Show();
-                m_staticTextModifierDureeFinBain2->Show();
-                m_textCtrlModifierSecondeBain2->Show();
-                bSizerModifierDureeBain2->Show(this);
+            m_staticModifierDureeTotalBain2->Show();
+            m_choiceModifierBain2->Show();
+            m_staticModifierBain2->Show();
+            m_staticModifierDureeTotalBain2->Show();
+            m_textCtrlModifierHeureBain2->Show();
+            m_staticTextModifierDureeBain2->Show();
+            m_textCtrlModifierMinuteBain2->Show();
+            m_staticTextModifierDureeFinBain2->Show();
+            m_textCtrlModifierSecondeBain2->Show();
+            bSizerModifierDureeBain2->Show(this);
 
-                m_staticModifierDureeTotalBain3->Hide();
-                m_textCtrlModifierHeureBain3->Hide();
-                m_staticTextModifierDureeBain3->Hide();
-                m_textCtrlModifierMinuteBain3->Hide();
-                m_staticTextModifierDureeFinBain3->Hide();
-                m_textCtrlModifierSecondeBain3->Hide();
-                bSizerModifierDureeBain3->Hide(this);
+            m_staticModifierDureeTotalBain3->Hide();
+            m_choiceModifierBain3->Hide();
+            m_staticModifierBain3->Hide();
+            m_staticModifierDureeTotalBain3->Hide();
+            m_textCtrlModifierHeureBain3->Hide();
+            m_staticTextModifierDureeBain3->Hide();
+            m_textCtrlModifierMinuteBain3->Hide();
+            m_staticTextModifierDureeFinBain3->Hide();
+            m_textCtrlModifierSecondeBain3->Hide();
+            bSizerModifierDureeBain3->Hide(this);
 
-                bSizerModifierDureeBain2->Layout();
-                bSizerModifierDureeBain3->Layout();
-                bSizerBainModifierDuree->Layout();
-                bSizerModifierDureeBain1->Layout();
-                bSizerModifierBain->Layout();
+            bSizerModifierDureeBain2->Layout();
+            bSizerModifierDureeBain3->Layout();
+            bSizerBainModifierDuree->Layout();
+            bSizerModifierDureeBain1->Layout();
+            bSizerModifierBain->Layout();
 
-                sbSizerGestionBainModifier->Layout();
-                Layout();
+            sbSizerGestionBainModifier->Layout();
+            Layout();
 
-                break;
+            break;
 
-            case 3:
+        case 3:
 
-                m_staticModifierDureeTotalBain2->Show();
-                m_textCtrlModifierHeureBain2->Show();
-                m_staticTextModifierDureeBain2->Show();
-                m_textCtrlModifierMinuteBain2->Show();
-                m_staticTextModifierDureeFinBain2->Show();
-                m_textCtrlModifierSecondeBain2->Show();
-                bSizerModifierDureeBain2->Show(this);
+            m_staticModifierDureeTotalBain2->Show();
+            m_choiceModifierBain2->Show();
+            m_staticModifierBain2->Show();
+            m_staticModifierDureeTotalBain2->Show();
+            m_textCtrlModifierHeureBain2->Show();
+            m_staticTextModifierDureeBain2->Show();
+            m_textCtrlModifierMinuteBain2->Show();
+            m_staticTextModifierDureeFinBain2->Show();
+            m_textCtrlModifierSecondeBain2->Show();
+            bSizerModifierDureeBain2->Show(this);
 
-                m_staticModifierDureeTotalBain3->Show();
-                m_textCtrlModifierHeureBain3->Show();
-                m_staticTextModifierDureeBain3->Show();
-                m_textCtrlModifierMinuteBain3->Show();
-                m_staticTextModifierDureeFinBain3->Show();
-                m_textCtrlModifierSecondeBain3->Show();
-                bSizerModifierDureeBain3->Show(this);
+            m_staticModifierDureeTotalBain3->Show();
+            m_choiceModifierBain3->Show();
+            m_staticModifierBain3->Show();
+            m_staticModifierDureeTotalBain3->Show();
+            m_textCtrlModifierHeureBain3->Show();
+            m_staticTextModifierDureeBain3->Show();
+            m_textCtrlModifierMinuteBain3->Show();
+            m_staticTextModifierDureeFinBain3->Show();
+            m_textCtrlModifierSecondeBain3->Show();
+            bSizerModifierDureeBain3->Show(this);
 
-                bSizerModifierDureeBain2->Layout();
-                bSizerModifierDureeBain3->Layout();
-                bSizerBainModifierDuree->Layout();
-                bSizerModifierDureeBain1->Layout();
-                bSizerModifierBain->Layout();
+            bSizerModifierDureeBain2->Layout();
+            bSizerModifierDureeBain3->Layout();
+            bSizerBainModifierDuree->Layout();
+            bSizerModifierDureeBain1->Layout();
+            bSizerModifierBain->Layout();
 
-                sbSizerGestionBainModifier->Layout();
-                Layout();
+            sbSizerGestionBainModifier->Layout();
+            Layout();
 
-                break;
+            break;
 
             default:
 
@@ -993,6 +1181,9 @@ void EvtFramePrincipal::OnSpinCtrlModifierBain(wxSpinEvent& event)
         case 1:
 
             m_staticModifierDureeTotalBain2->Hide();
+            m_choiceModifierBain2->Hide();
+            m_staticModifierBain2->Hide();
+            m_staticModifierDureeTotalBain2->Hide();
             m_textCtrlModifierHeureBain2->Hide();
             m_staticTextModifierDureeBain2->Hide();
             m_textCtrlModifierMinuteBain2->Hide();
@@ -1000,6 +1191,9 @@ void EvtFramePrincipal::OnSpinCtrlModifierBain(wxSpinEvent& event)
             m_textCtrlModifierSecondeBain2->Hide();
             bSizerModifierDureeBain2->Hide(this);
 
+            m_staticModifierDureeTotalBain3->Hide();
+            m_choiceModifierBain3->Hide();
+            m_staticModifierBain3->Hide();
             m_staticModifierDureeTotalBain3->Hide();
             m_textCtrlModifierHeureBain3->Hide();
             m_staticTextModifierDureeBain3->Hide();
@@ -1022,6 +1216,9 @@ void EvtFramePrincipal::OnSpinCtrlModifierBain(wxSpinEvent& event)
         case 2:
 
             m_staticModifierDureeTotalBain2->Show();
+            m_choiceModifierBain2->Show();
+            m_staticModifierBain2->Show();
+            m_staticModifierDureeTotalBain2->Show();
             m_textCtrlModifierHeureBain2->Show();
             m_staticTextModifierDureeBain2->Show();
             m_textCtrlModifierMinuteBain2->Show();
@@ -1029,6 +1226,9 @@ void EvtFramePrincipal::OnSpinCtrlModifierBain(wxSpinEvent& event)
             m_textCtrlModifierSecondeBain2->Show();
             bSizerModifierDureeBain2->Show(this);
 
+            m_staticModifierDureeTotalBain3->Hide();
+            m_choiceModifierBain3->Hide();
+            m_staticModifierBain3->Hide();
             m_staticModifierDureeTotalBain3->Hide();
             m_textCtrlModifierHeureBain3->Hide();
             m_staticTextModifierDureeBain3->Hide();
@@ -1051,6 +1251,9 @@ void EvtFramePrincipal::OnSpinCtrlModifierBain(wxSpinEvent& event)
         case 3:
 
             m_staticModifierDureeTotalBain2->Show();
+            m_choiceModifierBain2->Show();
+            m_staticModifierBain2->Show();
+            m_staticModifierDureeTotalBain2->Show();
             m_textCtrlModifierHeureBain2->Show();
             m_staticTextModifierDureeBain2->Show();
             m_textCtrlModifierMinuteBain2->Show();
@@ -1058,6 +1261,9 @@ void EvtFramePrincipal::OnSpinCtrlModifierBain(wxSpinEvent& event)
             m_textCtrlModifierSecondeBain2->Show();
             bSizerModifierDureeBain2->Show(this);
 
+            m_staticModifierDureeTotalBain3->Show();
+            m_choiceModifierBain3->Show();
+            m_staticModifierBain3->Show();
             m_staticModifierDureeTotalBain3->Show();
             m_textCtrlModifierHeureBain3->Show();
             m_staticTextModifierDureeBain3->Show();
@@ -1828,6 +2034,8 @@ void EvtFramePrincipal::OnSpinCtrlCreerBain(wxSpinEvent& event)
         case 1:
 
             m_staticCreerDureeTotalBain2->Hide();
+            m_choiceCreerBain2->Hide();
+            m_staticCreerBain2->Hide();
             m_textCtrlCreerHeureBain2->Hide();
             m_staticTextCreerDureeBain2->Hide();
             m_textCtrlCreerMinuteBain2->Hide();
@@ -1836,6 +2044,8 @@ void EvtFramePrincipal::OnSpinCtrlCreerBain(wxSpinEvent& event)
             bSizerCreerDureeBain2->Hide(this);
 
             m_staticCreerDureeTotalBain3->Hide();
+            m_choiceCreerBain3->Hide();
+            m_staticCreerBain3->Hide();
             m_textCtrlCreerHeureBain3->Hide();
             m_staticTextCreerDureeBain3->Hide();
             m_textCtrlCreerMinuteBain3->Hide();
@@ -1857,6 +2067,8 @@ void EvtFramePrincipal::OnSpinCtrlCreerBain(wxSpinEvent& event)
         case 2:
 
             m_staticCreerDureeTotalBain2->Show();
+            m_choiceCreerBain2->Show();
+            m_staticCreerBain2->Show();
             m_textCtrlCreerHeureBain2->Show();
             m_staticTextCreerDureeBain2->Show();
             m_textCtrlCreerMinuteBain2->Show();
@@ -1865,6 +2077,8 @@ void EvtFramePrincipal::OnSpinCtrlCreerBain(wxSpinEvent& event)
             bSizerCreerDureeBain2->Show(this);
 
             m_staticCreerDureeTotalBain3->Hide();
+            m_choiceCreerBain3->Hide();
+            m_staticCreerBain3->Hide();
             m_textCtrlCreerHeureBain3->Hide();
             m_staticTextCreerDureeBain3->Hide();
             m_textCtrlCreerMinuteBain3->Hide();
@@ -1886,6 +2100,8 @@ void EvtFramePrincipal::OnSpinCtrlCreerBain(wxSpinEvent& event)
         case 3:
 
             m_staticCreerDureeTotalBain2->Show();
+            m_choiceCreerBain2->Show();
+            m_staticCreerBain2->Show();
             m_textCtrlCreerHeureBain2->Show();
             m_staticTextCreerDureeBain2->Show();
             m_textCtrlCreerMinuteBain2->Show();
@@ -1894,6 +2110,8 @@ void EvtFramePrincipal::OnSpinCtrlCreerBain(wxSpinEvent& event)
             bSizerCreerDureeBain2->Show(this);
 
             m_staticCreerDureeTotalBain3->Show();
+            m_choiceCreerBain3->Show();
+            m_staticCreerBain3->Show();
             m_textCtrlCreerHeureBain3->Show();
             m_staticTextCreerDureeBain3->Show();
             m_textCtrlCreerMinuteBain3->Show();
@@ -2058,7 +2276,10 @@ void EvtFramePrincipal::OnListBoxLancerSelection(wxCommandEvent& event)
 
 void EvtFramePrincipal::OnOkButtonLancerClick(wxCommandEvent& event)
 {
-    // TODO: Implement OnOkButtonLancerClick
+    if(m_client_connecte)
+    {
+        m_client->ExecutionProcessus(GardeIdSelection(m_listBoxLancerProcessus->GetStringSelection()));
+    }
 }
 //
 // Tester un processus
@@ -2440,9 +2661,9 @@ void EvtFramePrincipal::DeconnexionClient(wxString message)
     m_client->Close();
     m_client_connecte = false;
 
-    if(message.EndsWith(wxT(": il a disparu\n")))
+    if(message.EndsWith(wxT(": il a disparu.\n")))
     {
-        wxLogError(wxT("Le serveur de communication de la raspberry c'est déconnecté!"));
+        wxLogError(wxT("Le serveur de communication de la Raspberry pi c'est déconnecté!"));
     }
 
     delete m_client;

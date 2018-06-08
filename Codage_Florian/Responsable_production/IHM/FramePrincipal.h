@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Dec 21 2016)
+// C++ code generated with wxFormBuilder (version Feb 16 2016)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO "NOT" EDIT THIS FILE!
@@ -29,6 +29,7 @@
 #include <wx/statline.h>
 #include <wx/scrolwin.h>
 #include <wx/spinctrl.h>
+#include <wx/choice.h>
 #include <wx/button.h>
 #include <wx/bmpbuttn.h>
 #include <wx/notebook.h>
@@ -81,6 +82,7 @@ class FramePrincipal : public wxFrame
 		wxBoxSizer* bSizerBainAfficherDuree;
 		wxBoxSizer* bSizerAfficherDureeBain1;
 		wxStaticText* m_staticAfficherDureeTotalBain1;
+		wxStaticText* m_staticTextAfficherNumBain1;
 		wxTextCtrl* m_textCtrlAfficherHeureBain1;
 		wxStaticText* m_staticTextAfficherDureeBain1;
 		wxTextCtrl* m_textCtrlAfficherMinuteBain1;
@@ -88,6 +90,7 @@ class FramePrincipal : public wxFrame
 		wxTextCtrl* m_textCtrlAfficherSecondeBain1;
 		wxBoxSizer* bSizerAfficherDureeBain2;
 		wxStaticText* m_staticAfficherDureeTotalBain2;
+		wxStaticText* m_staticTextAfficherNumBain2;
 		wxTextCtrl* m_textCtrlAfficherHeureBain2;
 		wxStaticText* m_staticTextAfficherDureeBain2;
 		wxTextCtrl* m_textCtrlAfficherMinuteBain2;
@@ -95,6 +98,7 @@ class FramePrincipal : public wxFrame
 		wxTextCtrl* m_textCtrlAfficherSecondeBain2;
 		wxBoxSizer* bSizerAfficherDureeBain3;
 		wxStaticText* m_staticAfficherDureeTotalBain3;
+		wxStaticText* m_staticTextAfficherNumBain3;
 		wxTextCtrl* m_textCtrlAfficherHeureBain3;
 		wxStaticText* m_staticTextAfficherDureeBain3;
 		wxTextCtrl* m_textCtrlAfficherMinuteBain3;
@@ -124,6 +128,8 @@ class FramePrincipal : public wxFrame
 		wxBoxSizer* bSizerBainModifierDuree;
 		wxBoxSizer* bSizerModifierDureeBain1;
 		wxStaticText* m_staticModifierDureeTotalBain1;
+		wxChoice* m_choiceModifierBain1;
+		wxStaticText* m_staticModifierBain1;
 		wxTextCtrl* m_textCtrlModifierHeureBain1;
 		wxStaticText* m_staticTextModifierDureeBain1;
 		wxTextCtrl* m_textCtrlModifierMinuteBain1;
@@ -131,6 +137,8 @@ class FramePrincipal : public wxFrame
 		wxTextCtrl* m_textCtrlModifierSecondeBain1;
 		wxBoxSizer* bSizerModifierDureeBain2;
 		wxStaticText* m_staticModifierDureeTotalBain2;
+		wxChoice* m_choiceModifierBain2;
+		wxStaticText* m_staticModifierBain2;
 		wxTextCtrl* m_textCtrlModifierHeureBain2;
 		wxStaticText* m_staticTextModifierDureeBain2;
 		wxTextCtrl* m_textCtrlModifierMinuteBain2;
@@ -138,6 +146,8 @@ class FramePrincipal : public wxFrame
 		wxTextCtrl* m_textCtrlModifierSecondeBain2;
 		wxBoxSizer* bSizerModifierDureeBain3;
 		wxStaticText* m_staticModifierDureeTotalBain3;
+		wxChoice* m_choiceModifierBain3;
+		wxStaticText* m_staticModifierBain3;
 		wxTextCtrl* m_textCtrlModifierHeureBain3;
 		wxStaticText* m_staticTextModifierDureeBain3;
 		wxTextCtrl* m_textCtrlModifierMinuteBain3;
@@ -168,6 +178,8 @@ class FramePrincipal : public wxFrame
 		wxBoxSizer* bSizerBainCreerDuree;
 		wxBoxSizer* bSizerCreerDureeBain1;
 		wxStaticText* m_staticCreerDureeTotalBain1;
+		wxChoice* m_choiceCreerBain1;
+		wxStaticText* m_staticCreerBain1;
 		wxTextCtrl* m_textCtrlCreerHeureBain1;
 		wxStaticText* m_staticTextCreerDureeBain1;
 		wxTextCtrl* m_textCtrlCreerMinuteBain1;
@@ -175,6 +187,8 @@ class FramePrincipal : public wxFrame
 		wxTextCtrl* m_textCtrlCreerSecondeBain1;
 		wxBoxSizer* bSizerCreerDureeBain2;
 		wxStaticText* m_staticCreerDureeTotalBain2;
+		wxChoice* m_choiceCreerBain2;
+		wxStaticText* m_staticCreerBain2;
 		wxTextCtrl* m_textCtrlCreerHeureBain2;
 		wxStaticText* m_staticTextCreerDureeBain2;
 		wxTextCtrl* m_textCtrlCreerMinuteBain2;
@@ -182,6 +196,8 @@ class FramePrincipal : public wxFrame
 		wxTextCtrl* m_textCtrlCreerSecondeBain2;
 		wxBoxSizer* bSizerCreerDureeBain3;
 		wxStaticText* m_staticCreerDureeTotalBain3;
+		wxChoice* m_choiceCreerBain3;
+		wxStaticText* m_staticCreerBain3;
 		wxTextCtrl* m_textCtrlCreerHeureBain3;
 		wxStaticText* m_staticTextCreerDureeBain3;
 		wxTextCtrl* m_textCtrlCreerMinuteBain3;
