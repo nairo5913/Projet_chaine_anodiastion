@@ -20,9 +20,9 @@ Projet chaîne d'anodisation BTS SNIR Ozanam.
 
 - _**Base_de_donnees**_ contient les scripts de génération pour la BdD ainsi que les données de remplissage et la structure de la BdD.
 
-- _**Codage_Florian**_ contient la partie responsable d'avant l'intégration.
+- _**Codage_Florian**_ contient la partie responsable d’avant l’intégration.
 
-- _**Nassim**_ contient la partie régleur d'avant l'intégration.
+- _**Nassim**_ contient la partie régleur d’avant l’intégration.
 
 - _**Test**_ contient :
     - un serveur de test pour la relation client – serveur
