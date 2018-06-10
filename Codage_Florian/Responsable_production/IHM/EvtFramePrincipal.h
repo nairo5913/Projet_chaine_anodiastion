@@ -100,7 +100,7 @@ class EvtFramePrincipal : public FramePrincipal
 		/** Constructor */
 		EvtFramePrincipal( wxWindow* parent );
 	//// end generated class members
-        public:
+    public:
         string ConversionEnString(wxString texte);
         string IntEnString(int nombre);
         wxString DecouperTexteDebut(wxString texte, int position);
