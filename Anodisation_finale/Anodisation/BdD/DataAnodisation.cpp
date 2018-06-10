@@ -179,12 +179,8 @@ string DataAnodisation::DernierIdProcessus()
     
     if(ExecuteSelect(requete))
     {
-        cout << "dernier id : " << m_last_result[0] << endl;
+        //cout << "dernier id : " << m_last_result[0] << endl;
         retour = m_last_result[0];
-    }
-    else
-    {
-        cout << "erreur requete" << endl;
     }
     
     return retour;

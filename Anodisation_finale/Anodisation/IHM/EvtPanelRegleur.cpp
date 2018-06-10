@@ -1278,6 +1278,8 @@ void EvtPanelRegleur::RempliListBoxMouvements()
                 m_listBoxModifierMouvements->Append(rempli);
             }
         }
+        
+        m_listBoxAffichageMouvements->SetSelection(0);
     }
     else
     {
@@ -1337,6 +1339,8 @@ void EvtPanelRegleur::RempliListBoxTrajectoires()
                 m_listBoxModifierTrajectoires->Append(rempli);
             }
         }
+        
+        m_listBoxAffichageTrajectoires->SetSelection(0);
     }
     else
     {

@@ -1023,8 +1023,10 @@ void EvtPanelResponsable::OnApplyButtonModifierClick(wxCommandEvent& event)
     string ordre;
     string duree_bain1, duree_bain2 = "", duree_bain3 = "";
     string num_bain1, num_bain2, num_bain3;
+    
     unsigned int nombre_bain = m_spinCtrlNombreBainModifier->GetValue();
     vector<string> ordre_separe;
+    
     wxString id_selection = m_frame->GardeIdSelection(m_listBoxModifierProcessus->GetStringSelection());
     wxString message;
     wxUniChar caractere(*car);
@@ -1039,13 +1041,25 @@ void EvtPanelResponsable::OnApplyButtonModifierClick(wxCommandEvent& event)
         erreur = true;
         message << wxT("Le champ nom du processus est vide.\n");
     }
-
+    
+    
+    
     // Vérification du champ ordre des trajectoires s'il il est rempli
     if(!m_textCtrlDureeTotalHeureModifier->IsEmpty() && !m_textCtrlDureeTotalMinuteModifier->IsEmpty() && !m_textCtrlDureeTotalSecondeModifier->IsEmpty())
     {
-        duree_total = m_frame->ConversionEnString(m_textCtrlDureeTotalHeureModifier->GetValue()) + ":"
-                    + m_frame->ConversionEnString(m_textCtrlDureeTotalMinuteModifier->GetValue()) + ":"
-                    + m_frame->ConversionEnString(m_textCtrlDureeTotalSecondeModifier->GetValue());
+        wxString verif = m_frame->VerificationDurree(m_textCtrlDureeTotalHeureModifier->GetValue(), m_textCtrlDureeTotalMinuteModifier->GetValue(), m_textCtrlDureeTotalSecondeModifier->GetValue());
+        
+        if(verif.IsSameAs(wxT("ok")))
+        {
+            duree_total = m_frame->ConversionEnString(m_textCtrlDureeTotalHeureModifier->GetValue()) + ":"
+                        + m_frame->ConversionEnString(m_textCtrlDureeTotalMinuteModifier->GetValue()) + ":"
+                        + m_frame->ConversionEnString(m_textCtrlDureeTotalSecondeModifier->GetValue());
+        }
+        else
+        {
+            erreur = true;
+            message << wxT("Durée total processus non valide : ") << verif;
+        }
     }
     else
     {
@@ -1061,12 +1075,12 @@ void EvtPanelResponsable::OnApplyButtonModifierClick(wxCommandEvent& event)
         if(ordrewx.length() == 1)
         {
             ordrewx << wxT(";") << ordrewx;
-            wxLogDebug(ordrewx);
+            //wxLogDebug(ordrewx);
         }
         else if(ordrewx.length() == 2)
         {
             ordrewx << ordrewx;
-            wxLogDebug(ordrewx);
+            //wxLogDebug(ordrewx);
         }
         
         if(ordrewx.EndsWith(wxT(";")))
@@ -1121,9 +1135,19 @@ void EvtPanelResponsable::OnApplyButtonModifierClick(wxCommandEvent& event)
             if(!m_textCtrlModifierHeureBain1->IsEmpty() && !m_textCtrlModifierMinuteBain1->IsEmpty()
                && !m_textCtrlModifierSecondeBain1->IsEmpty())
             {
-                duree_bain1 = m_frame->ConversionEnString(m_textCtrlModifierHeureBain1->GetValue()) + ":"
-                            + m_frame->ConversionEnString(m_textCtrlModifierMinuteBain1->GetValue()) + ":"
-                            + m_frame->ConversionEnString(m_textCtrlModifierSecondeBain1->GetValue());
+                wxString verif = m_frame->VerificationDurree(m_textCtrlModifierHeureBain1->GetValue(), m_textCtrlModifierMinuteBain1->GetValue(), m_textCtrlModifierSecondeBain1->GetValue());
+                
+                if(verif.IsSameAs(wxT("ok")))
+                {
+                    duree_bain1 = m_frame->ConversionEnString(m_textCtrlModifierHeureBain1->GetValue()) + ":"
+                                + m_frame->ConversionEnString(m_textCtrlModifierMinuteBain1->GetValue()) + ":"
+                                + m_frame->ConversionEnString(m_textCtrlModifierSecondeBain1->GetValue());
+                }
+                else
+                {
+                    erreur = true;
+                    message << wxT("Durée total du bain 1 non valide :  ") << verif;
+                }
             }
             else
             {
@@ -1147,9 +1171,19 @@ void EvtPanelResponsable::OnApplyButtonModifierClick(wxCommandEvent& event)
             if(!m_textCtrlModifierHeureBain1->IsEmpty() && !m_textCtrlModifierMinuteBain1->IsEmpty()
                && !m_textCtrlModifierSecondeBain1->IsEmpty())
             {
-                duree_bain1 = m_frame->ConversionEnString(m_textCtrlModifierHeureBain1->GetValue()) + ":"
-                            + m_frame->ConversionEnString(m_textCtrlModifierMinuteBain1->GetValue()) + ":"
-                            + m_frame->ConversionEnString(m_textCtrlModifierSecondeBain1->GetValue());
+                wxString verif = m_frame->VerificationDurree(m_textCtrlModifierHeureBain1->GetValue(), m_textCtrlModifierMinuteBain1->GetValue(), m_textCtrlModifierSecondeBain1->GetValue());
+                
+                if(verif.IsSameAs(wxT("ok")))
+                {
+                    duree_bain1 = m_frame->ConversionEnString(m_textCtrlModifierHeureBain1->GetValue()) + ":"
+                                + m_frame->ConversionEnString(m_textCtrlModifierMinuteBain1->GetValue()) + ":"
+                                + m_frame->ConversionEnString(m_textCtrlModifierSecondeBain1->GetValue());
+                }
+                else
+                {
+                    erreur = true;
+                    message << wxT("Durée total du bain 1 non valide :  ") << verif;
+                }
             }
             else
             {
@@ -1161,9 +1195,19 @@ void EvtPanelResponsable::OnApplyButtonModifierClick(wxCommandEvent& event)
             if(!m_textCtrlModifierHeureBain2->IsEmpty() && !m_textCtrlModifierMinuteBain2->IsEmpty()
                && !m_textCtrlModifierSecondeBain2->IsEmpty())
             {
-                duree_bain2 = m_frame->ConversionEnString(m_textCtrlModifierHeureBain2->GetValue()) + ":"
-                            + m_frame->ConversionEnString(m_textCtrlModifierMinuteBain2->GetValue()) + ":"
-                            + m_frame->ConversionEnString(m_textCtrlModifierSecondeBain2->GetValue());
+                wxString verif = m_frame->VerificationDurree(m_textCtrlModifierHeureBain2->GetValue(), m_textCtrlModifierMinuteBain2->GetValue(), m_textCtrlModifierSecondeBain2->GetValue());
+                
+                if(verif.IsSameAs(wxT("ok")))
+                {
+                    duree_bain2 = m_frame->ConversionEnString(m_textCtrlModifierHeureBain2->GetValue()) + ":"
+                                + m_frame->ConversionEnString(m_textCtrlModifierMinuteBain2->GetValue()) + ":"
+                                + m_frame->ConversionEnString(m_textCtrlModifierSecondeBain2->GetValue());
+                }
+                else
+                {
+                    erreur = true;
+                    message << wxT("Durée total du bain 2 non valide :  ") << verif;
+                }
             }
             else
             {
@@ -1188,37 +1232,71 @@ void EvtPanelResponsable::OnApplyButtonModifierClick(wxCommandEvent& event)
             if(!m_textCtrlModifierHeureBain1->IsEmpty() && !m_textCtrlModifierMinuteBain1->IsEmpty()
                && !m_textCtrlModifierSecondeBain1->IsEmpty())
             {
-                duree_bain1 = m_frame->ConversionEnString(m_textCtrlModifierHeureBain1->GetValue()) + ":"
-                            + m_frame->ConversionEnString(m_textCtrlModifierMinuteBain1->GetValue()) + ":"
-                            + m_frame->ConversionEnString(m_textCtrlModifierSecondeBain1->GetValue());
+                wxString verif = m_frame->VerificationDurree(m_textCtrlModifierHeureBain1->GetValue(), m_textCtrlModifierMinuteBain1->GetValue(), m_textCtrlModifierSecondeBain1->GetValue());
+                
+                if(verif.IsSameAs(wxT("ok")))
+                {
+                    duree_bain1 = m_frame->ConversionEnString(m_textCtrlModifierHeureBain1->GetValue()) + ":"
+                                + m_frame->ConversionEnString(m_textCtrlModifierMinuteBain1->GetValue()) + ":"
+                                + m_frame->ConversionEnString(m_textCtrlModifierSecondeBain1->GetValue());
+                }
+                else
+                {
+                    erreur = true;
+                    message << wxT("Durée total du bain 1 non valide :  ") << verif;
+                }
             }
             else
             {
                 erreur = true;
                 message << wxT("L'un ou des champs de la durée du bain 1 est/sont vide.\n");
             }
-
+            
+            
+            
             // Vérification des champs du bain 2 qu'ils ont bien été rempli
             if(!m_textCtrlModifierHeureBain2->IsEmpty() && !m_textCtrlModifierMinuteBain2->IsEmpty()
                && !m_textCtrlModifierSecondeBain2->IsEmpty())
             {
-                duree_bain2 = m_frame->ConversionEnString(m_textCtrlModifierHeureBain2->GetValue()) + ":"
-                            + m_frame->ConversionEnString(m_textCtrlModifierMinuteBain2->GetValue()) + ":"
-                            + m_frame->ConversionEnString(m_textCtrlModifierSecondeBain2->GetValue());
+                wxString verif = m_frame->VerificationDurree(m_textCtrlModifierHeureBain2->GetValue(), m_textCtrlModifierMinuteBain2->GetValue(), m_textCtrlModifierSecondeBain2->GetValue());
+                
+                if(verif.IsSameAs(wxT("ok")))
+                {
+                    duree_bain2 = m_frame->ConversionEnString(m_textCtrlModifierHeureBain2->GetValue()) + ":"
+                                + m_frame->ConversionEnString(m_textCtrlModifierMinuteBain2->GetValue()) + ":"
+                                + m_frame->ConversionEnString(m_textCtrlModifierSecondeBain2->GetValue());
+                }
+                else
+                {
+                    erreur = true;
+                    message << wxT("Durée total du bain 2 non valide :  ") << verif;
+                }
             }
             else
             {
                 erreur = true;
                 message << wxT("L'un ou des champs de la durée du bain 2 est/sont vide.\n");
             }
-
+            
+            
+            
             // Vérification des champs du bain 3 qu'ils ont bien été rempli
             if(!m_textCtrlModifierHeureBain3->IsEmpty() && !m_textCtrlModifierMinuteBain3->IsEmpty()
                && !m_textCtrlModifierSecondeBain3->IsEmpty())
             {
-                duree_bain3 = m_frame->ConversionEnString(m_textCtrlModifierHeureBain3->GetValue()) + ":"
-                            + m_frame->ConversionEnString(m_textCtrlModifierMinuteBain3->GetValue()) + ":"
-                            + m_frame->ConversionEnString(m_textCtrlModifierSecondeBain3->GetValue());
+                wxString verif = m_frame->VerificationDurree(m_textCtrlModifierHeureBain3->GetValue(), m_textCtrlModifierMinuteBain3->GetValue(), m_textCtrlModifierSecondeBain3->GetValue());
+                
+                if(verif.IsSameAs(wxT("ok")))
+                {
+                    duree_bain3 = m_frame->ConversionEnString(m_textCtrlModifierHeureBain3->GetValue()) + ":"
+                                + m_frame->ConversionEnString(m_textCtrlModifierMinuteBain3->GetValue()) + ":"
+                                + m_frame->ConversionEnString(m_textCtrlModifierSecondeBain3->GetValue());
+                }
+                else
+                {
+                    erreur = true;
+                    message << wxT("Durée total du bain 3 non valide :  ") << verif;
+                }
             }
             else
             {
@@ -1236,8 +1314,8 @@ void EvtPanelResponsable::OnApplyButtonModifierClick(wxCommandEvent& event)
     if(erreur)
     {
         string id_p = m_bdd_anodisation->DernierIdProcessus();
-        cout << "id_p : " << id_p << endl;
-        wxMessageBox(message, "Responsable de production - Champs vide !",
+        //cout << "id_p : " << id_p << endl;
+        wxMessageBox(message, "Responsable de production - Champs invalide !",
                      wxOK_DEFAULT | wxICON_EXCLAMATION | wxCENTRE | wxSTAY_ON_TOP, this);
     }
     else
@@ -1262,7 +1340,8 @@ void EvtPanelResponsable::OnApplyButtonModifierClick(wxCommandEvent& event)
                                 + "' WHERE id_p=" + m_frame->ConversionEnString(id_selection);
                                 
                         cout << requete << endl;
-                        if(!m_bdd_anodisation->ExecuteInsert(requete))
+                        
+                        if(!m_bdd_anodisation->ExecuteUpdate(requete))
                         {
                             EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
                         }
@@ -1288,10 +1367,12 @@ void EvtPanelResponsable::OnApplyButtonModifierClick(wxCommandEvent& event)
         {
             EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
         }
+        
+        VideListBox();
+        RempliListBox();
+        m_listBoxModifierProcessus->SetSelection(m_frame->wxStringToInt(id_selection));
+        m_listBoxModifierProcessus->SetFocus();
     }
-    
-    VideListBox();
-    RempliListBox();
 }
 
 void EvtPanelResponsable::OnCancelButtonModiffierClick(wxCommandEvent& event)
@@ -1559,9 +1640,19 @@ void EvtPanelResponsable::OnSaveButtonCreerClick(wxCommandEvent& event)
     // Vérification du champ ordre des trajectoires s'il il est rempli
     if(!m_textCtrlDureeTotalHeureCreer->IsEmpty() && !m_textCtrlDureeTotalMinuteCreer->IsEmpty() && !m_textCtrlDureeTotalSecondeCreer->IsEmpty())
     {
-        duree_total = m_frame->ConversionEnString(m_textCtrlDureeTotalHeureCreer->GetValue()) + ":"
-                    + m_frame->ConversionEnString(m_textCtrlDureeTotalMinuteCreer->GetValue()) + ":"
-                    + m_frame->ConversionEnString(m_textCtrlDureeTotalSecondeCreer->GetValue());
+        wxString verif = m_frame->VerificationDurree(m_textCtrlDureeTotalHeureCreer->GetValue(), m_textCtrlDureeTotalMinuteCreer->GetValue(), m_textCtrlDureeTotalSecondeCreer->GetValue());
+                
+        if(verif.IsSameAs(wxT("ok")))
+        {
+            duree_total = m_frame->ConversionEnString(m_textCtrlDureeTotalHeureCreer->GetValue()) + ":"
+                        + m_frame->ConversionEnString(m_textCtrlDureeTotalMinuteCreer->GetValue()) + ":"
+                        + m_frame->ConversionEnString(m_textCtrlDureeTotalSecondeCreer->GetValue());
+        }
+        else
+        {
+            erreur = true;
+            message << wxT("Durée total processus non valide : ") << verif;
+        }
     }
     else
     {
@@ -1638,9 +1729,19 @@ void EvtPanelResponsable::OnSaveButtonCreerClick(wxCommandEvent& event)
             if(!m_textCtrlCreerHeureBain1->IsEmpty() && !m_textCtrlCreerMinuteBain1->IsEmpty()
                && !m_textCtrlCreerSecondeBain1->IsEmpty())
             {
-                duree_bain1 = m_frame->ConversionEnString(m_textCtrlCreerHeureBain1->GetValue()) + ":"
-                            + m_frame->ConversionEnString(m_textCtrlCreerMinuteBain1->GetValue()) + ":"
-                            + m_frame->ConversionEnString(m_textCtrlCreerSecondeBain1->GetValue());
+                wxString verif = m_frame->VerificationDurree(m_textCtrlCreerHeureBain1->GetValue(), m_textCtrlCreerMinuteBain1->GetValue(), m_textCtrlCreerSecondeBain1->GetValue());
+                
+                if(verif.IsSameAs(wxT("ok")))
+                {
+                    duree_bain1 = m_frame->ConversionEnString(m_textCtrlCreerHeureBain1->GetValue()) + ":"
+                                + m_frame->ConversionEnString(m_textCtrlCreerMinuteBain1->GetValue()) + ":"
+                                + m_frame->ConversionEnString(m_textCtrlCreerSecondeBain1->GetValue());
+                }
+                else
+                {
+                    erreur = true;
+                    message << wxT("Durée total du bain 1 non valide :  ") << verif;
+                }
             }
             else
             {
@@ -1664,9 +1765,19 @@ void EvtPanelResponsable::OnSaveButtonCreerClick(wxCommandEvent& event)
             if(!m_textCtrlCreerHeureBain1->IsEmpty() && !m_textCtrlCreerMinuteBain1->IsEmpty()
                && !m_textCtrlCreerSecondeBain1->IsEmpty())
             {
-                duree_bain1 = m_frame->ConversionEnString(m_textCtrlCreerHeureBain1->GetValue()) + ":"
-                            + m_frame->ConversionEnString(m_textCtrlCreerMinuteBain1->GetValue()) + ":"
-                            + m_frame->ConversionEnString(m_textCtrlCreerSecondeBain1->GetValue());
+                wxString verif = m_frame->VerificationDurree(m_textCtrlCreerHeureBain1->GetValue(), m_textCtrlCreerMinuteBain1->GetValue(), m_textCtrlCreerSecondeBain1->GetValue());
+                
+                if(verif.IsSameAs(wxT("ok")))
+                {
+                    duree_bain1 = m_frame->ConversionEnString(m_textCtrlCreerHeureBain1->GetValue()) + ":"
+                                + m_frame->ConversionEnString(m_textCtrlCreerMinuteBain1->GetValue()) + ":"
+                                + m_frame->ConversionEnString(m_textCtrlCreerSecondeBain1->GetValue());
+                }
+                else
+                {
+                    erreur = true;
+                    message << wxT("Durée total du bain 1 non valide :  ") << verif;
+                }
             }
             else
             {
@@ -1678,9 +1789,19 @@ void EvtPanelResponsable::OnSaveButtonCreerClick(wxCommandEvent& event)
             if(!m_textCtrlCreerHeureBain2->IsEmpty() && !m_textCtrlCreerMinuteBain2->IsEmpty()
                && !m_textCtrlCreerSecondeBain2->IsEmpty())
             {
-                duree_bain2 = m_frame->ConversionEnString(m_textCtrlCreerHeureBain2->GetValue()) + ":"
-                            + m_frame->ConversionEnString(m_textCtrlCreerMinuteBain2->GetValue()) + ":"
-                            + m_frame->ConversionEnString(m_textCtrlCreerSecondeBain2->GetValue());
+                wxString verif = m_frame->VerificationDurree(m_textCtrlCreerHeureBain2->GetValue(), m_textCtrlCreerMinuteBain2->GetValue(), m_textCtrlCreerSecondeBain2->GetValue());
+                
+                if(verif.IsSameAs(wxT("ok")))
+                {
+                    duree_bain2 = m_frame->ConversionEnString(m_textCtrlCreerHeureBain2->GetValue()) + ":"
+                                + m_frame->ConversionEnString(m_textCtrlCreerMinuteBain2->GetValue()) + ":"
+                                + m_frame->ConversionEnString(m_textCtrlCreerSecondeBain2->GetValue());
+                }
+                else
+                {
+                    erreur = true;
+                    message << wxT("Durée total du bain 2 non valide :  ") << verif;
+                }
             }
             else
             {
@@ -1705,9 +1826,19 @@ void EvtPanelResponsable::OnSaveButtonCreerClick(wxCommandEvent& event)
             if(!m_textCtrlCreerHeureBain1->IsEmpty() && !m_textCtrlCreerMinuteBain1->IsEmpty()
                && !m_textCtrlCreerSecondeBain1->IsEmpty())
             {
-                duree_bain1 = m_frame->ConversionEnString(m_textCtrlCreerHeureBain1->GetValue()) + ":"
-                            + m_frame->ConversionEnString(m_textCtrlCreerMinuteBain1->GetValue()) + ":"
-                            + m_frame->ConversionEnString(m_textCtrlCreerSecondeBain1->GetValue());
+                wxString verif = m_frame->VerificationDurree(m_textCtrlCreerHeureBain1->GetValue(), m_textCtrlCreerMinuteBain1->GetValue(), m_textCtrlCreerSecondeBain1->GetValue());
+                
+                if(verif.IsSameAs(wxT("ok")))
+                {
+                    duree_bain1 = m_frame->ConversionEnString(m_textCtrlCreerHeureBain1->GetValue()) + ":"
+                                + m_frame->ConversionEnString(m_textCtrlCreerMinuteBain1->GetValue()) + ":"
+                                + m_frame->ConversionEnString(m_textCtrlCreerSecondeBain1->GetValue());
+                }
+                else
+                {
+                    erreur = true;
+                    message << wxT("Durée total du bain 1 non valide :  ") << verif;
+                }
             }
             else
             {
@@ -1719,9 +1850,19 @@ void EvtPanelResponsable::OnSaveButtonCreerClick(wxCommandEvent& event)
             if(!m_textCtrlCreerHeureBain2->IsEmpty() && !m_textCtrlCreerMinuteBain2->IsEmpty()
                && !m_textCtrlCreerSecondeBain2->IsEmpty())
             {
-                duree_bain2 = m_frame->ConversionEnString(m_textCtrlCreerHeureBain2->GetValue()) + ":"
-                            + m_frame->ConversionEnString(m_textCtrlCreerMinuteBain2->GetValue()) + ":"
-                            + m_frame->ConversionEnString(m_textCtrlCreerSecondeBain2->GetValue());
+                wxString verif = m_frame->VerificationDurree(m_textCtrlCreerHeureBain2->GetValue(), m_textCtrlCreerMinuteBain2->GetValue(), m_textCtrlCreerSecondeBain2->GetValue());
+                
+                if(verif.IsSameAs(wxT("ok")))
+                {
+                    duree_bain2 = m_frame->ConversionEnString(m_textCtrlCreerHeureBain2->GetValue()) + ":"
+                                + m_frame->ConversionEnString(m_textCtrlCreerMinuteBain2->GetValue()) + ":"
+                                + m_frame->ConversionEnString(m_textCtrlCreerSecondeBain2->GetValue());
+                }
+                else
+                {
+                    erreur = true;
+                    message << wxT("Durée total du bain 2 non valide :  ") << verif;
+                }
             }
             else
             {
@@ -1733,9 +1874,19 @@ void EvtPanelResponsable::OnSaveButtonCreerClick(wxCommandEvent& event)
             if(!m_textCtrlCreerHeureBain3->IsEmpty() && !m_textCtrlCreerMinuteBain3->IsEmpty()
                && !m_textCtrlCreerSecondeBain3->IsEmpty())
             {
-                duree_bain3 = m_frame->ConversionEnString(m_textCtrlCreerHeureBain3->GetValue()) + ":"
-                            + m_frame->ConversionEnString(m_textCtrlCreerMinuteBain3->GetValue()) + ":"
-                            + m_frame->ConversionEnString(m_textCtrlCreerSecondeBain3->GetValue());
+                wxString verif = m_frame->VerificationDurree(m_textCtrlCreerHeureBain3->GetValue(), m_textCtrlCreerMinuteBain3->GetValue(), m_textCtrlCreerSecondeBain3->GetValue());
+                
+                if(verif.IsSameAs(wxT("ok")))
+                {
+                    duree_bain3 = m_frame->ConversionEnString(m_textCtrlCreerHeureBain3->GetValue()) + ":"
+                                + m_frame->ConversionEnString(m_textCtrlCreerMinuteBain3->GetValue()) + ":"
+                                + m_frame->ConversionEnString(m_textCtrlCreerSecondeBain3->GetValue());
+                }
+                else
+                {
+                    erreur = true;
+                    message << wxT("Durée total du bain 3 non valide :  ") << verif;
+                }
             }
             else
             {
@@ -2400,12 +2551,16 @@ void EvtPanelResponsable::RempliListBox()
                 m_listBoxTesterProcessus->Append(rempli);
             }
         }
+        
+        m_listBoxAffichageProcessus->SetSelection(0);
     }
     else
     {
         EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
     }
-
+    
+    
+    
     if(m_donnees_IHM->RecupereListeTouteTrajectoires())
     {
         vector<string> liste_trajectoire = m_donnees_IHM->GetListeTouteTrajectoires();

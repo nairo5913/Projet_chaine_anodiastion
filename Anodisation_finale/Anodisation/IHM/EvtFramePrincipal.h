@@ -87,6 +87,7 @@ class EvtFramePrincipal : public FramePrincipal
         EvtFramePrincipal( wxWindow* parent );
     //// end generated class members
     public:
+        int wxStringToInt(wxString nombre);
         string ConversionEnString(wxString texte);
         string IntEnString(int nombre);
         wxString DecouperTexteDebut(wxString texte, int position);
@@ -94,6 +95,8 @@ class EvtFramePrincipal : public FramePrincipal
         wxString ConversionEnWxString(string texte);
         // Fonction de mise en forme de la séléction pour garder que le début (id)
         wxString GardeIdSelection(wxString texte);
+        
+        wxString VerificationDurree(wxString heure, wxString minute, wxString seconde);
 
     protected:
         // Affichage et action des events du client

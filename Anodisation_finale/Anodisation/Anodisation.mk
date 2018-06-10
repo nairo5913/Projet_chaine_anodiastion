@@ -60,8 +60,8 @@ AS       := /usr/bin/as
 ## User defined environment variables
 ##
 CodeLiteDir:=/usr/share/codelite
-Objects0=$(IntermediateDirectory)/MyApp.cpp$(ObjectSuffix) $(IntermediateDirectory)/BdD_DataAnodisation.cpp$(ObjectSuffix) $(IntermediateDirectory)/BdD_DonneesIHMregleur.cpp$(ObjectSuffix) $(IntermediateDirectory)/BdD_DonneesIHMresponsable.cpp$(ObjectSuffix) $(IntermediateDirectory)/Client_Client.cpp$(ObjectSuffix) $(IntermediateDirectory)/IHM_EvtFrameAide.cpp$(ObjectSuffix) $(IntermediateDirectory)/IHM_EvtFrameApropos.cpp$(ObjectSuffix) $(IntermediateDirectory)/IHM_EvtPanelRegleur.cpp$(ObjectSuffix) $(IntermediateDirectory)/IHM_PanelRegleur.cpp$(ObjectSuffix) $(IntermediateDirectory)/IHM_EvtPanelResponsable.cpp$(ObjectSuffix) \
-	$(IntermediateDirectory)/IHM_PanelResponsable.cpp$(ObjectSuffix) $(IntermediateDirectory)/IHM_EvtFramePrincipal.cpp$(ObjectSuffix) $(IntermediateDirectory)/IHM_FramePrincipal.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/MyApp.cpp$(ObjectSuffix) $(IntermediateDirectory)/BdD_DataAnodisation.cpp$(ObjectSuffix) $(IntermediateDirectory)/BdD_DonneesIHMregleur.cpp$(ObjectSuffix) $(IntermediateDirectory)/BdD_DonneesIHMresponsable.cpp$(ObjectSuffix) $(IntermediateDirectory)/Client_Client.cpp$(ObjectSuffix) $(IntermediateDirectory)/IHM_EvtFrameAide.cpp$(ObjectSuffix) $(IntermediateDirectory)/IHM_EvtFrameApropos.cpp$(ObjectSuffix) $(IntermediateDirectory)/IHM_EvtPanelRegleur.cpp$(ObjectSuffix) $(IntermediateDirectory)/IHM_PanelRegleur.cpp$(ObjectSuffix) $(IntermediateDirectory)/IHM_PanelResponsable.cpp$(ObjectSuffix) \
+	$(IntermediateDirectory)/IHM_EvtFramePrincipal.cpp$(ObjectSuffix) $(IntermediateDirectory)/IHM_FramePrincipal.cpp$(ObjectSuffix) $(IntermediateDirectory)/IHM_EvtPanelResponsable.cpp$(ObjectSuffix) 
 
 
 
@@ -164,14 +164,6 @@ $(IntermediateDirectory)/IHM_PanelRegleur.cpp$(DependSuffix): IHM/PanelRegleur.c
 $(IntermediateDirectory)/IHM_PanelRegleur.cpp$(PreprocessSuffix): IHM/PanelRegleur.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/IHM_PanelRegleur.cpp$(PreprocessSuffix) IHM/PanelRegleur.cpp
 
-$(IntermediateDirectory)/IHM_EvtPanelResponsable.cpp$(ObjectSuffix): IHM/EvtPanelResponsable.cpp $(IntermediateDirectory)/IHM_EvtPanelResponsable.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Anodisation_finale/Anodisation/IHM/EvtPanelResponsable.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/IHM_EvtPanelResponsable.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/IHM_EvtPanelResponsable.cpp$(DependSuffix): IHM/EvtPanelResponsable.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/IHM_EvtPanelResponsable.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/IHM_EvtPanelResponsable.cpp$(DependSuffix) -MM IHM/EvtPanelResponsable.cpp
-
-$(IntermediateDirectory)/IHM_EvtPanelResponsable.cpp$(PreprocessSuffix): IHM/EvtPanelResponsable.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/IHM_EvtPanelResponsable.cpp$(PreprocessSuffix) IHM/EvtPanelResponsable.cpp
-
 $(IntermediateDirectory)/IHM_PanelResponsable.cpp$(ObjectSuffix): IHM/PanelResponsable.cpp $(IntermediateDirectory)/IHM_PanelResponsable.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Anodisation_finale/Anodisation/IHM/PanelResponsable.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/IHM_PanelResponsable.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/IHM_PanelResponsable.cpp$(DependSuffix): IHM/PanelResponsable.cpp
@@ -195,6 +187,14 @@ $(IntermediateDirectory)/IHM_FramePrincipal.cpp$(DependSuffix): IHM/FramePrincip
 
 $(IntermediateDirectory)/IHM_FramePrincipal.cpp$(PreprocessSuffix): IHM/FramePrincipal.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/IHM_FramePrincipal.cpp$(PreprocessSuffix) IHM/FramePrincipal.cpp
+
+$(IntermediateDirectory)/IHM_EvtPanelResponsable.cpp$(ObjectSuffix): IHM/EvtPanelResponsable.cpp $(IntermediateDirectory)/IHM_EvtPanelResponsable.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Anodisation_finale/Anodisation/IHM/EvtPanelResponsable.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/IHM_EvtPanelResponsable.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/IHM_EvtPanelResponsable.cpp$(DependSuffix): IHM/EvtPanelResponsable.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/IHM_EvtPanelResponsable.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/IHM_EvtPanelResponsable.cpp$(DependSuffix) -MM IHM/EvtPanelResponsable.cpp
+
+$(IntermediateDirectory)/IHM_EvtPanelResponsable.cpp$(PreprocessSuffix): IHM/EvtPanelResponsable.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/IHM_EvtPanelResponsable.cpp$(PreprocessSuffix) IHM/EvtPanelResponsable.cpp
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

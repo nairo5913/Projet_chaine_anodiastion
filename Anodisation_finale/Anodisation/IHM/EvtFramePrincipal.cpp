@@ -355,23 +355,6 @@ void EvtFramePrincipal::OnMenuAproposSelection(wxCommandEvent& event)
 //                            Méthode du programme                            //
 //                                                                            //
 ////////////////////////////////////////////////////////////////////////////////
-bool EvtFramePrincipal::VerificationLogin(wxString login, wxString pass)
-{
-    bool retour = false;
-    
-    if(login == "Responsable" && pass == "responsable")
-    {
-        m_login = wxT("Responsable");
-        retour = true;
-    }
-    else if(login == "Régleur" && pass == "regleur")
-    {
-        m_login = wxT("Regleur");
-        retour = true;
-    }
-    
-    return retour;
-}
 //
 // Partie client de communication
 //
@@ -457,27 +440,6 @@ void EvtFramePrincipal::AfficheMessagePanel(wxCommandEvent& event)
 //
 // Partie manipulation texte
 //
-string EvtFramePrincipal::ConversionEnString(wxString texte)
-{
-    string temp_string = texte.ToStdString();
-
-    return temp_string;
-}
-
-string EvtFramePrincipal::IntEnString(int nombre)
-{
-    ostringstream temp;
-    temp << nombre;
-
-    return temp.str();
-}
-wxString EvtFramePrincipal::ConversionEnWxString(string texte)
-{
-    wxString temp_wxstring(texte.c_str(), wxConvUTF8);
-
-    return temp_wxstring;
-}
-
 wxString EvtFramePrincipal::GardeIdSelection(wxString texte)
 {
     int separateur = texte.find(" - ");
@@ -501,4 +463,108 @@ wxString EvtFramePrincipal::DecouperTexteFin(wxString texte, int position)
     wxString fin(texte.substr(position));
 
     return fin;
+}
+//
+// Conversion
+//
+int EvtFramePrincipal::wxStringToInt(wxString nombre)
+{
+    double temp;
+    nombre.ToDouble(&temp);
+    int val = temp;
+    
+    return val;
+}
+
+string EvtFramePrincipal::ConversionEnString(wxString texte)
+{
+    string temp_string = texte.ToStdString();
+
+    return temp_string;
+}
+
+string EvtFramePrincipal::IntEnString(int nombre)
+{
+    ostringstream temp;
+    temp << nombre;
+
+    return temp.str();
+}
+
+wxString EvtFramePrincipal::ConversionEnWxString(string texte)
+{
+    wxString temp_wxstring(texte.c_str(), wxConvUTF8);
+
+    return temp_wxstring;
+}
+//
+// Vérification
+//
+bool EvtFramePrincipal::VerificationLogin(wxString login, wxString pass)
+{
+    bool retour = false;
+    
+    if(login == "Responsable" && pass == "responsable")
+    {
+        m_login = wxT("Responsable");
+        retour = true;
+    }
+    else if(login == "Régleur" && pass == "regleur")
+    {
+        m_login = wxT("Regleur");
+        retour = true;
+    }
+    
+    return retour;
+}
+
+wxString EvtFramePrincipal::VerificationDurree(wxString heure, wxString minute, wxString seconde)
+{
+    bool valide = true;
+    int h = wxStringToInt(heure);
+    int m = wxStringToInt(minute);
+    int s =  wxStringToInt(seconde);
+    wxString message;
+    
+    if(h < 0 || h >= 60)
+    {
+        message << wxT("  L'heure est invalide.\n");
+        valide = false;
+    }
+    
+    if(m < 0 || m >= 60)
+    {
+        if(valide)
+        {
+            message << wxT("Les minutes sont invalide.\n");
+        }
+        else
+        {
+            message << wxT("\t\t\t\t\t\t\t\t\t\t") << wxT("Les minutes sont invalides.\n");
+        }
+        
+        valide = false;
+    }
+    
+    if(s < 0 || s >= 60)
+    {
+        if(valide)
+        {
+            message << wxT("Les secondes sont invalide.\n");
+        }
+        else
+        {
+            message << wxT("\t\t\t\t\t\t\t\t\t\tLes secondes sont invalides.\n");
+        }
+        
+        valide = false;
+    }
+    
+    if(valide)
+    {
+        message.clear();
+        message << wxT("ok");
+    }
+    
+    return message;
 }

@@ -136,7 +136,6 @@
       <File Name="IHM/PanelRegleur.h"/>
     </VirtualDirectory>
     <VirtualDirectory Name="Responsable">
-      <File Name="IHM/EvtPanelResponsable.cpp"/>
       <File Name="IHM/EvtPanelResponsable.h"/>
       <File Name="IHM/PanelResponsable.cpp"/>
       <File Name="IHM/PanelResponsable.fbp"/>
@@ -148,6 +147,7 @@
       <File Name="IHM/FramePrincipal.cpp"/>
       <File Name="IHM/FramePrincipal.fbp"/>
       <File Name="IHM/FramePrincipal.h"/>
+      <File Name="IHM/EvtPanelResponsable.cpp"/>
     </VirtualDirectory>
   </VirtualDirectory>
 </CodeLite_Project>

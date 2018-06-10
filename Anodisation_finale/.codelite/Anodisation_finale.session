@@ -1,60 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Session Name="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Anodisation_finale/Anodisation_finale.workspace">
-  <int Value="1" Name="m_selectedTab"/>
+  <int Value="0" Name="m_selectedTab"/>
   <wxString Value="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Anodisation_finale/Anodisation_finale.workspace" Name="m_workspaceName"/>
   <TabInfoArray Name="TabInfoArray">
     <TabInfo>
-      <wxString Value="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Anodisation_finale/Anodisation/IHM/EvtPanelResponsable.h" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
+      <wxString Value="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Anodisation_finale/Anodisation/IHM/EvtPanelResponsable.cpp" Name="FileName"/>
+      <int Value="294" Name="FirstVisibleLine"/>
+      <int Value="313" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds">
+        <IntVectorItem Value="0"/>
+        <IntVectorItem Value="11"/>
+        <IntVectorItem Value="307"/>
+        <IntVectorItem Value="317"/>
+        <IntVectorItem Value="417"/>
+        <IntVectorItem Value="710"/>
+        <IntVectorItem Value="899"/>
+        <IntVectorItem Value="1378"/>
+        <IntVectorItem Value="1561"/>
+        <IntVectorItem Value="1966"/>
+        <IntVectorItem Value="2080"/>
+        <IntVectorItem Value="2131"/>
+        <IntVectorItem Value="2169"/>
+        <IntVectorItem Value="2222"/>
+        <IntVectorItem Value="2232"/>
+        <IntVectorItem Value="2289"/>
+        <IntVectorItem Value="2297"/>
+        <IntVectorItem Value="2307"/>
+        <IntVectorItem Value="2363"/>
+        <IntVectorItem Value="2508"/>
+        <IntVectorItem Value="2606"/>
+        <IntVectorItem Value="2618"/>
+        <IntVectorItem Value="2625"/>
+      </IntVector>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Anodisation_finale/Anodisation/IHM/EvtFramePrincipal.h" Name="FileName"/>
+      <int Value="63" Name="FirstVisibleLine"/>
       <int Value="0" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
     <TabInfo>
-      <wxString Value="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Anodisation_finale/Anodisation/IHM/EvtPanelResponsable.cpp" Name="FileName"/>
-      <int Value="15" Name="FirstVisibleLine"/>
-      <int Value="317" Name="CurrentLine"/>
+      <wxString Value="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Anodisation_finale/Anodisation/IHM/EvtFramePrincipal.cpp" Name="FileName"/>
+      <int Value="141" Name="FirstVisibleLine"/>
+      <int Value="7" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds">
+        <IntVectorItem Value="0"/>
+        <IntVectorItem Value="10"/>
+        <IntVectorItem Value="43"/>
+        <IntVectorItem Value="75"/>
+        <IntVectorItem Value="267"/>
+        <IntVectorItem Value="272"/>
+        <IntVectorItem Value="279"/>
+        <IntVectorItem Value="284"/>
+        <IntVectorItem Value="292"/>
+        <IntVectorItem Value="303"/>
+        <IntVectorItem Value="335"/>
+        <IntVectorItem Value="341"/>
+        <IntVectorItem Value="347"/>
+        <IntVectorItem Value="361"/>
+        <IntVectorItem Value="367"/>
+        <IntVectorItem Value="373"/>
+        <IntVectorItem Value="377"/>
+        <IntVectorItem Value="411"/>
+        <IntVectorItem Value="416"/>
+        <IntVectorItem Value="436"/>
+        <IntVectorItem Value="443"/>
+        <IntVectorItem Value="451"/>
+        <IntVectorItem Value="461"/>
+      </IntVector>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Anodisation_finale/Anodisation/BdD/DataAnodisation.h" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="8" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Anodisation_finale/Anodisation/BdD/DataAnodisation.cpp" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="8" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds">
         <IntVectorItem Value="0"/>
         <IntVectorItem Value="11"/>
-        <IntVectorItem Value="25"/>
-        <IntVectorItem Value="307"/>
-        <IntVectorItem Value="312"/>
-        <IntVectorItem Value="317"/>
-        <IntVectorItem Value="417"/>
-        <IntVectorItem Value="710"/>
-        <IntVectorItem Value="899"/>
-        <IntVectorItem Value="1017"/>
-        <IntVectorItem Value="1297"/>
-        <IntVectorItem Value="1480"/>
-        <IntVectorItem Value="1534"/>
-        <IntVectorItem Value="1815"/>
-        <IntVectorItem Value="1929"/>
-        <IntVectorItem Value="1980"/>
-        <IntVectorItem Value="2018"/>
-        <IntVectorItem Value="2071"/>
-        <IntVectorItem Value="2081"/>
-        <IntVectorItem Value="2138"/>
-        <IntVectorItem Value="2146"/>
-        <IntVectorItem Value="2156"/>
-        <IntVectorItem Value="2212"/>
-        <IntVectorItem Value="2357"/>
-        <IntVectorItem Value="2368"/>
-        <IntVectorItem Value="2451"/>
-        <IntVectorItem Value="2463"/>
-        <IntVectorItem Value="2470"/>
-      </IntVector>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Anodisation_finale/Anodisation/IHM/EvtFramePrincipal.cpp" Name="FileName"/>
-      <int Value="15" Name="FirstVisibleLine"/>
-      <int Value="273" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds">
-        <IntVectorItem Value="10"/>
-        <IntVectorItem Value="43"/>
-        <IntVectorItem Value="75"/>
+        <IntVectorItem Value="30"/>
+        <IntVectorItem Value="37"/>
+        <IntVectorItem Value="67"/>
+        <IntVectorItem Value="96"/>
+        <IntVectorItem Value="146"/>
+        <IntVectorItem Value="175"/>
       </IntVector>
     </TabInfo>
   </TabInfoArray>
