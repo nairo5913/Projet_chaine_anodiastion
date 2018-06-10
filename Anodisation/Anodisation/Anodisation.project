@@ -13,8 +13,28 @@
   <VirtualDirectory Name="include">
     <File Name="MyApp.h"/>
   </VirtualDirectory>
-  <Dependencies Name="Debug"/>
-  <Dependencies Name="Release"/>
+  <VirtualDirectory Name="BdD">
+    <File Name="BdD/DonneesIHM.h"/>
+    <File Name="BdD/DataAnodisation.cpp"/>
+    <File Name="BdD/DonneesIHM.cpp"/>
+    <File Name="BdD/DataAnodisation.h"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="Client">
+    <File Name="Client/Client.h"/>
+    <File Name="Client/Client.cpp"/>
+    <File Name="Client/Protocoles.h"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="IHM">
+    <File Name="IHM/FramePrincipal.h"/>
+    <File Name="IHM/EvtFrameAide.h"/>
+    <File Name="IHM/FramePrincipal.fbp"/>
+    <File Name="IHM/EvtFrameAide.cpp"/>
+    <File Name="IHM/EvtFrameApropos.h"/>
+    <File Name="IHM/EvtFramePrincipal.cpp"/>
+    <File Name="IHM/EvtFrameApropos.cpp"/>
+    <File Name="IHM/FramePrincipal.cpp"/>
+    <File Name="IHM/EvtFramePrincipal.h"/>
+  </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>
       <Compiler Options="" C_Options="" Assembler="">
@@ -72,11 +92,7 @@
       <Compiler Options="-O2;-Wall;$(shell wx-config --cxxflags --unicode=yes --debug=no)" C_Options="-O2;-Wall;$(shell wx-config --cxxflags --unicode=yes --debug=no)" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <Preprocessor Value="NDEBUG"/>
       </Compiler>
-      <Linker Options="-s;$(shell wx-config --debug=no --libs --unicode=yes)" Required="yes">
-        <Library Value="PocoDataODBC"/>
-        <Library Value="PocoData"/>
-        <Library Value="PocoFoundation"/>
-      </Linker>
+      <Linker Options="-s;$(shell wx-config --debug=no --libs --unicode=yes)" Required="yes"/>
       <ResourceCompiler Options="$(shell wx-config --rcflags)" Required="no"/>
       <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="./Release" Command="./$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
       <BuildSystem Name="Default"/>
@@ -112,44 +128,4 @@
       </Completion>
     </Configuration>
   </Settings>
-  <VirtualDirectory Name="IHM">
-    <VirtualDirectory Name="Principale">
-      <File Name="IHM/EvtFramePrincipal.h"/>
-      <File Name="IHM/FramePrincipal.h"/>
-      <File Name="IHM/EvtFramePrincipal.cpp"/>
-      <File Name="IHM/FramePrincipal.cpp"/>
-      <File Name="IHM/FramePrincipal.fbp"/>
-    </VirtualDirectory>
-    <VirtualDirectory Name="Dialogue">
-      <File Name="IHM/EvtFrameAide.cpp"/>
-      <File Name="IHM/EvtFrameAide.h"/>
-      <File Name="IHM/EvtFrameApropos.cpp"/>
-      <File Name="IHM/EvtFrameApropos.h"/>
-    </VirtualDirectory>
-    <VirtualDirectory Name="Regleur">
-      <File Name="IHM/EvtPanelRegleur.cpp"/>
-      <File Name="IHM/EvtPanelRegleur.h"/>
-      <File Name="IHM/PanelRegleur.cpp"/>
-      <File Name="IHM/PanelRegleur.fbp"/>
-      <File Name="IHM/PanelRegleur.h"/>
-    </VirtualDirectory>
-    <VirtualDirectory Name="Responsable">
-      <File Name="IHM/EvtPanelResponsable.cpp"/>
-      <File Name="IHM/EvtPanelResponsable.h"/>
-      <File Name="IHM/PanelResponsable.cpp"/>
-      <File Name="IHM/PanelResponsable.fbp"/>
-      <File Name="IHM/PanelResponsable.h"/>
-    </VirtualDirectory>
-  </VirtualDirectory>
-  <VirtualDirectory Name="BdD">
-    <File Name="BdD/DataAnodisation.cpp"/>
-    <File Name="BdD/DataAnodisation.h"/>
-    <File Name="BdD/DonneesIHM.cpp"/>
-    <File Name="BdD/DonneesIHM.h"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="Client">
-    <File Name="Client/Client.cpp"/>
-    <File Name="Client/Client.h"/>
-    <File Name="Client/Protocoles.h"/>
-  </VirtualDirectory>
 </CodeLite_Project>

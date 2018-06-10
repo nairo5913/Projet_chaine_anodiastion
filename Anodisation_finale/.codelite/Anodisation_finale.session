@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Session Name="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Anodisation_finale/Anodisation_finale.workspace">
+  <int Value="1" Name="m_selectedTab"/>
+  <wxString Value="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Anodisation_finale/Anodisation_finale.workspace" Name="m_workspaceName"/>
+  <TabInfoArray Name="TabInfoArray">
+    <TabInfo>
+      <wxString Value="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Anodisation_finale/Anodisation/IHM/EvtPanelResponsable.h" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="0" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Anodisation_finale/Anodisation/IHM/EvtPanelResponsable.cpp" Name="FileName"/>
+      <int Value="15" Name="FirstVisibleLine"/>
+      <int Value="317" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds">
+        <IntVectorItem Value="0"/>
+        <IntVectorItem Value="11"/>
+        <IntVectorItem Value="25"/>
+        <IntVectorItem Value="307"/>
+        <IntVectorItem Value="312"/>
+        <IntVectorItem Value="317"/>
+        <IntVectorItem Value="417"/>
+        <IntVectorItem Value="710"/>
+        <IntVectorItem Value="899"/>
+        <IntVectorItem Value="1017"/>
+        <IntVectorItem Value="1297"/>
+        <IntVectorItem Value="1480"/>
+        <IntVectorItem Value="1534"/>
+        <IntVectorItem Value="1815"/>
+        <IntVectorItem Value="1929"/>
+        <IntVectorItem Value="1980"/>
+        <IntVectorItem Value="2018"/>
+        <IntVectorItem Value="2071"/>
+        <IntVectorItem Value="2081"/>
+        <IntVectorItem Value="2138"/>
+        <IntVectorItem Value="2146"/>
+        <IntVectorItem Value="2156"/>
+        <IntVectorItem Value="2212"/>
+        <IntVectorItem Value="2357"/>
+        <IntVectorItem Value="2368"/>
+        <IntVectorItem Value="2451"/>
+        <IntVectorItem Value="2463"/>
+        <IntVectorItem Value="2470"/>
+      </IntVector>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Anodisation_finale/Anodisation/IHM/EvtFramePrincipal.cpp" Name="FileName"/>
+      <int Value="15" Name="FirstVisibleLine"/>
+      <int Value="273" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds">
+        <IntVectorItem Value="10"/>
+        <IntVectorItem Value="43"/>
+        <IntVectorItem Value="75"/>
+      </IntVector>
+    </TabInfo>
+  </TabInfoArray>
+  <SerializedObject Name="m_breakpoints">
+    <long Value="0" Name="Count"/>
+  </SerializedObject>
+</Session>

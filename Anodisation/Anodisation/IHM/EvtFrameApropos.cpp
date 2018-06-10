@@ -1,20 +1,16 @@
 #include "EvtFrameApropos.h"
 
-EvtFrameApropos::EvtFrameApropos( wxWindow* parent )
-:
-FrameApropos( parent )
+EvtFrameApropos::EvtFrameApropos(wxWindow* parent) : FrameApropos(parent)
 {
     //
 }
 
-void EvtFrameApropos::OnCloseFrame( wxCloseEvent& event )
+void EvtFrameApropos::OnCloseFrame(wxCloseEvent& event)
 {
-// TODO: Implement OnCloseFrame
-Destroy();
+    // TODO: Implement OnCloseFrame
 }
 
-void EvtFrameApropos::OnOkButtonClick( wxCommandEvent& event )
+void EvtFrameApropos::OnOkButtonClick(wxCommandEvent& event)
 {
-// TODO: Implement OnOkButtonClick
-Destroy();
+    // TODO: Implement OnOkButtonClick
 }

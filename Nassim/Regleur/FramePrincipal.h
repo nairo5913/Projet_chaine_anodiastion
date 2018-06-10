@@ -102,7 +102,7 @@ class FramePrincipal : public wxFrame
 		wxTextCtrl* m_textCtrlDureeSecondeCreerMouvements;
 		wxStaticLine* m_staticlineCreerMouvements;
 		wxStaticText* m_staticTextCreerMouvements;
-		wxTextCtrl* m_textCtrlxCreerMouvements;
+		wxTextCtrl* ;
 		wxStaticText* m_staticTextyCreerMouvements;
 		wxTextCtrl* m_textCtrlyCreerMouvements;
 		wxStaticText* m_staticTextzCreerMouvements;

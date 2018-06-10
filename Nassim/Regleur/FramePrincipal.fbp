@@ -1026,7 +1026,7 @@
                         <event name="OnSetFocus"></event>
                         <event name="OnSize"></event>
                         <event name="OnUpdateUI"></event>
-                        <object class="notebookpage" expanded="0">
+                        <object class="notebookpage" expanded="1">
                             <property name="bitmap"></property>
                             <property name="label">Afficher les mouvements</property>
                             <property name="select">1</property>
@@ -2650,7 +2650,7 @@
                                 </object>
                             </object>
                         </object>
-                        <object class="notebookpage" expanded="0">
+                        <object class="notebookpage" expanded="1">
                             <property name="bitmap"></property>
                             <property name="label">Modifier les mouvements</property>
                             <property name="select">0</property>
@@ -4311,7 +4311,7 @@
                                 </object>
                             </object>
                         </object>
-                        <object class="notebookpage" expanded="0">
+                        <object class="notebookpage" expanded="1">
                             <property name="bitmap"></property>
                             <property name="label">Création des mouvements</property>
                             <property name="select">0</property>
@@ -5423,7 +5423,7 @@
                                                                             <property name="minimize_button">0</property>
                                                                             <property name="minimum_size">50,-1</property>
                                                                             <property name="moveable">1</property>
-                                                                            <property name="name">m_textCtrlxCreerMouvements</property>
+                                                                            <property name="name"></property>
                                                                             <property name="pane_border">1</property>
                                                                             <property name="pane_position"></property>
                                                                             <property name="pane_size"></property>
@@ -5869,7 +5869,7 @@
                                 </object>
                             </object>
                         </object>
-                        <object class="notebookpage" expanded="0">
+                        <object class="notebookpage" expanded="1">
                             <property name="bitmap"></property>
                             <property name="label">Détruire un mouvement</property>
                             <property name="select">0</property>
@@ -6065,7 +6065,7 @@
                                             <property name="id">wxID_ANY</property>
                                             <property name="label">Affichage</property>
                                             <property name="minimum_size"></property>
-                                            <property name="name">sbSizerDetruire</property>
+                                            <property name="name">sbSizerDetruireMouvement</property>
                                             <property name="orient">wxVERTICAL</property>
                                             <property name="parent">1</property>
                                             <property name="permission">none</property>
@@ -6194,7 +6194,7 @@
                                 </object>
                             </object>
                         </object>
-                        <object class="notebookpage" expanded="0">
+                        <object class="notebookpage" expanded="1">
                             <property name="bitmap"></property>
                             <property name="label">TEST</property>
                             <property name="select">0</property>
@@ -6285,7 +6285,7 @@
                                         <property name="proportion">0</property>
                                         <object class="wxStaticBoxSizer" expanded="0">
                                             <property name="id">wxID_ANY</property>
-                                            <property name="label">Séléction du mouvement a tester</property>
+                                            <property name="label">Sélection du mouvement à tester</property>
                                             <property name="minimum_size">280,-1</property>
                                             <property name="name">sbSizerSelectionTesterMouvements</property>
                                             <property name="orient">wxHORIZONTAL</property>
@@ -6390,7 +6390,7 @@
                                             <property name="id">wxID_ANY</property>
                                             <property name="label">Affichage</property>
                                             <property name="minimum_size"></property>
-                                            <property name="name">sbSizerTester</property>
+                                            <property name="name">sbSizerTesterMouvement</property>
                                             <property name="orient">wxVERTICAL</property>
                                             <property name="parent">1</property>
                                             <property name="permission">none</property>
@@ -6552,7 +6552,7 @@
                         <property name="floatable">1</property>
                         <property name="font"></property>
                         <property name="gripper">0</property>
-                        <property name="hidden">1</property>
+                        <property name="hidden">0</property>
                         <property name="id">wxID_ANY</property>
                         <property name="max_size"></property>
                         <property name="maximize_button">0</property>
@@ -6603,11 +6603,11 @@
                         <event name="OnSetFocus"></event>
                         <event name="OnSize"></event>
                         <event name="OnUpdateUI"></event>
-                        <object class="notebookpage" expanded="0">
+                        <object class="notebookpage" expanded="1">
                             <property name="bitmap"></property>
                             <property name="label">Afficher les trajectoires</property>
                             <property name="select">1</property>
-                            <object class="wxScrolledWindow" expanded="0">
+                            <object class="wxScrolledWindow" expanded="1">
                                 <property name="BottomDockable">1</property>
                                 <property name="LeftDockable">1</property>
                                 <property name="RightDockable">1</property>
@@ -6683,16 +6683,16 @@
                                 <event name="OnSetFocus"></event>
                                 <event name="OnSize"></event>
                                 <event name="OnUpdateUI"></event>
-                                <object class="wxBoxSizer" expanded="0">
+                                <object class="wxBoxSizer" expanded="1">
                                     <property name="minimum_size"></property>
                                     <property name="name">bSizerAfficherTrajectoires</property>
                                     <property name="orient">wxHORIZONTAL</property>
                                     <property name="permission">none</property>
-                                    <object class="sizeritem" expanded="0">
+                                    <object class="sizeritem" expanded="1">
                                         <property name="border">5</property>
                                         <property name="flag">wxALL|wxEXPAND</property>
                                         <property name="proportion">0</property>
-                                        <object class="wxStaticBoxSizer" expanded="0">
+                                        <object class="wxStaticBoxSizer" expanded="1">
                                             <property name="id">wxID_ANY</property>
                                             <property name="label">Séléction de la trajectoires à afficher</property>
                                             <property name="minimum_size">280,-1</property>

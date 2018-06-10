@@ -72,6 +72,36 @@ class EvtFramePrincipal : public FramePrincipal
 		void OnFrameClose( wxCloseEvent& event );
 		void OnButtonConnexionToggle( wxCommandEvent& event );
 		void OnTextMaxLength( wxCommandEvent& event );
+		void OnButtonChoixTrajectoiresClicks( wxCommandEvent& event );
+		void OnButtonChoixMouvementsClicks( wxCommandEvent& event );
+		void OnListBoxAffichageSelectionProcessus( wxCommandEvent& event );
+		void OnCharEnteredNum( wxKeyEvent& event );
+		void OnListBoxModifierSelectionProcessus( wxCommandEvent& event );
+		void OnApplyButtonModifierClick( wxCommandEvent& event );
+		void OnCharEnteredOrdre( wxKeyEvent& event );
+		void OnSpinCtrlModifierBain( wxSpinEvent& event );
+		void OnCancelButtonModiffierClick( wxCommandEvent& event );
+		void OnSaveButtonCreerClick( wxCommandEvent& event );
+		void OnSpinCtrlCreerBain( wxSpinEvent& event );
+		void OnCancelButtonCreerClick( wxCommandEvent& event );
+		void OnListBoxDetruireSelectionProcessus( wxCommandEvent& event );
+		void OnApplyButtonDetruireClick( wxCommandEvent& event );
+		void OnListBoxLancerSelectionProcessus( wxCommandEvent& event );
+		void OnOkButtonLancerClick( wxCommandEvent& event );
+		void OnListBoxTesterSelectionProcessus( wxCommandEvent& event );
+		void OnStopButtonTesterClick( wxCommandEvent& event );
+		void OnOkButtonTesterClick( wxCommandEvent& event );
+		void OnButtonDisponibiliteBrasClick( wxCommandEvent& event );
+		void OnButtonTacheEnCoursClick( wxCommandEvent& event );
+		void OnListBoxAffichageSelectionMouvements( wxCommandEvent& event );
+		void OnListBoxModifierSelectionMouvements( wxCommandEvent& event );
+		void OnApplyButtonModifierMouvementClick( wxCommandEvent& event );
+		void OnCancelButtonModifierMouvementClick( wxCommandEvent& event );
+		void OnSaveButtonCreerMouvementClick( wxCommandEvent& event );
+		void OnYesButtonDetruireMouvementClick( wxCommandEvent& event );
+		void OnCancelButtonTestMouvementClick( wxCommandEvent& event );
+		void OnInfoBrasTestMouvementClick( wxCommandEvent& event );
+		void OnYesButtonTesterMouvementClick( wxCommandEvent& event );
 		void OnButtonViderAffichageClick( wxCommandEvent& event );
 		void OnMenuQuitterSelection( wxCommandEvent& event );
 		void OnMenuViderAffichageSelection( wxCommandEvent& event );
@@ -81,7 +111,7 @@ class EvtFramePrincipal : public FramePrincipal
 		/** Constructor */
 		EvtFramePrincipal( wxWindow* parent );
 	//// end generated class members
-        public:
+    public:
         string ConversionEnString(wxString texte);
         string IntEnString(int nombre);
         wxString DecouperTexteDebut(wxString texte, int position);
@@ -120,7 +150,6 @@ class EvtFramePrincipal : public FramePrincipal
         void VideListBox();
         // Fonction de mise en forme de la séléction pour garder que le début (id)
         wxString GardeIdSelection(wxString texte);
-
 
 
 

@@ -539,19 +539,19 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextCreerMouvements->Wrap( -1 );
 	sbSizerCoordonneesCreerMouvements->Add( m_staticTextCreerMouvements, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
-	m_textCtrlxCreerMouvements = new wxTextCtrl( sbSizerCoordonneesCreerMouvements->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
+	 = new wxTextCtrl( sbSizerCoordonneesCreerMouvements->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
 	#ifdef __WXGTK__
-	if ( !m_textCtrlxCreerMouvements->HasFlag( wxTE_MULTILINE ) )
+	if ( !->HasFlag( wxTE_MULTILINE ) )
 	{
-	m_textCtrlxCreerMouvements->SetMaxLength( 3 );
+	->SetMaxLength( 3 );
 	}
 	#else
-	m_textCtrlxCreerMouvements->SetMaxLength( 3 );
+	->SetMaxLength( 3 );
 	#endif
-	m_textCtrlxCreerMouvements->SetMinSize( wxSize( 50,-1 ) );
-	m_textCtrlxCreerMouvements->SetMaxSize( wxSize( 50,-1 ) );
+	->SetMinSize( wxSize( 50,-1 ) );
+	->SetMaxSize( wxSize( 50,-1 ) );
 	
-	sbSizerCoordonneesCreerMouvements->Add( m_textCtrlxCreerMouvements, 0, wxALIGN_CENTER_VERTICAL|wxRIGHT, 5 );
+	sbSizerCoordonneesCreerMouvements->Add( , 0, wxALIGN_CENTER_VERTICAL|wxRIGHT, 5 );
 	
 	m_staticTextyCreerMouvements = new wxStaticText( sbSizerCoordonneesCreerMouvements->GetStaticBox(), wxID_ANY, wxT("y :"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextyCreerMouvements->Wrap( -1 );
@@ -631,25 +631,25 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	
 	bSizerDetruireMouvements->Add( sbSizerSelectionDetruireMouvements, 0, wxALL|wxEXPAND, 5 );
 	
-	wxStaticBoxSizer* sbSizerDetruire;
-	sbSizerDetruire = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowDetruireMouvements1, wxID_ANY, wxT("Affichage") ), wxVERTICAL );
+	wxStaticBoxSizer* sbSizerDetruireMouvement;
+	sbSizerDetruireMouvement = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowDetruireMouvements1, wxID_ANY, wxT("Affichage") ), wxVERTICAL );
 	
-	m_staticTextDetruireMouvement = new wxStaticText( sbSizerDetruire->GetStaticBox(), wxID_ANY, wxT("Eẗes vous sur de vouloir supprimer ce mouvement ?"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextDetruireMouvement = new wxStaticText( sbSizerDetruireMouvement->GetStaticBox(), wxID_ANY, wxT("Eẗes vous sur de vouloir supprimer ce mouvement ?"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextDetruireMouvement->Wrap( -1 );
-	sbSizerDetruire->Add( m_staticTextDetruireMouvement, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
+	sbSizerDetruireMouvement->Add( m_staticTextDetruireMouvement, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
 	
 	
-	sbSizerDetruire->Add( 0, 0, 1, wxEXPAND, 5 );
+	sbSizerDetruireMouvement->Add( 0, 0, 1, wxEXPAND, 5 );
 	
 	m_sdbSizerDetruireMouvement = new wxStdDialogButtonSizer();
-	m_sdbSizerDetruireMouvementYes = new wxButton( sbSizerDetruire->GetStaticBox(), wxID_YES );
+	m_sdbSizerDetruireMouvementYes = new wxButton( sbSizerDetruireMouvement->GetStaticBox(), wxID_YES );
 	m_sdbSizerDetruireMouvement->AddButton( m_sdbSizerDetruireMouvementYes );
 	m_sdbSizerDetruireMouvement->Realize();
 	
-	sbSizerDetruire->Add( m_sdbSizerDetruireMouvement, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
+	sbSizerDetruireMouvement->Add( m_sdbSizerDetruireMouvement, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
 	
 	
-	bSizerDetruireMouvements->Add( sbSizerDetruire, 1, wxALL|wxEXPAND, 5 );
+	bSizerDetruireMouvements->Add( sbSizerDetruireMouvement, 1, wxALL|wxEXPAND, 5 );
 	
 	
 	m_scrolledWindowDetruireMouvements1->SetSizer( bSizerDetruireMouvements );
@@ -662,7 +662,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	bSizerTesterMouvements = new wxBoxSizer( wxHORIZONTAL );
 	
 	wxStaticBoxSizer* sbSizerSelectionTesterMouvements;
-	sbSizerSelectionTesterMouvements = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowDetruireMouvements11, wxID_ANY, wxT("Séléction du mouvement a tester") ), wxHORIZONTAL );
+	sbSizerSelectionTesterMouvements = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowDetruireMouvements11, wxID_ANY, wxT("Sélection du mouvement à tester") ), wxHORIZONTAL );
 	
 	sbSizerSelectionTesterMouvements->SetMinSize( wxSize( 280,-1 ) ); 
 	m_listBoxTesterMouvements = new wxListBox( sbSizerSelectionTesterMouvements->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_SORT ); 
@@ -671,29 +671,29 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	
 	bSizerTesterMouvements->Add( sbSizerSelectionTesterMouvements, 0, wxALL|wxEXPAND, 5 );
 	
-	wxStaticBoxSizer* sbSizerTester;
-	sbSizerTester = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowDetruireMouvements11, wxID_ANY, wxT("Affichage") ), wxVERTICAL );
+	wxStaticBoxSizer* sbSizerTesterMouvement;
+	sbSizerTesterMouvement = new wxStaticBoxSizer( new wxStaticBox( m_scrolledWindowDetruireMouvements11, wxID_ANY, wxT("Affichage") ), wxVERTICAL );
 	
-	m_staticTextTesterMouvement = new wxStaticText( sbSizerTester->GetStaticBox(), wxID_ANY, wxT("Eẗes vous sur de vouloir lancer ce test?"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextTesterMouvement = new wxStaticText( sbSizerTesterMouvement->GetStaticBox(), wxID_ANY, wxT("Eẗes vous sur de vouloir lancer ce test?"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticTextTesterMouvement->Wrap( -1 );
-	sbSizerTester->Add( m_staticTextTesterMouvement, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
+	sbSizerTesterMouvement->Add( m_staticTextTesterMouvement, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
 	
 	
-	sbSizerTester->Add( 0, 0, 1, wxEXPAND, 5 );
+	sbSizerTesterMouvement->Add( 0, 0, 1, wxEXPAND, 5 );
 	
 	m_sdbSizerTesterMouvement = new wxStdDialogButtonSizer();
-	m_sdbSizerTesterMouvementYes = new wxButton( sbSizerTester->GetStaticBox(), wxID_YES );
+	m_sdbSizerTesterMouvementYes = new wxButton( sbSizerTesterMouvement->GetStaticBox(), wxID_YES );
 	m_sdbSizerTesterMouvement->AddButton( m_sdbSizerTesterMouvementYes );
-	m_sdbSizerTesterMouvementCancel = new wxButton( sbSizerTester->GetStaticBox(), wxID_CANCEL );
+	m_sdbSizerTesterMouvementCancel = new wxButton( sbSizerTesterMouvement->GetStaticBox(), wxID_CANCEL );
 	m_sdbSizerTesterMouvement->AddButton( m_sdbSizerTesterMouvementCancel );
-	m_sdbSizerTesterMouvementHelp = new wxButton( sbSizerTester->GetStaticBox(), wxID_HELP );
+	m_sdbSizerTesterMouvementHelp = new wxButton( sbSizerTesterMouvement->GetStaticBox(), wxID_HELP );
 	m_sdbSizerTesterMouvement->AddButton( m_sdbSizerTesterMouvementHelp );
 	m_sdbSizerTesterMouvement->Realize();
 	
-	sbSizerTester->Add( m_sdbSizerTesterMouvement, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
+	sbSizerTesterMouvement->Add( m_sdbSizerTesterMouvement, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
 	
 	
-	bSizerTesterMouvements->Add( sbSizerTester, 1, wxALL|wxEXPAND, 5 );
+	bSizerTesterMouvements->Add( sbSizerTesterMouvement, 1, wxALL|wxEXPAND, 5 );
 	
 	
 	m_scrolledWindowDetruireMouvements11->SetSizer( bSizerTesterMouvements );
@@ -704,8 +704,6 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	bSizerPrincipal->Add( m_notebookMouvements, 1, wxEXPAND|wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
 	
 	m_notebookTrajectoires = new wxNotebook( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
-	m_notebookTrajectoires->Hide();
-	
 	m_scrolledWindowAffichageTrajectoires = new wxScrolledWindow( m_notebookTrajectoires, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxHSCROLL|wxVSCROLL, wxT("i") );
 	m_scrolledWindowAffichageTrajectoires->SetScrollRate( 5, 5 );
 	wxBoxSizer* bSizerAfficherTrajectoires;
