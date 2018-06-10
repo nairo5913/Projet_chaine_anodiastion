@@ -11,8 +11,12 @@ Projet chaîne d'anodisation BTS SNIR Ozanam.
 ### Présentation des dossiers
 - _**Anodisation**_ contient une version de l'intégration du projet avec peu de fichier et tout les partie de l'ihm réuni dans un fichier.
 
-- _**Anodistion_finale**_ contient une autre version de l'intégration du projet ou les différentes parties de l'IHM sont séparé. On a donc une partie principal (frame), une partie régleur (pannel) et une partie responsable (pannel). 
-Les données de remplissage de l'IHM sont situé dans DonneesIHMregleur et DonneesIHMresponsable pour simplifier le fichier DataAnodisation permet l'acces à la BdD.
+- _**Anodistion_finale**_ contient une autre version de l'intégration du projet ou les différentes parties de l'IHM sont séparé. On a donc :
+  - une partie principal (frame)
+  - une partie régleur (pannel)
+  - et une partie responsable (pannel). 
+  - DataAnodisation permet l'acces à la BdD
+  - Les données de remplissage de l'IHM sont situé dans DonneesIHMregleur et DonneesIHMresponsable pour simplifier le fichier DataAnodisation.
 
 - _**Base_de_donnees**_ contient les script de génération pour la BdD ainsi que les données de remplissage et la structure de la BdD.
 
