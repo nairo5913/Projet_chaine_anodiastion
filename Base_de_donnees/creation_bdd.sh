@@ -76,6 +76,11 @@ echo -e " $SOULIGNE$GRAS$JAUNE""Login de l'utilisateur :$NORMAL $identifiant\n"
 
 ### Création ###
 #
+echo -e " Suppression de la base de données si existante. Si non existante PostgreSQL peut afficher un message d’erreur, ne pas s’en soucier."
 dropdb -h $serveur -U $identifiant $nom_bdd
+
+echo -e " Création de la base de données."
 createdb -h $serveur -U $identifiant $nom_bdd
+
+echo -e " Remplissage de la base de données."
 psql -h $serveur -U $identifiant -d $nom_bdd < ./cree_tables_et_remplit_bdd_anodisation.sql
