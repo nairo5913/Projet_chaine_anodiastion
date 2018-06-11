@@ -64,13 +64,12 @@ bool DonneesIHMresponsable::RecupereListeProcessus()
             {
                 m_listeProcessus.push_back(dernier_resultat[taille]);
             }
+            retour = true;
         }
         else
         {
             m_derniere_erreur = "Il n'y a aucun processus dans la base de données.";
         }
-        
-        retour = true;
     }
     else
     {
@@ -113,9 +112,11 @@ bool DonneesIHMresponsable::RecupereListeTouteTrajectoires()
     return retour;
 }
 
-bool DonneesIHMresponsable::RecupereListeTrajectoiresProcessus(string id_processus) // À finir
+bool DonneesIHMresponsable::RecupereListeTrajectoiresProcessus(string id_processus)
 {
-    bool retour;
+    bool retour = false;
+    
+    m_listeTrajectoiresProcessus.clear();
     
     string requete = "SELECT id_t FROM intermediaire_processus_trajectoires WHERE id_p=" + id_processus;
     
@@ -129,7 +130,6 @@ bool DonneesIHMresponsable::RecupereListeTrajectoiresProcessus(string id_process
             
             if(m_bdd_anodisation->ExecuteSelect(requete))
             {
-                retour = true;
                 vector<string> resultat_traj = m_bdd_anodisation->GetLastResult();
                 
                 for(unsigned int nombre = 0; nombre < resultat_traj.size(); nombre++)
@@ -137,18 +137,17 @@ bool DonneesIHMresponsable::RecupereListeTrajectoiresProcessus(string id_process
                     
                     m_listeTrajectoiresProcessus.push_back(resultat_traj[nombre]);
                 }
+                retour = true;
             }
             else
             {
-                
-                retour = false;
+                m_derniere_erreur = "Aucune trajectoire pour ce processus.";
             }
         }
     }
     else
     {
         m_derniere_erreur = m_bdd_anodisation->GetLastError();
-        retour = false;
     }
 
     return retour;
@@ -169,7 +168,6 @@ bool DonneesIHMresponsable::RecupereNombreBain(string id_processus)
             m_nombreBain = dernier_resultat[0];
             
             retour = true;
-            
         }
         else
         {

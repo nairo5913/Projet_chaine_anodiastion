@@ -32,10 +32,10 @@ class DonneesIHMresponsable
         string GetNombreBain() {return m_nombreBain;};
         string GetNomProcessus() {return m_nomProcessus;};
         string GetOrdreTrajectoires() {return m_ordreTrajectoires;};
-        unsigned int GetNombreColonnes() {return m_nb_colones;};
         vector<string> GetListeTouteTrajectoires() {return m_listeTouteTrajectoires;};
         vector<string> GetListeTrajectoiresProcessus() {return m_listeTrajectoiresProcessus;};
         vector<string> GetListeProcessus() {return m_listeProcessus;};
+        
         string GetDerniereErreur(){return m_derniere_erreur;};
 
         // Recupération de données pour l'IHM
@@ -52,14 +52,12 @@ class DonneesIHMresponsable
 
         string m_derniere_erreur;
         string m_dureeTotal;
-        string m_nomProcessus;
         string m_nombreBain;
+        string m_nomProcessus;
         string m_ordreTrajectoires;
         vector<string> m_listeTouteTrajectoires;
         vector<string> m_listeTrajectoiresProcessus;
         vector<string> m_listeProcessus;
-        
-        unsigned int m_nb_colones;
 };
 
 #endif // DONNEESIHMRESPONSABLE_H

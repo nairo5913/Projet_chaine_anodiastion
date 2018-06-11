@@ -140,6 +140,7 @@
       <File Name="IHM/PanelResponsable.cpp"/>
       <File Name="IHM/PanelResponsable.fbp"/>
       <File Name="IHM/PanelResponsable.h"/>
+      <File Name="IHM/EvtPanelResponsable.cpp"/>
     </VirtualDirectory>
     <VirtualDirectory Name="Principal">
       <File Name="IHM/EvtFramePrincipal.cpp"/>
@@ -147,7 +148,6 @@
       <File Name="IHM/FramePrincipal.cpp"/>
       <File Name="IHM/FramePrincipal.fbp"/>
       <File Name="IHM/FramePrincipal.h"/>
-      <File Name="IHM/EvtPanelResponsable.cpp"/>
     </VirtualDirectory>
   </VirtualDirectory>
 </CodeLite_Project>

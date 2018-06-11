@@ -260,7 +260,7 @@ void EvtPanelRegleur::OnApplyButtonModifierMouvementClick(wxCommandEvent& event)
         string requete = "UPDATE mouvements SET nom_mouvement ='" + nom_mouvement + "', axe_x =" + donnee_x
                        + ", axe_y = " + donnee_y + ", axe_z=" + donnee_z + ", duree_mouvement='" + duree_total
                        + "' WHERE id_mouvement=" + id_selection;
-        cout << requete << endl;
+        //cout << requete << endl;
 
         if(!m_bdd_anodisation->ExecuteInsert(requete))
         {
@@ -800,10 +800,10 @@ void EvtPanelRegleur::OnApplyButtonModifierTrajectoiresClick(wxCommandEvent& eve
             }
         }
 
-        for(unsigned int i = 0; i < ordre_separe.size(); i++)
-        {
-            cout << ordre_separe[i] << endl;
-        }
+        //for(unsigned int i = 0; i < ordre_separe.size(); i++)
+        //{
+        //    cout << ordre_separe[i] << endl;
+        //}
     }
     else
     {
@@ -1031,10 +1031,10 @@ void EvtPanelRegleur::OnSaveButtonCreerTrajectoiresClick(wxCommandEvent& event)
             }
         }
 
-        for(unsigned int i = 0; i < ordre_separe.size(); i++)
-        {
-            cout << ordre_separe[i] << endl;
-        }
+        //for(unsigned int i = 0; i < ordre_separe.size(); i++)
+        //{
+        //    cout << ordre_separe[i] << endl;
+        //}
     }
     else
     {
@@ -1080,7 +1080,7 @@ void EvtPanelRegleur::OnSaveButtonCreerTrajectoiresClick(wxCommandEvent& event)
                           "ordre_mouvements) VALUES ("
                           + resultat[0] + "," + ordre_separe[i] + ",'" + donnee_depart + "','" + donnee_arrive + "','"
                           + donnee_ordre + "')";
-                    cout << requete << endl;
+                    //cout << requete << endl;
 
                     if(!m_bdd_anodisation->ExecuteInsert(requete))
                     {
@@ -1209,7 +1209,7 @@ void EvtPanelRegleur::OnYesButtonTesterTrajectoiresClick(wxCommandEvent& event)
     }
     else
     {
-        //EnvoiMessage(wxT("Le serveur n'est pas connecté\n"));
+        EnvoiMessage(wxT("Le serveur n'est pas connecté\n"));
     }
 }
 ////////////////////////////////////////////////////////////////////////////////

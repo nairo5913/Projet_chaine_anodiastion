@@ -13,6 +13,7 @@ EvtPanelResponsable::EvtPanelResponsable(wxWindow* parent) : PanelResponsable(pa
     m_fabrication = false;
     point_virgule_saisie_creer = true;
     point_virgule_saisie_modifier = true;
+    
     // Charger les bitmap pour la disponibilité du bras
     BmpRouge.LoadFile(wxT("../Images/RougeAllume.bmp"), wxBITMAP_TYPE_BMP);
     BmpVert.LoadFile(wxT("../Images/VertAllume.bmp"), wxBITMAP_TYPE_BMP);
@@ -104,29 +105,37 @@ void EvtPanelResponsable::OnListBoxAffichageSelection(wxCommandEvent& event)
     {
         vector<string> resultat = m_donnees_IHM->GetListeTrajectoiresProcessus();
         m_listBoxListeTrajectoiresAfficher->Clear();
-
+        wxString rempli;
+        wxString nom;
+        
         for(unsigned int taille = 0; taille < resultat.size(); taille++)
         {
-            // EnvoiMessage(m_frame->ConversionEnWxString(resultat[taille]));
-            // EnvoiMessage(wxT("\n"));
-
-            wxString rempli;
+            //cout << "val v2 : " << resultat[taille] << endl;
+            taille = taille + 1;
 
             if(taille % 4 == 0 && taille != 0)
             {
-                // EnvoiMessage(wxT("Modulo " + rempli + wxT("\n")));
-                rempli << resultat[taille];
+                rempli << wxT("Durée : ") << resultat[taille - 1];
                 m_listBoxListeTrajectoiresAfficher->Append(rempli);
                 rempli.clear();
-                // rempli << resultat[taille] << wxT(" - ");
+            }
+            else if(taille % 4 != 0 && taille % 2 == 0)
+            {
+                nom.clear();
+                nom << resultat[taille - 1];
+
+                int separateur = nom.find("   ");
+                rempli << m_frame->DecouperTexteDebut(nom, separateur) << wxT(" - ");
             }
             else
             {
-                // EnvoiMessage(wxT("Hors modulo " + rempli + wxT("\n")));
-                rempli << resultat[taille] << wxT(" - ");
-                // EnvoiMessage(liste_processus[taille] + wxT("\n"));
+                // EnvoiMessage(resultat[taille-1] + wxT("\n"));
+                rempli << resultat[taille - 1] << wxT(" - ");
             }
+
+            taille = taille - 1;
         }
+        //cout << "fin" << endl <<endl;
     }
     else
     {
@@ -900,7 +909,6 @@ void EvtPanelResponsable::OnSpinCtrlModifierBain(wxSpinEvent& event)
 {
     int nombre_bain = m_spinCtrlNombreBainModifier->GetValue();
     // cout << "Nombre de bain : " << nombre_bain << endl;
-
     switch(nombre_bain)
     {
         case 1:
@@ -1016,543 +1024,563 @@ void EvtPanelResponsable::OnSpinCtrlModifierBain(wxSpinEvent& event)
 
 void EvtPanelResponsable::OnApplyButtonModifierClick(wxCommandEvent& event)
 {
-    bool erreur = false;
-    char* car = ";";
-    string nom_processus;
-    string duree_total;
-    string ordre;
-    string duree_bain1, duree_bain2 = "", duree_bain3 = "";
-    string num_bain1, num_bain2, num_bain3;
-    
-    unsigned int nombre_bain = m_spinCtrlNombreBainModifier->GetValue();
-    vector<string> ordre_separe;
-    
-    wxString id_selection = m_frame->GardeIdSelection(m_listBoxModifierProcessus->GetStringSelection());
-    wxString message;
-    wxUniChar caractere(*car);
-    
-    // Vérification du champ nom du processus s'il il est rempli
-    if(!m_textCtrlNomModifier->IsEmpty())
+    if(!m_listBoxModifierProcessus->IsEmpty())
     {
-        nom_processus = m_frame->ConversionEnString(m_textCtrlNomModifier->GetValue());
-    }
-    else
-    {
-        erreur = true;
-        message << wxT("Le champ nom du processus est vide.\n");
-    }
-    
-    
-    
-    // Vérification du champ ordre des trajectoires s'il il est rempli
-    if(!m_textCtrlDureeTotalHeureModifier->IsEmpty() && !m_textCtrlDureeTotalMinuteModifier->IsEmpty() && !m_textCtrlDureeTotalSecondeModifier->IsEmpty())
-    {
-        wxString verif = m_frame->VerificationDurree(m_textCtrlDureeTotalHeureModifier->GetValue(), m_textCtrlDureeTotalMinuteModifier->GetValue(), m_textCtrlDureeTotalSecondeModifier->GetValue());
+        bool erreur = false;
+        char* car = ";";
+        string nom_processus;
+        string duree_total;
+        string ordre;
+        string duree_bain1, duree_bain2 = "", duree_bain3 = "";
+        string num_bain1, num_bain2, num_bain3;
         
-        if(verif.IsSameAs(wxT("ok")))
+        unsigned int nombre_bain = m_spinCtrlNombreBainModifier->GetValue();
+        vector<string> ordre_separe;
+        
+        wxString id_selection = m_frame->GardeIdSelection(m_listBoxModifierProcessus->GetStringSelection());
+        wxString message;
+        wxUniChar caractere(*car);
+        
+        // Vérification du champ nom du processus s'il il est rempli
+        if(!m_textCtrlNomModifier->IsEmpty())
         {
-            duree_total = m_frame->ConversionEnString(m_textCtrlDureeTotalHeureModifier->GetValue()) + ":"
-                        + m_frame->ConversionEnString(m_textCtrlDureeTotalMinuteModifier->GetValue()) + ":"
-                        + m_frame->ConversionEnString(m_textCtrlDureeTotalSecondeModifier->GetValue());
+            nom_processus = m_frame->ConversionEnString(m_textCtrlNomModifier->GetValue());
         }
         else
         {
             erreur = true;
-            message << wxT("Durée total processus non valide : ") << verif;
-        }
-    }
-    else
-    {
-        erreur = true;
-        message << wxT("L'un ou des champs de la durée total est/sont vide.\n");
-    }
-
-    // Vérification du champ ordre trajectoire s'il il est rempli
-    if(!m_textCtrlOrdreTrajectoiresModifier->IsEmpty())
-    {
-        wxString ordrewx = m_textCtrlOrdreTrajectoiresModifier->GetValue();
-        
-        if(ordrewx.length() == 1)
-        {
-            ordrewx << wxT(";") << ordrewx;
-            //wxLogDebug(ordrewx);
-        }
-        else if(ordrewx.length() == 2)
-        {
-            ordrewx << ordrewx;
-            //wxLogDebug(ordrewx);
+            message << wxT("Le champ nom du processus est vide.\n");
         }
         
-        if(ordrewx.EndsWith(wxT(";")))
+        
+        
+        // Vérification du champ ordre des trajectoires s'il il est rempli
+        if(!m_textCtrlDureeTotalHeureModifier->IsEmpty() && !m_textCtrlDureeTotalMinuteModifier->IsEmpty() && !m_textCtrlDureeTotalSecondeModifier->IsEmpty())
         {
-            ordrewx.RemoveLast();
-        }
-        
-        ordre = m_frame->ConversionEnString(ordrewx);
-        
-        unsigned int nb_point_virgule = ordrewx.Freq(caractere);
-        unsigned int position;
-        wxString temp;
-        
-        for(unsigned int i = 0; i < nb_point_virgule+1; i++)
-        {
-            if(i == 0)
+            wxString verif = m_frame->VerificationDurree(m_textCtrlDureeTotalHeureModifier->GetValue(), m_textCtrlDureeTotalMinuteModifier->GetValue(), m_textCtrlDureeTotalSecondeModifier->GetValue());
+            
+            if(verif.IsSameAs(wxT("ok")))
             {
-                position = ordrewx.find(";");
-                ordre_separe.push_back(m_frame->ConversionEnString(m_frame->DecouperTexteDebut(ordrewx, position)));
-            }
-            else
-            {
-                if(i == nb_point_virgule)
-                {
-                    position = ordrewx.find(";");
-                    ordre_separe.push_back(m_frame->ConversionEnString(m_frame->DecouperTexteFin(ordrewx, position+1)));
-                }
-                else
-                {
-                    position = ordrewx.find(";");
-                    temp.clear();
-                    temp = m_frame->DecouperTexteFin(ordrewx, position+1);
-                    position = temp.find(";");
-                    ordre_separe.push_back(m_frame->ConversionEnString(m_frame->DecouperTexteDebut(temp, position)));
-                    ordrewx.clear();
-                    ordrewx = (m_frame->DecouperTexteFin(temp, position));
-                }
-                
-            }
-        }
-    }
-    else
-    {
-        message << wxT("Le champ de la trajectoire est vide.\n");
-    }
-
-    // Vérification en fonction du nombre de bain
-    switch(nombre_bain)
-    {
-        case 1:
-            // Vérification des champs du bain 1 qu'il ont bien été rempli
-            if(!m_textCtrlModifierHeureBain1->IsEmpty() && !m_textCtrlModifierMinuteBain1->IsEmpty()
-               && !m_textCtrlModifierSecondeBain1->IsEmpty())
-            {
-                wxString verif = m_frame->VerificationDurree(m_textCtrlModifierHeureBain1->GetValue(), m_textCtrlModifierMinuteBain1->GetValue(), m_textCtrlModifierSecondeBain1->GetValue());
-                
-                if(verif.IsSameAs(wxT("ok")))
-                {
-                    duree_bain1 = m_frame->ConversionEnString(m_textCtrlModifierHeureBain1->GetValue()) + ":"
-                                + m_frame->ConversionEnString(m_textCtrlModifierMinuteBain1->GetValue()) + ":"
-                                + m_frame->ConversionEnString(m_textCtrlModifierSecondeBain1->GetValue());
-                }
-                else
-                {
-                    erreur = true;
-                    message << wxT("Durée total du bain 1 non valide :  ") << verif;
-                }
+                duree_total = m_frame->ConversionEnString(m_textCtrlDureeTotalHeureModifier->GetValue()) + ":"
+                            + m_frame->ConversionEnString(m_textCtrlDureeTotalMinuteModifier->GetValue()) + ":"
+                            + m_frame->ConversionEnString(m_textCtrlDureeTotalSecondeModifier->GetValue());
             }
             else
             {
                 erreur = true;
-                message << wxT("L'un ou des champs de la durée du bain 1 est/sont vide.\n");
-            }
-
-            break;
-
-        case 2:
-            num_bain1 = m_choiceCreerBain1->GetStringSelection();
-            num_bain2 = m_choiceCreerBain2->GetStringSelection();
-            
-            if(num_bain1 == num_bain2)
-            {
-                erreur = true;
-                message << wxT("Les deux numéros de bain sont identique.\n");
-            }
-            
-            // Vérification des champs du bain 1 qu'ils ont bien été rempli
-            if(!m_textCtrlModifierHeureBain1->IsEmpty() && !m_textCtrlModifierMinuteBain1->IsEmpty()
-               && !m_textCtrlModifierSecondeBain1->IsEmpty())
-            {
-                wxString verif = m_frame->VerificationDurree(m_textCtrlModifierHeureBain1->GetValue(), m_textCtrlModifierMinuteBain1->GetValue(), m_textCtrlModifierSecondeBain1->GetValue());
-                
-                if(verif.IsSameAs(wxT("ok")))
-                {
-                    duree_bain1 = m_frame->ConversionEnString(m_textCtrlModifierHeureBain1->GetValue()) + ":"
-                                + m_frame->ConversionEnString(m_textCtrlModifierMinuteBain1->GetValue()) + ":"
-                                + m_frame->ConversionEnString(m_textCtrlModifierSecondeBain1->GetValue());
-                }
-                else
-                {
-                    erreur = true;
-                    message << wxT("Durée total du bain 1 non valide :  ") << verif;
-                }
-            }
-            else
-            {
-                erreur = true;
-                message << wxT("L'un ou des champs de la durée du bain 1 est/sont vide.\n");
-            }
-
-            // Vérification des champs du bain 2 qu'ils ont bien été rempli
-            if(!m_textCtrlModifierHeureBain2->IsEmpty() && !m_textCtrlModifierMinuteBain2->IsEmpty()
-               && !m_textCtrlModifierSecondeBain2->IsEmpty())
-            {
-                wxString verif = m_frame->VerificationDurree(m_textCtrlModifierHeureBain2->GetValue(), m_textCtrlModifierMinuteBain2->GetValue(), m_textCtrlModifierSecondeBain2->GetValue());
-                
-                if(verif.IsSameAs(wxT("ok")))
-                {
-                    duree_bain2 = m_frame->ConversionEnString(m_textCtrlModifierHeureBain2->GetValue()) + ":"
-                                + m_frame->ConversionEnString(m_textCtrlModifierMinuteBain2->GetValue()) + ":"
-                                + m_frame->ConversionEnString(m_textCtrlModifierSecondeBain2->GetValue());
-                }
-                else
-                {
-                    erreur = true;
-                    message << wxT("Durée total du bain 2 non valide :  ") << verif;
-                }
-            }
-            else
-            {
-                erreur = true;
-                message << wxT("L'un ou des champs de la durée du bain 2 est/sont vide.\n");
-            }
-
-            break;
-
-        case 3:
-            num_bain1 = m_choiceCreerBain1->GetStringSelection();
-            num_bain2 = m_choiceCreerBain2->GetStringSelection();
-            num_bain3 = m_choiceCreerBain2->GetStringSelection();
-            
-            if(num_bain1 == num_bain2 && num_bain1 == num_bain3 && num_bain2 == num_bain3)
-            {
-                erreur = true;
-                message << wxT("Des numéros de bain sont identique.\n");
-            }
-            
-            // Vérification des champs du bain 1 qu'ils ont bien été rempli
-            if(!m_textCtrlModifierHeureBain1->IsEmpty() && !m_textCtrlModifierMinuteBain1->IsEmpty()
-               && !m_textCtrlModifierSecondeBain1->IsEmpty())
-            {
-                wxString verif = m_frame->VerificationDurree(m_textCtrlModifierHeureBain1->GetValue(), m_textCtrlModifierMinuteBain1->GetValue(), m_textCtrlModifierSecondeBain1->GetValue());
-                
-                if(verif.IsSameAs(wxT("ok")))
-                {
-                    duree_bain1 = m_frame->ConversionEnString(m_textCtrlModifierHeureBain1->GetValue()) + ":"
-                                + m_frame->ConversionEnString(m_textCtrlModifierMinuteBain1->GetValue()) + ":"
-                                + m_frame->ConversionEnString(m_textCtrlModifierSecondeBain1->GetValue());
-                }
-                else
-                {
-                    erreur = true;
-                    message << wxT("Durée total du bain 1 non valide :  ") << verif;
-                }
-            }
-            else
-            {
-                erreur = true;
-                message << wxT("L'un ou des champs de la durée du bain 1 est/sont vide.\n");
-            }
-            
-            
-            
-            // Vérification des champs du bain 2 qu'ils ont bien été rempli
-            if(!m_textCtrlModifierHeureBain2->IsEmpty() && !m_textCtrlModifierMinuteBain2->IsEmpty()
-               && !m_textCtrlModifierSecondeBain2->IsEmpty())
-            {
-                wxString verif = m_frame->VerificationDurree(m_textCtrlModifierHeureBain2->GetValue(), m_textCtrlModifierMinuteBain2->GetValue(), m_textCtrlModifierSecondeBain2->GetValue());
-                
-                if(verif.IsSameAs(wxT("ok")))
-                {
-                    duree_bain2 = m_frame->ConversionEnString(m_textCtrlModifierHeureBain2->GetValue()) + ":"
-                                + m_frame->ConversionEnString(m_textCtrlModifierMinuteBain2->GetValue()) + ":"
-                                + m_frame->ConversionEnString(m_textCtrlModifierSecondeBain2->GetValue());
-                }
-                else
-                {
-                    erreur = true;
-                    message << wxT("Durée total du bain 2 non valide :  ") << verif;
-                }
-            }
-            else
-            {
-                erreur = true;
-                message << wxT("L'un ou des champs de la durée du bain 2 est/sont vide.\n");
-            }
-            
-            
-            
-            // Vérification des champs du bain 3 qu'ils ont bien été rempli
-            if(!m_textCtrlModifierHeureBain3->IsEmpty() && !m_textCtrlModifierMinuteBain3->IsEmpty()
-               && !m_textCtrlModifierSecondeBain3->IsEmpty())
-            {
-                wxString verif = m_frame->VerificationDurree(m_textCtrlModifierHeureBain3->GetValue(), m_textCtrlModifierMinuteBain3->GetValue(), m_textCtrlModifierSecondeBain3->GetValue());
-                
-                if(verif.IsSameAs(wxT("ok")))
-                {
-                    duree_bain3 = m_frame->ConversionEnString(m_textCtrlModifierHeureBain3->GetValue()) + ":"
-                                + m_frame->ConversionEnString(m_textCtrlModifierMinuteBain3->GetValue()) + ":"
-                                + m_frame->ConversionEnString(m_textCtrlModifierSecondeBain3->GetValue());
-                }
-                else
-                {
-                    erreur = true;
-                    message << wxT("Durée total du bain 3 non valide :  ") << verif;
-                }
-            }
-            else
-            {
-                erreur = true;
-                message << wxT("L'un ou des champs de la durée du bain 3 est/sont vide.\n");
-            }
-
-            break;
-
-        default:
-
-            break;
-    }
-    
-    if(erreur)
-    {
-        string id_p = m_bdd_anodisation->DernierIdProcessus();
-        //cout << "id_p : " << id_p << endl;
-        wxMessageBox(message, "Responsable de production - Champs invalide !",
-                     wxOK_DEFAULT | wxICON_EXCLAMATION | wxCENTRE | wxSTAY_ON_TOP, this);
-    }
-    else
-    {
-        string requete = "UPDATE processus SET nom_processus='" + nom_processus
-                       + "', duree_processus='" + duree_total
-                       + "', nombre_bain=" +  m_frame->IntEnString(nombre_bain)
-                       + "WHERE id_processus=" + m_frame->ConversionEnString(id_selection);
-        
-        if(m_bdd_anodisation->ExecuteUpdate(requete))
-        {
-            switch(nombre_bain)
-            {
-                case 1:
-                    for(unsigned int i =0; i < ordre_separe.size(); i++)
-                    {
-                        requete = "UPDATE intermediaire_processus_trajectoires SET id_p=" + m_frame->ConversionEnString(id_selection)
-                                + ", id_t=" + ordre_separe[i]
-                                + ", ordre_trajectoires='" + ordre
-                                + "', numero_bain=" + num_bain1
-                                + ", duree_bain='" + duree_bain1
-                                + "' WHERE id_p=" + m_frame->ConversionEnString(id_selection);
-                                
-                        cout << requete << endl;
-                        
-                        if(!m_bdd_anodisation->ExecuteUpdate(requete))
-                        {
-                            EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
-                        }
-                        
-                    }
-                    break;
-                
-                case 2:
-                    
-                    break;
-                
-                case 3:
-                    
-                    break;
-                
-                default:
-                    
-                    break;
-                
+                message << wxT("Durée total processus non valide : ") << verif;
             }
         }
         else
         {
-            EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+            erreur = true;
+            message << wxT("L'un ou des champs de la durée total est/sont vide.\n");
+        }
+    
+        // Vérification du champ ordre trajectoire s'il il est rempli
+        if(!m_textCtrlOrdreTrajectoiresModifier->IsEmpty())
+        {
+            wxString ordrewx = m_textCtrlOrdreTrajectoiresModifier->GetValue();
+            
+            if(ordrewx.length() == 1)
+            {
+                ordrewx << wxT(";") << ordrewx;
+                //wxLogDebug(ordrewx);
+            }
+            else if(ordrewx.length() == 2)
+            {
+                ordrewx << ordrewx;
+                //wxLogDebug(ordrewx);
+            }
+            
+            if(ordrewx.EndsWith(wxT(";")))
+            {
+                ordrewx.RemoveLast();
+            }
+            
+            ordre = m_frame->ConversionEnString(ordrewx);
+            
+            unsigned int nb_point_virgule = ordrewx.Freq(caractere);
+            unsigned int position;
+            wxString temp;
+            
+            for(unsigned int i = 0; i < nb_point_virgule+1; i++)
+            {
+                if(i == 0)
+                {
+                    position = ordrewx.find(";");
+                    ordre_separe.push_back(m_frame->ConversionEnString(m_frame->DecouperTexteDebut(ordrewx, position)));
+                }
+                else
+                {
+                    if(i == nb_point_virgule)
+                    {
+                        position = ordrewx.find(";");
+                        ordre_separe.push_back(m_frame->ConversionEnString(m_frame->DecouperTexteFin(ordrewx, position+1)));
+                    }
+                    else
+                    {
+                        position = ordrewx.find(";");
+                        temp.clear();
+                        temp = m_frame->DecouperTexteFin(ordrewx, position+1);
+                        position = temp.find(";");
+                        ordre_separe.push_back(m_frame->ConversionEnString(m_frame->DecouperTexteDebut(temp, position)));
+                        ordrewx.clear();
+                        ordrewx = (m_frame->DecouperTexteFin(temp, position));
+                    }
+                    
+                }
+            }
+        }
+        else
+        {
+            erreur = true;
+            message << wxT("Le champ de la trajectoire est vide.\n");
+        }
+    
+        // Vérification en fonction du nombre de bain
+        switch(nombre_bain)
+        {
+            case 1:
+                // Vérification des champs du bain 1 qu'il ont bien été rempli
+                if(!m_textCtrlModifierHeureBain1->IsEmpty() && !m_textCtrlModifierMinuteBain1->IsEmpty()
+                && !m_textCtrlModifierSecondeBain1->IsEmpty())
+                {
+                    wxString verif = m_frame->VerificationDurree(m_textCtrlModifierHeureBain1->GetValue(), m_textCtrlModifierMinuteBain1->GetValue(), m_textCtrlModifierSecondeBain1->GetValue());
+                    
+                    if(verif.IsSameAs(wxT("ok")))
+                    {
+                        duree_bain1 = m_frame->ConversionEnString(m_textCtrlModifierHeureBain1->GetValue()) + ":"
+                                    + m_frame->ConversionEnString(m_textCtrlModifierMinuteBain1->GetValue()) + ":"
+                                    + m_frame->ConversionEnString(m_textCtrlModifierSecondeBain1->GetValue());
+                    }
+                    else
+                    {
+                        erreur = true;
+                        message << wxT("Durée total du bain 1 non valide :  ") << verif;
+                    }
+                }
+                else
+                {
+                    erreur = true;
+                    message << wxT("L'un ou des champs de la durée du bain 1 est/sont vide.\n");
+                }
+    
+                break;
+    
+            case 2:
+                num_bain1 = m_choiceCreerBain1->GetStringSelection();
+                num_bain2 = m_choiceCreerBain2->GetStringSelection();
+                
+                if(num_bain1 == num_bain2)
+                {
+                    erreur = true;
+                    message << wxT("Les deux numéros de bain sont identique.\n");
+                }
+                
+                // Vérification des champs du bain 1 qu'ils ont bien été rempli
+                if(!m_textCtrlModifierHeureBain1->IsEmpty() && !m_textCtrlModifierMinuteBain1->IsEmpty()
+                && !m_textCtrlModifierSecondeBain1->IsEmpty())
+                {
+                    wxString verif = m_frame->VerificationDurree(m_textCtrlModifierHeureBain1->GetValue(), m_textCtrlModifierMinuteBain1->GetValue(), m_textCtrlModifierSecondeBain1->GetValue());
+                    
+                    if(verif.IsSameAs(wxT("ok")))
+                    {
+                        duree_bain1 = m_frame->ConversionEnString(m_textCtrlModifierHeureBain1->GetValue()) + ":"
+                                    + m_frame->ConversionEnString(m_textCtrlModifierMinuteBain1->GetValue()) + ":"
+                                    + m_frame->ConversionEnString(m_textCtrlModifierSecondeBain1->GetValue());
+                    }
+                    else
+                    {
+                        erreur = true;
+                        message << wxT("Durée total du bain 1 non valide :  ") << verif;
+                    }
+                }
+                else
+                {
+                    erreur = true;
+                    message << wxT("L'un ou des champs de la durée du bain 1 est/sont vide.\n");
+                }
+    
+                // Vérification des champs du bain 2 qu'ils ont bien été rempli
+                if(!m_textCtrlModifierHeureBain2->IsEmpty() && !m_textCtrlModifierMinuteBain2->IsEmpty()
+                && !m_textCtrlModifierSecondeBain2->IsEmpty())
+                {
+                    wxString verif = m_frame->VerificationDurree(m_textCtrlModifierHeureBain2->GetValue(), m_textCtrlModifierMinuteBain2->GetValue(), m_textCtrlModifierSecondeBain2->GetValue());
+                    
+                    if(verif.IsSameAs(wxT("ok")))
+                    {
+                        duree_bain2 = m_frame->ConversionEnString(m_textCtrlModifierHeureBain2->GetValue()) + ":"
+                                    + m_frame->ConversionEnString(m_textCtrlModifierMinuteBain2->GetValue()) + ":"
+                                    + m_frame->ConversionEnString(m_textCtrlModifierSecondeBain2->GetValue());
+                    }
+                    else
+                    {
+                        erreur = true;
+                        message << wxT("Durée total du bain 2 non valide :  ") << verif;
+                    }
+                }
+                else
+                {
+                    erreur = true;
+                    message << wxT("L'un ou des champs de la durée du bain 2 est/sont vide.\n");
+                }
+    
+                break;
+    
+            case 3:
+                num_bain1 = m_choiceCreerBain1->GetStringSelection();
+                num_bain2 = m_choiceCreerBain2->GetStringSelection();
+                num_bain3 = m_choiceCreerBain2->GetStringSelection();
+                
+                if(num_bain1 == num_bain2 && num_bain1 == num_bain3 && num_bain2 == num_bain3)
+                {
+                    erreur = true;
+                    message << wxT("Des numéros de bain sont identique.\n");
+                }
+                
+                // Vérification des champs du bain 1 qu'ils ont bien été rempli
+                if(!m_textCtrlModifierHeureBain1->IsEmpty() && !m_textCtrlModifierMinuteBain1->IsEmpty()
+                && !m_textCtrlModifierSecondeBain1->IsEmpty())
+                {
+                    wxString verif = m_frame->VerificationDurree(m_textCtrlModifierHeureBain1->GetValue(), m_textCtrlModifierMinuteBain1->GetValue(), m_textCtrlModifierSecondeBain1->GetValue());
+                    
+                    if(verif.IsSameAs(wxT("ok")))
+                    {
+                        duree_bain1 = m_frame->ConversionEnString(m_textCtrlModifierHeureBain1->GetValue()) + ":"
+                                    + m_frame->ConversionEnString(m_textCtrlModifierMinuteBain1->GetValue()) + ":"
+                                    + m_frame->ConversionEnString(m_textCtrlModifierSecondeBain1->GetValue());
+                    }
+                    else
+                    {
+                        erreur = true;
+                        message << wxT("Durée total du bain 1 non valide :  ") << verif;
+                    }
+                }
+                else
+                {
+                    erreur = true;
+                    message << wxT("L'un ou des champs de la durée du bain 1 est/sont vide.\n");
+                }
+                
+                
+                
+                // Vérification des champs du bain 2 qu'ils ont bien été rempli
+                if(!m_textCtrlModifierHeureBain2->IsEmpty() && !m_textCtrlModifierMinuteBain2->IsEmpty()
+                && !m_textCtrlModifierSecondeBain2->IsEmpty())
+                {
+                    wxString verif = m_frame->VerificationDurree(m_textCtrlModifierHeureBain2->GetValue(), m_textCtrlModifierMinuteBain2->GetValue(), m_textCtrlModifierSecondeBain2->GetValue());
+                    
+                    if(verif.IsSameAs(wxT("ok")))
+                    {
+                        duree_bain2 = m_frame->ConversionEnString(m_textCtrlModifierHeureBain2->GetValue()) + ":"
+                                    + m_frame->ConversionEnString(m_textCtrlModifierMinuteBain2->GetValue()) + ":"
+                                    + m_frame->ConversionEnString(m_textCtrlModifierSecondeBain2->GetValue());
+                    }
+                    else
+                    {
+                        erreur = true;
+                        message << wxT("Durée total du bain 2 non valide :  ") << verif;
+                    }
+                }
+                else
+                {
+                    erreur = true;
+                    message << wxT("L'un ou des champs de la durée du bain 2 est/sont vide.\n");
+                }
+                
+                
+                
+                // Vérification des champs du bain 3 qu'ils ont bien été rempli
+                if(!m_textCtrlModifierHeureBain3->IsEmpty() && !m_textCtrlModifierMinuteBain3->IsEmpty()
+                && !m_textCtrlModifierSecondeBain3->IsEmpty())
+                {
+                    wxString verif = m_frame->VerificationDurree(m_textCtrlModifierHeureBain3->GetValue(), m_textCtrlModifierMinuteBain3->GetValue(), m_textCtrlModifierSecondeBain3->GetValue());
+                    
+                    if(verif.IsSameAs(wxT("ok")))
+                    {
+                        duree_bain3 = m_frame->ConversionEnString(m_textCtrlModifierHeureBain3->GetValue()) + ":"
+                                    + m_frame->ConversionEnString(m_textCtrlModifierMinuteBain3->GetValue()) + ":"
+                                    + m_frame->ConversionEnString(m_textCtrlModifierSecondeBain3->GetValue());
+                    }
+                    else
+                    {
+                        erreur = true;
+                        message << wxT("Durée total du bain 3 non valide :  ") << verif;
+                    }
+                }
+                else
+                {
+                    erreur = true;
+                    message << wxT("L'un ou des champs de la durée du bain 3 est/sont vide.\n");
+                }
+    
+                break;
+    
+            default:
+    
+                break;
         }
         
-        VideListBox();
-        RempliListBox();
-        m_listBoxModifierProcessus->SetSelection(m_frame->wxStringToInt(id_selection));
-        m_listBoxModifierProcessus->SetFocus();
+        if(erreur)
+        {
+            string id_p = m_bdd_anodisation->DernierIdProcessus();
+            //cout << "id_p : " << id_p << endl;
+            wxMessageBox(message, "Responsable de production - Champs invalide !",
+                        wxOK_DEFAULT | wxICON_EXCLAMATION | wxCENTRE | wxSTAY_ON_TOP, this);
+            EnvoiMessage(message);
+        }
+        else
+        {
+            string requete = "UPDATE processus SET nom_processus='" + nom_processus
+                        + "', duree_processus='" + duree_total
+                        + "', nombre_bain=" +  m_frame->IntEnString(nombre_bain)
+                        + "WHERE id_processus=" + m_frame->ConversionEnString(id_selection);
+            
+            if(m_bdd_anodisation->ExecuteUpdate(requete))
+            {
+                switch(nombre_bain)
+                {
+                    case 1:
+                        for(unsigned int i =0; i < ordre_separe.size(); i++)
+                        {
+                            requete = "UPDATE intermediaire_processus_trajectoires SET id_p=" + m_frame->ConversionEnString(id_selection)
+                                    + ", id_t=" + ordre_separe[i]
+                                    + ", ordre_trajectoires='" + ordre
+                                    + "', numero_bain=" + num_bain1
+                                    + ", duree_bain='" + duree_bain1
+                                    + "' WHERE id_p=" + m_frame->ConversionEnString(id_selection);
+                                    
+                            cout << requete << endl;
+                            
+                            if(!m_bdd_anodisation->ExecuteUpdate(requete))
+                            {
+                                EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+                            }
+                            
+                        }
+                        break;
+                    
+                    case 2:
+                        
+                        break;
+                    
+                    case 3:
+                        
+                        break;
+                    
+                    default:
+                        
+                        break;
+                    
+                }
+            }
+            else
+            {
+                EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+            }
+            
+            VideListBox();
+            RempliListBox();
+            m_listBoxModifierProcessus->SetSelection(m_frame->wxStringToInt(id_selection));
+            m_listBoxModifierProcessus->SetFocus();
+        }
+    }
+    else
+    {
+        wxString message = wxT("Modification impossible, car il n’y a aucun processus dans la base de données. Merci d’en créer et de réessayer.");
+        wxMessageBox(message, "Responsable de production - Modification impossible !", wxOK_DEFAULT | wxICON_ERROR | wxCENTRE | wxSTAY_ON_TOP, this);
+        EnvoiMessage(message);
     }
 }
 
 void EvtPanelResponsable::OnCancelButtonModiffierClick(wxCommandEvent& event)
 {
-    // TODO: Implement OnCancelButtonModiffierClick
-    // Récupération de la saisie
-    wxString selection = m_listBoxModifierProcessus->GetStringSelection();
-
-    // Récupération de l'id du processus
-    wxString id_selection = m_frame->GardeIdSelection(selection);
-
-    // Vider les text control
-    // du coté droit
-    m_textCtrlIdModifier->Clear();
-    m_textCtrlDureeTotalHeureModifier->Clear();
-    m_textCtrlDureeTotalMinuteModifier->Clear();
-    m_textCtrlDureeTotalSecondeModifier->Clear();
-
-    // Du coté gauche
-    m_textCtrlNomModifier->Clear();
-    m_textCtrlOrdreTrajectoiresModifier->Clear();
-
-    // Remplisage
-    m_textCtrlIdModifier->AppendText(id_selection);
-
-    // Durée total du processus
-    if(m_donnees_IHM->RecupereDureeTotal(m_frame->ConversionEnString(id_selection)))
+    if(!m_listBoxModifierProcessus->IsEmpty())
     {
-        wxString duree = m_frame->ConversionEnWxString(m_donnees_IHM->GetDureeTotal());
-        wxString heure = m_frame->DecouperTexteDebut(duree, 2);
-        m_textCtrlDureeTotalHeureModifier->AppendText(heure);
-
-        wxString temp = m_frame->DecouperTexteDebut(duree, 5);
-        wxString minute = m_frame->DecouperTexteFin(temp, 3);
-        m_textCtrlDureeTotalMinuteModifier->AppendText(minute);
-
-        wxString seconde = m_frame->DecouperTexteFin(duree, 6);
-        m_textCtrlDureeTotalSecondeModifier->AppendText(seconde);
-    }
-    else
-    {
-        EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
-    }
-
-    // Nom du processus
-    if(m_donnees_IHM->RecupereNomProcessus(m_frame->ConversionEnString(id_selection)))
-    {
-        wxString temp = m_frame->ConversionEnWxString(m_donnees_IHM->GetNomProcessus());
-
-        int separateur = temp.find("   ");
-        wxString nom = m_frame->DecouperTexteDebut(temp, separateur);
-
-        m_textCtrlNomModifier->AppendText(nom);
-    }
-    else
-    {
-        EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
-        
-    }
-
-    // Nombre de bain du processus
-    if(m_donnees_IHM->RecupereNombreBain(m_frame->ConversionEnString(id_selection)))
-    {
-        wxString nombre_bain = m_donnees_IHM->GetNombreBain();
-
-        double temp;
-        nombre_bain.ToDouble(&temp);
-        int nb_bain = temp;
-
-        m_spinCtrlNombreBainModifier->SetValue(nb_bain);
-
-        switch(nb_bain)
+        // TODO: Implement OnCancelButtonModiffierClick
+        // Récupération de la saisie
+        wxString selection = m_listBoxModifierProcessus->GetStringSelection();
+    
+        // Récupération de l'id du processus
+        wxString id_selection = m_frame->GardeIdSelection(selection);
+    
+        // Vider les text control
+        // du coté droit
+        m_textCtrlIdModifier->Clear();
+        m_textCtrlDureeTotalHeureModifier->Clear();
+        m_textCtrlDureeTotalMinuteModifier->Clear();
+        m_textCtrlDureeTotalSecondeModifier->Clear();
+    
+        // Du coté gauche
+        m_textCtrlNomModifier->Clear();
+        m_textCtrlOrdreTrajectoiresModifier->Clear();
+    
+        // Remplisage
+        m_textCtrlIdModifier->AppendText(id_selection);
+    
+        // Durée total du processus
+        if(m_donnees_IHM->RecupereDureeTotal(m_frame->ConversionEnString(id_selection)))
         {
-            case 1:
-
-                m_staticModifierDureeTotalBain2->Hide();
-                m_textCtrlModifierHeureBain2->Hide();
-                m_staticTextModifierDureeBain2->Hide();
-                m_textCtrlModifierMinuteBain2->Hide();
-                m_staticTextModifierDureeFinBain2->Hide();
-                m_textCtrlModifierSecondeBain2->Hide();
-                bSizerModifierDureeBain2->Hide(this);
-
-                m_staticModifierDureeTotalBain3->Hide();
-                m_textCtrlModifierHeureBain3->Hide();
-                m_staticTextModifierDureeBain3->Hide();
-                m_textCtrlModifierMinuteBain3->Hide();
-                m_staticTextModifierDureeFinBain3->Hide();
-                m_textCtrlModifierSecondeBain3->Hide();
-                bSizerModifierDureeBain3->Hide(this);
-
-                bSizerModifierDureeBain2->Layout();
-                bSizerModifierDureeBain3->Layout();
-                bSizerBainModifierDuree->Layout();
-                bSizerModifierDureeBain1->Layout();
-                bSizerModifierBain->Layout();
-
-                sbSizerGestionBainModifier->Layout();
-                Layout();
-
-                break;
-
-            case 2:
-
-                m_staticModifierDureeTotalBain2->Show();
-                m_textCtrlModifierHeureBain2->Show();
-                m_staticTextModifierDureeBain2->Show();
-                m_textCtrlModifierMinuteBain2->Show();
-                m_staticTextModifierDureeFinBain2->Show();
-                m_textCtrlModifierSecondeBain2->Show();
-                bSizerModifierDureeBain2->Show(this);
-
-                m_staticModifierDureeTotalBain3->Hide();
-                m_textCtrlModifierHeureBain3->Hide();
-                m_staticTextModifierDureeBain3->Hide();
-                m_textCtrlModifierMinuteBain3->Hide();
-                m_staticTextModifierDureeFinBain3->Hide();
-                m_textCtrlModifierSecondeBain3->Hide();
-                bSizerModifierDureeBain3->Hide(this);
-
-                bSizerModifierDureeBain2->Layout();
-                bSizerModifierDureeBain3->Layout();
-                bSizerBainModifierDuree->Layout();
-                bSizerModifierDureeBain1->Layout();
-                bSizerModifierBain->Layout();
-
-                sbSizerGestionBainModifier->Layout();
-                Layout();
-
-                break;
-
-            case 3:
-
-                m_staticModifierDureeTotalBain2->Show();
-                m_textCtrlModifierHeureBain2->Show();
-                m_staticTextModifierDureeBain2->Show();
-                m_textCtrlModifierMinuteBain2->Show();
-                m_staticTextModifierDureeFinBain2->Show();
-                m_textCtrlModifierSecondeBain2->Show();
-                bSizerModifierDureeBain2->Show(this);
-
-                m_staticModifierDureeTotalBain3->Show();
-                m_textCtrlModifierHeureBain3->Show();
-                m_staticTextModifierDureeBain3->Show();
-                m_textCtrlModifierMinuteBain3->Show();
-                m_staticTextModifierDureeFinBain3->Show();
-                m_textCtrlModifierSecondeBain3->Show();
-                bSizerModifierDureeBain3->Show(this);
-
-                bSizerModifierDureeBain2->Layout();
-                bSizerModifierDureeBain3->Layout();
-                bSizerBainModifierDuree->Layout();
-                bSizerModifierDureeBain1->Layout();
-                bSizerModifierBain->Layout();
-
-                sbSizerGestionBainModifier->Layout();
-                Layout();
-
-                break;
-
-            default:
-
-                break;
+            wxString duree = m_frame->ConversionEnWxString(m_donnees_IHM->GetDureeTotal());
+            wxString heure = m_frame->DecouperTexteDebut(duree, 2);
+            m_textCtrlDureeTotalHeureModifier->AppendText(heure);
+    
+            wxString temp = m_frame->DecouperTexteDebut(duree, 5);
+            wxString minute = m_frame->DecouperTexteFin(temp, 3);
+            m_textCtrlDureeTotalMinuteModifier->AppendText(minute);
+    
+            wxString seconde = m_frame->DecouperTexteFin(duree, 6);
+            m_textCtrlDureeTotalSecondeModifier->AppendText(seconde);
+        }
+        else
+        {
+            EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
+        }
+    
+        // Nom du processus
+        if(m_donnees_IHM->RecupereNomProcessus(m_frame->ConversionEnString(id_selection)))
+        {
+            wxString temp = m_frame->ConversionEnWxString(m_donnees_IHM->GetNomProcessus());
+    
+            int separateur = temp.find("   ");
+            wxString nom = m_frame->DecouperTexteDebut(temp, separateur);
+    
+            m_textCtrlNomModifier->AppendText(nom);
+        }
+        else
+        {
+            EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
+            
+        }
+    
+        // Nombre de bain du processus
+        if(m_donnees_IHM->RecupereNombreBain(m_frame->ConversionEnString(id_selection)))
+        {
+            wxString nombre_bain = m_donnees_IHM->GetNombreBain();
+    
+            double temp;
+            nombre_bain.ToDouble(&temp);
+            int nb_bain = temp;
+    
+            m_spinCtrlNombreBainModifier->SetValue(nb_bain);
+    
+            switch(nb_bain)
+            {
+                case 1:
+    
+                    m_staticModifierDureeTotalBain2->Hide();
+                    m_textCtrlModifierHeureBain2->Hide();
+                    m_staticTextModifierDureeBain2->Hide();
+                    m_textCtrlModifierMinuteBain2->Hide();
+                    m_staticTextModifierDureeFinBain2->Hide();
+                    m_textCtrlModifierSecondeBain2->Hide();
+                    bSizerModifierDureeBain2->Hide(this);
+    
+                    m_staticModifierDureeTotalBain3->Hide();
+                    m_textCtrlModifierHeureBain3->Hide();
+                    m_staticTextModifierDureeBain3->Hide();
+                    m_textCtrlModifierMinuteBain3->Hide();
+                    m_staticTextModifierDureeFinBain3->Hide();
+                    m_textCtrlModifierSecondeBain3->Hide();
+                    bSizerModifierDureeBain3->Hide(this);
+    
+                    bSizerModifierDureeBain2->Layout();
+                    bSizerModifierDureeBain3->Layout();
+                    bSizerBainModifierDuree->Layout();
+                    bSizerModifierDureeBain1->Layout();
+                    bSizerModifierBain->Layout();
+    
+                    sbSizerGestionBainModifier->Layout();
+                    Layout();
+    
+                    break;
+    
+                case 2:
+    
+                    m_staticModifierDureeTotalBain2->Show();
+                    m_textCtrlModifierHeureBain2->Show();
+                    m_staticTextModifierDureeBain2->Show();
+                    m_textCtrlModifierMinuteBain2->Show();
+                    m_staticTextModifierDureeFinBain2->Show();
+                    m_textCtrlModifierSecondeBain2->Show();
+                    bSizerModifierDureeBain2->Show(this);
+    
+                    m_staticModifierDureeTotalBain3->Hide();
+                    m_textCtrlModifierHeureBain3->Hide();
+                    m_staticTextModifierDureeBain3->Hide();
+                    m_textCtrlModifierMinuteBain3->Hide();
+                    m_staticTextModifierDureeFinBain3->Hide();
+                    m_textCtrlModifierSecondeBain3->Hide();
+                    bSizerModifierDureeBain3->Hide(this);
+    
+                    bSizerModifierDureeBain2->Layout();
+                    bSizerModifierDureeBain3->Layout();
+                    bSizerBainModifierDuree->Layout();
+                    bSizerModifierDureeBain1->Layout();
+                    bSizerModifierBain->Layout();
+    
+                    sbSizerGestionBainModifier->Layout();
+                    Layout();
+    
+                    break;
+    
+                case 3:
+    
+                    m_staticModifierDureeTotalBain2->Show();
+                    m_textCtrlModifierHeureBain2->Show();
+                    m_staticTextModifierDureeBain2->Show();
+                    m_textCtrlModifierMinuteBain2->Show();
+                    m_staticTextModifierDureeFinBain2->Show();
+                    m_textCtrlModifierSecondeBain2->Show();
+                    bSizerModifierDureeBain2->Show(this);
+    
+                    m_staticModifierDureeTotalBain3->Show();
+                    m_textCtrlModifierHeureBain3->Show();
+                    m_staticTextModifierDureeBain3->Show();
+                    m_textCtrlModifierMinuteBain3->Show();
+                    m_staticTextModifierDureeFinBain3->Show();
+                    m_textCtrlModifierSecondeBain3->Show();
+                    bSizerModifierDureeBain3->Show(this);
+    
+                    bSizerModifierDureeBain2->Layout();
+                    bSizerModifierDureeBain3->Layout();
+                    bSizerBainModifierDuree->Layout();
+                    bSizerModifierDureeBain1->Layout();
+                    bSizerModifierBain->Layout();
+    
+                    sbSizerGestionBainModifier->Layout();
+                    Layout();
+    
+                    break;
+    
+                default:
+    
+                    break;
+            }
+        }
+        else
+        {
+            EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
+        }
+    
+        // Ordre des trajectoires
+        if(m_donnees_IHM->RecupereOrdreTrajectoires(m_frame->ConversionEnString(id_selection)))
+        {
+            wxString ordre = m_frame->ConversionEnWxString(m_donnees_IHM->GetOrdreTrajectoires());
+    
+            m_textCtrlOrdreTrajectoiresModifier->AppendText(ordre);
+        }
+        else
+        {
+            EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
         }
     }
     else
     {
-        EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
-    }
-
-    // Ordre des trajectoires
-    if(m_donnees_IHM->RecupereOrdreTrajectoires(m_frame->ConversionEnString(id_selection)))
-    {
-        wxString ordre = m_frame->ConversionEnWxString(m_donnees_IHM->GetOrdreTrajectoires());
-
-        m_textCtrlOrdreTrajectoiresModifier->AppendText(ordre);
-    }
-    else
-    {
-        EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
+        wxString message = wxT("Annulation impossible, car il n’y a aucun processus dans la base de données pour le remplissage. Merci d’en créer et de réessayer.");
+        wxMessageBox(message, "Responsable de production - Annulation impossible !", wxOK_DEFAULT | wxICON_ERROR | wxCENTRE | wxSTAY_ON_TOP, this);
+        EnvoiMessage(message);
     }
 }
 //
@@ -1906,6 +1934,7 @@ void EvtPanelResponsable::OnSaveButtonCreerClick(wxCommandEvent& event)
         //string id_p = m_bdd_anodisation->DernierIdProcessus();
         //cout << "id_p : " << id_p << endl;
         wxMessageBox(message, "Responsable de production - Champs vide !", wxOK_DEFAULT | wxICON_EXCLAMATION | wxCENTRE | wxSTAY_ON_TOP, this);
+        EnvoiMessage(message);
     }
     else
     {
@@ -2130,28 +2159,35 @@ void EvtPanelResponsable::OnListBoxDetruireSelection(wxCommandEvent& event)
 
 void EvtPanelResponsable::OnApplyButtonDetruireClick(wxCommandEvent& event)
 {
-    wxString selection = m_listBoxDetruireProcessus->GetStringSelection();
-    string id_selection = m_frame->ConversionEnString(m_frame->GardeIdSelection(selection));
-
-    string requete = "DELETE FROM intermediaire_processus_trajectoires WHERE id_p=" + id_selection;
-
-    if(m_bdd_anodisation->ExecuteDelete(requete))
+    if(!m_listBoxDetruireProcessus->IsEmpty())
     {
-        requete = "DELETE FROM processus WHERE id_processus=" + id_selection;
-
+        wxString selection = m_listBoxDetruireProcessus->GetStringSelection();
+        string id_selection = m_frame->ConversionEnString(m_frame->GardeIdSelection(selection));
+    
+        string requete = "DELETE FROM intermediaire_processus_trajectoires WHERE id_p=" + id_selection;
+    
         if(m_bdd_anodisation->ExecuteDelete(requete))
         {
-            int separateur = selection.find(" - ");
-            
-            wxString message;
-            message << wxT("Supression du processus : ") << m_frame->DecouperTexteFin(selection, separateur + 3)
-                    << wxT(" réussi !\n");
-            
-            EnvoiMessage(message);
-            wxLogMessage(message);
-
-            VideListBox();
-            RempliListBox();
+            requete = "DELETE FROM processus WHERE id_processus=" + id_selection;
+    
+            if(m_bdd_anodisation->ExecuteDelete(requete))
+            {
+                int separateur = selection.find(" - ");
+                
+                wxString message;
+                message << wxT("Supression du processus : ") << m_frame->DecouperTexteFin(selection, separateur + 3)
+                        << wxT(" réussi !\n");
+                
+                EnvoiMessage(message);
+                wxLogMessage(message);
+    
+                VideListBox();
+                RempliListBox();
+            }
+            else
+            {
+                EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+            }
         }
         else
         {
@@ -2160,7 +2196,10 @@ void EvtPanelResponsable::OnApplyButtonDetruireClick(wxCommandEvent& event)
     }
     else
     {
-        EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+        wxString message = wxT("Destruction impossible, car il n’y a aucun processus dans la base de données. Merci d’en créer et de réessayer.");
+        wxMessageBox(message, "Responsable de production - Destruction impossible !",
+                    wxOK_DEFAULT | wxICON_ERROR | wxCENTRE | wxSTAY_ON_TOP, this);
+        EnvoiMessage(message);
     }
 }
 //
@@ -2221,9 +2260,23 @@ void EvtPanelResponsable::OnListBoxLancerSelection(wxCommandEvent& event)
 
 void EvtPanelResponsable::OnOkButtonLancerClick(wxCommandEvent& event)
 {
-    if(m_client_connecte)
+    if(!m_listBoxLancerProcessus->IsEmpty())
     {
-        m_client->ExecutionProcessus(m_frame->GardeIdSelection(m_listBoxLancerProcessus->GetStringSelection()));
+        if(m_client_connecte)
+        {
+            m_client->ExecutionProcessus(m_frame->GardeIdSelection(m_listBoxLancerProcessus->GetStringSelection()));
+        }
+        else
+        {
+            wxLogError(wxT("Le client n'est pas connecté au serveur de la Raspberry pi."));
+        }
+    }
+    else
+    {
+        wxString message = wxT("Lancement impossible, car il n’y a aucun processus dans la base de données. Merci d’en créer et de réessayer.");
+        wxMessageBox(message, "Responsable de production - Lancement impossible !",
+                    wxOK_DEFAULT | wxICON_ERROR | wxCENTRE | wxSTAY_ON_TOP, this);
+        EnvoiMessage(message);
     }
 }
 //
@@ -2292,13 +2345,30 @@ void EvtPanelResponsable::OnStopButtonTesterClick(wxCommandEvent& event)
     {
         m_client->StopProcessus();
     }
+    else
+    {
+        wxMessageBox(wxT("Le client n'est pas connecté au serveur de la Raspberry pi."), "Responsable de production - Client non connecté !", wxOK_DEFAULT | wxICON_ERROR | wxCENTRE | wxSTAY_ON_TOP, this);
+    }
 }
 
 void EvtPanelResponsable::OnOkButtonTesterClick(wxCommandEvent& event)
 {
-    if(m_client_connecte)
+    if(!m_listBoxTesterProcessus->IsEmpty())
     {
-        m_client->TestProcessus(m_frame->GardeIdSelection(m_listBoxTesterProcessus->GetStringSelection()));
+        if(m_client_connecte)
+        {
+            m_client->TestProcessus(m_frame->GardeIdSelection(m_listBoxTesterProcessus->GetStringSelection()));
+        }
+        else
+        {
+            wxMessageBox(wxT("Le client n'est pas connecté au serveur de la Raspberry pi."), "Responsable de production - Client non connecté !", wxOK_DEFAULT | wxICON_ERROR | wxCENTRE | wxSTAY_ON_TOP, this);
+        }
+    }
+    else
+    {
+        wxString message = wxT("Test impossible, car il n’y a aucun processus dans la base de données. Merci d’en créer et de réessayer.");
+        wxMessageBox(message, "Responsable de production - Test impossible !", wxOK_DEFAULT | wxICON_ERROR | wxCENTRE | wxSTAY_ON_TOP, this);
+        EnvoiMessage(message);
     }
 }
 //
@@ -2356,7 +2426,7 @@ void EvtPanelResponsable::OnButtonDisponibiliteBrasClick(wxCommandEvent& event)
     }
     else
     {
-        wxLogError(wxT("Le client n'est pas connecté au serveur de la Raspberry pi."));
+        wxMessageBox(wxT("Le client n'est pas connecté au serveur de la Raspberry pi."), "Responsable de production - Client non connecté !", wxOK_DEFAULT | wxICON_ERROR | wxCENTRE | wxSTAY_ON_TOP, this);
     }
 }
 
@@ -2497,7 +2567,7 @@ void EvtPanelResponsable::OnButtonTacheEnCoursClick(wxCommandEvent& event)
     }
     else
     {
-        wxLogError(wxT("Le client n'est pas connecté au serveur de la Raspberry pi."));
+        wxMessageBox(wxT("Le client n'est pas connecté au serveur de la Raspberry pi."), "Responsable de production - Client non connecté !", wxOK_DEFAULT | wxICON_ERROR | wxCENTRE | wxSTAY_ON_TOP, this);
     }
 }
 ////////////////////////////////////////////////////////////////////////////////
@@ -2518,6 +2588,12 @@ bool EvtPanelResponsable::LancerFabrication(wxString id_processus)
 //
 void EvtPanelResponsable::RempliListBox()
 {
+    
+    // Vider les titre dont les valeur vont etre changé.
+    m_staticTextDetuireTitre->SetLabel(wxT(""));
+    m_staticTextLancerTitre->SetLabel(wxT(""));
+    m_staticTextTesterTitre->SetLabel(wxT(""));
+    wxString message;
     
     if(m_donnees_IHM->RecupereListeProcessus())
     {
@@ -2552,11 +2628,18 @@ void EvtPanelResponsable::RempliListBox()
             }
         }
         
+        
         m_listBoxAffichageProcessus->SetSelection(0);
+        m_listBoxDetruireProcessus->SetSelection(0);
+        m_listBoxLancerProcessus->SetSelection(0);
+        m_listBoxModifierProcessus->SetSelection(0);
+        m_listBoxTesterProcessus->SetSelection(0);
     }
     else
     {
-        EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
+        message << wxT("Problème pour le remplisage des wxListBox, contenant l'affichage des processus :\n")
+                << m_frame->ConversionEnWxString(m_donnees_IHM->GetDerniereErreur());
+        EnvoiErreurRemplissage(message);
     }
     
     
@@ -2599,8 +2682,12 @@ void EvtPanelResponsable::RempliListBox()
     }
     else
     {
-        EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
+        message.clear();
+        message << wxT("Problème pour le remplisage des wxListBox, contenant l'affichage des trajectoires :\n")
+                << m_frame->ConversionEnWxString(m_donnees_IHM->GetDerniereErreur());
+        EnvoiErreurRemplissage(message);
     }
+    Layout();
 }
 
 void EvtPanelResponsable::VideListBox()
@@ -2617,6 +2704,11 @@ void EvtPanelResponsable::VideListBox()
 
 void EvtPanelResponsable::EnvoiMessage(wxString message)
 {
+    if(!message.EndsWith(wxT("\n")))
+    {
+        message << wxT("\n");
+    }
+    
     wxCommandEvent MyEventMsg(wxEVT_COMMAND_BUTTON_CLICKED, ID_RESPONSABLE);
     MyEventMsg.SetString(message);
     wxPostEvent(m_frame, MyEventMsg);

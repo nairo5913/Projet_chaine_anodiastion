@@ -183,7 +183,7 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
             if(erreur)
             {
                 m_textCtrlAffichage->AppendText(message);
-                wxLogError(message);
+                wxMessageBox(message, "Anodisation - Problèmes de connexion !", wxOK_DEFAULT | wxICON_INFORMATION | wxCENTRE | wxSTAY_ON_TOP, this);
             }
             
             Layout();
