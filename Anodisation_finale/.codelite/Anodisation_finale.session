@@ -1,8 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Session Name="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Anodisation_finale/Anodisation_finale.workspace">
-  <int Value="0" Name="m_selectedTab"/>
-  <wxString Value="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Anodisation_finale/Anodisation_finale.workspace" Name="m_workspaceName"/>
-  <TabInfoArray Name="TabInfoArray"/>
+<Session Name="/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Anodisation_finale/Anodisation_finale.workspace">
+  <int Value="2" Name="m_selectedTab"/>
+  <wxString Value="/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Anodisation_finale/Anodisation_finale.workspace" Name="m_workspaceName"/>
+  <TabInfoArray Name="TabInfoArray">
+    <TabInfo>
+      <wxString Value="/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Anodisation_finale/Anodisation/Client/Client.cpp" Name="FileName"/>
+      <int Value="8" Name="FirstVisibleLine"/>
+      <int Value="9" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Anodisation_finale/Anodisation/IHM/EvtFramePrincipal.cpp" Name="FileName"/>
+      <int Value="102" Name="FirstVisibleLine"/>
+      <int Value="7" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Anodisation_finale/Anodisation/IHM/EvtPanelResponsable.cpp" Name="FileName"/>
+      <int Value="102" Name="FirstVisibleLine"/>
+      <int Value="1029" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds">
+        <IntVectorItem Value="0"/>
+        <IntVectorItem Value="11"/>
+        <IntVectorItem Value="316"/>
+        <IntVectorItem Value="321"/>
+        <IntVectorItem Value="326"/>
+        <IntVectorItem Value="426"/>
+        <IntVectorItem Value="1397"/>
+        <IntVectorItem Value="1995"/>
+        <IntVectorItem Value="2109"/>
+        <IntVectorItem Value="2160"/>
+        <IntVectorItem Value="2208"/>
+        <IntVectorItem Value="2261"/>
+        <IntVectorItem Value="2303"/>
+        <IntVectorItem Value="2360"/>
+        <IntVectorItem Value="2372"/>
+        <IntVectorItem Value="2418"/>
+        <IntVectorItem Value="2474"/>
+        <IntVectorItem Value="2719"/>
+        <IntVectorItem Value="2744"/>
+        <IntVectorItem Value="2848"/>
+        <IntVectorItem Value="2860"/>
+        <IntVectorItem Value="2872"/>
+      </IntVector>
+    </TabInfo>
+  </TabInfoArray>
   <SerializedObject Name="m_breakpoints">
     <long Value="0" Name="Count"/>
   </SerializedObject>

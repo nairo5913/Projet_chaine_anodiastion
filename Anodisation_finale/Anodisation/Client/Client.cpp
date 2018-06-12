@@ -7,7 +7,7 @@
               Nassim Boubziz
 *******************************************************************************/
 #include "Client.h"
-#include "EvtFramePrincipal.h"
+#include "../IHM/EvtFramePrincipal.h"
 
 Client::Client(wxString ip, long port, EvtFramePrincipal *frame, wxString utilisateur)
 {

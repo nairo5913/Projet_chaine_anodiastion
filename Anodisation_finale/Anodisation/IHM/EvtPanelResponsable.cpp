@@ -2260,20 +2260,38 @@ void EvtPanelResponsable::OnListBoxLancerSelection(wxCommandEvent& event)
 
 void EvtPanelResponsable::OnOkButtonLancerClick(wxCommandEvent& event)
 {
+    wxString message;
+    
     if(!m_listBoxLancerProcessus->IsEmpty())
     {
         if(m_client_connecte)
         {
-            m_client->ExecutionProcessus(m_frame->GardeIdSelection(m_listBoxLancerProcessus->GetStringSelection()));
+            if(LancerFabrication(m_frame->GardeIdSelection(m_listBoxLancerProcessus->GetStringSelection())))
+            {
+                m_client->ExecutionProcessus(m_frame->GardeIdSelection(m_listBoxLancerProcessus->GetStringSelection()));
+            
+            }
+            else
+            {
+                message << wxT("Le processus n’a pas encore été validé lors d’un test.\n")
+                        << wxT("Voulez vous vraiment lancer cette fabrication ?\n");
+                int reponse = wxMessageBox(message, "Responsable de production - Lancement à risque !", wxYES_NO | wxICON_QUESTION | wxCENTRE | wxSTAY_ON_TOP, this);
+                
+                if(reponse == wxYES)
+                {
+                    m_client->ExecutionProcessus(m_frame->GardeIdSelection(m_listBoxLancerProcessus->GetStringSelection()));
+                }
+            }
         }
         else
         {
-            wxLogError(wxT("Le client n'est pas connecté au serveur de la Raspberry pi."));
+            message << wxT("Le client n'est pas connecté au serveur de la Raspberry pi.");
+            wxMessageBox(message, "Responsable de production - Lancement impossible !", wxOK_DEFAULT | wxICON_WARNING | wxCENTRE | wxSTAY_ON_TOP, this);
         }
     }
     else
     {
-        wxString message = wxT("Lancement impossible, car il n’y a aucun processus dans la base de données. Merci d’en créer et de réessayer.");
+        message << wxT("Lancement impossible, car il n’y a aucun processus dans la base de données. Merci d’en créer et de réessayer.");
         wxMessageBox(message, "Responsable de production - Lancement impossible !",
                     wxOK_DEFAULT | wxICON_ERROR | wxCENTRE | wxSTAY_ON_TOP, this);
         EnvoiMessage(message);
@@ -2353,20 +2371,43 @@ void EvtPanelResponsable::OnStopButtonTesterClick(wxCommandEvent& event)
 
 void EvtPanelResponsable::OnOkButtonTesterClick(wxCommandEvent& event)
 {
+    wxString message;
+    
     if(!m_listBoxTesterProcessus->IsEmpty())
     {
         if(m_client_connecte)
         {
             m_client->TestProcessus(m_frame->GardeIdSelection(m_listBoxTesterProcessus->GetStringSelection()));
+            message << wxT("Le processus n’a pas encore été validé.\n")
+                        << wxT("Voulez vous le valider maintenant ?\n");
+                int reponse = wxMessageBox(message, "Responsable de production - Valider le processus !", wxYES_NO | wxICON_QUESTION | wxCENTRE | wxSTAY_ON_TOP, this);
+                
+                if(reponse == wxYES)
+                {
+                    string requete = "UPDATE processus SET processus_valide='true'";
+                    
+                    if(m_bdd_anodisation->ExecuteUpdate(requete))
+                    {
+                        message.clear();
+                        message << wxT("Le processus à bien été mis a jour et validé dans la base de données.");
+                        wxMessageBox(message, "Responsable de production - Validé !", wxOK_DEFAULT | wxICON_INFORMATION | wxCENTRE | wxSTAY_ON_TOP, this);
+                        EnvoiMessage(message);
+                    }
+                    else
+                    {
+                        EnvoiErreurRemplissage(m_bdd_anodisation->GetLastError());
+                    }
+                }
         }
         else
         {
-            wxMessageBox(wxT("Le client n'est pas connecté au serveur de la Raspberry pi."), "Responsable de production - Client non connecté !", wxOK_DEFAULT | wxICON_ERROR | wxCENTRE | wxSTAY_ON_TOP, this);
+            message << wxT("Le client n'est pas connecté au serveur de la Raspberry pi.");
+            wxMessageBox(message, "Responsable de production - Client non connecté !", wxOK_DEFAULT | wxICON_ERROR | wxCENTRE | wxSTAY_ON_TOP, this);
         }
     }
     else
     {
-        wxString message = wxT("Test impossible, car il n’y a aucun processus dans la base de données. Merci d’en créer et de réessayer.");
+        message << wxT("Test impossible, car il n’y a aucun processus dans la base de données. Merci d’en créer et de réessayer.");
         wxMessageBox(message, "Responsable de production - Test impossible !", wxOK_DEFAULT | wxICON_ERROR | wxCENTRE | wxSTAY_ON_TOP, this);
         EnvoiMessage(message);
     }
@@ -2510,6 +2551,26 @@ void EvtPanelResponsable::OnButtonTacheEnCoursClick(wxCommandEvent& event)
                 {
                     EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
                 }
+                
+                
+                
+                requete = "SELECT duree_processus FROM processus WHERE id_processus=" + id_tache;
+                // Durée total du processus
+                if(m_bdd_anodisation->ExecuteSelect(requete))
+                {
+                    vector<string> resultat = m_bdd_anodisation->GetLastResult();
+                    wxString duree = m_frame->ConversionEnWxString(resultat[0]);
+                    m_textCtrlDureeRestantHeure->AppendText(m_frame->DecouperTexteDebut(duree, 2));
+            
+                    wxString temp = m_frame->DecouperTexteDebut(duree, 5);
+                    m_textCtrlDureeRestantMinute->AppendText(m_frame->DecouperTexteFin(temp, 3));
+            
+                    m_textCtrlDureeRestantSeconde->AppendText(m_frame->DecouperTexteFin(duree, 6));
+                }
+                else
+                {
+                    EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+                }
             }
             else if(type == "Trajectoire")
             {
@@ -2531,6 +2592,26 @@ void EvtPanelResponsable::OnButtonTacheEnCoursClick(wxCommandEvent& event)
                 {
                     EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
                 }
+                
+                
+                
+                requete = "SELECT duree_trajectoire FROM trajectoires WHERE id_trajectoire=" + id_tache;
+                // Durée total du processus
+                if(m_bdd_anodisation->ExecuteSelect(requete))
+                {
+                    vector<string> resultat = m_bdd_anodisation->GetLastResult();
+                    wxString duree = m_frame->ConversionEnWxString(resultat[0]);
+                    m_textCtrlDureeRestantHeure->AppendText(m_frame->DecouperTexteDebut(duree, 2));
+            
+                    wxString temp = m_frame->DecouperTexteDebut(duree, 5);
+                    m_textCtrlDureeRestantMinute->AppendText(m_frame->DecouperTexteFin(temp, 3));
+            
+                    m_textCtrlDureeRestantSeconde->AppendText(m_frame->DecouperTexteFin(duree, 6));
+                }
+                else
+                {
+                    EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+                }
             }
             else if(type == "Mouvement")
             {
@@ -2547,6 +2628,66 @@ void EvtPanelResponsable::OnButtonTacheEnCoursClick(wxCommandEvent& event)
                     int separateur = temp.find("   ");
                     wxString nomwx = m_frame->DecouperTexteDebut(temp, separateur);
                     m_textCtrlNomTache->AppendText(nomwx);
+                }
+                else
+                {
+                    EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+                }
+                
+                
+                
+                requete = "SELECT duree_mouvement FROM mouvements WHERE id_mouvement=" + id_tache;
+                // Durée total du processus
+                if(m_bdd_anodisation->ExecuteSelect(requete))
+                {
+                    vector<string> resultat = m_bdd_anodisation->GetLastResult();
+                    wxString duree = m_frame->ConversionEnWxString(resultat[0]);
+                    m_textCtrlDureeRestantHeure->AppendText(m_frame->DecouperTexteDebut(duree, 2));
+            
+                    wxString temp = m_frame->DecouperTexteDebut(duree, 5);
+                    m_textCtrlDureeRestantMinute->AppendText(m_frame->DecouperTexteFin(temp, 3));
+            
+                    m_textCtrlDureeRestantSeconde->AppendText(m_frame->DecouperTexteFin(duree, 6));
+                }
+                else
+                {
+                    EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+                }
+            }
+            else if(type == "Fabrication")
+            {
+                m_textCtrlTypeTache->AppendText(wxT("Fabrication"));
+
+                // Nom du processus
+                requete = "SELECT nom_processus FROM processus WHERE id_processus=" + id_tache;
+
+                if(m_bdd_anodisation->ExecuteSelect(requete))
+                {
+                    vector<string> nom = m_bdd_anodisation->GetLastResult();
+                    wxString temp = m_frame->ConversionEnWxString(nom[0]);
+
+                    int separateur = temp.find("   ");
+                    wxString nomwx = m_frame->DecouperTexteDebut(temp, separateur);
+                    m_textCtrlNomTache->AppendText(nomwx);
+                }
+                else
+                {
+                    EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+                }
+                
+                
+                requete = "SELECT duree_processus FROM processus WHERE id_processus=" + id_tache;
+                // Durée total du processus
+                if(m_bdd_anodisation->ExecuteSelect(requete))
+                {
+                    vector<string> resultat = m_bdd_anodisation->GetLastResult();
+                    wxString duree = m_frame->ConversionEnWxString(resultat[0]);
+                    m_textCtrlDureeRestantHeure->AppendText(m_frame->DecouperTexteDebut(duree, 2));
+            
+                    wxString temp = m_frame->DecouperTexteDebut(duree, 5);
+                    m_textCtrlDureeRestantMinute->AppendText(m_frame->DecouperTexteFin(temp, 3));
+            
+                    m_textCtrlDureeRestantSeconde->AppendText(m_frame->DecouperTexteFin(duree, 6));
                 }
                 else
                 {
@@ -2579,7 +2720,21 @@ bool EvtPanelResponsable::LancerFabrication(wxString id_processus)
 {
     bool retour = false;
 
-    //
+    string requete = "SELECT processus_valide FROM processus WHERE id_processus=" + m_frame->ConversionEnString(id_processus);
+    
+    if(m_bdd_anodisation->ExecuteSelect(requete))
+    {
+        vector<string> resultat = m_bdd_anodisation->GetLastResult();
+        
+        if(resultat[0] == "1")
+        {
+            retour = true;
+        }
+    }
+    else
+    {
+        EnvoiErreurRemplissage(m_bdd_anodisation->GetLastError());
+    }
 
     return retour;
 }

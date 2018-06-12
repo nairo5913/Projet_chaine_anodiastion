@@ -1,4 +1,4 @@
-Trajectoire 1,Val 1,00:02:30
-Trajectoire 2,Val 2,00:01:05
-Trajectoire 3,Val 3,00:05:03
-Trajectoire 4,Val 4,00:02:15
+Trajectoire 1,Point de départ → bain1,00:02:30
+Trajectoire 2,Bain 1 → bain 2,00:01:05
+Trajectoire 3,Bain 1 → sortie du bain et dépôt,00:02:00
+Trajectoire 4,Bain 2 → sortie du bain et dépôt,00:02:15

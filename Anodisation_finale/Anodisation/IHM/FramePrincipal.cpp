@@ -34,7 +34,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextLogin->Wrap( -1 );
 	bSizerLogin->Add( m_staticTextLogin, 1, wxALIGN_CENTER_VERTICAL|wxBOTTOM|wxRIGHT|wxLEFT, 5 );
 	
-	m_textCtrlLogin = new wxTextCtrl( sbSizerConnexion->GetStaticBox(), wxID_ANY, wxT("Responsable"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_PROCESS_ENTER );
+	m_textCtrlLogin = new wxTextCtrl( sbSizerConnexion->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_PROCESS_ENTER );
 	#ifdef __WXGTK__
 	if ( !m_textCtrlLogin->HasFlag( wxTE_MULTILINE ) )
 	{
@@ -55,7 +55,7 @@ FramePrincipal::FramePrincipal( wxWindow* parent, wxWindowID id, const wxString&
 	m_staticTextPass->Wrap( -1 );
 	bSizerPass->Add( m_staticTextPass, 1, wxALIGN_CENTER_VERTICAL|wxBOTTOM|wxRIGHT|wxLEFT, 5 );
 	
-	m_textCtrlPass = new wxTextCtrl( sbSizerConnexion->GetStaticBox(), wxID_ANY, wxT("responsable"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_PASSWORD|wxTE_PROCESS_ENTER );
+	m_textCtrlPass = new wxTextCtrl( sbSizerConnexion->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE|wxTE_PASSWORD|wxTE_PROCESS_ENTER );
 	#ifdef __WXGTK__
 	if ( !m_textCtrlPass->HasFlag( wxTE_MULTILINE ) )
 	{
@@ -379,11 +379,11 @@ FrameAide::FrameAide( wxWindow* parent, wxWindowID id, const wxString& title, co
 	
 	bSizerAide->Add( sbSizerRegleur, 1, wxALL|wxEXPAND, 5 );
 	
-	wxStaticBoxSizer* sbSizer32;
-	sbSizer32 = new wxStaticBoxSizer( new wxStaticBox( m_panelAide, wxID_ANY, wxT("label") ), wxVERTICAL );
+	wxStaticBoxSizer* sbSizerBras;
+	sbSizerBras = new wxStaticBoxSizer( new wxStaticBox( m_panelAide, wxID_ANY, wxT("Banc d'anodisation") ), wxVERTICAL );
 	
 	
-	bSizerAide->Add( sbSizer32, 1, wxALL|wxEXPAND, 5 );
+	bSizerAide->Add( sbSizerBras, 1, wxALL|wxEXPAND, 5 );
 	
 	
 	m_panelAide->SetSizer( bSizerAide );

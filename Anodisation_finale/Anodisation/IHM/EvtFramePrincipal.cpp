@@ -179,14 +179,14 @@ void EvtFramePrincipal::OnButtonConnexionToggle(wxCommandEvent& event)
                 AfficheStatus(wxT("Non connecté"), 1);
             }
 
+            Layout();
+            
             // Si il y a une erreur de connection l'afficher
             if(erreur)
             {
                 m_textCtrlAffichage->AppendText(message);
                 wxMessageBox(message, "Anodisation - Problèmes de connexion !", wxOK_DEFAULT | wxICON_INFORMATION | wxCENTRE | wxSTAY_ON_TOP, this);
             }
-            
-            Layout();
         }
         else
         {

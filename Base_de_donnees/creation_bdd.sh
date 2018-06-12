@@ -43,7 +43,7 @@ fi
 
 ### Déclaration variable ###
 #
-nom_bdd='Anodisation_test'
+nom_bdd='Anodisation'
 
 ### Demande login pour générer la BdD sur le serveur ###
 
