@@ -1,43 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Session Name="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Anodisation_finale/Anodisation_finale.workspace">
+<Session Name="/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Anodisation_finale/Anodisation_finale.workspace">
   <int Value="0" Name="m_selectedTab"/>
-  <wxString Value="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Anodisation_finale/Anodisation_finale.workspace" Name="m_workspaceName"/>
-  <TabInfoArray Name="TabInfoArray">
-    <TabInfo>
-      <wxString Value="/home/nairo5913/Ozanam/Projet_chaine_anodisation/Git/Anodisation_finale/Anodisation/IHM/EvtPanelResponsable.cpp" Name="FileName"/>
-      <int Value="902" Name="FirstVisibleLine"/>
-      <int Value="2613" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds">
-        <IntVectorItem Value="0"/>
-        <IntVectorItem Value="11"/>
-        <IntVectorItem Value="26"/>
-        <IntVectorItem Value="439"/>
-        <IntVectorItem Value="444"/>
-        <IntVectorItem Value="449"/>
-        <IntVectorItem Value="549"/>
-        <IntVectorItem Value="904"/>
-        <IntVectorItem Value="1237"/>
-        <IntVectorItem Value="1802"/>
-        <IntVectorItem Value="2207"/>
-        <IntVectorItem Value="2658"/>
-        <IntVectorItem Value="2772"/>
-        <IntVectorItem Value="2823"/>
-        <IntVectorItem Value="2871"/>
-        <IntVectorItem Value="2924"/>
-        <IntVectorItem Value="2966"/>
-        <IntVectorItem Value="3023"/>
-        <IntVectorItem Value="3035"/>
-        <IntVectorItem Value="3081"/>
-        <IntVectorItem Value="3137"/>
-        <IntVectorItem Value="3382"/>
-        <IntVectorItem Value="3407"/>
-        <IntVectorItem Value="3511"/>
-        <IntVectorItem Value="3523"/>
-        <IntVectorItem Value="3535"/>
-      </IntVector>
-    </TabInfo>
-  </TabInfoArray>
+  <wxString Value="/home/ir2/fprovost/Documents/Projet_chaine_anodisation/Git/Anodisation_finale/Anodisation_finale.workspace" Name="m_workspaceName"/>
+  <TabInfoArray Name="TabInfoArray"/>
   <SerializedObject Name="m_breakpoints">
     <long Value="0" Name="Count"/>
   </SerializedObject>

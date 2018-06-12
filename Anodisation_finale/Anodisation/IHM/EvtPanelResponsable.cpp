@@ -2604,6 +2604,40 @@ void EvtPanelResponsable::OnSaveButtonCreerClick(wxCommandEvent& event)
                                 EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
                             }
                         }
+                        else
+                        {
+                            requete = "INSERT INTO intermediaire_processus_trajectoires (id_p, id_t, ordre_trajectoires, numero_bain, duree_bain) VALUES ("
+                                    + id_p + ", "
+                                    + ordre_separe[i] + ", '"
+                                    + ordre + "', "
+                                    + num_bain1 + ", '"
+                                    + duree_bain1 + "')";
+                            
+                            if(!m_bdd_anodisation->ExecuteInsert(requete))
+                            {
+                                EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+                            }
+                        }
+                    }
+                    break;
+                
+                case 3:
+                    for(unsigned int i =0; i < ordre_separe.size(); i++)
+                    {
+                        if(i == 1)
+                        {
+                            requete = "INSERT INTO intermediaire_processus_trajectoires (id_p, id_t, ordre_trajectoires, numero_bain, duree_bain) VALUES ("
+                                    + id_p + ", "
+                                    + ordre_separe[i] + ", '"
+                                    + ordre + "', "
+                                    + num_bain2 + ", '"
+                                    + duree_bain2 + "')";
+                            
+                            if(!m_bdd_anodisation->ExecuteInsert(requete))
+                            {
+                                EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+                            }
+                        }
                         else if(i == 2)
                         {
                             requete = "INSERT INTO intermediaire_processus_trajectoires (id_p, id_t, ordre_trajectoires, numero_bain, duree_bain) VALUES ("
@@ -2633,10 +2667,6 @@ void EvtPanelResponsable::OnSaveButtonCreerClick(wxCommandEvent& event)
                             }
                         }
                     }
-                    break;
-                
-                case 3:
-                    
                     break;
                 
                 default:
