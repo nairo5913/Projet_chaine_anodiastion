@@ -288,7 +288,130 @@ void EvtPanelResponsable::OnListBoxAffichageSelection(wxCommandEvent& event)
         }
         else if(m_donnees_IHM->GetNombreBain() == "3")
         {
+            // Bain 1
+            requete = "SELECT duree_bain FROM intermediaire_processus_trajectoires WHERE id_p="
+                    + m_frame->ConversionEnString(id_selection) + " AND numero_bain=" + numero_bain[1];
             
+            m_staticTextAfficherNumBain1->SetLabel(m_frame->ConversionEnWxString(numero_bain[1]) + wxT(" :"));
+            
+            if(m_bdd_anodisation->ExecuteSelect(requete))
+            {
+                vector<string> duree_bain1 = m_bdd_anodisation->GetLastResult();
+                
+                if(!duree_bain1.empty())
+                {
+                    m_textCtrlAfficherHeureBain1->AppendText(m_frame->DecouperTexteDebut(duree_bain1[0], 2));
+                    
+                    wxString temp = m_frame->DecouperTexteDebut(duree_bain1[0], 5);
+                    m_textCtrlAfficherMinuteBain1->AppendText(m_frame->DecouperTexteFin(temp, 3));
+                    
+                    m_textCtrlAfficherSecondeBain1->AppendText(m_frame->DecouperTexteFin(duree_bain1[0], 6));
+                }
+                else
+                {
+                    EnvoiMessage(wxT("Il n'y a pas de durée pour le premier bain de ce processus.\n"));
+                }
+            }
+            else
+            {
+                EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+            }
+            
+            
+            
+            // Bain 2
+            m_staticAfficherDureeTotalBain2->Show();
+            m_textCtrlAfficherHeureBain2->Show();
+            m_staticTextAfficherDureeBain2->Show();
+            m_textCtrlAfficherMinuteBain2->Show();
+            m_staticTextAfficherDureeFinBain2->Show();
+            m_textCtrlAfficherSecondeBain2->Show();
+            m_staticTextAfficherNumBain2->Show();
+            bSizerAfficherDureeBain2->Show(this);
+            
+            bSizerAfficherDureeBain2->Layout();
+            bSizerBainAfficherDuree->Layout();
+            bSizerAfficherDureeBain1->Layout();
+            bSizerAfficherBain->Layout();
+
+            sbSizerGestionBainAfficher->Layout();
+            Layout();
+            
+            requete = "SELECT duree_bain FROM intermediaire_processus_trajectoires WHERE id_p="
+                    + m_frame->ConversionEnString(id_selection) + " AND numero_bain=" + numero_bain[2];
+                    
+            m_staticTextAfficherNumBain2->SetLabel(m_frame->ConversionEnWxString(numero_bain[2]) + wxT(" :"));
+            
+            if(m_bdd_anodisation->ExecuteSelect(requete))
+            {
+                vector<string> duree_bain2 = m_bdd_anodisation->GetLastResult();
+                
+                if(!duree_bain2.empty())
+                {
+                    m_textCtrlAfficherHeureBain2->AppendText(m_frame->DecouperTexteDebut(duree_bain2[0], 2));
+                    
+                    wxString temp = m_frame->DecouperTexteDebut(duree_bain2[0], 5);
+                    m_textCtrlAfficherMinuteBain2->AppendText(m_frame->DecouperTexteFin(temp, 3));
+                    
+                    m_textCtrlAfficherSecondeBain2->AppendText(m_frame->DecouperTexteFin(duree_bain2[0], 6));
+                }
+                else
+                {
+                    EnvoiMessage(wxT("Il n'y a pas de durée pour le deuxième bain de ce processus.\n"));
+                }
+            }
+            else
+            {
+                EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+            }
+            
+            
+            
+            // Bain 3
+            m_staticAfficherDureeTotalBain3->Show();
+            m_textCtrlAfficherHeureBain3->Show();
+            m_staticTextAfficherDureeBain3->Show();
+            m_textCtrlAfficherMinuteBain3->Show();
+            m_staticTextAfficherDureeFinBain3->Show();
+            m_textCtrlAfficherSecondeBain3->Show();
+            m_staticTextAfficherNumBain3->Show();
+            bSizerAfficherDureeBain3->Show(this);
+            
+            bSizerAfficherDureeBain3->Layout();
+            bSizerBainAfficherDuree->Layout();
+            bSizerAfficherDureeBain1->Layout();
+            bSizerAfficherBain->Layout();
+
+            sbSizerGestionBainAfficher->Layout();
+            Layout();
+            
+            requete = "SELECT duree_bain FROM intermediaire_processus_trajectoires WHERE id_p="
+                    + m_frame->ConversionEnString(id_selection) + " AND numero_bain=" + numero_bain[3];
+                    
+            m_staticTextAfficherNumBain3->SetLabel(m_frame->ConversionEnWxString(numero_bain[3]) + wxT(" :"));
+            
+            if(m_bdd_anodisation->ExecuteSelect(requete))
+            {
+                vector<string> duree_bain3 = m_bdd_anodisation->GetLastResult();
+                
+                if(!duree_bain3.empty())
+                {
+                    m_textCtrlAfficherHeureBain3->AppendText(m_frame->DecouperTexteDebut(duree_bain3[0], 2));
+                    
+                    wxString temp = m_frame->DecouperTexteDebut(duree_bain3[0], 5);
+                    m_textCtrlAfficherMinuteBain3->AppendText(m_frame->DecouperTexteFin(temp, 3));
+                    
+                    m_textCtrlAfficherSecondeBain3->AppendText(m_frame->DecouperTexteFin(duree_bain3[0], 6));
+                }
+                else
+                {
+                    EnvoiMessage(wxT("Il n'y a pas de durée pour le deuxième bain de ce processus.\n"));
+                }
+            }
+            else
+            {
+                EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+            }
         }
         else
         {
@@ -731,6 +854,17 @@ void EvtPanelResponsable::OnListBoxModifierSelection(wxCommandEvent& event)
     // Du coté gauche
     m_textCtrlNomModifier->Clear();
     m_textCtrlOrdreTrajectoiresModifier->Clear();
+    m_textCtrlModifierHeureBain1->Clear();
+    m_textCtrlModifierMinuteBain1->Clear();
+    m_textCtrlModifierSecondeBain1->Clear();
+    
+    m_textCtrlModifierHeureBain2->Clear();
+    m_textCtrlModifierMinuteBain2->Clear();
+    m_textCtrlModifierSecondeBain2->Clear();
+    
+    m_textCtrlModifierHeureBain3->Clear();
+    m_textCtrlModifierMinuteBain3->Clear();
+    m_textCtrlModifierSecondeBain3->Clear();
 
     // Remplisage
     m_textCtrlIdModifier->AppendText(id_selection);
@@ -776,6 +910,21 @@ void EvtPanelResponsable::OnListBoxModifierSelection(wxCommandEvent& event)
         int nb_bain = temp;
 
         m_spinCtrlNombreBainModifier->SetValue(nb_bain);
+        m_textCtrlNombreBainAfficher->AppendText(m_frame->ConversionEnWxString(m_donnees_IHM->GetNombreBain()));
+        string requete;
+        requete = "SELECT numero_bain FROM intermediaire_processus_trajectoires WHERE id_p="
+                + m_frame->ConversionEnString(id_selection);
+        
+        vector<string> numero_bain;
+        
+        if(m_bdd_anodisation->ExecuteSelect(requete))
+        {
+            numero_bain = m_bdd_anodisation->GetLastResult();
+        }
+        else
+        {
+            EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+        }
 
         switch(nb_bain)
         {
@@ -811,6 +960,35 @@ void EvtPanelResponsable::OnListBoxModifierSelection(wxCommandEvent& event)
 
             sbSizerGestionBainModifier->Layout();
             Layout();
+            
+            // Bain 1
+            requete = "SELECT duree_bain FROM intermediaire_processus_trajectoires WHERE id_p="
+                    + m_frame->ConversionEnString(id_selection) + " AND numero_bain=" + numero_bain[1];
+            
+            m_choiceModifierBain1->SetStringSelection(numero_bain[1]);
+            
+            if(m_bdd_anodisation->ExecuteSelect(requete))
+            {
+                vector<string> duree_bain1 = m_bdd_anodisation->GetLastResult();
+                
+                if(!duree_bain1.empty())
+                {
+                    m_textCtrlModifierHeureBain1->AppendText(m_frame->DecouperTexteDebut(duree_bain1[0], 2));
+                    
+                    wxString temp = m_frame->DecouperTexteDebut(duree_bain1[0], 5);
+                    m_textCtrlModifierMinuteBain1->AppendText(m_frame->DecouperTexteFin(temp, 3));
+                    
+                    m_textCtrlModifierSecondeBain1->AppendText(m_frame->DecouperTexteFin(duree_bain1[0], 6));
+                }
+                else
+                {
+                    EnvoiMessage(wxT("Il n'y a pas de durée pour le premier bain de ce processus.\n"));
+                }
+            }
+            else
+            {
+                EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+            }
 
             break;
 
@@ -846,6 +1024,66 @@ void EvtPanelResponsable::OnListBoxModifierSelection(wxCommandEvent& event)
 
             sbSizerGestionBainModifier->Layout();
             Layout();
+            
+            // Bain 1
+            requete = "SELECT duree_bain FROM intermediaire_processus_trajectoires WHERE id_p="
+                    + m_frame->ConversionEnString(id_selection) + " AND numero_bain=" + numero_bain[1];
+            
+            m_choiceModifierBain1->SetStringSelection(numero_bain[1]);
+            
+            if(m_bdd_anodisation->ExecuteSelect(requete))
+            {
+                vector<string> duree_bain1 = m_bdd_anodisation->GetLastResult();
+                
+                if(!duree_bain1.empty())
+                {
+                    m_textCtrlModifierHeureBain1->AppendText(m_frame->DecouperTexteDebut(duree_bain1[0], 2));
+                    
+                    wxString temp = m_frame->DecouperTexteDebut(duree_bain1[0], 5);
+                    m_textCtrlModifierMinuteBain1->AppendText(m_frame->DecouperTexteFin(temp, 3));
+                    
+                    m_textCtrlModifierSecondeBain1->AppendText(m_frame->DecouperTexteFin(duree_bain1[0], 6));
+                }
+                else
+                {
+                    EnvoiMessage(wxT("Il n'y a pas de durée pour le premier bain de ce processus.\n"));
+                }
+            }
+            else
+            {
+                EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+            }
+            
+            
+            
+            // Bain 2
+            requete = "SELECT duree_bain FROM intermediaire_processus_trajectoires WHERE id_p="
+                    + m_frame->ConversionEnString(id_selection) + " AND numero_bain=" + numero_bain[2];
+            
+            m_choiceModifierBain2->SetStringSelection(numero_bain[2]);
+            
+            if(m_bdd_anodisation->ExecuteSelect(requete))
+            {
+                vector<string> duree_bain2 = m_bdd_anodisation->GetLastResult();
+                
+                if(!duree_bain2.empty())
+                {
+                    m_textCtrlModifierHeureBain2->AppendText(m_frame->DecouperTexteDebut(duree_bain2[0], 2));
+                    
+                    wxString temp = m_frame->DecouperTexteDebut(duree_bain2[0], 5);
+                    m_textCtrlModifierMinuteBain2->AppendText(m_frame->DecouperTexteFin(temp, 3));
+                    
+                    m_textCtrlModifierSecondeBain2->AppendText(m_frame->DecouperTexteFin(duree_bain2[0], 6));
+                }
+                else
+                {
+                    EnvoiMessage(wxT("Il n'y a pas de durée pour le deuxième bain de ce processus.\n"));
+                }
+            }
+            else
+            {
+                EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+            }
 
             break;
 
@@ -881,6 +1119,97 @@ void EvtPanelResponsable::OnListBoxModifierSelection(wxCommandEvent& event)
 
             sbSizerGestionBainModifier->Layout();
             Layout();
+            
+            // Bain 1
+            requete = "SELECT duree_bain FROM intermediaire_processus_trajectoires WHERE id_p="
+                    + m_frame->ConversionEnString(id_selection) + " AND numero_bain=" + numero_bain[1];
+            
+            m_choiceModifierBain1->SetStringSelection(numero_bain[1]);
+            
+            if(m_bdd_anodisation->ExecuteSelect(requete))
+            {
+                vector<string> duree_bain1 = m_bdd_anodisation->GetLastResult();
+                
+                if(!duree_bain1.empty())
+                {
+                    m_textCtrlModifierHeureBain1->AppendText(m_frame->DecouperTexteDebut(duree_bain1[0], 2));
+                    
+                    wxString temp = m_frame->DecouperTexteDebut(duree_bain1[0], 5);
+                    m_textCtrlModifierMinuteBain1->AppendText(m_frame->DecouperTexteFin(temp, 3));
+                    
+                    m_textCtrlModifierSecondeBain1->AppendText(m_frame->DecouperTexteFin(duree_bain1[0], 6));
+                }
+                else
+                {
+                    EnvoiMessage(wxT("Il n'y a pas de durée pour le premier bain de ce processus.\n"));
+                }
+            }
+            else
+            {
+                EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+            }
+            
+            
+            
+            // Bain 2
+            requete = "SELECT duree_bain FROM intermediaire_processus_trajectoires WHERE id_p="
+                    + m_frame->ConversionEnString(id_selection) + " AND numero_bain=" + numero_bain[2];
+            
+            m_choiceModifierBain2->SetStringSelection(numero_bain[2]);
+            
+            if(m_bdd_anodisation->ExecuteSelect(requete))
+            {
+                vector<string> duree_bain2 = m_bdd_anodisation->GetLastResult();
+                
+                if(!duree_bain2.empty())
+                {
+                    m_textCtrlModifierHeureBain2->AppendText(m_frame->DecouperTexteDebut(duree_bain2[0], 2));
+                    
+                    wxString temp = m_frame->DecouperTexteDebut(duree_bain2[0], 5);
+                    m_textCtrlModifierMinuteBain2->AppendText(m_frame->DecouperTexteFin(temp, 3));
+                    
+                    m_textCtrlModifierSecondeBain2->AppendText(m_frame->DecouperTexteFin(duree_bain2[0], 6));
+                }
+                else
+                {
+                    EnvoiMessage(wxT("Il n'y a pas de durée pour le deuxième bain de ce processus.\n"));
+                }
+            }
+            else
+            {
+                EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+            }
+            
+            
+            
+            // Bain 3
+            requete = "SELECT duree_bain FROM intermediaire_processus_trajectoires WHERE id_p="
+                    + m_frame->ConversionEnString(id_selection) + " AND numero_bain=" + numero_bain[3];
+            
+            m_choiceModifierBain3->SetStringSelection(numero_bain[3]);
+            
+            if(m_bdd_anodisation->ExecuteSelect(requete))
+            {
+                vector<string> duree_bain3 = m_bdd_anodisation->GetLastResult();
+                
+                if(!duree_bain3.empty())
+                {
+                    m_textCtrlModifierHeureBain3->AppendText(m_frame->DecouperTexteDebut(duree_bain3[0], 2));
+                    
+                    wxString temp = m_frame->DecouperTexteDebut(duree_bain3[0], 5);
+                    m_textCtrlModifierMinuteBain3->AppendText(m_frame->DecouperTexteFin(temp, 3));
+                    
+                    m_textCtrlModifierSecondeBain3->AppendText(m_frame->DecouperTexteFin(duree_bain3[0], 6));
+                }
+                else
+                {
+                    EnvoiMessage(wxT("Il n'y a pas de durée pour le deuxième bain de ce processus.\n"));
+                }
+            }
+            else
+            {
+                EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+            }
 
             break;
 
@@ -1351,7 +1680,7 @@ void EvtPanelResponsable::OnApplyButtonModifierClick(wxCommandEvent& event)
                                     + ", duree_bain='" + duree_bain1
                                     + "' WHERE id_p=" + m_frame->ConversionEnString(id_selection);
                                     
-                            cout << requete << endl;
+                            //cout << requete << endl;
                             
                             if(!m_bdd_anodisation->ExecuteUpdate(requete))
                             {
@@ -1362,11 +1691,87 @@ void EvtPanelResponsable::OnApplyButtonModifierClick(wxCommandEvent& event)
                         break;
                     
                     case 2:
-                        
+                        for(unsigned int i =0; i < ordre_separe.size(); i++)
+                        {
+                            if(i == 1)
+                            {
+                                requete = "UPDATE intermediaire_processus_trajectoires SET id_p=" + m_frame->ConversionEnString(id_selection)
+                                        + ", id_t=" + ordre_separe[i]
+                                        + ", ordre_trajectoires='" + ordre
+                                        + "', numero_bain=" + num_bain2
+                                        + ", duree_bain='" + duree_bain2
+                                        + "' WHERE id_p=" + m_frame->ConversionEnString(id_selection);
+                                
+                                if(!m_bdd_anodisation->ExecuteUpdate(requete))
+                                {
+                                    EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+                                }
+                            }
+                            else
+                            {
+                                requete = "UPDATE intermediaire_processus_trajectoires SET id_p=" + m_frame->ConversionEnString(id_selection)
+                                        + ", id_t=" + ordre_separe[i]
+                                        + ", ordre_trajectoires='" + ordre
+                                        + "', numero_bain=" + num_bain1
+                                        + ", duree_bain='" + duree_bain1
+                                        + "' WHERE id_p=" + m_frame->ConversionEnString(id_selection);
+                                
+                                if(!m_bdd_anodisation->ExecuteUpdate(requete))
+                                {
+                                    EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+                                }
+                            }
+                            
+                        }
                         break;
                     
                     case 3:
-                        
+                        for(unsigned int i =0; i < ordre_separe.size(); i++)
+                        {
+                            if(i == 1)
+                            {
+                                requete = "UPDATE intermediaire_processus_trajectoires SET id_p=" + m_frame->ConversionEnString(id_selection)
+                                        + ", id_t=" + ordre_separe[i]
+                                        + ", ordre_trajectoires='" + ordre
+                                        + "', numero_bain=" + num_bain2
+                                        + ", duree_bain='" + duree_bain2
+                                        + "' WHERE id_p=" + m_frame->ConversionEnString(id_selection);
+                                
+                                if(!m_bdd_anodisation->ExecuteUpdate(requete))
+                                {
+                                    EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+                                }
+                            }
+                            else if(i == 2)
+                            {
+                                requete = "UPDATE intermediaire_processus_trajectoires SET id_p=" + m_frame->ConversionEnString(id_selection)
+                                        + ", id_t=" + ordre_separe[i]
+                                        + ", ordre_trajectoires='" + ordre
+                                        + "', numero_bain=" + num_bain3
+                                        + ", duree_bain='" + duree_bain3
+                                        + "' WHERE id_p=" + m_frame->ConversionEnString(id_selection);
+                                
+                                if(!m_bdd_anodisation->ExecuteUpdate(requete))
+                                {
+                                    EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+                                }
+                            }
+                            else
+                            {
+                                requete = "UPDATE intermediaire_processus_trajectoires SET id_p=" + m_frame->ConversionEnString(id_selection)
+                                        + ", id_t=" + ordre_separe[i]
+                                        + ", ordre_trajectoires='" + ordre
+                                        + "', numero_bain=" + num_bain1
+                                        + ", duree_bain='" + duree_bain1
+                                        + "' WHERE id_p=" + m_frame->ConversionEnString(id_selection);
+                                
+                                if(!m_bdd_anodisation->ExecuteUpdate(requete))
+                                {
+                                    EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+                                }
+                            }
+                            
+                        }
                         break;
                     
                     default:
@@ -1455,114 +1860,327 @@ void EvtPanelResponsable::OnCancelButtonModiffierClick(wxCommandEvent& event)
         }
     
         // Nombre de bain du processus
-        if(m_donnees_IHM->RecupereNombreBain(m_frame->ConversionEnString(id_selection)))
+    if(m_donnees_IHM->RecupereNombreBain(m_frame->ConversionEnString(id_selection)))
+    {
+        wxString nombre_bain = m_donnees_IHM->GetNombreBain();
+
+        double temp;
+        nombre_bain.ToDouble(&temp);
+        int nb_bain = temp;
+
+        m_spinCtrlNombreBainModifier->SetValue(nb_bain);
+        m_textCtrlNombreBainAfficher->AppendText(m_frame->ConversionEnWxString(m_donnees_IHM->GetNombreBain()));
+        string requete;
+        requete = "SELECT numero_bain FROM intermediaire_processus_trajectoires WHERE id_p="
+                + m_frame->ConversionEnString(id_selection);
+        
+        vector<string> numero_bain;
+        
+        if(m_bdd_anodisation->ExecuteSelect(requete))
         {
-            wxString nombre_bain = m_donnees_IHM->GetNombreBain();
-    
-            double temp;
-            nombre_bain.ToDouble(&temp);
-            int nb_bain = temp;
-    
-            m_spinCtrlNombreBainModifier->SetValue(nb_bain);
-    
-            switch(nb_bain)
-            {
-                case 1:
-    
-                    m_staticModifierDureeTotalBain2->Hide();
-                    m_textCtrlModifierHeureBain2->Hide();
-                    m_staticTextModifierDureeBain2->Hide();
-                    m_textCtrlModifierMinuteBain2->Hide();
-                    m_staticTextModifierDureeFinBain2->Hide();
-                    m_textCtrlModifierSecondeBain2->Hide();
-                    bSizerModifierDureeBain2->Hide(this);
-    
-                    m_staticModifierDureeTotalBain3->Hide();
-                    m_textCtrlModifierHeureBain3->Hide();
-                    m_staticTextModifierDureeBain3->Hide();
-                    m_textCtrlModifierMinuteBain3->Hide();
-                    m_staticTextModifierDureeFinBain3->Hide();
-                    m_textCtrlModifierSecondeBain3->Hide();
-                    bSizerModifierDureeBain3->Hide(this);
-    
-                    bSizerModifierDureeBain2->Layout();
-                    bSizerModifierDureeBain3->Layout();
-                    bSizerBainModifierDuree->Layout();
-                    bSizerModifierDureeBain1->Layout();
-                    bSizerModifierBain->Layout();
-    
-                    sbSizerGestionBainModifier->Layout();
-                    Layout();
-    
-                    break;
-    
-                case 2:
-    
-                    m_staticModifierDureeTotalBain2->Show();
-                    m_textCtrlModifierHeureBain2->Show();
-                    m_staticTextModifierDureeBain2->Show();
-                    m_textCtrlModifierMinuteBain2->Show();
-                    m_staticTextModifierDureeFinBain2->Show();
-                    m_textCtrlModifierSecondeBain2->Show();
-                    bSizerModifierDureeBain2->Show(this);
-    
-                    m_staticModifierDureeTotalBain3->Hide();
-                    m_textCtrlModifierHeureBain3->Hide();
-                    m_staticTextModifierDureeBain3->Hide();
-                    m_textCtrlModifierMinuteBain3->Hide();
-                    m_staticTextModifierDureeFinBain3->Hide();
-                    m_textCtrlModifierSecondeBain3->Hide();
-                    bSizerModifierDureeBain3->Hide(this);
-    
-                    bSizerModifierDureeBain2->Layout();
-                    bSizerModifierDureeBain3->Layout();
-                    bSizerBainModifierDuree->Layout();
-                    bSizerModifierDureeBain1->Layout();
-                    bSizerModifierBain->Layout();
-    
-                    sbSizerGestionBainModifier->Layout();
-                    Layout();
-    
-                    break;
-    
-                case 3:
-    
-                    m_staticModifierDureeTotalBain2->Show();
-                    m_textCtrlModifierHeureBain2->Show();
-                    m_staticTextModifierDureeBain2->Show();
-                    m_textCtrlModifierMinuteBain2->Show();
-                    m_staticTextModifierDureeFinBain2->Show();
-                    m_textCtrlModifierSecondeBain2->Show();
-                    bSizerModifierDureeBain2->Show(this);
-    
-                    m_staticModifierDureeTotalBain3->Show();
-                    m_textCtrlModifierHeureBain3->Show();
-                    m_staticTextModifierDureeBain3->Show();
-                    m_textCtrlModifierMinuteBain3->Show();
-                    m_staticTextModifierDureeFinBain3->Show();
-                    m_textCtrlModifierSecondeBain3->Show();
-                    bSizerModifierDureeBain3->Show(this);
-    
-                    bSizerModifierDureeBain2->Layout();
-                    bSizerModifierDureeBain3->Layout();
-                    bSizerBainModifierDuree->Layout();
-                    bSizerModifierDureeBain1->Layout();
-                    bSizerModifierBain->Layout();
-    
-                    sbSizerGestionBainModifier->Layout();
-                    Layout();
-    
-                    break;
-    
-                default:
-    
-                    break;
-            }
+            numero_bain = m_bdd_anodisation->GetLastResult();
         }
         else
         {
-            EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
+            EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
         }
+
+        switch(nb_bain)
+        {
+            case 1:
+
+            m_staticModifierDureeTotalBain2->Hide();
+            m_choiceModifierBain2->Hide();
+            m_staticModifierBain2->Hide();
+            m_staticModifierDureeTotalBain2->Hide();
+            m_textCtrlModifierHeureBain2->Hide();
+            m_staticTextModifierDureeBain2->Hide();
+            m_textCtrlModifierMinuteBain2->Hide();
+            m_staticTextModifierDureeFinBain2->Hide();
+            m_textCtrlModifierSecondeBain2->Hide();
+            bSizerModifierDureeBain2->Hide(this);
+
+            m_staticModifierDureeTotalBain3->Hide();
+            m_choiceModifierBain3->Hide();
+            m_staticModifierBain3->Hide();
+            m_staticModifierDureeTotalBain3->Hide();
+            m_textCtrlModifierHeureBain3->Hide();
+            m_staticTextModifierDureeBain3->Hide();
+            m_textCtrlModifierMinuteBain3->Hide();
+            m_staticTextModifierDureeFinBain3->Hide();
+            m_textCtrlModifierSecondeBain3->Hide();
+            bSizerModifierDureeBain3->Hide(this);
+
+            bSizerModifierDureeBain2->Layout();
+            bSizerModifierDureeBain3->Layout();
+            bSizerBainModifierDuree->Layout();
+            bSizerModifierDureeBain1->Layout();
+            bSizerModifierBain->Layout();
+
+            sbSizerGestionBainModifier->Layout();
+            Layout();
+            
+            // Bain 1
+            requete = "SELECT duree_bain FROM intermediaire_processus_trajectoires WHERE id_p="
+                    + m_frame->ConversionEnString(id_selection) + " AND numero_bain=" + numero_bain[1];
+            
+            m_choiceModifierBain1->SetStringSelection(numero_bain[1]);
+            
+            if(m_bdd_anodisation->ExecuteSelect(requete))
+            {
+                vector<string> duree_bain1 = m_bdd_anodisation->GetLastResult();
+                
+                if(!duree_bain1.empty())
+                {
+                    m_textCtrlModifierHeureBain1->AppendText(m_frame->DecouperTexteDebut(duree_bain1[0], 2));
+                    
+                    wxString temp = m_frame->DecouperTexteDebut(duree_bain1[0], 5);
+                    m_textCtrlModifierMinuteBain1->AppendText(m_frame->DecouperTexteFin(temp, 3));
+                    
+                    m_textCtrlModifierSecondeBain1->AppendText(m_frame->DecouperTexteFin(duree_bain1[0], 6));
+                }
+                else
+                {
+                    EnvoiMessage(wxT("Il n'y a pas de durée pour le premier bain de ce processus.\n"));
+                }
+            }
+            else
+            {
+                EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+            }
+
+            break;
+
+        case 2:
+
+            m_staticModifierDureeTotalBain2->Show();
+            m_choiceModifierBain2->Show();
+            m_staticModifierBain2->Show();
+            m_staticModifierDureeTotalBain2->Show();
+            m_textCtrlModifierHeureBain2->Show();
+            m_staticTextModifierDureeBain2->Show();
+            m_textCtrlModifierMinuteBain2->Show();
+            m_staticTextModifierDureeFinBain2->Show();
+            m_textCtrlModifierSecondeBain2->Show();
+            bSizerModifierDureeBain2->Show(this);
+
+            m_staticModifierDureeTotalBain3->Hide();
+            m_choiceModifierBain3->Hide();
+            m_staticModifierBain3->Hide();
+            m_staticModifierDureeTotalBain3->Hide();
+            m_textCtrlModifierHeureBain3->Hide();
+            m_staticTextModifierDureeBain3->Hide();
+            m_textCtrlModifierMinuteBain3->Hide();
+            m_staticTextModifierDureeFinBain3->Hide();
+            m_textCtrlModifierSecondeBain3->Hide();
+            bSizerModifierDureeBain3->Hide(this);
+
+            bSizerModifierDureeBain2->Layout();
+            bSizerModifierDureeBain3->Layout();
+            bSizerBainModifierDuree->Layout();
+            bSizerModifierDureeBain1->Layout();
+            bSizerModifierBain->Layout();
+
+            sbSizerGestionBainModifier->Layout();
+            Layout();
+            
+            // Bain 1
+            requete = "SELECT duree_bain FROM intermediaire_processus_trajectoires WHERE id_p="
+                    + m_frame->ConversionEnString(id_selection) + " AND numero_bain=" + numero_bain[1];
+            
+            m_choiceModifierBain1->SetStringSelection(numero_bain[1]);
+            
+            if(m_bdd_anodisation->ExecuteSelect(requete))
+            {
+                vector<string> duree_bain1 = m_bdd_anodisation->GetLastResult();
+                
+                if(!duree_bain1.empty())
+                {
+                    m_textCtrlModifierHeureBain1->AppendText(m_frame->DecouperTexteDebut(duree_bain1[0], 2));
+                    
+                    wxString temp = m_frame->DecouperTexteDebut(duree_bain1[0], 5);
+                    m_textCtrlModifierMinuteBain1->AppendText(m_frame->DecouperTexteFin(temp, 3));
+                    
+                    m_textCtrlModifierSecondeBain1->AppendText(m_frame->DecouperTexteFin(duree_bain1[0], 6));
+                }
+                else
+                {
+                    EnvoiMessage(wxT("Il n'y a pas de durée pour le premier bain de ce processus.\n"));
+                }
+            }
+            else
+            {
+                EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+            }
+            
+            
+            
+            // Bain 2
+            requete = "SELECT duree_bain FROM intermediaire_processus_trajectoires WHERE id_p="
+                    + m_frame->ConversionEnString(id_selection) + " AND numero_bain=" + numero_bain[2];
+            
+            m_choiceModifierBain2->SetStringSelection(numero_bain[2]);
+            
+            if(m_bdd_anodisation->ExecuteSelect(requete))
+            {
+                vector<string> duree_bain2 = m_bdd_anodisation->GetLastResult();
+                
+                if(!duree_bain2.empty())
+                {
+                    m_textCtrlModifierHeureBain2->AppendText(m_frame->DecouperTexteDebut(duree_bain2[0], 2));
+                    
+                    wxString temp = m_frame->DecouperTexteDebut(duree_bain2[0], 5);
+                    m_textCtrlModifierMinuteBain2->AppendText(m_frame->DecouperTexteFin(temp, 3));
+                    
+                    m_textCtrlModifierSecondeBain2->AppendText(m_frame->DecouperTexteFin(duree_bain2[0], 6));
+                }
+                else
+                {
+                    EnvoiMessage(wxT("Il n'y a pas de durée pour le deuxième bain de ce processus.\n"));
+                }
+            }
+            else
+            {
+                EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+            }
+
+            break;
+
+        case 3:
+
+            m_staticModifierDureeTotalBain2->Show();
+            m_choiceModifierBain2->Show();
+            m_staticModifierBain2->Show();
+            m_staticModifierDureeTotalBain2->Show();
+            m_textCtrlModifierHeureBain2->Show();
+            m_staticTextModifierDureeBain2->Show();
+            m_textCtrlModifierMinuteBain2->Show();
+            m_staticTextModifierDureeFinBain2->Show();
+            m_textCtrlModifierSecondeBain2->Show();
+            bSizerModifierDureeBain2->Show(this);
+
+            m_staticModifierDureeTotalBain3->Show();
+            m_choiceModifierBain3->Show();
+            m_staticModifierBain3->Show();
+            m_staticModifierDureeTotalBain3->Show();
+            m_textCtrlModifierHeureBain3->Show();
+            m_staticTextModifierDureeBain3->Show();
+            m_textCtrlModifierMinuteBain3->Show();
+            m_staticTextModifierDureeFinBain3->Show();
+            m_textCtrlModifierSecondeBain3->Show();
+            bSizerModifierDureeBain3->Show(this);
+
+            bSizerModifierDureeBain2->Layout();
+            bSizerModifierDureeBain3->Layout();
+            bSizerBainModifierDuree->Layout();
+            bSizerModifierDureeBain1->Layout();
+            bSizerModifierBain->Layout();
+
+            sbSizerGestionBainModifier->Layout();
+            Layout();
+            
+            // Bain 1
+            requete = "SELECT duree_bain FROM intermediaire_processus_trajectoires WHERE id_p="
+                    + m_frame->ConversionEnString(id_selection) + " AND numero_bain=" + numero_bain[1];
+            
+            m_choiceModifierBain1->SetStringSelection(numero_bain[1]);
+            
+            if(m_bdd_anodisation->ExecuteSelect(requete))
+            {
+                vector<string> duree_bain1 = m_bdd_anodisation->GetLastResult();
+                
+                if(!duree_bain1.empty())
+                {
+                    m_textCtrlModifierHeureBain1->AppendText(m_frame->DecouperTexteDebut(duree_bain1[0], 2));
+                    
+                    wxString temp = m_frame->DecouperTexteDebut(duree_bain1[0], 5);
+                    m_textCtrlModifierMinuteBain1->AppendText(m_frame->DecouperTexteFin(temp, 3));
+                    
+                    m_textCtrlModifierSecondeBain1->AppendText(m_frame->DecouperTexteFin(duree_bain1[0], 6));
+                }
+                else
+                {
+                    EnvoiMessage(wxT("Il n'y a pas de durée pour le premier bain de ce processus.\n"));
+                }
+            }
+            else
+            {
+                EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+            }
+            
+            
+            
+            // Bain 2
+            requete = "SELECT duree_bain FROM intermediaire_processus_trajectoires WHERE id_p="
+                    + m_frame->ConversionEnString(id_selection) + " AND numero_bain=" + numero_bain[2];
+            
+            m_choiceModifierBain2->SetStringSelection(numero_bain[2]);
+            
+            if(m_bdd_anodisation->ExecuteSelect(requete))
+            {
+                vector<string> duree_bain2 = m_bdd_anodisation->GetLastResult();
+                
+                if(!duree_bain2.empty())
+                {
+                    m_textCtrlModifierHeureBain2->AppendText(m_frame->DecouperTexteDebut(duree_bain2[0], 2));
+                    
+                    wxString temp = m_frame->DecouperTexteDebut(duree_bain2[0], 5);
+                    m_textCtrlModifierMinuteBain2->AppendText(m_frame->DecouperTexteFin(temp, 3));
+                    
+                    m_textCtrlModifierSecondeBain2->AppendText(m_frame->DecouperTexteFin(duree_bain2[0], 6));
+                }
+                else
+                {
+                    EnvoiMessage(wxT("Il n'y a pas de durée pour le deuxième bain de ce processus.\n"));
+                }
+            }
+            else
+            {
+                EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+            }
+            
+            
+            
+            // Bain 3
+            requete = "SELECT duree_bain FROM intermediaire_processus_trajectoires WHERE id_p="
+                    + m_frame->ConversionEnString(id_selection) + " AND numero_bain=" + numero_bain[3];
+            
+            m_choiceModifierBain3->SetStringSelection(numero_bain[3]);
+            
+            if(m_bdd_anodisation->ExecuteSelect(requete))
+            {
+                vector<string> duree_bain3 = m_bdd_anodisation->GetLastResult();
+                
+                if(!duree_bain3.empty())
+                {
+                    m_textCtrlModifierHeureBain3->AppendText(m_frame->DecouperTexteDebut(duree_bain3[0], 2));
+                    
+                    wxString temp = m_frame->DecouperTexteDebut(duree_bain3[0], 5);
+                    m_textCtrlModifierMinuteBain3->AppendText(m_frame->DecouperTexteFin(temp, 3));
+                    
+                    m_textCtrlModifierSecondeBain3->AppendText(m_frame->DecouperTexteFin(duree_bain3[0], 6));
+                }
+                else
+                {
+                    EnvoiMessage(wxT("Il n'y a pas de durée pour le deuxième bain de ce processus.\n"));
+                }
+            }
+            else
+            {
+                EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+            }
+
+            break;
+
+            default:
+
+                break;
+        }
+    }
+    else
+    {
+        EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_donnees_IHM->GetDerniereErreur()));
+    }
     
         // Ordre des trajectoires
         if(m_donnees_IHM->RecupereOrdreTrajectoires(m_frame->ConversionEnString(id_selection)))
@@ -1753,6 +2371,7 @@ void EvtPanelResponsable::OnSaveButtonCreerClick(wxCommandEvent& event)
     switch(nombre_bain)
     {
         case 1:
+            num_bain1 = m_choiceCreerBain1->GetStringSelection();
             // Vérification des champs du bain 1 qu'il ont bien été rempli
             if(!m_textCtrlCreerHeureBain1->IsEmpty() && !m_textCtrlCreerMinuteBain1->IsEmpty()
                && !m_textCtrlCreerSecondeBain1->IsEmpty())
@@ -1959,8 +2578,8 @@ void EvtPanelResponsable::OnSaveButtonCreerClick(wxCommandEvent& event)
                                 + ordre + "', "
                                 + num_bain1 + ", '"
                                 + duree_bain1 + "')";
-                                
-                        cout << requete << endl;
+                                cout << requete << endl;
+                        
                         if(!m_bdd_anodisation->ExecuteInsert(requete))
                         {
                             EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
@@ -1969,7 +2588,51 @@ void EvtPanelResponsable::OnSaveButtonCreerClick(wxCommandEvent& event)
                     break;
                 
                 case 2:
-                    
+                    for(unsigned int i =0; i < ordre_separe.size(); i++)
+                    {
+                        if(i == 1)
+                        {
+                            requete = "INSERT INTO intermediaire_processus_trajectoires (id_p, id_t, ordre_trajectoires, numero_bain, duree_bain) VALUES ("
+                                    + id_p + ", "
+                                    + ordre_separe[i] + ", '"
+                                    + ordre + "', "
+                                    + num_bain2 + ", '"
+                                    + duree_bain2 + "')";
+                            
+                            if(!m_bdd_anodisation->ExecuteInsert(requete))
+                            {
+                                EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+                            }
+                        }
+                        else if(i == 2)
+                        {
+                            requete = "INSERT INTO intermediaire_processus_trajectoires (id_p, id_t, ordre_trajectoires, numero_bain, duree_bain) VALUES ("
+                                    + id_p + ", "
+                                    + ordre_separe[i] + ", '"
+                                    + ordre + "', "
+                                    + num_bain3 + ", '"
+                                    + duree_bain3 + "')";
+                            
+                            if(!m_bdd_anodisation->ExecuteInsert(requete))
+                            {
+                                EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+                            }
+                        }
+                        else
+                        {
+                            requete = "INSERT INTO intermediaire_processus_trajectoires (id_p, id_t, ordre_trajectoires, numero_bain, duree_bain) VALUES ("
+                                    + id_p + ", "
+                                    + ordre_separe[i] + ", '"
+                                    + ordre + "', "
+                                    + num_bain1 + ", '"
+                                    + duree_bain1 + "')";
+                            
+                            if(!m_bdd_anodisation->ExecuteInsert(requete))
+                            {
+                                EnvoiErreurRemplissage(m_frame->ConversionEnWxString(m_bdd_anodisation->GetLastError()));
+                            }
+                        }
+                    }
                     break;
                 
                 case 3:

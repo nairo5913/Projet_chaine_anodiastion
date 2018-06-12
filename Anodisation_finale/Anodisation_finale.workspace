@@ -2,11 +2,11 @@
 <CodeLite_Workspace Name="Anodisation_finale" Database="" Version="10.0.0">
   <Project Name="Anodisation" Path="Anodisation/Anodisation.project" Active="Yes"/>
   <BuildMatrix>
-    <WorkspaceConfiguration Name="Debug" Selected="no">
+    <WorkspaceConfiguration Name="Debug" Selected="yes">
       <Environment/>
       <Project Name="Anodisation" ConfigName="Debug"/>
     </WorkspaceConfiguration>
-    <WorkspaceConfiguration Name="Release" Selected="yes">
+    <WorkspaceConfiguration Name="Release" Selected="no">
       <Environment/>
       <Project Name="Anodisation" ConfigName="Release"/>
     </WorkspaceConfiguration>
